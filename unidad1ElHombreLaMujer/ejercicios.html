@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de Gramática</title>
+    <style>
+        :root {
+            /* Identidad Cromática */
+            --primary-color: #FF79AC;
+            --secondary-color: #FFB3D1;
+            --text-color: #121118;
+            --bg-color: #FFFFFF;
+            --success-bg: #D4EDDA;
+            --error-bg: #F8D7DA;
+            --gray-light: #F9F9F9;
+            --input-border: #CCCCCC;
+        }
+
+        * { 
+            box-sizing: border-box; 
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--bg-color);
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 2.5rem);
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            color: var(--text-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            text-align: justify;
+        }
+
+        h2 .num {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Layout de columnas */
+        .grid-3-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px 20px;
+            padding: 0;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 40px;
+            padding: 0;
+        }
+
+        .exercise-item {
+            display: block; 
+            font-size: 1.1rem;
+            text-align: justify;
+            margin-bottom: 5px;
+        }
+
+        .item-num {
+            display: inline-block;
+            min-width: 25px;
+            font-weight: bold;
+        }
+
+        /* Inputs */
+        input[type="text"] {
+            border: none;
+            border-bottom: 2px solid #ccc;
+            background: transparent;
+            padding: 2px 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            width: 80px;
+            margin: 0 5px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-bottom-color: var(--primary-color);
+        }
+
+        .correct { background-color: var(--success-bg) !important; }
+        .incorrect { background-color: var(--error-bg) !important; }
+
+        /* Bancos de palabras */
+        .word-bank {
+            background-color: var(--gray-light);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            border: 1px solid #eee;
+        }
+
+        .word-bank span {
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        /* Botones de selección */
+        .selection-group {
+            display: inline-flex;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+
+        .btn-option {
+            background: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            padding: 2px 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #000;
+            margin: 0 1px;
+            border-radius: 4px;
+            transition: opacity 0.2s;
+        }
+
+        /* Tablas */
+        .table-exercise {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .table-exercise th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .table-exercise td {
+            border: 1px solid var(--primary-color);
+            padding: 10px;
+        }
+
+        /* Soluciones */
+        .btn-answers {
+            display: block;
+            width: fit-content;
+            margin: 50px auto 20px;
+            background-color: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            border-radius: 5px;
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: black;
+        }
+
+        .answers-content {
+            display: none;
+            background-color: var(--gray-light);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px dashed var(--primary-color);
+            font-size: 0.95rem;
+        }
+
+        .ans-section {
+            margin-bottom: 25px;
+        }
+
+        .ans-title {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .ans-columns-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .ans-columns-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-3-col, .grid-2-col, .ans-columns-3, .ans-columns-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>EJERCICIOS</h1>
+
+    <!-- 1.1 -->
+    <div class="exercise-block">
+        <h2><span class="num">1.1</span> Escriba el femenino de los siguientes nombres.</h2>
+        <div class="grid-3-col">
+            <div class="exercise-item"><span class="item-num">1.</span> vendedor <input type="text" data-answer="vendedora" data-order="1"></div>
+            <div class="exercise-item"><span class="item-num">7.</span> presidente <input type="text" data-answer="presidente, presidenta" data-order="7"></div>
+            <div class="exercise-item"><span class="item-num">13.</span> coleccionista <input type="text" data-answer="coleccionista" data-order="13"></div>
+            
+            <div class="exercise-item"><span class="item-num">2.</span> paciente <input type="text" data-answer="paciente" data-order="2"></div>
+            <div class="exercise-item"><span class="item-num">8.</span> testigo <input type="text" data-answer="testigo" data-order="8"></div>
+            <div class="exercise-item"><span class="item-num">14.</span> hermano <input type="text" data-answer="hermana" data-order="14"></div>
+            
+            <div class="exercise-item"><span class="item-num">3.</span> campeón <input type="text" data-answer="campeona" data-order="3"></div>
+            <div class="exercise-item"><span class="item-num">9.</span> novio <input type="text" data-answer="novia" data-order="9"></div>
+            <div class="exercise-item"><span class="item-num">15.</span> dependiente <input type="text" data-answer="dependiente, dependienta" data-order="15"></div>
+            
+            <div class="exercise-item"><span class="item-num">4.</span> jefe <input type="text" data-answer="jefe, jefa" data-order="4"></div>
+            <div class="exercise-item"><span class="item-num">10.</span> director <input type="text" data-answer="directora" data-order="10"></div>
+            <div class="exercise-item"><span class="item-num">16.</span> cocinero <input type="text" data-answer="cocinera" data-order="16"></div>
+            
+            <div class="exercise-item"><span class="item-num">5.</span> médico <input type="text" data-answer="médico, médica" data-order="5"></div>
+            <div class="exercise-item"><span class="item-num">11.</span> enfermero <input type="text" data-answer="enfermera" data-order="11"></div>
+            <div class="exercise-item"><span class="item-num">17.</span> monje <input type="text" data-answer="monja" data-order="17"></div>
+            
+            <div class="exercise-item"><span class="item-num">6.</span> novelista <input type="text" data-answer="novelista" data-order="6"></div>
+            <div class="exercise-item"><span class="item-num">12.</span> juez <input type="text" data-answer="juez, jueza" data-order="12"></div>
+            <div class="exercise-item"><span class="item-num">18.</span> cantante <input type="text" data-answer="cantante" data-order="18"></div>
+        </div>
+    </div>
+
+    <!-- 1.2 -->
+    <div class="exercise-block">
+        <h2><span class="num">1.2</span> Complete con el o la.</h2>
+        <div class="grid-2-col">
+            <div class="exercise-item"><span class="item-num">1.</span> <input type="text" data-answer="el" data-order="19"> atleta que ganó es italiano.</div>
+            <div class="exercise-item"><span class="item-num">6.</span> <input type="text" data-answer="la" data-order="24"> joven del vestido verde se llama María.</div>
+            
+            <div class="exercise-item"><span class="item-num">2.</span> <input type="text" data-answer="la" data-order="20"> ayudante de Adolfo se llama Julia.</div>
+            <div class="exercise-item"><span class="item-num">7.</span> <input type="text" data-answer="el" data-order="25"> turista de la gorra roja es alemán.</div>
+            
+            <div class="exercise-item"><span class="item-num">3.</span> <input type="text" data-answer="el" data-order="21"> ayudante de Sofía se llama Antonio.</div>
+            <div class="exercise-item"><span class="item-num">8.</span> <input type="text" data-answer="el" data-order="26"> policía de la esquina es mi hermano.</div>
+            
+            <div class="exercise-item"><span class="item-num">4.</span> <input type="text" data-answer="la" data-order="22"> guía del museo es española.</div>
+            <div class="exercise-item"><span class="item-num">9.</span> <input type="text" data-answer="el" data-order="27"> joven de gafas es amigo mío.</div>
+            
+            <div class="exercise-item"><span class="item-num">5.</span> <input type="text" data-answer="el" data-order="23"> piloto del avión es chileno.</div>
+            <div class="exercise-item"><span class="item-num">10.</span> <input type="text" data-answer="la" data-order="28"> artista ganadora es británica.</div>
+        </div>
+    </div>
+
+    <!-- 1.3 -->
+    <div class="exercise-block">
+        <h2><span class="num">1.3</span> Complete con palabras del recuadro. Algunas palabras no son necesarias.</h2>
+        <div class="word-bank">
+            <span>actor</span> <span>actriz</span> <span>alcalde</span> <span>alcaldesa</span> <span>héroe</span> <span>heroína</span> <span>marido</span> 
+            <span>mujer</span> <span>nuera</span> <span>princesa</span> <span>príncipe</span> <span>reina</span> <span>rey</span> <span>yerno</span>
+        </div>
+        <div class="grid-2-col">
+            <div class="exercise-item"><span class="item-num">1.</span> La <input type="text" data-answer="actriz" style="width: 110px;" data-order="29"> principal es argentina.</div>
+            <div class="exercise-item"><span class="item-num">6.</span> Mi <input type="text" data-answer="mujer" style="width: 110px;" data-order="34"> es una gran pintora.</div>
+            
+            <div class="exercise-item"><span class="item-num">2.</span> El <input type="text" data-answer="héroe, actor" style="width: 110px;" data-order="30"> de la novela es un chico.</div>
+            <div class="exercise-item"><span class="item-num">7.</span> El marido de mi hija es mi <input type="text" data-answer="yerno" style="width: 110px;" data-order="35">.</div>
+            
+            <div class="exercise-item"><span class="item-num">3.</span> Mi <input type="text" data-answer="marido" style="width: 110px;" data-order="31"> es arquitecto.</div>
+            <div class="exercise-item"><span class="item-num">8.</span> La <input type="text" data-answer="alcaldesa" style="width: 110px;" data-order="36"> de mi pueblo es eficiente.</div>
+            
+            <div class="exercise-item"><span class="item-num">4.</span> El <input type="text" data-answer="príncipe" style="width: 110px;" data-order="32"> de Mónaco es muy rico.</div>
+            <div class="exercise-item"><span class="item-num">9.</span> La mujer de mi hijo es mi <input type="text" data-answer="nuera" style="width: 110px;" data-order="37">.</div>
+            
+            <div class="exercise-item"><span class="item-num">5.</span> Isabel fue una <input type="text" data-answer="reina" style="width: 110px;" data-order="33"> española.</div>
+            <div class="exercise-item"><span class="item-num">10.</span> Enrique VIII fue un <input type="text" data-answer="rey" style="width: 110px;" data-order="38"> inglés.</div>
+        </div>
+    </div>
+
+    <!-- 1.4 -->
+    <div class="exercise-block">
+        <h2><span class="num">1.4</span> Seleccione la forma correcta.</h2>
+        <div class="grid-2-col">
+            <div class="exercise-item">
+                <span class="item-num">1.</span> Esta niña es (<div class="selection-group"><button class="btn-option" data-correct="un">un</button><button class="btn-option">una</button></div>) genio.
+            </div>
+            <div class="exercise-item">
+                <span class="item-num">5.</span> Rodolfo V. fue (<div class="selection-group"><button class="btn-option">un</button><button class="btn-option" data-correct="una">una</button></div>) estrella del cine.
+            </div>
+            
+            <div class="exercise-item">
+                <span class="item-num">2.</span> (<div class="selection-group"><button class="btn-option" data-correct="el">el</button><button class="btn-option">la</button></div>) bebé es una niña.
+            </div>
+            <div class="exercise-item">
+                <span class="item-num">6.</span> En esta casa vive (<div class="selection-group"><button class="btn-option" data-correct="el">el</button><button class="btn-option">la</button></div>) fantasma de una mujer.
+            </div>
+            
+            <div class="exercise-item">
+                <span class="item-num">3.</span> Juan es (<div class="selection-group"><button class="btn-option">un</button><button class="btn-option" data-correct="una">una</button></div>) buena persona.
+            </div>
+            <div class="exercise-item">
+                <span class="item-num">7.</span> ¿Cómo se llama (<div class="selection-group"><button class="btn-option">el</button><button class="btn-option" data-correct="la">la</button></div>) víctima? — Andrés.
+            </div>
+            
+            <div class="exercise-item">
+                <span class="item-num">4.</span> Tienes (<div class="selection-group"><button class="btn-option">un</button><button class="btn-option" data-correct="una">una</button></div>) visita. Es un señor muy elegante.
+            </div>
+            <div class="exercise-item">
+                <span class="item-num">8.</span> (<div class="selection-group"><button class="btn-option" data-correct="el">el</button><button class="btn-option">la</button></div>) personaje es una mujer.
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.5 -->
+    <div class="exercise-block">
+        <h2><span class="num">1.5</span> Complete la tabla con los nombres de los animales correspondientes.</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+            <table class="table-exercise">
+                <thead><tr><th>MASCULINO</th><th>FEMENINO</th></tr></thead>
+                <tbody>
+                    <tr><td>1. el elefante</td><td><input type="text" data-answer="la elefanta" data-order="39" style="width: 100%;"></td></tr>
+                    <tr><td>2. el mono</td><td><input type="text" data-answer="la mona" data-order="40" style="width: 100%;"></td></tr>
+                    <tr><td>3. el carnero</td><td><input type="text" data-answer="la oveja" data-order="41" style="width: 100%;"></td></tr>
+                    <tr><td>4. el toro</td><td><input type="text" data-answer="la vaca" data-order="42" style="width: 100%;"></td></tr>
+                </tbody>
+            </table>
+            <table class="table-exercise">
+                <thead><tr><th>MASCULINO</th><th>FEMENINO</th></tr></thead>
+                <tbody>
+                    <tr><td>5. <input type="text" data-answer="el cerdo" data-order="43" style="width: 80%;"></td><td>la cerda</td></tr>
+                    <tr><td>6. el oso</td><td><input type="text" data-answer="la osa" data-order="44" style="width: 100%;"></td></tr>
+                    <tr><td>7. <input type="text" data-answer="el gallo" data-order="45" style="width: 80%;"></td><td>la gallina</td></tr>
+                    <tr><td>8. el caballo</td><td><input type="text" data-answer="la yegua" data-order="46" style="width: 100%;"></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 1.6 -->
+    <div class="exercise-block">
+        <h2><span class="num">1.6</span> Seleccione la forma correcta.</h2>
+        <div class="grid-2-col">
+            <div class="exercise-item"><span class="item-num">1.</span> (<div class="selection-group"><button class="btn-option">el</button><button class="btn-option" data-correct="la">la</button></div>) liebre es más grande que el conejo.</div>
+            <div class="exercise-item"><span class="item-num">5.</span> (<div class="selection-group"><button class="btn-option">un</button><button class="btn-option" data-correct="una">una</button></div>) jirafa macho es más alta que (<div class="selection-group"><button class="btn-option">un</button><button class="btn-option" data-correct="una">una</button></div>) jirafa hembra.</div>
+            
+            <div class="exercise-item"><span class="item-num">2.</span> ¿Es (<div class="selection-group"><button class="btn-option" data-correct="un">un</button><button class="btn-option">una</button></div>) gorila macho o hembra?</div>
+            <div class="exercise-item"><span class="item-num">6.</span> (<div class="selection-group"><button class="btn-option">el</button><button class="btn-option" data-correct="la">la</button></div>) mariposa es un insecto.</div>
+            
+            <div class="exercise-item"><span class="item-num">3.</span> Hay (<div class="selection-group"><button class="btn-option">un</button><button class="btn-option" data-correct="una">una</button></div>) serpiente en el árbol.</div>
+            <div class="exercise-item"><span class="item-num">7.</span> ¡Mira! (<div class="selection-group"><button class="btn-option" data-correct="un">un</button><button class="btn-option">una</button></div>) caracol.</div>
+            
+            <div class="exercise-item"><span class="item-num">4.</span> (<div class="selection-group"><button class="btn-option" data-correct="el">el</button><button class="btn-option">la</button></div>) avestruz es un ave muy fuerte.</div>
+            <div class="exercise-item"><span class="item-num">8.</span> Tengo (<div class="selection-group"><button class="btn-option" data-correct="un">un</button><button class="btn-option">una</button></div>) canario hembra.</div>
+        </div>
+    </div>
+
+    <button class="btn-answers" onclick="toggleAnswers()">Respuestas correctas</button>
+
+    <div id="answersBox" class="answers-content">
+        <div class="answers-grid">
+            <div class="ans-section">
+                <span class="ans-title">1.1</span>
+                <div class="ans-columns-3">
+                    <div>1. Vendedora</div><div>7. Presidente / presidenta</div><div>13. Coleccionista</div>
+                    <div>2. Paciente</div><div>8. Testigo</div><div>14. Hermana</div>
+                    <div>3. Campeona</div><div>9. Novia</div><div>15. dependiente / dependienta</div>
+                    <div>4. Jefe / jefa</div><div>10. Directora</div><div>16. cocinera</div>
+                    <div>5. Médico / médica</div><div>11. Enfermera</div><div>17. Monja</div>
+                    <div>6. Novelista</div><div>12. Juez / jueza</div><div>18. Cantante</div>
+                </div>
+            </div>
+
+            <div class="ans-section">
+                <span class="ans-title">1.2</span>
+                <div class="ans-columns-2">
+                    <div>1. El</div><div>6. La</div>
+                    <div>2. La</div><div>7. El</div>
+                    <div>3. El</div><div>8. El</div>
+                    <div>4. La</div><div>9. El</div>
+                    <div>5. El</div><div>10. La</div>
+                </div>
+            </div>
+
+            <div class="ans-section">
+                <span class="ans-title">1.3</span>
+                <div class="ans-columns-2">
+                    <div>1. Actriz</div><div>6. Mujer</div>
+                    <div>2. Héroe / Actor</div><div>7. Yerno</div>
+                    <div>3. Marido</div><div>8. Alcaldesa</div>
+                    <div>4. Príncipe</div><div>9. Nuera</div>
+                    <div>5. Reina</div><div>10. Rey</div>
+                </div>
+            </div>
+
+            <div class="ans-section">
+                <span class="ans-title">1.4</span>
+                <div class="ans-columns-2">
+                    <div>1. Un</div><div>5. Una</div>
+                    <div>2. El</div><div>6. El</div>
+                    <div>3. Una</div><div>7. La</div>
+                    <div>4. Una</div><div>8. El</div>
+                </div>
+            </div>
+
+            <div class="ans-section">
+                <span class="ans-title">1.5</span>
+                <div class="ans-columns-2">
+                    <div>1. La elefanta</div><div>5. El cerdo</div>
+                    <div>2. La mona</div><div>6. La osa</div>
+                    <div>3. La oveja</div><div>7. El gallo</div>
+                    <div>4. La vaca</div><div>8. La yegua</div>
+                </div>
+            </div>
+
+            <div class="ans-section">
+                <span class="ans-title">1.6</span>
+                <div class="ans-columns-2">
+                    <div>1. La</div><div>5. Una / Una</div>
+                    <div>2. Un</div><div>6. La</div>
+                    <div>3. Una</div><div>7. Un</div>
+                    <div>4. El</div><div>8. Un</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Función central de validación
+    function validateInput(input) {
+        const val = input.value.trim().toLowerCase();
+        const raw = input.dataset.answer.split(',');
+        const answers = raw.map(a => a.trim().toLowerCase());
+        
+        if (val === "") {
+            input.classList.remove('correct', 'incorrect');
+        } else if (answers.includes(val)) {
+            input.classList.add('correct');
+            input.classList.remove('incorrect');
+        } else {
+            input.classList.add('incorrect');
+            input.classList.remove('correct');
+        }
+    }
+
+    // Eventos para inputs
+    document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.addEventListener('change', function() {
+            validateInput(this);
+        });
+
+        // Salto automático con Enter + Validación inmediata
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                
+                // Forzar validación al presionar Enter
+                validateInput(this);
+
+                const current = parseInt(this.dataset.order);
+                const next = document.querySelector(`input[data-order="${current + 1}"]`);
+                if (next) {
+                    next.focus();
+                }
+            }
+        });
+    });
+
+    // Validación de botones (ejercicios de rodear)
+    document.querySelectorAll('.btn-option').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const group = this.parentElement;
+            group.querySelectorAll('.btn-option').forEach(b => {
+                b.classList.remove('correct', 'incorrect');
+                b.style.backgroundColor = '';
+            });
+
+            if (this.hasAttribute('data-correct')) {
+                this.classList.add('correct');
+                this.style.backgroundColor = 'var(--success-bg)';
+            } else {
+                this.classList.add('incorrect');
+                this.style.backgroundColor = 'var(--error-bg)';
+            }
+        });
+    });
+
+    function toggleAnswers() {
+        const box = document.getElementById('answersBox');
+        if (box.style.display === 'block') {
+            box.style.display = 'none';
+        } else {
+            box.style.display = 'block';
+            box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+</script>
+</body>
+</html>
