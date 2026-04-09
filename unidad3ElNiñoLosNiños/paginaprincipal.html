@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Class - Home</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC; /* Flamingo Pink */
+            --text-color: #121118;    /* Eerie Black */
+            --bg-color: #FFFFFF;      /* Blanco */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 40px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 60px;
+        }
+
+        .btn-main {
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            border: none;
+            border-bottom: 4px solid #000000;
+            transition: transform 0.1s, opacity 0.2s;
+            cursor: pointer;
+            display: block;
+        }
+
+        .btn-main:active {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+        }
+
+        .btn-main:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        /* Estilo específico para el botón de Preply (Negro con letras Rosa) */
+        .btn-preply {
+            background-color: var(--text-color); /* Eerie Black */
+            color: var(--primary-color);         /* Flamingo Pink */
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            border: none;
+            transition: opacity 0.2s, transform 0.1s;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-preply:hover {
+            opacity: 0.85;
+        }
+
+        .btn-preply:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to your Spanish Class!</h1>
+
+    <div class="button-container">
+        <!-- 1. El niño - Los niños -->
+        <a href="teoria.html" class="btn-main">El niño - Los niños</a>
+        
+        <!-- 2. Ejercicios -->
+        <a href="ejercicios.html" class="btn-main">Ejercicios</a>
+        
+        <!-- 3. Juego de emparejar -->
+        <a href="game.html" class="btn-main">Juego de emparejar</a>
+    </div>
+
+    <footer>
+        <p class="copyright">© 2026 Spanish Lessons with María C. All rights reserved.</p>
+        <a href="https://preply.com/en/tutor/5105409?utm_source=friend&utm_medium=ref&utm_campaign=stu_plg_plg_all_0_mul_xx_multiplesub_share-tutor-tutoring_1&utm_content=OTQ2NTAwNQ==" 
+           class="btn-preply" 
+           target="_blank">
+            Find your Spanish class here.
+        </a>
+    </footer>
+
+</body>
+</html>

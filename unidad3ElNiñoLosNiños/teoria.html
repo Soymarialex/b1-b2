@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Niño - Los Niños Singular - Plural</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC;   /* Flamingo Pink */
+            --secondary-color: #FFB3D1; /* Rosa Claro */
+            --text-color: #121118;      /* Eerie Black */
+            --bg-color: #FFFFFF;        /* Blanco puro */
+            --divider-color: #E0E0E0;   /* Gris claro */
+        }
+
+        @font-face {
+            font-family: 'Platform Medium';
+            src: local('Segoe UI'), local('Roboto'), local('Arial');
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0 auto;
+            padding: 2.5rem;
+            max-width: 950px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* Cabecera */
+        header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            border-bottom: 4px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+        }
+
+        .lesson-number {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            line-height: 1;
+        }
+
+        .titles h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .titles h2 {
+            font-size: 1.8rem;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        /* Layout con Imágenes */
+        .intro-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: start;
+        }
+
+        .intro-box {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .image-container {
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .intro-box img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .translation {
+            color: var(--primary-color);
+            font-style: italic;
+        }
+
+        /* Secciones con viñetas */
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .bullet {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        /* Cuadros de Excepción (PERO) */
+        .pero-box {
+            background-color: var(--secondary-color);
+            border-left: 4px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            margin: 20px 0;
+            gap: 15px;
+        }
+
+        .pero-label {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            padding: 2px 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Tablas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border: 1px solid var(--primary-color);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            vertical-align: top;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        .plural-rule {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Bloques de Atención y Comparación */
+        .atencion-bar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid var(--divider-color);
+            margin-top: 5px;
+        }
+
+        .footer-illustration {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .footer-illustration img {
+            max-width: 320px; /* Tamaño aumentado */
+            height: auto;
+        }
+
+        .compare-box {
+            border: 1px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--primary-color);
+            display: inline-block;
+            width: 1em;
+            margin-left: 0;
+        }
+
+        .center-text {
+            text-align: center;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="lesson-number">3</div>
+    <div class="titles">
+        <h1>El niño - Los niños</h1>
+        <h2>Singular, plural</h2>
+    </div>
+</header>
+
+<div class="intro-section">
+    <div class="intro-box">
+        <div class="image-container">
+            <img src="https://i.imgur.com/8ON8HWS.png" alt="[Imagen de un niño con un gato]">
+        </div>
+        <p>Se usa el <strong>singular</strong> para hablar de una sola persona, animal o cosa <span class="translation">(a single person, animal or thing)</span>: un niño, un gato, una mesa.</p>
+    </div>
+    <div class="intro-box">
+        <div class="image-container">
+            <img src="https://i.imgur.com/7D3PgXS.png" alt="[Imagen de varios niños y gatos]">
+        </div>
+        <p>Se usa el <strong>plural</strong> para hablar de más de una persona, animal o cosa <span class="translation">(more than one person, animal or thing)</span>: tres niños, unos gatos, dos mesas.</p>
+    </div>
+</div>
+
+<div class="section-title"><span class="bullet">●</span> Formación del plural</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>SINGULAR</th>
+            <th>PLURAL</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <strong>– Nombres acabados en -a, -e, -i, -o, -u, -á, -é, -ó:</strong><br>
+                <em>cama, coche, vaso, sofá, café, dominó</em>
+            </td>
+            <td>
+                <span class="plural-rule">+ s:</span><br>
+                <em>camas, coches, vasos, sofás, cafés, dominós</em>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>– Nombres acabados en -í, -ú:</strong> <em>rubí, maniquí, tabú</em>
+                <div class="pero-box">
+                    <div class="pero-label">PERO:</div>
+                    <em>esquí → esquís, menú → menús, champú → champús</em>
+                </div>
+            </td>
+            <td>
+                <span class="plural-rule">+ s/es:</span> <em>rubís/rubíes, maniquís/maniquíes, tabús/tabúes</em>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>– Nombres acabados en -y:</strong> <em>rey, ley (y=i)</em>
+                <div class="pero-box">
+                    <div class="pero-label">PERO:</div>
+                    <em>jersey → jerséis</em>
+                </div>
+            </td>
+            <td>
+                <span class="plural-rule">+ es:</span> <em>reyes, leyes (y como en yo)</em>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>– Nombres acabados en consonante:</strong> <em>flor, hotel, país</em>
+            </td>
+            <td>
+                <span class="plural-rule">+ es:</span> <em>flores, hoteles, países</em>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="atencion-bar">ATENCIÓN:</div>
+<div class="info-grid">
+    <div><strong>-z → -ces:</strong> una vez → dos veces</div>
+    <div><strong>-ón → -ones:</strong> un balón → dos balones</div>
+    <div><strong>-és → -eses:</strong> un francés → unos franceses</div>
+</div>
+
+<p><strong>– No cambian <span class="translation">(Don't change)</span></strong> en plural los nombres de dos o más sílabas <span class="translation">(syllables)</span> acabados en <strong>-as, -es, -is, -os, -us:</strong></p>
+<div class="center-text">
+    <em>el lunes → los lunes &nbsp;&nbsp;&nbsp;&nbsp; el paraguas → los paraguas &nbsp;&nbsp;&nbsp;&nbsp; el virus → los virus</em>
+</div>
+
+<div class="atencion-bar">COMPARE:</div>
+<div class="compare-box">
+    <div>
+        <strong>El lunes</strong> es fiesta.<br>
+        Me he comprado <strong>un paraguas</strong> precioso.
+    </div>
+    <div>
+        <strong>Los lunes</strong> son siempre aburridos.<br>
+        He visto <strong>unos paraguas</strong> preciosos.
+    </div>
+</div>
+
+<p><strong>– Nombres de letras <span class="translation">(letters)</span>:</strong></p>
+<ul>
+    <li>vocales + <strong>es:</strong> a → aes, i → íes, o → oes, u → úes
+        <div style="display: inline-block; margin-left: 20px;">
+            <div class="pero-box" style="display: inline-flex; margin: 0; padding: 5px 10px;">
+                <div class="pero-label">PERO:</div> e → es
+            </div>
+        </div>
+    </li>
+    <li>consonantes + <strong>-s:</strong> be → bes, ce → ces, jota → jotas, ka → kas</li>
+</ul>
+
+<p><strong>– Algunos nombres utilizan solo la forma de plural:</strong></p>
+<div class="center-text">
+    <em>tijeras, gafas, binoculares, pantalones, vaqueros</em>
+</div>
+<ul>
+    <li>Las palabras que acompañan a estos nombres y el verbo van siempre en plural.</li>
+    <li>Para indicar la cantidad exacta <span class="translation">(the exact amount)</span> con estas palabras y otras, como <em>zapatos</em> o <em>medias</em>, se utiliza <strong>un par de:</strong><br>
+        <em>un par de pantalones, dos pares de pantalones</em>
+    </li>
+</ul>
+
+<div class="footer-illustration">
+    <img src="https://i.imgur.com/P9fASBZ.png" alt="[Imagen de unas personas con tijeras]">
+</div>
+
+<div class="atencion-bar">ATENCIÓN:</div>
+<p>masculino + femenino = plural masculino: <em>padre + madre = padres &nbsp;&nbsp;&nbsp;&nbsp; rey + reina = reyes</em></p>
+<p><em>Los <strong>reyes</strong> de España son Juan Carlos y Sofía.</em></p>
+
+</body>
+</html>

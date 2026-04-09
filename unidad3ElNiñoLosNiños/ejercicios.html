@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC;
+            --secondary-color: #FFB3D1;
+            --text-color: #121118;
+            --bg-color: #FFFFFF;
+            --success-bg: #D4EDDA;
+            --error-bg: #F8D7DA;
+            --input-border: #CCCCCC;
+            --card-bg: #F9F9F9;
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0 auto;
+            padding: 40px 20px;
+            max-width: 850px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        /* Grid layouts for exercises */
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .exercise-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Inputs Style */
+        input[type="text"] {
+            border: none;
+            border-bottom: 2px solid var(--input-border);
+            background: transparent;
+            text-align: center;
+            padding: 2px 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            width: 120px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input.correct {
+            background-color: var(--success-bg) !important;
+            border-bottom-color: #28a745;
+        }
+
+        input.incorrect {
+            background-color: var(--error-bg) !important;
+            border-bottom-color: #dc3545;
+        }
+
+        /* Exercise 3.4 Buttons */
+        .selection-box {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .selection-row {
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-option {
+            background-color: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            border-radius: 5px;
+            padding: 5px 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: transform 0.1s;
+        }
+
+        .btn-option:active {
+            transform: translateY(2px);
+        }
+
+        .btn-option.correct {
+            background-color: var(--success-bg) !important;
+        }
+
+        .btn-option.incorrect {
+            background-color: var(--error-bg) !important;
+        }
+
+        /* Footer Action */
+        .footer-actions {
+            margin-top: 40px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .btn-main {
+            background-color: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            border-radius: 5px;
+            padding: 10px 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        /* Answers Panel Styles */
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            padding: 30px;
+            background-color: #Fdfdfd;
+            border: 1px solid var(--secondary-color);
+            border-radius: 12px;
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .answer-section {
+            margin-bottom: 25px;
+        }
+
+        .answer-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .answer-section h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed var(--secondary-color);
+            padding-bottom: 5px;
+        }
+
+        .answer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .answer-item span {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        strong {
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ejercicios</h1>
+
+    <!-- ACTIVIDAD 3.1 -->
+    <section>
+        <h2>3.1 Escriba el plural de los siguientes nombres.</h2>
+        <div class="exercise-grid">
+            <div class="exercise-item">1. reina <input type="text" data-answer="reinas" tabindex="1"></div>
+            <div class="exercise-item">2. buey <input type="text" data-answer="bueyes" tabindex="2"></div>
+            <div class="exercise-item">3. manatí <input type="text" data-answer="manatís,manatíes" tabindex="3"></div>
+            <div class="exercise-item">4. rubí <input type="text" data-answer="rubís,rubíes" tabindex="4"></div>
+            <div class="exercise-item">5. chalé <input type="text" data-answer="chalés" tabindex="5"></div>
+            <div class="exercise-item">6. bebé <input type="text" data-answer="bebés" tabindex="6"></div>
+            <div class="exercise-item">7. mamá <input type="text" data-answer="mamás" tabindex="7"></div>
+            <div class="exercise-item">8. jersey <input type="text" data-answer="jerséis" tabindex="8"></div>
+            <div class="exercise-item">9. menú <input type="text" data-answer="menús" tabindex="9"></div>
+            <div class="exercise-item">10. domingo <input type="text" data-answer="domingos" tabindex="10"></div>
+            <div class="exercise-item">11. café <input type="text" data-answer="cafés" tabindex="11"></div>
+            <div class="exercise-item">12. champú <input type="text" data-answer="champús" tabindex="12"></div>
+            <div class="exercise-item">13. rey <input type="text" data-answer="reyes" tabindex="13"></div>
+            <div class="exercise-item">14. papá <input type="text" data-answer="papás" tabindex="14"></div>
+            <div class="exercise-item">15. ley <input type="text" data-answer="leyes" tabindex="15"></div>
+        </div>
+    </section>
+
+    <!-- ACTIVIDAD 3.2 -->
+    <section>
+        <h2>3.2 Escriba el plural de los siguientes nombres.</h2>
+        <div class="exercise-grid">
+            <div class="exercise-item">1. camión <input type="text" data-answer="camiones" tabindex="16"></div>
+            <div class="exercise-item">2. lápiz <input type="text" data-answer="lápices" tabindex="17"></div>
+            <div class="exercise-item">3. martes <input type="text" data-answer="martes" tabindex="18"></div>
+            <div class="exercise-item">4. lavaplatos <input type="text" data-answer="lavaplatos" tabindex="19"></div>
+            <div class="exercise-item">5. avión <input type="text" data-answer="aviones" tabindex="20"></div>
+            <div class="exercise-item">6. tenor <input type="text" data-answer="tenores" tabindex="21"></div>
+            <div class="exercise-item">7. papel <input type="text" data-answer="papeles" tabindex="22"></div>
+            <div class="exercise-item">8. lunes <input type="text" data-answer="lunes" tabindex="23"></div>
+            <div class="exercise-item">9. avestruz <input type="text" data-answer="avestruces" tabindex="24"></div>
+            <div class="exercise-item">10. ratón <input type="text" data-answer="ratones" tabindex="25"></div>
+            <div class="exercise-item">11. autobús <input type="text" data-answer="autobuses" tabindex="26"></div>
+            <div class="exercise-item">12. pastel <input type="text" data-answer="pasteles" tabindex="27"></div>
+        </div>
+    </section>
+
+    <!-- ACTIVIDAD 3.3 -->
+    <section>
+        <h2>3.3 Complete con la forma plural del nombre entre paréntesis.</h2>
+        <div class="selection-box">
+            <p>1. Este río está lleno de (pez) <input type="text" data-answer="peces" tabindex="28">.</p>
+            <p>2. Quiero comprarme algunas (camisa) <input type="text" data-answer="camisas" tabindex="29">.</p>
+            <p>3. Pedro colecciona (sello) <input type="text" data-answer="sellos" tabindex="30">.</p>
+            <p>4. ¡Qué (pie) <input type="text" data-answer="pies" tabindex="31"> más grandes tienes!</p>
+            <p>5. ¿Cuál de estos dos (sacacorchos) <input type="text" data-answer="sacacorchos" tabindex="32"> funciona mejor?</p>
+            <p>6. ¿Te gustan los (plátano) <input type="text" data-answer="plátanos" tabindex="33">?</p>
+            <p>7. Me han regalado dos (par) <input type="text" data-answer="pares" tabindex="34"> de medias.</p>
+            <p>8. ¿Cuántas (e) <input type="text" data-answer="es" tabindex="35"> hay en "leer"?</p>
+            <p>9. ¿Trabajas los (martes) <input type="text" data-answer="martes" tabindex="36">?</p>
+            <p>10. En el piso de arriba viven dos (marroquí) <input type="text" data-answer="marroquís,marroquíes" tabindex="37">.</p>
+            <p>11. Antonia tiene los (ojo) <input type="text" data-answer="ojos" tabindex="38"> negros.</p>
+            <p>12. En "Salamanca" hay cuatro (a) <input type="text" data-answer="aes" tabindex="39">.</p>
+            <p>13. Los (hindú) <input type="text" data-answer="hindús,hindúes" tabindex="40"> son muy religiosos.</p>
+            <p>14. Antonio pierde todos los (paraguas) <input type="text" data-answer="paraguas" tabindex="41"> que se compra.</p>
+            <p>15. ¿Cuántas (ce) <input type="text" data-answer="ces" tabindex="42"> tiene "acción"? ¿Una ce o dos (ce) <input type="text" data-answer="ces" tabindex="43">?</p>
+        </div>
+    </section>
+
+    <!-- ACTIVIDAD 3.4 -->
+    <section>
+        <h2>3.4 Seleccione la forma correcta.</h2>
+        <div class="selection-box" id="sec34">
+            <div class="selection-row">
+                <span>1. </span>
+                <button class="btn-option" data-correct="true">El</button>
+                <button class="btn-option" data-correct="false">Los</button>
+                <span> lunes </span>
+                <button class="btn-option" data-correct="true">es</button>
+                <button class="btn-option" data-correct="false">son</button>
+                <span> fiesta.</span>
+            </div>
+            <div class="selection-row">
+                <span>2. </span>
+                <button class="btn-option" data-correct="false">La</button>
+                <button class="btn-option" data-correct="true">Las</button>
+                <span> tijeras no </span>
+                <button class="btn-option" data-correct="false">corta</button>
+                <button class="btn-option" data-correct="true">cortan</button>
+                <span>.</span>
+            </div>
+            <div class="selection-row">
+                <span>3. Necesito </span>
+                <button class="btn-option" data-correct="false">un</button>
+                <button class="btn-option" data-correct="true">unos</button>
+                <span> pantalones.</span>
+            </div>
+            <div class="selection-row">
+                <span>4. No trabajo nunca </span>
+                <button class="btn-option" data-correct="false">el</button>
+                <button class="btn-option" data-correct="true">los</button>
+                <span> lunes.</span>
+            </div>
+            <div class="selection-row">
+                <span>5. Me he comprado </span>
+                <button class="btn-option" data-correct="true">un</button>
+                <button class="btn-option" data-correct="false">unos</button>
+                <span> par de pantalones.</span>
+            </div>
+            <div class="selection-row">
+                <span>6. </span>
+                <button class="btn-option" data-correct="true">El</button>
+                <button class="btn-option" data-correct="false">Los</button>
+                <span> virus de la gripe </span>
+                <button class="btn-option" data-correct="true">es</button>
+                <button class="btn-option" data-correct="false">son</button>
+                <span> muy potente.</span>
+            </div>
+            <div class="selection-row">
+                <span>7. Se me </span>
+                <button class="btn-option" data-correct="true">ha</button>
+                <button class="btn-option" data-correct="false">han</button>
+                <span> roto </span>
+                <button class="btn-option" data-correct="true">el</button>
+                <button class="btn-option" data-correct="false">los</button>
+                <span> paraguas. Necesito otro.</span>
+            </div>
+            <div class="selection-row">
+                <span>8. Se me </span>
+                <button class="btn-option" data-correct="false">ha</button>
+                <button class="btn-option" data-correct="true">han</button>
+                <span> roto </span>
+                <button class="btn-option" data-correct="false">el</button>
+                <button class="btn-option" data-correct="true">los</button>
+                <span> vaqueros.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTIVIDAD 3.5 -->
+    <section>
+        <h2>3.5 Sustituya las palabras subrayadas por una sola palabra.</h2>
+        <div class="selection-box">
+            <p>1. Mi <u>tío</u> y mi <u>tía</u> son abogados. <br> Mis <input type="text" data-answer="tíos" tabindex="44"> son abogados.</p>
+            <p>2. El <u>rey</u> y la <u>reina</u> de España viven en Madrid. <br> Los <input type="text" data-answer="reyes" tabindex="45"> viven en Madrid.</p>
+            <p>3. En mi clase hay un <u>francés</u> y dos <u>francesas</u>. <br> En mi clase hay tres <input type="text" data-answer="franceses" tabindex="46">.</p>
+            <p>4. ¿Dónde están tu <u>papá</u> y tu <u>mamá</u>? <br> ¿Dónde están tus <input type="text" data-answer="papás" tabindex="47">?</p>
+            <p>5. El <u>príncipe</u> y la <u>princesa</u> de Asturias presiden un premio internacional. <br> Los <input type="text" data-answer="príncipes" tabindex="48"> de Asturias presiden un premio internacional.</p>
+            <p>6. En esta tienda trabajan tres <u>dependientas</u> y un <u>dependiente</u>. <br> En esta tienda trabajan cuatro <input type="text" data-answer="dependientes" tabindex="49">.</p>
+        </div>
+    </section>
+
+    <div class="footer-actions">
+        <button class="btn-main" onclick="toggleAnswers()">Respuestas correctas</button>
+        
+        <div id="answersPanel" class="answers-panel">
+            <!-- 3.1 -->
+            <div class="answer-section">
+                <h3>Actividad 3.1</h3>
+                <div class="answer-grid">
+                    <div class="answer-item"><span>1.</span> reinas</div>
+                    <div class="answer-item"><span>2.</span> bueyes</div>
+                    <div class="answer-item"><span>3.</span> manatís / manatíes</div>
+                    <div class="answer-item"><span>4.</span> rubís / rubíes</div>
+                    <div class="answer-item"><span>5.</span> chalés</div>
+                    <div class="answer-item"><span>6.</span> bebés</div>
+                    <div class="answer-item"><span>7.</span> mamás</div>
+                    <div class="answer-item"><span>8.</span> jerséis</div>
+                    <div class="answer-item"><span>9.</span> menús</div>
+                    <div class="answer-item"><span>10.</span> domingos</div>
+                    <div class="answer-item"><span>11.</span> cafés</div>
+                    <div class="answer-item"><span>12.</span> champús</div>
+                    <div class="answer-item"><span>13.</span> reyes</div>
+                    <div class="answer-item"><span>14.</span> papás</div>
+                    <div class="answer-item"><span>15.</span> leyes</div>
+                </div>
+            </div>
+
+            <!-- 3.2 -->
+            <div class="answer-section">
+                <h3>Actividad 3.2</h3>
+                <div class="answer-grid">
+                    <div class="answer-item"><span>1.</span> camiones</div>
+                    <div class="answer-item"><span>2.</span> lápices</div>
+                    <div class="answer-item"><span>3.</span> martes</div>
+                    <div class="answer-item"><span>4.</span> lavaplatos</div>
+                    <div class="answer-item"><span>5.</span> aviones</div>
+                    <div class="answer-item"><span>6.</span> tenores</div>
+                    <div class="answer-item"><span>7.</span> papeles</div>
+                    <div class="answer-item"><span>8.</span> lunes</div>
+                    <div class="answer-item"><span>9.</span> avestruces</div>
+                    <div class="answer-item"><span>10.</span> ratones</div>
+                    <div class="answer-item"><span>11.</span> autobuses</div>
+                    <div class="answer-item"><span>12.</span> pasteles</div>
+                </div>
+            </div>
+
+            <!-- 3.3 -->
+            <div class="answer-section">
+                <h3>Actividad 3.3</h3>
+                <div class="answer-grid">
+                    <div class="answer-item"><span>1.</span> peces</div>
+                    <div class="answer-item"><span>2.</span> camisas</div>
+                    <div class="answer-item"><span>3.</span> sellos</div>
+                    <div class="answer-item"><span>4.</span> pies</div>
+                    <div class="answer-item"><span>5.</span> sacacorchos</div>
+                    <div class="answer-item"><span>6.</span> plátanos</div>
+                    <div class="answer-item"><span>7.</span> pares</div>
+                    <div class="answer-item"><span>8.</span> es</div>
+                    <div class="answer-item"><span>9.</span> martes</div>
+                    <div class="answer-item"><span>10.</span> marroquís / marroquíes</div>
+                    <div class="answer-item"><span>11.</span> ojos</div>
+                    <div class="answer-item"><span>12.</span> aes</div>
+                    <div class="answer-item"><span>13.</span> hindús / hindúes</div>
+                    <div class="answer-item"><span>14.</span> paraguas</div>
+                    <div class="answer-item"><span>15.</span> ces</div>
+                </div>
+            </div>
+
+            <!-- 3.4 -->
+            <div class="answer-section">
+                <h3>Actividad 3.4</h3>
+                <div class="answer-grid">
+                    <div class="answer-item"><span>1.</span> el - es</div>
+                    <div class="answer-item"><span>2.</span> las - cortan</div>
+                    <div class="answer-item"><span>3.</span> unos</div>
+                    <div class="answer-item"><span>4.</span> los</div>
+                    <div class="answer-item"><span>5.</span> un</div>
+                    <div class="answer-item"><span>6.</span> el - es</div>
+                    <div class="answer-item"><span>7.</span> ha - el</div>
+                    <div class="answer-item"><span>8.</span> han - los</div>
+                </div>
+            </div>
+
+            <!-- 3.5 -->
+            <div class="answer-section">
+                <h3>Actividad 3.5</h3>
+                <div class="answer-grid">
+                    <div class="answer-item"><span>1.</span> tíos</div>
+                    <div class="answer-item"><span>2.</span> reyes</div>
+                    <div class="answer-item"><span>3.</span> franceses</div>
+                    <div class="answer-item"><span>4.</span> papás</div>
+                    <div class="answer-item"><span>5.</span> príncipes</div>
+                    <div class="answer-item"><span>6.</span> dependientes</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Validación de Inputs de texto
+        document.querySelectorAll('input[type="text"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const val = this.value.trim().toLowerCase();
+                const answers = this.getAttribute('data-answer').split(',');
+                
+                if (val === "") {
+                    this.classList.remove('correct', 'incorrect');
+                } else if (answers.includes(val)) {
+                    this.classList.add('correct');
+                    this.classList.remove('incorrect');
+                } else {
+                    this.classList.add('incorrect');
+                    this.classList.remove('correct');
+                }
+            });
+
+            // Navegación con Enter
+            input.addEventListener('keydown', function(e) {
+                if (e.key === "Enter") {
+                    const nextTabIndex = parseInt(this.getAttribute('tabindex')) + 1;
+                    const nextElement = document.querySelector(`[tabindex="${nextTabIndex}"]`);
+                    if (nextElement) {
+                        nextElement.focus();
+                    }
+                }
+            });
+        });
+
+        // Validación de Botones 3.4
+        document.querySelectorAll('.btn-option').forEach(btn => {
+            btn.addEventListener('click', function() {
+                let sibling = this.previousElementSibling;
+                while(sibling && sibling.classList.contains('btn-option')) {
+                    sibling.classList.remove('correct', 'incorrect');
+                    sibling = sibling.previousElementSibling;
+                }
+                sibling = this.nextElementSibling;
+                while(sibling && sibling.classList.contains('btn-option')) {
+                    sibling.classList.remove('correct', 'incorrect');
+                    sibling = sibling.nextElementSibling;
+                }
+
+                if (this.getAttribute('data-correct') === "true") {
+                    this.classList.add('correct');
+                    this.classList.remove('incorrect');
+                } else {
+                    this.classList.add('incorrect');
+                    this.classList.remove('correct');
+                }
+            });
+        });
+
+        // Toggle Respuestas
+        function toggleAnswers() {
+            const panel = document.getElementById('answersPanel');
+            const btn = document.querySelector('.btn-main');
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+                btn.textContent = "Respuestas correctas";
+            } else {
+                panel.style.display = "block";
+                btn.textContent = "Ocultar respuestas correctas";
+            }
+        }
+    </script>
+</body>
+</html>

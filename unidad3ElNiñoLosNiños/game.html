@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Game</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC;   /* Flamingo Pink */
+            --secondary-color: #FFEBF2; /* Rosa Claro (Fondo resaltado) */
+            --btn-hover: #FFB3D1;       /* Rosa claro botones */
+            --text-color: #121118;      /* Eerie Black */
+            --bg-color: #FFFFFF;        /* Blanco puro */
+            --success-bg: #D4EDDA;      /* Verde suave */
+            --error-bg: #F8D7DA;        /* Rojo suave */
+            --gray-bg: #F9F9F9;         /* Gris tenue */
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 2.5rem);
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            color: var(--text-color);
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            margin: 0 0 25px 0;
+            padding-bottom: 5px;
+            font-weight: normal;
+        }
+
+        /* Navegación de Niveles */
+        .level-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .btn-level {
+            background-color: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            border-radius: 5px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .btn-level.active {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Tablero de Juego */
+        .game-board {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background-color: var(--gray-bg);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-word {
+            background-color: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 12px;
+            font-size: 1rem;
+            color: var(--text-color);
+            cursor: pointer;
+            text-align: center;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .btn-word.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-word.correct {
+            background-color: var(--success-bg) !important;
+            border-bottom-color: #28a745 !important;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .btn-word.incorrect {
+            background-color: var(--error-bg) !important;
+            border-bottom-color: #dc3545 !important;
+        }
+
+        @media (max-width: 500px) {
+            .game-board {
+                gap: 10px;
+                padding: 10px;
+            }
+            .btn-word {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Matching Game</h1>
+    <h2>test your memory</h2>
+
+    <div class="level-nav" id="levelNav">
+        <!-- Botones de nivel generados por JS -->
+    </div>
+
+    <div class="game-board" id="gameBoard">
+        <div class="column" id="leftCol"></div>
+        <div class="column" id="rightCol"></div>
+    </div>
+</div>
+
+<script>
+    const levels = [
+        [
+            { es: "Paraguas", en: "Umbrella" },
+            { es: "Tijeras", en: "Scissors" },
+            { es: "Par", en: "Pair" },
+            { es: "Buey", en: "Ox" },
+            { es: "Chalé", en: "Chalet" },
+            { es: "Ley", en: "Law" }
+        ],
+        [
+            { es: "Camión", en: "Truck" },
+            { es: "Lápiz", en: "Pencil" },
+            { es: "Lavaplatos", en: "Dishwasher" },
+            { es: "Avestruz", en: "Ostrich" },
+            { es: "Ratón", en: "Mouse" },
+            { es: "Pastel", en: "Cake" }
+        ],
+        [
+            { es: "Pez", en: "Fish" },
+            { es: "Camisa", en: "Shirt" },
+            { es: "Sello", en: "Stamp" },
+            { es: "Pie", en: "Foot" },
+            { es: "Sacacorchos", en: "Corkscrew" },
+            { es: "Marroquí", en: "Moroccan" }
+        ],
+        [
+            { es: "Ojo", en: "Eye" },
+            { es: "Gripe", en: "Flu" },
+            { es: "Dependiente", en: "Shop assistant" },
+            { es: "Ladrón", en: "Thief" },
+            { es: "Periodista", en: "Journalist" },
+            { es: "Alcalde", en: "Mayor" }
+        ],
+        [
+            { es: "Héroe", en: "Hero" },
+            { es: "Juez", en: "Judge" },
+            { es: "Pie", en: "Foot" },
+            { es: "Fantasma", en: "Ghost" },
+            { es: "Testigo", en: "Witness" },
+            { es: "Abrelatas", en: "Can opener" }
+        ]
+    ];
+
+    let currentLevel = 0;
+    let selectedLeft = null;
+    let selectedRight = null;
+    let isProcessing = false;
+
+    function init() {
+        renderLevelNav();
+        loadLevel(0);
+    }
+
+    function renderLevelNav() {
+        const nav = document.getElementById('levelNav');
+        nav.innerHTML = '';
+        levels.forEach((_, index) => {
+            const btn = document.createElement('button');
+            btn.className = `btn-level ${index === currentLevel ? 'active' : ''}`;
+            btn.innerText = `Nivel ${index + 1}`;
+            btn.onclick = () => loadLevel(index);
+            nav.appendChild(btn);
+        });
+    }
+
+    function loadLevel(index) {
+        currentLevel = index;
+        selectedLeft = null;
+        selectedRight = null;
+        isProcessing = false;
+        
+        // Actualizar UI de navegación
+        document.querySelectorAll('.btn-level').forEach((btn, i) => {
+            btn.classList.toggle('active', i === index);
+        });
+
+        const data = levels[index];
+        const leftCol = document.getElementById('leftCol');
+        const rightCol = document.getElementById('rightCol');
+
+        leftCol.innerHTML = '';
+        rightCol.innerHTML = '';
+
+        // Barajar palabras independientemente
+        const shuffledLeft = [...data].sort(() => Math.random() - 0.5);
+        const shuffledRight = [...data].sort(() => Math.random() - 0.5);
+
+        shuffledLeft.forEach(item => {
+            const btn = createWordButton(item.es, 'left', item.en);
+            leftCol.appendChild(btn);
+        });
+
+        shuffledRight.forEach(item => {
+            const btn = createWordButton(item.en, 'right', item.en);
+            rightCol.appendChild(btn);
+        });
+    }
+
+    function createWordButton(text, side, matchKey) {
+        const btn = document.createElement('button');
+        btn.className = 'btn-word';
+        btn.innerText = text;
+        btn.dataset.side = side;
+        btn.dataset.match = matchKey;
+
+        btn.onclick = () => handleSelection(btn);
+        return btn;
+    }
+
+    function handleSelection(btn) {
+        if (isProcessing || btn.classList.contains('correct')) return;
+
+        const side = btn.dataset.side;
+
+        if (side === 'left') {
+            if (selectedLeft) selectedLeft.classList.remove('selected');
+            selectedLeft = btn;
+            btn.classList.add('selected');
+        } else {
+            if (selectedRight) selectedRight.classList.remove('selected');
+            selectedRight = btn;
+            btn.classList.add('selected');
+        }
+
+        checkMatch();
+    }
+
+    function checkMatch() {
+        if (selectedLeft && selectedRight) {
+            isProcessing = true;
+            const leftKey = selectedLeft.dataset.match;
+            const rightKey = selectedRight.dataset.match;
+
+            const tempLeft = selectedLeft;
+            const tempRight = selectedRight;
+
+            if (leftKey === rightKey) {
+                // Acierto
+                tempLeft.classList.add('correct');
+                tempRight.classList.add('correct');
+                tempLeft.classList.remove('selected');
+                tempRight.classList.remove('selected');
+                selectedLeft = null;
+                selectedRight = null;
+                isProcessing = false;
+            } else {
+                // Error
+                tempLeft.classList.add('incorrect');
+                tempRight.classList.add('incorrect');
+                
+                setTimeout(() => {
+                    tempLeft.classList.remove('incorrect', 'selected');
+                    tempRight.classList.remove('incorrect', 'selected');
+                    selectedLeft = null;
+                    selectedRight = null;
+                    isProcessing = false;
+                }, 1000);
+            }
+        }
+    }
+
+    window.onload = init;
+</script>
+
+</body>
+</html>
