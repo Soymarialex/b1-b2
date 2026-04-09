@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El libro, la casa | Masculino, femenino (2)</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC;   /* Flamingo Pink */
+            --secondary-color: #FFB3D1; /* Rosa Claro */
+            --text-color: #121118;      /* Eerie Black */
+            --bg-color: #FFFFFF;        /* Blanco puro */
+            --divider-color: #E0E0E0;   /* Gris claro */
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2.5rem; /* Ajustado para coincidir con Lección 1 */
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 950px; /* Ajustado de 850px a 950px para coincidir con Lección 1 */
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Cabecera idéntica a la imagen */
+        .header-section {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            border-bottom: 4px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        .header-number {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 3rem; /* Ajustado para coincidir con Lección 1 */
+            font-weight: bold;
+            padding: 0.5rem 1.5rem; /* Ajustado para coincidir con Lección 1 */
+            margin-right: 20px;
+        }
+
+        .header-titles {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title-main {
+            font-size: 2.5rem; /* Ajustado para coincidir con Lección 1 */
+            font-weight: bold;
+            color: #000000;
+            margin: 0;
+        }
+
+        .title-sub {
+            font-size: 1.8rem;
+            font-weight: normal;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        /* Texto en inglés/traducciones en color rosa */
+        .lang-en {
+            color: var(--primary-color);
+            font-style: italic;
+        }
+
+        /* Estilos de contenido */
+        .intro {
+            margin: 20px 0;
+            text-align: justify;
+            font-size: 1.1rem;
+        }
+
+        .bullet-color {
+            color: var(--primary-color);
+            margin-right: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .list-item {
+            margin: 10px 0 10px 25px;
+            text-align: justify;
+        }
+
+        .examples-inline {
+            font-style: italic;
+            margin-left: 15px;
+        }
+
+        .examples-inline span {
+            margin-right: 20px;
+        }
+
+        /* Cuadros PERO con fondo rosa claro */
+        .pero-box {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .pero-line {
+            background-color: var(--secondary-color);
+            padding: 8px 12px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary-color);
+            font-style: italic;
+        }
+
+        /* Grid de comparación */
+        .comparison-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 30px;
+        }
+
+        .comparison-table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-style: italic;
+        }
+
+        .comparison-table td {
+            padding: 3px 15px;
+            text-align: left;
+        }
+
+        .symbol {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .illust-container {
+            text-align: center;
+        }
+
+        .illust-img {
+            max-width: 160px; /* Un poco más grandes para el contenedor de 950px */
+            height: auto;
+        }
+
+        .img-caption {
+            display: block;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .divider {
+            border: 0;
+            border-top: 2px solid var(--secondary-color);
+            margin: 40px 0;
+        }
+
+        strong { font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Cabecera -->
+    <div class="header-section">
+        <div class="header-number">2</div>
+        <div class="header-titles">
+            <h1 class="title-main">el libro, la casa</h1>
+            <h2 class="title-sub">Masculino, femenino <span class="lang-en">(2)</span></h2>
+        </div>
+    </div>
+
+    <p class="intro">En español, los <strong>nombres de cosas</strong> <span class="lang-en">(common nouns)</span> son masculinos o femeninos.</p>
+
+    <div class="section-title"><span class="bullet-color">●</span> Son masculinos:</div>
+    
+    <div class="list-item">
+        – los nombres acabados en <strong>-o</strong>: 
+        <span class="examples-inline">
+            <span>el libro</span> <span>el invierno</span> <span>el vaso</span> <span>el ojo</span> <span>el vino</span>
+        </span>
+    </div>
+
+    <div class="pero-line">
+        <span class="pero-box">PERO:</span> la mano, la foto (la fotografía), la radio, la moto (la motocicleta)
+    </div>
+
+    <div class="list-item">– los días de la semana <span class="lang-en">(days of the week)</span>: <em>el jueves, el viernes</em></div>
+    <div class="list-item">– los nombres compuestos <span class="lang-en">(compound nouns)</span>: <em>el microondas, el lavaplatos, el abrelatas</em></div>
+    <div class="list-item">– los nombres acabados en <strong>-aje</strong>: <em>el viaje, el garaje, el paisaje, el equipaje</em></div>
+    <div class="list-item">– los nombres de colores <span class="lang-en">(colors)</span>: <em>el rojo, el verde, el marrón, el rosa, el azul</em></div>
+    <div class="list-item">– los nombres de idiomas <span class="lang-en">(languages)</span>: <em>el español, el inglés, el chino, el alemán</em></div>
+
+    <div class="section-title"><span class="bullet-color">●</span> Son femeninos:</div>
+    
+    <div class="list-item">
+        – los nombres acabados en <strong>-a</strong>: 
+        <span class="examples-inline">
+            <span>la casa</span> <span>la botella</span> <span>la primavera</span> <span>la puerta</span> <span>la tortilla</span> <span>la maleta</span>
+        </span>
+    </div>
+
+    <div class="pero-line">
+        <span class="pero-box">PERO:</span> el día, el idioma, el mapa, el problema, el programa, el sofá, el planeta, el clima, el tranvía
+    </div>
+
+    <div class="list-item">– los nombres acabados en <strong>-ción, -sión, -dad o -tad</strong>: <em>la estación, la profesión, la ocasión, la exposición, la nacionalidad, la ciudad, la amistad, la libertad</em></div>
+
+    <div class="section-title"><span class="bullet-color">●</span> Los nombres acabados en <strong>-e</strong> o en consonante pueden ser masculinos o femeninos.</div>
+    <div class="list-item" style="margin-left: 40px;">
+        – Masculinos: <em>el pasaporte, el billete, el clavel, el jardín, el azúcar</em><br>
+        – Femeninos: <em>la calle, la tarde, la catedral, la postal, la nariz</em>
+    </div>
+    <div class="list-item" style="margin-left: 25px;">El diccionario indica si una palabra es masculina o femenina.</div>
+
+    <div class="section-title"><span class="bullet-color">●</span> En algunos casos, la forma masculina y la forma femenina tienen diferente significado <span class="lang-en">(meaning)</span>.</div>
+
+    <div class="comparison-area">
+        <div class="illust-container" style="width: 25%;">
+            <p>– nombre en <strong>-o</strong> = árbol</p>
+            <img src="https://imgur.com/DhrcDr7.png" alt="el naranjo" class="illust-img">
+            
+        </div>
+
+        <div style="width: 40%;">
+            <table class="comparison-table">
+                <tr><td>el naranjo</td> <td class="symbol">≠</td> <td>la naranja</td></tr>
+                <tr><td>el cerezo</td> <td class="symbol">≠</td> <td>la cereza</td></tr>
+                <tr><td>el manzano</td> <td class="symbol">≠</td> <td>la manzana</td></tr>
+                <tr><td>el ciruelo</td> <td class="symbol">≠</td> <td>la ciruela</td></tr>
+                <tr><td>el castaño</td> <td class="symbol">≠</td> <td>la castaña</td></tr>
+                <tr><td>el almendro</td> <td class="symbol">≠</td> <td>la almendra</td></tr>
+            </table>
+        </div>
+
+        <div class="illust-container" style="width: 25%;">
+            <p>– nombre en <strong>-a</strong> = fruta</p>
+            <img src="https://imgur.com/yBq3I9S.png" alt="la naranja" class="illust-img">
+            
+        </div>
+    </div>
+
+    <div class="pero-line" style="width: fit-content; margin-top: 20px;">
+        <span class="pero-box">PERO:</span> el limonero → el limón
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="comparison-area" style="margin-top: 10px;">
+        <div class="illust-container" style="width: 25%;">
+            <p>– masculino = color</p>
+            <img src="https://imgur.com/GWG4Ajr.png" alt="el rosa" class="illust-img">
+        </div>
+
+        <div style="width: 40%;">
+            <table class="comparison-table">
+                <tr><td>el rosa</td> <td class="symbol">≠</td> <td>la rosa</td></tr>
+                <tr><td>el naranja</td> <td class="symbol">≠</td> <td>la naranja</td></tr>
+                <tr><td>el violeta</td> <td class="symbol">≠</td> <td>la violeta</td></tr>
+            </table>
+        </div>
+
+        <div class="illust-container" style="width: 25%;">
+            <p>– femenino = otros significados</p>
+            <img src="https://imgur.com/EaRp17T.png" alt="la rosa" class="illust-img">
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

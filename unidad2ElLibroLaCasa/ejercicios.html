@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC;   /* Flamingo Pink */
+            --secondary-color: #FFB3D1; /* Rosa Claro */
+            --text-color: #121118;      /* Eerie Black */
+            --bg-color: #FFFFFF;        /* Blanco puro */
+            --success-bg: #D4EDDA;      /* Verde suave */
+            --error-bg: #F8D7DA;        /* Rojo suave */
+            --border-gray: #E0E0E0;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .exercise-number {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 10px;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Estilos de Inputs */
+        input[type="text"] {
+            border: none;
+            border-bottom: 2px solid #ccc;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1rem;
+            width: 60px;
+            padding: 2px;
+            background: transparent;
+            outline: none;
+            transition: background-color 0.3s;
+        }
+
+        input.correct { background-color: var(--success-bg) !important; border-bottom-color: #28a745; }
+        input.incorrect { background-color: var(--error-bg) !important; border-bottom-color: #dc3545; }
+
+        /* Botones de selección */
+        .option-btn {
+            background-color: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            border-radius: 5px;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin: 0 3px;
+            transition: all 0.2s;
+            color: var(--text-color);
+        }
+
+        .option-btn.selected-correct { background-color: var(--success-bg); border-bottom-color: #28a745; }
+        .option-btn.selected-incorrect { background-color: var(--error-bg); border-bottom-color: #dc3545; }
+
+        /* Grid de imágenes */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .image-item {
+            border: 1px solid var(--border-gray);
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .image-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .image-label {
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        /* Lista de ejercicios de texto */
+        .text-exercise-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 40px;
+        }
+
+        .exercise-row {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        /* Botón de respuestas */
+        .ans-toggle {
+            display: block;
+            width: 220px;
+            margin: 50px auto;
+            background-color: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            padding: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        /* Sección de soluciones formateada */
+        #solutions {
+            display: none;
+            background: #fff;
+            padding: 30px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            margin-top: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .sol-block {
+            margin-bottom: 30px;
+        }
+
+        .sol-title {
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 10px;
+            display: block;
+            color: var(--primary-color);
+        }
+
+        .sol-grid {
+            display: grid;
+            grid-template-columns: auto auto;
+            column-gap: 80px;
+            row-gap: 4px;
+            width: fit-content;
+        }
+
+        @media (max-width: 600px) {
+            .text-exercise-list { grid-template-columns: 1fr; }
+            .image-grid { grid-template-columns: repeat(2, 1fr); }
+            .sol-grid { column-gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ejercicios</h1>
+
+    <!-- EJERCICIO 2.1 -->
+    <section>
+        <h2><span class="exercise-number">2.1</span> Seleccione la forma correcta.</h2>
+        <div class="text-exercise-list">
+            <div class="exercise-row">1. No me gusta <button class="option-btn" onclick="checkBtn(this, 'el', '2.1-1')">el</button> / <button class="option-btn" onclick="checkBtn(this, 'la', '2.1-1')">la</button> invierno.</div>
+            <div class="exercise-row">9. ¿Qué haces <button class="option-btn" onclick="checkBtn(this, 'el', '2.1-9')">el</button> / <button class="option-btn" onclick="checkBtn(this, 'la', '2.1-9')">la</button> viernes?</div>
+            
+            <div class="exercise-row">2. Julián se ha comprado <button class="option-btn" onclick="checkBtn(this, 'un', '2.1-2')">un</button> / <button class="option-btn" onclick="checkBtn(this, 'una', '2.1-2')">una</button> moto.</div>
+            <div class="exercise-row">10. Necesitamos <button class="option-btn" onclick="checkBtn(this, 'un', '2.1-10')">un</button> / <button class="option-btn" onclick="checkBtn(this, 'una', '2.1-10')">una</button> sacacorchos.</div>
+            
+            <div class="exercise-row">3. Necesito <button class="option-btn" onclick="checkBtn(this, 'un', '2.1-3')">un</button> / <button class="option-btn" onclick="checkBtn(this, 'una', '2.1-3')">una</button> pijama nuevo.</div>
+            <div class="exercise-row">11. Quiero hacer <button class="option-btn" onclick="checkBtn(this, 'un', '2.1-11')">un</button> / <button class="option-btn" onclick="checkBtn(this, 'una', '2.1-11')">una</button> viaje este verano.</div>
+            
+            <div class="exercise-row">4. Siéntate en <button class="option-btn" onclick="checkBtn(this, 'el', '2.1-4')">el</button> / <button class="option-btn" onclick="checkBtn(this, 'la', '2.1-4')">la</button> sofá.</div>
+            <div class="exercise-row">12. <button class="option-btn" onclick="checkBtn(this, 'El', '2.1-12')">El</button> / <button class="option-btn" onclick="checkBtn(this, 'La', '2.1-12')">La</button> rosa es mi color preferido.</div>
+            
+            <div class="exercise-row">5. ¿Dónde está <button class="option-btn" onclick="checkBtn(this, 'el', '2.1-5')">el</button> / <button class="option-btn" onclick="checkBtn(this, 'la', '2.1-5')">la</button> abrelatas?</div>
+            <div class="exercise-row">13. <button class="option-btn" onclick="checkBtn(this, 'El', '2.1-13')">El</button> / <button class="option-btn" onclick="checkBtn(this, 'La', '2.1-13')">La</button> amistad es algo precioso.</div>
+            
+            <div class="exercise-row">6. Pásame <button class="option-btn" onclick="checkBtn(this, 'el', '2.1-6')">el</button> / <button class="option-btn" onclick="checkBtn(this, 'la', '2.1-6')">la</button> foto.</div>
+            <div class="exercise-row">14. Pon el plato en <button class="option-btn" onclick="checkBtn(this, 'el', '2.1-14')">el</button> / <button class="option-btn" onclick="checkBtn(this, 'la', '2.1-14')">la</button> microondas.</div>
+            
+            <div class="exercise-row">7. Tengo <button class="option-btn" onclick="checkBtn(this, 'un', '2.1-7')">un</button> / <button class="option-btn" onclick="checkBtn(this, 'una', '2.1-7')">una</button> problema.</div>
+            <div class="exercise-row">15. Estoy escuchando <button class="option-btn" onclick="checkBtn(this, 'el', '2.1-15')">el</button> / <button class="option-btn" onclick="checkBtn(this, 'la', '2.1-15')">la</button> radio.</div>
+            
+            <div class="exercise-row">8. <button class="option-btn" onclick="checkBtn(this, 'El', '2.1-8')">El</button> / <button class="option-btn" onclick="checkBtn(this, 'La', '2.1-8')">La</button> alemán es un idioma muy sonoro.</div>
+            <div class="exercise-row">16. ¿Tienes <button class="option-btn" onclick="checkBtn(this, 'un', '2.1-16')">un</button> / <button class="option-btn" onclick="checkBtn(this, 'una', '2.1-16')">una</button> cortaúñas?</div>
+        </div>
+    </section>
+
+    <!-- EJERCICIO 2.2 -->
+    <section>
+        <h2><span class="exercise-number">2.2</span> Complete con el o la.</h2>
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="https://i.imgur.com/zFhbk3B.jpg" alt="falda">
+                <div class="image-label">1. <input type="text" data-ans="la" class="exercise-input"> falda</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/ZumCwsb.jpg" alt="blusa">
+                <div class="image-label">2. <input type="text" data-ans="la" class="exercise-input"> blusa</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/KnXrL2p.jpg" alt="zapato">
+                <div class="image-label">3. <input type="text" data-ans="el" class="exercise-input"> zapato</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/6MfIUNv.jpg" alt="sombrero">
+                <div class="image-label">4. <input type="text" data-ans="el" class="exercise-input"> sombrero</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/B49IhuR.jpg" alt="bota">
+                <div class="image-label">5. <input type="text" data-ans="la" class="exercise-input"> bota</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/pLrVTcH.jpg" alt="pantalones">
+                <div class="image-label">6. <input type="text" data-ans="los" class="exercise-input"> pantalones</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/HN6turQ.jpg" alt="chaqueta">
+                <div class="image-label">7. <input type="text" data-ans="la" class="exercise-input"> chaqueta</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/GMHIBen.jpg" alt="camisa">
+                <div class="image-label">8. <input type="text" data-ans="la" class="exercise-input"> camisa</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/MhdzYxa.jpg" alt="corbata">
+                <div class="image-label">9. <input type="text" data-ans="la" class="exercise-input"> corbata</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/IUAQMpC.jpg" alt="calcetín">
+                <div class="image-label">10. <input type="text" data-ans="el" class="exercise-input"> calcetín</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/EVZO84T.jpg" alt="abrigo">
+                <div class="image-label">11. <input type="text" data-ans="el" class="exercise-input"> abrigo</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/TPaZkQs.jpg" alt="traje">
+                <div class="image-label">12. <input type="text" data-ans="el" class="exercise-input"> traje</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EJERCICIO 2.3 -->
+    <section>
+        <h2><span class="exercise-number">2.3</span> Seleccione la forma correcta.</h2>
+        <div class="text-exercise-list">
+            <div class="exercise-row">1. Mañana tengo <button class="option-btn" onclick="checkBtn(this, 'un', '2.3-1')">un</button> / <button class="option-btn" onclick="checkBtn(this, 'una', '2.3-1')">una</button> examen.</div>
+            <div class="exercise-row">6. <button class="option-btn" onclick="checkBtn(this, 'El', '2.3-6')">El</button> / <button class="option-btn" onclick="checkBtn(this, 'La', '2.3-6')">La</button> catedral de León es una maravilla.</div>
+            
+            <div class="exercise-row">2. Me encanta <button class="option-btn" onclick="checkBtn(this, 'el', '2.3-2')">el</button> / <button class="option-btn" onclick="checkBtn(this, 'la', '2.3-2')">la</button> cine.</div>
+            <div class="exercise-row">7. Pásame <button class="option-btn" onclick="checkBtn(this, 'el', '2.3-7')">el</button> / <button class="option-btn" onclick="checkBtn(this, 'la', '2.3-7')">la</button> azúcar, por favor.</div>
+            
+            <div class="exercise-row">3. <button class="option-btn" onclick="checkBtn(this, 'El', '2.3-3')">El</button> / <button class="option-btn" onclick="checkBtn(this, 'La', '2.3-3')">La</button> clase de español es muy divertida.</div>
+            <div class="exercise-row">8. Rosa tiene <button class="option-btn" onclick="checkBtn(this, 'un', '2.3-8')">un</button> / <button class="option-btn" onclick="checkBtn(this, 'una', '2.3-8')">una</button> nariz muy bonita.</div>
+            
+            <div class="exercise-row">4. ¿Dónde tienes <button class="option-btn" onclick="checkBtn(this, 'el', '2.3-4')">el</button> / <button class="option-btn" onclick="checkBtn(this, 'la', '2.3-4')">la</button> pasaporte?</div>
+            <div class="exercise-row">9. Mañana vamos a ver <button class="option-btn" onclick="checkBtn(this, 'un', '2.3-9')">un</button> / <button class="option-btn" onclick="checkBtn(this, 'una', '2.3-9')">una</button> exposición.</div>
+            
+            <div class="exercise-row">5. Pedro está en <button class="option-btn" onclick="checkBtn(this, 'el', '2.3-5')">el</button> / <button class="option-btn" onclick="checkBtn(this, 'la', '2.3-5')">la</button> jardín.</div>
+            <div class="exercise-row">10. Solo he estado <button class="option-btn" onclick="checkBtn(this, 'un', '2.3-10')">un</button> / <button class="option-btn" onclick="checkBtn(this, 'una', '2.3-10')">una</button> vez en Sevilla.</div>
+        </div>
+    </section>
+
+    <!-- EJERCICIO 2.4 -->
+    <section>
+        <h2><span class="exercise-number">2.4</span> Complete con un o una.</h2>
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="https://i.imgur.com/qpMS6Qp.jpg" alt="manzano">
+                <div class="image-label">1. <input type="text" data-ans="un" class="exercise-input"> manzano</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/oEidfdQ.jpg" alt="manzana">
+                <div class="image-label">2. <input type="text" data-ans="una" class="exercise-input"> manzana</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/fUaoHIF.jpg" alt="limonero">
+                <div class="image-label">3. <input type="text" data-ans="un" class="exercise-input"> limonero</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/PqXWa3D.jpg" alt="limón">
+                <div class="image-label">4. <input type="text" data-ans="un" class="exercise-input"> limón</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/OiK1VYi.jpg" alt="almendro">
+                <div class="image-label">5. <input type="text" data-ans="un" class="exercise-input"> almendro</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/nmxECKq.jpg" alt="almendra">
+                <div class="image-label">6. <input type="text" data-ans="una" class="exercise-input"> almendra</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/j316ufV.jpg" alt="cereza">
+                <div class="image-label">7. <input type="text" data-ans="una" class="exercise-input"> cereza</div>
+            </div>
+            <div class="image-item">
+                <img src="https://i.imgur.com/3YgarVt.jpg" alt="cerezo">
+                <div class="image-label">8. <input type="text" data-ans="un" class="exercise-input"> cerezo</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EJERCICIO 2.5 -->
+    <section>
+        <h2><span class="exercise-number">2.5</span> Complete con el/la o un/una.</h2>
+        <div class="text-exercise-list">
+            <div class="exercise-row">1. Mi color preferido es <input type="text" data-ans="el" class="exercise-input"> rosa.</div>
+            <div class="exercise-row">2. Cómete <input type="text" data-ans="una" class="exercise-input"> naranja.</div>
+            
+            <div class="exercise-row">3. <input type="text" data-ans="la" class="exercise-input"> violeta es una flor preciosa.</div>
+            <div class="exercise-row">4. <input type="text" data-ans="el" class="exercise-input"> naranja es un color bonito.</div>
+            
+            <div class="exercise-row">5. Me han regalado <input type="text" data-ans="una" class="exercise-input"> rosa.</div>
+            <div class="exercise-row">6. <input type="text" data-ans="el" class="exercise-input"> violeta te sienta muy bien.</div>
+        </div>
+    </section>
+
+    <button class="ans-toggle" onclick="toggleSolutions()">Respuestas correctas</button>
+    
+    <div id="solutions">
+        <p style="font-weight: bold; margin-bottom: 20px;">Respuestas correctas:</p>
+        
+        <div class="sol-block">
+            <span class="sol-title">2.1</span>
+            <div class="sol-grid">
+                <div>1. el</div><div>9. el</div>
+                <div>2. una</div><div>10. un</div>
+                <div>3. un/una</div><div>11. un</div>
+                <div>4. el</div><div>12. el</div>
+                <div>5. el</div><div>13. la</div>
+                <div>6. la</div><div>14. el</div>
+                <div>7. un</div><div>15. la</div>
+                <div>8. el</div><div>16. un</div>
+            </div>
+        </div>
+
+        <div class="sol-block">
+            <span class="sol-title">2.2</span>
+            <div class="sol-grid">
+                <div>1. la</div><div>7. la</div>
+                <div>2. la</div><div>8. la</div>
+                <div>3. el</div><div>9. la</div>
+                <div>4. el</div><div>10. el</div>
+                <div>5. la</div><div>11. el</div>
+                <div>6. los</div><div>12. el</div>
+            </div>
+        </div>
+
+        <div class="sol-block">
+            <span class="sol-title">2.3</span>
+            <div class="sol-grid">
+                <div>1. un</div><div>6. la</div>
+                <div>2. el</div><div>7. el</div>
+                <div>3. la</div><div>8. una</div>
+                <div>4. el</div><div>9. una</div>
+                <div>5. el</div><div>10. una</div>
+            </div>
+        </div>
+
+        <div class="sol-block">
+            <span class="sol-title">2.4</span>
+            <div class="sol-grid">
+                <div>1. un</div><div>5. un</div>
+                <div>2. una</div><div>6. una</div>
+                <div>3. un</div><div>7. una</div>
+                <div>4. un</div><div>8. un</div>
+            </div>
+        </div>
+
+        <div class="sol-block">
+            <span class="sol-title">2.5</span>
+            <div class="sol-grid">
+                <div>1. el</div><div>4. el</div>
+                <div>2. una</div><div>5. una</div>
+                <div>3. la</div><div>6. el</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const buttonAnswers = {
+        '2.1-1': 'el', '2.1-2': 'una', '2.1-3': ['un', 'una'], '2.1-4': 'el', '2.1-5': 'el', '2.1-6': 'la', '2.1-7': 'un', '2.1-8': 'el',
+        '2.1-9': 'el', '2.1-10': 'un', '2.1-11': 'un', '2.1-12': 'el', '2.1-13': 'la', '2.1-14': 'el', '2.1-15': 'la', '2.1-16': 'un',
+        '2.3-1': 'un', '2.3-2': 'el', '2.3-3': 'la', '2.3-4': 'el', '2.3-5': 'el', '2.3-6': 'la', '2.3-7': 'el', '2.3-8': 'una', '2.3-9': 'una', '2.3-10': 'una'
+    };
+
+    function checkBtn(btn, val, id) {
+        const row = btn.parentNode;
+        const buttons = row.querySelectorAll('.option-btn');
+        buttons.forEach(b => b.classList.remove('selected-correct', 'selected-incorrect'));
+
+        const correctAns = buttonAnswers[id];
+        const isCorrect = Array.isArray(correctAns) ? correctAns.includes(val.toLowerCase()) : correctAns === val.toLowerCase();
+
+        btn.classList.add(isCorrect ? 'selected-correct' : 'selected-incorrect');
+    }
+
+    const inputs = Array.from(document.querySelectorAll('.exercise-input'));
+    inputs.forEach((input, index) => {
+        input.addEventListener('input', () => {
+            const userVal = input.value.trim().toLowerCase();
+            const correctVal = input.dataset.ans.toLowerCase();
+            
+            if (userVal === "") {
+                input.classList.remove('correct', 'incorrect');
+            } else if (userVal === correctVal) {
+                input.classList.add('correct');
+                input.classList.remove('incorrect');
+            } else {
+                input.classList.add('incorrect');
+                input.classList.remove('correct');
+            }
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const nextInput = inputs[index + 1];
+                if (nextInput) nextInput.focus();
+            }
+        });
+    });
+
+    function toggleSolutions() {
+        const sol = document.getElementById('solutions');
+        sol.style.display = sol.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+
+</body>
+</html>
