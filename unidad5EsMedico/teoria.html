@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Es médico - Omisión del artículo</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC;   /* Flamingo Pink */
+            --secondary-color: #FFB3D1; /* Rosa Claro */
+            --text-color: #121118;      /* Eerie Black */
+            --bg-color: #FFFFFF;        /* Blanco puro */
+            --divider-color: #E0E0E0;   /* Gris claro */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* Cabecera */
+        header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            border-bottom: 4px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+        }
+
+        .lesson-number {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            line-height: 1;
+        }
+
+        .titles h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .titles h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .titles h2 span.translation {
+            font-style: italic;
+        }
+
+        /* Secciones y Viñetas */
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .bullet {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .translation {
+            color: var(--primary-color);
+            font-style: italic;
+        }
+
+        /* Cuadros PERO */
+        .pero-box {
+            background-color: var(--secondary-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .pero-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pero-label {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            padding: 2px 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Ejemplos y Listas */
+        .examples {
+            padding-left: 40px;
+            margin-bottom: 15px;
+        }
+
+        .example-line {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .sub-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .sub-list li {
+            margin-bottom: 10px;
+        }
+
+        .sub-list li::before {
+            content: "–";
+            margin-right: 10px;
+            color: var(--text-color);
+        }
+
+        /* Comparación y Layout con Imagen */
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .compare-box {
+            border: 1px solid var(--divider-color);
+            padding: 15px;
+        }
+
+        .illustration-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            gap: 20px;
+        }
+
+        .illustration-block img {
+            max-width: 250px;
+            height: auto;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="lesson-number">5</div>
+    <div class="titles">
+        <h1>Es médico</h1>
+        <h2>Omisión del artículo <span class="translation">(Omitting the article)</span></h2>
+    </div>
+</header>
+
+<!-- Punto 1 -->
+<div class="section">
+    <div class="section-header">
+        <span class="bullet">●</span>
+        <p>Normalmente no se usa <strong>un, una, unos, unas</strong> con sustantivos no contables <span class="translation">(uncountable nouns)</span>.</p>
+    </div>
+    <div class="examples">
+        <span class="example-line"><em>–¿Qué es eso? –Es <strong>vino</strong>.</em></span>
+    </div>
+
+    <div class="pero-box">
+        <div class="pero-header">
+            <div class="pero-label">PERO:</div>
+            <p>Se usa <strong>un, una, unos, unas</strong> + sustantivo no contable en los siguientes casos:</p>
+        </div>
+        <ul class="sub-list">
+            <li><strong>un, una, unos, unas</strong> = un tipo de, una clase de
+                <div class="examples" style="margin-top: 5px;">
+                    <em>He comprado <strong>un queso</strong> (= un tipo de queso) que te va a gustar.</em><br>
+                    <em>Es <strong>un vino</strong> (= un tipo de vino) extraordinario.</em>
+                </div>
+            </li>
+            <li><strong>un, una, unos, unas</strong> = un/una vaso/taza... de cerveza/café...
+                <div class="examples" style="margin-top: 5px;">
+                    <em><strong>Un café</strong>, por favor. (= una taza de café)</em>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Punto 2 -->
+<div class="section">
+    <div class="section-header">
+        <span class="bullet">●</span>
+        <p>No se usa <strong>un, una, unos, unas</strong> después <span class="translation">(after)</span> de <strong>ser</strong> o <strong>hacerse</strong> con nombres de profesión <span class="translation">(profession)</span>, religión <span class="translation">(religion)</span>, nacionalidad <span class="translation">(nationality)</span> o ideología política <span class="translation">(political ideology)</span>.</p>
+    </div>
+    <div class="illustration-block">
+        <div class="examples">
+            <span class="example-line"><em>Julia <strong>es mexicana</strong>.</em></span>
+            <span class="example-line"><em>Soy <strong>médico</strong>.</em></span>
+        </div>
+        <img src="https://imgur.com/dTuYkPC.png" alt="[Imagen de Alberto]">
+    </div>
+
+    <div class="pero-box">
+        <div class="pero-header">
+            <div class="pero-label">PERO:</div>
+            <p>Se usa <strong>un, una, unos, unas</strong>:</p>
+        </div>
+        <ul class="sub-list">
+            <li>cuando el sustantivo va con un calificativo <span class="translation">(description)</span>.
+                <div class="examples" style="margin-top: 5px;">
+                    <em>Julia es <strong>una arquitecta muy conocida</strong>.</em><br>
+                    <em>–¿Quién es Hans? –Es <strong>un ingeniero que trabaja conmigo</strong>.</em>
+                </div>
+            </li>
+            <li>cuando se identifica a alguien por su profesión <span class="translation">(profession)</span>.
+                <div class="examples" style="margin-top: 5px;">
+                    <em>–¿Quién era Frida Kahlo? –Era <strong>una pintora</strong>.</em>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <p><strong>Compare:</strong></p>
+    <div class="comparison-container">
+        <div class="compare-box">
+            <em>Winston es <strong>peruano</strong>.</em><br>
+            <em>–¿Qué hace Luisa? –Es <strong>directora de orquesta</strong>.</em>
+        </div>
+        <div class="compare-box">
+            <em>Es <strong>un peruano muy simpático</strong>.</em><br>
+            <em>–¿Quién es Inma Shara? –Es <strong>una directora de orquesta</strong>.</em>
+        </div>
+    </div>
+</div>
+
+<!-- Punto 3 -->
+<div class="section">
+    <div class="section-header">
+        <span class="bullet">●</span>
+        <p>No se usa <strong>un, una, unos, unas</strong> con el objeto directo de un verbo <span class="translation">(direct object of a verb)</span> cuando nos referimos a algo en general y no a algo concreto.</p>
+    </div>
+    <div class="comparison-container" style="grid-template-columns: 1fr 1fr; border: none;">
+        <div>
+            <em>Antonio vende <strong>enciclopedias</strong>.</em><br>
+            <em>No tengo <strong>coche</strong>.</em>
+        </div>
+        <div>
+            <em>Rosa lleva siempre <strong>vaqueros</strong>.</em><br>
+            <em>Alberto no come <strong>carne</strong>.</em>
+        </div>
+    </div>
+
+    <div class="pero-box">
+        <div class="pero-header">
+            <div class="pero-label">PERO:</div>
+            <p>Se usa <strong>un, una, unos, unas</strong>:</p>
+        </div>
+        <ul class="sub-list">
+            <li>cuando se habla de cantidad <span class="translation">(quantity)</span>.
+                <div class="examples" style="margin-top: 5px;">
+                    <em>La novia de Alfonso ha publicado <strong>una novela</strong>. (=1)</em><br>
+                    <em>He comprado <strong>unos melocotones</strong>. (= algunos melocotones)</em>
+                </div>
+            </li>
+            <li>cuando el sustantivo va con un calificativo <span class="translation">(description)</span>.
+                <div class="examples" style="margin-top: 5px;">
+                    <em>Tengo <strong>unas enciclopedias muy antiguas</strong>.</em><br>
+                    <em>Rosa lleva <strong>unos vaqueros carísimos</strong>.</em>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <p><strong>Compare:</strong></p>
+    <div class="comparison-container">
+        <div class="compare-box">
+            <em>Ramón vende <strong>coches</strong>.</em><br>
+            <em>Luis colecciona <strong>sellos</strong>.</em>
+        </div>
+        <div class="compare-box">
+            <em>Hoy ha vendido <strong>un coche</strong>.</em><br>
+            <em>Tiene <strong>unos sellos muy valiosos</strong>.</em>
+        </div>
+    </div>
+</div>
+
+<!-- Punto 4 -->
+<div class="section">
+    <div class="section-header">
+        <span class="bullet">●</span>
+        <p>No se usa <strong>un, una, unos, unas</strong> con el segundo sustantivo de las palabras compuestas formadas por sustantivo + preposición + sustantivo.</p>
+    </div>
+    <div class="comparison-container" style="border:none;">
+        <div>
+            <em>Julián es <strong>profesor de universidad</strong>.</em><br>
+            <em>Me han regalado una <strong>corbata de seda</strong>.</em><br>
+            <em>Rosa tiene una <strong>colección de sellos</strong>.</em>
+        </div>
+        <div>
+            <em>Luisa es <strong>directora de orquesta</strong>.</em><br>
+            <em>Un <strong>café con leche</strong>, por favor.</em><br>
+            <em>Aquí venden <strong>ropa de niño</strong>.</em>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
