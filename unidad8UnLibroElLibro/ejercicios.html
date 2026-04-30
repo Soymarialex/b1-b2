@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        :root {
+            --primary: #FF79AC;
+            --secondary: #FFB3D1;
+            --text-main: #121118;
+            --bg-page: #FFFFFF;
+            --success-bg: #D4EDDA;
+            --error-bg: #F8D7DA;
+            --card-bg: #F9F9F9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-container {
+            max-width: 850px;
+            width: 100%;
+            margin: 40px 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid var(--primary);
+            margin-top: 40px;
+            margin-bottom: 25px;
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        .ex-number {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.9rem;
+            margin-right: 15px;
+        }
+
+        .ex-instruction {
+            color: var(--text-main);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        /* Clase para resaltar palabras en rosa */
+        .pink-word {
+            color: var(--primary);
+        }
+
+        .activity-8-1 {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .story-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .bubble-container {
+            flex: 1;
+            border: 2px solid #BEE3F8;
+            border-radius: 25px;
+            padding: 25px;
+            background-color: #fff;
+            position: relative;
+        }
+
+        .illustration {
+            width: 280px;
+            flex-shrink: 0;
+        }
+
+        .illustration img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        input {
+            border: none;
+            border-bottom: 2px solid #CCCCCC;
+            background: transparent;
+            text-align: center;
+            font-size: 1rem;
+            padding: 0 5px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        input:focus {
+            border-bottom-color: var(--primary);
+        }
+
+        input.correct {
+            background-color: var(--success-bg) !important;
+            border-bottom-color: #28a745;
+        }
+
+        input.incorrect {
+            background-color: var(--error-bg) !important;
+            border-bottom-color: #dc3545;
+        }
+
+        .sentences-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sentence {
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .footer-actions {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .btn-main {
+            background-color: var(--secondary);
+            border: none;
+            border-bottom: 3px solid var(--primary);
+            border-radius: 5px;
+            padding: 12px 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #000;
+        }
+
+        #answer-panel {
+            display: none;
+            margin-top: 40px;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .ans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+        }
+
+        .ans-col h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--secondary);
+        }
+
+        .ans-item {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        .ans-label {
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        @media (max-width: 800px) {
+            .story-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .illustration {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <h1>Ejercicios</h1>
+
+    <!-- EJERCICIO 8.1 -->
+    <div class="exercise-header">
+        <div class="ex-number">8.1</div>
+        <div class="ex-instruction">
+            Complete con un, <span class="pink-word">una</span>, <span class="pink-word">unos</span>, <span class="pink-word">unas</span> o 
+            <span class="pink-word">el</span>, <span class="pink-word">la</span>, <span class="pink-word">los</span>, <span class="pink-word">las</span>. 
+            Utilice <span class="pink-word">al</span> o <span class="pink-word">del</span> cuando sea necesario.
+        </div>
+    </div>
+
+    <div class="activity-8-1">
+        <!-- Bloque 1: Cine -->
+        <div class="story-row">
+            <div class="bubble-container">
+                <strong>1</strong><br><br>
+                Es <input type="text" data-ans="una" style="width: 50px;"> comedia. <input type="text" data-ans="Los" style="width: 50px;"> actores son fabulosos. <input type="text" data-ans="La" style="width: 40px;"> película es sobre <input type="text" data-ans="un" style="width: 40px;"> médico que se enamora de <input type="text" data-ans="una" style="width: 50px;"> paciente. <input type="text" data-ans="El" style="width: 40px;"> médico no sabe cómo decírselo a <input type="text" data-ans="la" style="width: 40px;"> paciente. Ella tiene <input type="text" data-ans="un" style="width: 40px;"> hijo y <input type="text" data-ans="el" style="width: 40px;"> médico tiene <input type="text" data-ans="una" style="width: 50px;"> hija. <input type="text" data-ans="El" style="width: 40px;"> hijo de <input type="text" data-ans="la" style="width: 40px;"> paciente y <input type="text" data-ans="la" style="width: 40px;"> hija  <input type="text" data-ans="del" style="width: 40px;"> médico se conocen y se hacen amigos. <input type="text" data-ans="Un" style="width: 40px;"> día dan <input type="text" data-ans="una" style="width: 50px;"> fiesta e invitan a sus padres a <input type="text" data-ans="la" style="width: 40px;"> fiesta. <input type="text" data-ans="La" style="width: 40px;"> película acaba con <input type="text" data-ans="una" style="width: 50px;"> boda de <input type="text" data-ans="los" style="width: 50px;"> padres.
+            </div>
+            <div class="illustration">
+                <img src="https://imgur.com/6H82lpy.png" alt="[Cine]">
+            </div>
+        </div>
+
+        <!-- Bloque 2: Museo -->
+        <div class="story-row" style="flex-direction: row-reverse;">
+            <div class="bubble-container">
+                <strong>2</strong><br><br>
+                Es <input type="text" data-ans="un" style="width: 40px;"> cuadro muy famoso. Se ve a <input type="text" data-ans="un" style="width: 40px;"> hombre y <input type="text" data-ans="una" style="width: 50px;"> mujer en <input type="text" data-ans="un" style="width: 40px;"> jardín. <input type="text" data-ans="El" style="width: 40px;"> hombre está leyendo <input type="text" data-ans="un" style="width: 40px;"> libro y <input type="text" data-ans="la" style="width: 40px;"> mujer está tumbada debajo de <input type="text" data-ans="un" style="width: 40px;"> árbol. En <input type="text" data-ans="las" style="width: 40px;"> ramas  <input type="text" data-ans="del" style="width: 40px;"> árbol hay <input type="text" data-ans="unos" style="width: 60px;"> pájaros de muchos colores. <input type="text" data-ans="Los" style="width: 50px;"> pájaros tienen <input type="text" data-ans="las" style="width: 50px;"> alas extendidas; parece que van a echarse a volar.
+            </div>
+            <div class="illustration">
+                <img src="https://imgur.com/pjRQ5jW.png" alt="[Museo]">
+            </div>
+        </div>
+    </div>
+
+    <!-- EJERCICIO 8.2 -->
+    <div class="exercise-header">
+        <div class="ex-number">8.2</div>
+        <div class="ex-instruction">Complete con la forma correcta del artículo.</div>
+    </div>
+
+    <div class="sentences-list">
+        <div class="sentence">1. Salta es <input type="text" data-ans="una" style="width: 60px;"> ciudad de Argentina.</div>
+        <div class="sentence">2. Montevideo es <input type="text" data-ans="la" style="width: 45px;"> capital de Uruguay.</div>
+        <div class="sentence">3. <input type="text" data-ans="La" style="width: 45px;"> moto de Pedro es española.</div>
+        <div class="sentence">4. Tengo <input type="text" data-ans="una" style="width: 60px;"> casa en Segovia.</div>
+        <div class="sentence">5. <input type="text" data-ans="el" style="width: 45px;"> Primer Ministro español vive en la Moncloa.</div>
+        <div class="sentence">6. Necesito <input type="text" data-ans="unos" style="width: 65px;"> pantalones cortos para el verano.</div>
+        <div class="sentence">7. Hace tiempo que no veo <input type="text" data-ans="un" style="width: 45px;"> águila.</div>
+        <div class="sentence">8. Ten cuidado. Has vuelto a olvidar <input type="text" data-ans="la" style="width: 45px;"> llave del portal.</div>
+    </div>
+
+    <!-- EJERCICIO 8.3 -->
+    <div class="exercise-header">
+        <div class="ex-number">8.3</div>
+        <div class="ex-instruction">Complete con la forma correcta del artículo.</div>
+    </div>
+
+    <div class="sentences-list">
+        <div class="sentence">1. <input type="text" data-ans="Las" style="width: 50px;"> peras son mi fruta preferida.</div>
+        <div class="sentence">2. <input type="text" data-ans="Las" style="width: 50px;"> águilas vuelan alto.</div>
+        <div class="sentence">3. He comprado <input type="text" data-ans="unas" style="width: 65px;"> naranjas.</div>
+        <div class="sentence">4. En el zoo hay <input type="text" data-ans="un" style="width: 45px;"> panda.</div>
+        <div class="sentence">5. He cogido <input type="text" data-ans="unas" style="width: 65px;"> margaritas para llevarle a Sonia.</div>
+        <div class="sentence">6. <input type="text" data-ans="Los" style="width: 50px;"> gorilas están en peligro de extinción.</div>
+        <div class="sentence">7. Me encanta <input type="text" data-ans="la" style="width: 45px;"> fruta.</div>
+        <div class="sentence">8. Dame <input type="text" data-ans="unos" style="width: 65px;"> euros para comprar algo.</div>
+    </div>
+
+    <!-- EJERCICIO 8.4 -->
+    <div class="exercise-header">
+        <div class="ex-number">8.4</div>
+        <div class="ex-instruction">Escriba las respuestas según el paréntesis.</div>
+    </div>
+
+    <div class="sentences-list">
+        <div class="sentence">1. ¿Qué libro estás leyendo? – (Vargas Llosa) <input type="text" data-ans="uno de Vargas Llosa" style="width: 250px;">.</div>
+        <div class="sentence">2. ¿Qué tipo de agenda quiere? – (barata) <input type="text" data-ans="una barata" style="width: 150px;">.</div>
+        <div class="sentence">3. ¿Has visto mi chaqueta? – ¿Cuál? – (lana) <input type="text" data-ans="la de lana" style="width: 150px;">.</div>
+        <div class="sentence">4. Necesito un bolígrafo? – ¿De qué tipo? – Es igual. (azul) <input type="text" data-ans="uno azul" style="width: 150px;">.</div>
+        <div class="sentence">5. ¿Qué pantalones me pongo? – (negros) <input type="text" data-ans="los negros" style="width: 150px;">. Los otros no me gustan.</div>
+        <div class="sentence">6. ¿Qué tipo de sillas vais a comprar? – (plástico) <input type="text" data-ans="unas de plástico" style="width: 200px;">.Son para el jardín.</div>
+        <div class="sentence">7. ¿Qué tipo de cámara usas? – (digital) <input type="text" data-ans="una digital" style="width: 150px;">. Son más prácticas.</div>
+        <div class="sentence">8. ¿Con qué chica saliste ayer? – Con (Valencia) <input type="text" data-ans="la de Valencia" style="width: 150px;">. Es muy simpática.</div>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <div class="footer-actions">
+        <button class="btn-main" onclick="verRespuestas()">Respuestas Correctas</button>
+    </div>
+
+    <!-- PANEL DE RESPUESTAS -->
+    <div id="answer-panel">
+        <div class="ans-grid">
+            <div class="ans-col">
+                <h3>8.1 - 1</h3>
+                <div class="ans-item"><span class="ans-label">1</span> Una</div>
+                <div class="ans-item"><span class="ans-label">2</span> Los</div>
+                <div class="ans-item"><span class="ans-label">3</span> La</div>
+                <div class="ans-item"><span class="ans-label">4</span> Un</div>
+                <div class="ans-item"><span class="ans-label">5</span> Una</div>
+                <div class="ans-item"><span class="ans-label">6</span> El</div>
+                <div class="ans-item"><span class="ans-label">7</span> La</div>
+                <div class="ans-item"><span class="ans-label">8</span> Un</div>
+                <div class="ans-item"><span class="ans-label">9</span> El</div>
+                <div class="ans-item"><span class="ans-label">10</span> Una</div>
+                <div class="ans-item"><span class="ans-label">11</span> El</div>
+                <div class="ans-item"><span class="ans-label">12</span> La</div>
+                <div class="ans-item"><span class="ans-label">13</span> La</div>
+                <div class="ans-item"><span class="ans-label">14</span> Del</div>
+                <div class="ans-item"><span class="ans-label">15</span> Un</div>
+                <div class="ans-item"><span class="ans-label">16</span> Una</div>
+                <div class="ans-item"><span class="ans-label">17</span> La</div>
+                <div class="ans-item"><span class="ans-label">18</span> La</div>
+                <div class="ans-item"><span class="ans-label">19</span> Una</div>
+                <div class="ans-item"><span class="ans-label">20</span> Los</div>
+            </div>
+            <div class="ans-col">
+                <h3>8.1 - 2</h3>
+                <div class="ans-item"><span class="ans-label">1</span> un</div>
+                <div class="ans-item"><span class="ans-label">2</span> un</div>
+                <div class="ans-item"><span class="ans-label">3</span> una</div>
+                <div class="ans-item"><span class="ans-label">4</span> un</div>
+                <div class="ans-item"><span class="ans-label">5</span> el</div>
+                <div class="ans-item"><span class="ans-label">6</span> un</div>
+                <div class="ans-item"><span class="ans-label">7</span> la</div>
+                <div class="ans-item"><span class="ans-label">8</span> un</div>
+                <div class="ans-item"><span class="ans-label">9</span> las</div>
+                <div class="ans-item"><span class="ans-label">10</span> del</div>
+                <div class="ans-item"><span class="ans-label">11</span> unos</div>
+                <div class="ans-item"><span class="ans-label">12</span> los</div>
+                <div class="ans-item"><span class="ans-label">13</span> las</div>
+            </div>
+            <div class="ans-col">
+                <h3>8.2</h3>
+                <div class="ans-item"><span class="ans-label">1</span> una</div>
+                <div class="ans-item"><span class="ans-label">2</span> la</div>
+                <div class="ans-item"><span class="ans-label">3</span> La</div>
+                <div class="ans-item"><span class="ans-label">4</span> una</div>
+                <div class="ans-item"><span class="ans-label">5</span> el</div>
+                <div class="ans-item"><span class="ans-label">6</span> unos</div>
+                <div class="ans-item"><span class="ans-label">7</span> un</div>
+                <div class="ans-item"><span class="ans-label">8</span> la</div>
+            </div>
+            <div class="ans-col">
+                <h3>8.3</h3>
+                <div class="ans-item"><span class="ans-label">1</span> las</div>
+                <div class="ans-item"><span class="ans-label">2</span> las</div>
+                <div class="ans-item"><span class="ans-label">3</span> unas</div>
+                <div class="ans-item"><span class="ans-label">4</span> un</div>
+                <div class="ans-item"><span class="ans-label">5</span> unas</div>
+                <div class="ans-item"><span class="ans-label">6</span> los</div>
+                <div class="ans-item"><span class="ans-label">7</span> la</div>
+                <div class="ans-item"><span class="ans-label">8</span> unos</div>
+            </div>
+            <div class="ans-col">
+                <h3>8.4</h3>
+                <div class="ans-item"><span class="ans-label">1</span> uno de Vargas Llosa</div>
+                <div class="ans-item"><span class="ans-label">2</span> una barata</div>
+                <div class="ans-item"><span class="ans-label">3</span> la de lana</div>
+                <div class="ans-item"><span class="ans-label">4</span> uno azul</div>
+                <div class="ans-item"><span class="ans-label">5</span> los negros</div>
+                <div class="ans-item"><span class="ans-label">6</span> unas de plástico</div>
+                <div class="ans-item"><span class="ans-label">7</span> una digital</div>
+                <div class="ans-item"><span class="ans-label">8</span> la de Valencia</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Interactividad: Validación y Salto de Cursor
+    const allInputs = document.querySelectorAll('input');
+
+    allInputs.forEach((input, index) => {
+        input.addEventListener('input', function() {
+            const userVal = this.value.trim().toLowerCase();
+            const correctVal = this.getAttribute('data-ans').toLowerCase();
+            
+            if (userVal === "") {
+                this.classList.remove('correct', 'incorrect');
+            } else if (userVal === correctVal) {
+                this.classList.add('correct');
+                this.classList.remove('incorrect');
+            } else {
+                this.classList.add('incorrect');
+                this.classList.remove('correct');
+            }
+        });
+
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const nextInput = allInputs[index + 1];
+                if (nextInput) nextInput.focus();
+            }
+        });
+    });
+
+    function verRespuestas() {
+        const panel = document.getElementById('answer-panel');
+        if (panel.style.display === 'block') {
+            panel.style.display = 'none';
+        } else {
+            panel.style.display = 'block';
+            panel.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>
+
+</body>
+</html>

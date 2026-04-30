@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>un libro / el libro</title>
+    <style>
+        /* 1. Identidad Cromática */
+        :root {
+            --primary: #FF79AC;
+            --secondary: #FFB3D1;
+            --text-main: #121118;
+            --bg-page: #FFFFFF;
+            --divider: #E0E0E0;
+        }
+
+        /* Dimensiones de la Página (Layout) */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 950px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Cabecera */
+        .header {
+            display: flex;
+            align-items: flex-start;
+            border-bottom: 4px solid var(--primary);
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+
+        .lesson-number {
+            background-color: var(--primary);
+            color: white;
+            font-size: 3rem;
+            padding: 0.5rem 1.5rem;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .header-titles {
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .sub-title {
+            font-size: 1.8rem;
+            font-weight: normal;
+            color: var(--primary);
+            margin-top: 5px;
+        }
+
+        .translation-header {
+            color: var(--primary);
+            font-style: italic;
+            font-size: 1.2rem;
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* Estructura de Columnas */
+        .comparison-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .section-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Elementos Recurrentes */
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .bullet-item::before {
+            content: "●";
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-right: 12px;
+            line-height: 1.2;
+            flex-shrink: 0;
+        }
+
+        .translation {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .example-text {
+            margin-left: 32px;
+            font-size: 1.1rem;
+        }
+
+        .example-block {
+            margin-bottom: 8px;
+        }
+
+        /* Cuadros de Excepción (PERO) */
+        .pero-container {
+            background-color: var(--secondary);
+            border-left: 4px solid var(--primary);
+            margin: 30px 0;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pero-badge {
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+            padding: 4px 12px;
+            margin-right: 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Imágenes */
+        .images-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 40px 0;
+            gap: 20px;
+        }
+
+        .image-wrapper {
+            flex: 1;
+            text-align: center;
+        }
+
+        .content-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        .note-small {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid var(--divider);
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-layout {
+                grid-template-columns: 1fr;
+            }
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <!-- Cabecera Ajustada -->
+    <header class="header">
+        <div class="lesson-number">8</div>
+        <div class="header-titles">
+            <h1>un libro / el libro</h1>
+            <div class="sub-title">Contraste entre el artículo indefinido y el definido</div>
+            <span class="translation-header">(contrasting the indefinite and definite articles)</span>
+        </div>
+    </header>
+
+    <p style="font-weight: bold; margin-bottom: 10px;">Compare:</p>
+
+    <div class="comparison-layout">
+        <!-- Columna Izquierda -->
+        <div class="section-column">
+            <div>
+                <div class="bullet-item">
+                    <span>Se usa <strong>un, una, unos, unas</strong> + sustantivo cuando hablamos de algo nuevo para el oyente <span class="translation">(información nueva - new information)</span>.</span>
+                </div>
+                <div class="example-text">
+                    <p class="example-block">Estoy leyendo <strong>un libro</strong> sobre <strong>una cantante</strong>.</p>
+                    <p class="example-block">Había <strong>un hombre</strong> y <strong>una mujer</strong> en el salón.</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="bullet-item">
+                    <span>Se usa <strong>un, una, unos, unas</strong> + sustantivo cuando hablamos de alguien o algo como parte de una clase o grupo.</span>
+                </div>
+                <div class="example-text">
+                    <p class="example-block">Es <strong>una casa</strong> muy bonita.</p>
+                    <p class="example-block"><strong>Una hermana</strong> de Pedro es bailarina. <span class="note-small">(= Pedro tiene varias hermanas.)</span></p>
+                    <p class="example-block">He visto <strong>una película</strong> de terror. <span class="note-small">(= una película de esa clase)</span></p>
+                    
+                    <p style="margin-top: 15px;">Con <strong>un, una, unos, unas</strong> nos referimos a una clase de personas u objetos.</p>
+                    <p class="example-block" style="margin-top: 5px;">Necesito <strong>una lámpara</strong>. <span class="note-small">(= una lámpara cualquiera)</span></p>
+                    <p class="example-block">Queremos <strong>una habitación</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna Derecha -->
+        <div class="section-column">
+            <div>
+                <div class="bullet-item">
+                    <span>Se usa <strong>el, la, los, las</strong> + sustantivo cuando hablamos de algo ya mencionado <span class="translation">(información conocida - information known by the listener)</span>.</span>
+                </div>
+                <div class="example-text">
+                    <p class="example-block"><strong>El libro</strong> se titula "Mi vida", y <strong>la cantante</strong>...</p>
+                    <p class="example-block"><strong>El hombre</strong> parecía extranjero y <strong>la mujer</strong> llevaba...</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="bullet-item">
+                    <span>Se usa <strong>el, la, los, las</strong> + sustantivo cuando hablamos de alguien o algo único o específico <span class="translation">(único en esa situación - unique in that situation)</span>.</span>
+                </div>
+                <div class="example-text">
+                    <p class="example-block"><strong>La casa</strong> de Juan es preciosa.</p>
+                    <p class="example-block"><strong>La hermana</strong> de Luis es profesora. <span class="note-small">(= Luis tiene solo una hermana.)</span></p>
+                    <p class="example-block"><strong>Los actores</strong> eran extraordinarios. <span class="note-small">(= los actores de esa película)</span></p>
+                    
+                    <p style="margin-top: 15px;">Con <strong>el, la, los, las</strong> nos referimos a una persona u objeto concreto <span class="translation">(a specific person or object)</span>.</p>
+                    <p class="example-block" style="margin-top: 5px;"><strong>La lámpara</strong> azul es preciosa. <span class="note-small">(= esta y no otra)</span></p>
+                    <p class="example-block">Estamos en <strong>la habitación</strong> 323.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Imágenes con rutas directas corregidas -->
+    <div class="images-row">
+        <div class="image-wrapper">
+            <img src="https://i.imgur.com/iBQf9B2.png" alt="[Uso de unas tijeras]" class="content-img">
+        </div>
+        <div class="image-wrapper">
+            <img src="https://i.imgur.com/kYi3eyY.png" alt="[Uso de las tijeras]" class="content-img">
+        </div>
+    </div>
+
+    <div class="comparison-layout">
+        <div class="section-column">
+            <div>
+                <div class="bullet-item">
+                    <span>Se usa <strong>un, una, unos, unas</strong> + sustantivo para indicar cantidad <span class="translation">(quantity)</span>.</span>
+                </div>
+                <div class="example-text">
+                    <p class="example-block">He visto <strong>un león</strong> en el zoo.</p>
+                    <p class="example-block">He cortado <strong>unas rosas</strong>.</p>
+                    <p class="example-block">Compra <strong>unas manzanas</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-column">
+            <div>
+                <div class="bullet-item">
+                    <span>Se usa <strong>el, la, los, las</strong> + sustantivo para hablar de algo en sentido general <span class="translation">(to speak about something in general)</span>.</span>
+                </div>
+                <div class="example-text">
+                    <p class="example-block"><strong>El león</strong> es un animal peligroso.</p>
+                    <p class="example-block"><strong>Las rosas</strong> son mis flores preferidas.</p>
+                    <p class="example-block"><strong>Las manzanas</strong> son mi fruta preferida.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cuadro PERO -->
+    <div class="pero-container">
+        <div class="pero-badge">PERO</div>
+        <div>A veces <span class="translation">(at times)</span> también se usa <strong>un, una</strong> para hablar de algo en sentido general.</div>
+    </div>
+    
+    <div class="comparison-layout" style="margin-bottom: 40px; text-align: center;">
+        <div class="example-text" style="margin-left: 0;"><strong>Un ratón</strong> es un mamífero roedor.</div>
+        <div class="example-text" style="margin-left: 0;"><strong>El ratón</strong> es un mamífero roedor.</div>
+    </div>
+
+    <div class="comparison-layout">
+        <div class="section-column">
+            <div class="bullet-item">
+                <span>Se usa <strong>uno, una, unos, unas</strong> + adjetivo o <strong>uno, una, unos, unas</strong> + <strong>de</strong> + sustantivo cuando hablamos de una clase o grupo ya mencionados <span class="translation">(a type or group already mentioned)</span>.</span>
+            </div>
+            <div class="example-text">
+                <p class="example-block">—¿Qué tipo de ordenador busca? —<strong>Uno</strong> potente.</p>
+                <p class="example-block">—¿Qué tipo de mesa habéis comprado? —<strong>Una de metal</strong>, muy moderna.</p>
+            </div>
+        </div>
+
+        <div class="section-column">
+            <div class="bullet-item">
+                <span>Se usa <strong>el, la, los, las</strong> + adjetivo o <strong>el, la, los, las</strong> + <strong>de</strong> + sustantivo cuando hablamos de alguien o algo específico ya mencionado <span class="translation">(someone or something already mentioned)</span>.</span>
+            </div>
+            <div class="example-text">
+                <p class="example-block">—<strong>El blanco</strong> es muy elegante. Y a ti, ¿cuál te gusta más?</p>
+                <p class="example-block">—¿Cuál es tu maleta? —<strong>La de plástico</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
