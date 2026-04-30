@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La blanca, los de oro, lo difícil</title>
+    <style>
+        :root {
+            --primary: #FF79AC;
+            --secondary: #FFB3D1;
+            --text-main: #121118;
+            --bg-page: #FFFFFF;
+            --line-gray: #E0E0E0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            padding: 2.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 950px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Cabecera con número de lección */
+        .header-section {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 1rem;
+        }
+
+        .lesson-box {
+            background-color: var(--primary);
+            color: white;
+            font-size: 3.5rem;
+            font-weight: bold;
+            padding: 0.2rem 1.5rem;
+            margin-right: 1.5rem;
+            line-height: 1;
+        }
+
+        .titles-container h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--text-main);
+            line-height: 1.1;
+        }
+
+        .subtitle-group {
+            font-size: 1.8rem;
+            margin-top: 5px;
+        }
+
+        .subtitle-es {
+            color: var(--primary);
+        }
+
+        .subtitle-en {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        /* Imágenes superiores */
+        .images-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2.5rem 0;
+            gap: 20px;
+        }
+
+        .img-card {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .img-card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Contenido de texto */
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .bullet-point {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            line-height: 1.2;
+        }
+
+        .bullet-content {
+            font-size: 1.1rem;
+            text-align: justify;
+            width: 100%;
+        }
+
+        .english-note {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .example-list {
+            list-style: none;
+            margin-left: 1.5rem;
+            margin-top: 10px;
+        }
+
+        .example-list li {
+            margin-bottom: 5px;
+        }
+
+        .example-explanation {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Sección Lo + adjetivo con imagen más grande */
+        .lo-section {
+            display: flex;
+            gap: 30px;
+            margin-top: 2rem;
+            align-items: center;
+        }
+
+        .lo-text {
+            flex: 1.5;
+        }
+
+        .lo-image {
+            flex: 1;
+            text-align: right;
+        }
+
+        .lo-image img {
+            max-width: 260px; /* Aumentado ligeramente */
+            width: 100%;
+            height: auto;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        em {
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Cabecera -->
+    <header class="header-section">
+        <div class="lesson-box">7</div>
+        <div class="titles-container">
+            <h1>La blanca, los de oro, lo difícil</h1>
+            <div class="subtitle-group">
+                <span class="subtitle-es">Omisión del sustantivo</span> 
+                <span class="subtitle-en">(Omitting the noun)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Imágenes Superiores -->
+    <div class="images-top">
+        <div class="img-card">
+            <img src="https://imgur.com/hkbNRLq.png" alt="Ilustración Ponte la blanca">
+        </div>
+        <div class="img-card">
+            <img src="https://imgur.com/fcBPDXt.png" alt="Ilustración Los de oro">
+        </div>
+    </div>
+
+    <!-- Regla 1 -->
+    <div class="bullet-item">
+        <span class="bullet-point">●</span>
+        <div class="bullet-content">
+            Cuando hablamos de alguien o algo específico <span class="english-note">(someone or something specific)</span>, se puede usar <strong>el, la, los, las</strong> en lugar de un sustantivo mencionado anteriormente <span class="english-note">(instead of a previously mentioned noun)</span>, o cuando no es necesario mencionarlo porque todos sabemos <span class="english-note">(we all know)</span> de qué estamos hablando.
+            
+            <ul class="example-list">
+                <li>— <strong>el, la, los, las</strong> + adjetivo</li>
+                <li>—¿Qué camisa te gusta más? —<strong>La verde.</strong> <span class="example-explanation">(= la camisa verde)</span></li>
+                <li>—¿Quién es Laura? —<strong>La alta.</strong> <span class="example-explanation">(= la chica alta)</span></li>
+            </ul>
+            <p style="margin-top:10px">La forma del artículo y del adjetivo (masculino, femenino, singular o plural) es la misma que la del sustantivo al que se refiere.</p>
+            <ul class="example-list">
+                <li>—¿Qué zapatillas te gustan más? —<strong>Las rojas.</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Regla 2 -->
+    <div class="bullet-item">
+        <span class="bullet-point">●</span>
+        <div class="bullet-content">
+            Se puede usar <strong>el, la, los, las + de</strong> <strong>+ </strong> sustantivo para indicar origen, posesión, situación o materia <span class="english-note">(to indicate origin, possession, situation or material)</span>.
+            
+            <ul class="example-list">
+                <li><strong>La de Sevilla</strong> es la más simpática. <span class="example-explanation">(= la chica de Sevilla)</span></li>
+                <li>—¿Quién es Julián? —<strong>El de gafas.</strong> <span class="example-explanation">(= el chico que lleva gafas)</span></li>
+                <li>—¿Qué vasos prefieres? —<strong>Los de papel.</strong> <span class="example-explanation">(= los vasos de papel)</span></li>
+            </ul>
+            <p style="margin-top:10px">La forma del artículo (masculino, femenino, singular o plural) es la misma que la del sustantivo al que se refiere.</p>
+            <ul class="example-list">
+                <li>No me gustan las sillas de plástico. Prefiero <strong>las de madera.</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Regla 3: Lo + adjetivo -->
+    <div class="bullet-item">
+        <span class="bullet-point">●</span>
+        <div class="bullet-content">
+            <div class="lo-section">
+                <div class="lo-text">
+                    Se usa el artículo <strong>lo</strong> + adjetivo masculino singular, para referirnos a una cualidad <span class="english-note">(characteristic)</span>.
+                    <br><br>
+                    <strong>lo</strong> = la cosa, las cosas <span class="english-note">(thing, things)</span>
+                    <ul class="example-list">
+                        <li><strong>Lo bueno</strong> del verano son las vacaciones. <span class="example-explanation">(= la cosa buena del verano)</span></li>
+                        <li><strong>Lo mejor</strong> de Perú es la gente. <span class="example-explanation">(= la mejor cosa de Perú)</span></li>
+                        <li>Me gusta <strong>lo salado.</strong> <span class="example-explanation">(= las cosas saladas)</span></li>
+                        <li><strong>Lo más bonito</strong> de la vida son los amigos. <span class="example-explanation">(= la cosa más bonita)</span></li>
+                    </ul>
+                </div>
+                <div class="lo-image">
+                    <img src="https://imgur.com/jsFYj3z.png" alt="Ilustración Lo difícil">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Regla 4 -->
+    <div class="bullet-item">
+        <span class="bullet-point">●</span>
+        <div class="bullet-content">
+            Se usa <strong>lo + de</strong> <strong>+</strong> sustantivo o adverbio para referirse, sin mencionarlo <span class="english-note">(without mentioning it)</span>, a algo conocido por los interlocutores <span class="english-note">(something already known by the speakers)</span>.
+            
+            <ul class="example-list">
+                <li>Tenemos que hablar de <strong>lo de Pili.</strong></li>
+                <li class="example-explanation">(= Los dos sabemos qué es "lo de Pili", por ejemplo, un problema que tiene Pili con una amiga.)</li>
+                <li><strong>Lo de tu hermano</strong> ha sido estupendo.</li>
+                <li class="example-explanation">(= Los dos sabemos qué es "lo de tu hermano", por ejemplo, que se ha ganado la lotería.)</li>
+                <li><strong>Lo de ayer</strong> fue extraordinario.</li>
+                <li class="example-explanation">(= Los dos sabemos qué es "lo de ayer", por ejemplo, algo agradable que nos sucedió.)</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

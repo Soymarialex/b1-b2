@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        /* 1. Identidad Cromática */
+        :root {
+            --primary: #FF79AC;
+            --secondary: #FFB3D1;
+            --text-main: #121118;
+            --bg-page: #FFFFFF;
+            --success: #D4EDDA;
+            --error: #F8D7DA;
+            --gray-light: #F9F9F9;
+        }
+
+        /* Reset y General */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        /* 4. Estructura y Layout */
+        .container {
+            max-width: 850px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 40px;
+        }
+
+        /* Estructura de las actividades solicitado */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid var(--primary);
+            margin-top: 50px;
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        .ex-number {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.9rem;
+            margin-right: 15px;
+        }
+
+        .ex-instruction {
+            color: var(--text-main);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .exercise-content {
+            text-align: justify;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .sentence {
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* 3. Elementos Interactivos */
+        input {
+            border: none;
+            border-bottom: 2px solid #ccc;
+            background: transparent;
+            text-align: center;
+            font-size: 1rem;
+            padding: 2px 5px;
+            outline: none;
+            transition: background-color 0.3s, border-color 0.3s;
+            min-width: 120px;
+            color: var(--text-main);
+        }
+
+        input:focus {
+            border-bottom-color: var(--primary);
+        }
+
+        /* Clases de validación */
+        input.correct {
+            background-color: var(--success) !important;
+            border-bottom-color: #28a745;
+        }
+
+        input.incorrect {
+            background-color: var(--error) !important;
+            border-bottom-color: #dc3545;
+        }
+
+        /* Botón de respuestas */
+        .btn-answers {
+            display: block;
+            margin: 60px auto 20px;
+            background-color: var(--secondary);
+            border: none;
+            border-bottom: 3px solid var(--primary);
+            border-radius: 5px;
+            padding: 12px 30px;
+            color: #000;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        .btn-answers:hover {
+            opacity: 0.9;
+        }
+
+        /* Panel de respuestas en cuadrícula */
+        #answers-panel {
+            display: none;
+            background-color: var(--gray-light);
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+        }
+
+        .ans-group h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--primary);
+            margin-bottom: 12px;
+            padding-bottom: 4px;
+        }
+
+        .ans-list {
+            list-style: none;
+            font-size: 0.95rem;
+        }
+
+        .ans-list li {
+            margin-bottom: 6px;
+        }
+
+        .ans-list strong {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        /* Quitar azul de autocompletado */
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px white inset;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ejercicios</h1>
+
+    <!-- 7.1 -->
+    <div class="exercise-header">
+        <div class="ex-number">7.1</div>
+        <div class="ex-instruction">Complete con el, la, los, las y los adjetivos entre paréntesis.</div>
+    </div>
+    <div class="exercise-content">
+        <span class="sentence">1. —¿Quién es Julia? —<strong>(rubio)</strong> <input type="text" data-ans="la rubia">.</span>
+        <span class="sentence">2. —¿Quién es Sebastián? —<strong>(alto)</strong> <input type="text" data-ans="el alto">.</span>
+        <span class="sentence">3. —¿Qué coche le has dejado a Silvia? —<strong>(viejo)</strong> <input type="text" data-ans="el viejo">.</span>
+        <span class="sentence">4. —¿Qué chaqueta me pongo? —<strong>(nuevo)</strong> <input type="text" data-ans="la nueva">. La otra está muy sucia.</span>
+        <span class="sentence">5. —¿Qué vestido me pongo? —<strong>(italiano)</strong> <input type="text" data-ans="el italiano">. Es más elegante.</span>
+        <span class="sentence">6. —¿Cuáles son tus maletas? —<strong>(azul)</strong> <input type="text" data-ans="las azules">.</span>
+        <span class="sentence">7. —¿Qué zapatos prefieres? —<strong>(negro)</strong> <input type="text" data-ans="los negros">.</span>
+        <span class="sentence">8. —¿Quiénes son tus hermanas? —<strong>(moreno)</strong> <input type="text" data-ans="las morenas">.</span>
+    </div>
+
+    <!-- 7.2 -->
+    <div class="exercise-header">
+        <div class="ex-number">7.2</div>
+        <div class="ex-instruction">Complete con el, la, los, las o el, la, los, las + de y las palabras entre paréntesis.</div>
+    </div>
+    <div class="exercise-content">
+        <span class="sentence">1. No me gustan las sillas de plástico. Prefiero <strong>(madera)</strong> <input type="text" data-ans="las de madera">.</span>
+        <span class="sentence">2. ¿Cuál es la casa de Andrés, <strong>(grande)</strong> <input type="text" data-ans="la grande"> o <strong>(pequeño)</strong> <input type="text" data-ans="la pequeña">?</span>
+        <span class="sentence">3. —¿Qué chico trajo el champán? —<input type="text" data-ans="el de"> Santander.</span>
+        <span class="sentence">4. El único coche que podemos llevarnos es <input type="text" data-ans="el de"> mi padre.</span>
+        <span class="sentence">5. ¿Qué manzanas prefieres, <strong>(verde)</strong> <input type="text" data-ans="las verdes"> o <strong>(rojo)</strong> <input type="text" data-ans="las rojas">?</span>
+        <span class="sentence">6. Ahí está mi novia. Es <input type="text" data-ans="la del"> vestido verde.</span>
+        <span class="sentence">7. No me gustan esos pantalones. Me gustan más <strong>(gris)</strong> <input type="text" data-ans="los grises">.</span>
+        <span class="sentence">8. He quedado con el chico de anoche, <input type="text" data-ans="el del"> pelo blanco.</span>
+        <span class="sentence">9. No te pongas los calcetines de algodón. Ponte <input type="text" data-ans="los de"> lana.</span>
+        <span class="sentence">10. —¿Qué llaves necesitas? —<input type="text" data-ans="las del"> garaje solamente.</span>
+    </div>
+
+    <!-- 7.3 -->
+    <div class="exercise-header">
+        <div class="ex-number">7.3</div>
+        <div class="ex-instruction">Vuelva a escribir lo subrayado usando lo.</div>
+    </div>
+    <div class="exercise-content">
+        <span class="sentence">1. No me gustan <strong>las cosas picantes</strong>. → No me gusta <input type="text" data-ans="lo picante">.</span>
+        <span class="sentence">2. <strong>La peor cosa</strong> del invierno es el frío. → <input type="text" data-ans="lo peor"> del invierno es el frío.</span>
+        <span class="sentence">3. <strong>La cosa difícil</strong> del chino es la escritura. → <input type="text" data-ans="lo difícil"> del chino es la escritura.</span>
+        <span class="sentence">4. <strong>La mejor cosa</strong> de la vida son los amigos. → <input type="text" data-ans="lo mejor"> de la vida son los amigos.</span>
+        <span class="sentence">5. No aguanto <strong>las cosas frías</strong>. → No aguanto <input type="text" data-ans="lo frío">.</span>
+        <span class="sentence">6. Prefiero <strong>las cosas caras</strong> a <strong>las cosas baratas</strong>. → Prefiero <input type="text" data-ans="lo caro"> a <input type="text" data-ans="lo barato">.</span>
+    </div>
+
+    <!-- 7.4 -->
+    <div class="exercise-header">
+        <div class="ex-number">7.4</div>
+        <div class="ex-instruction">Vuelva a escribir lo subrayado usando lo o lo de.</div>
+    </div>
+    <div class="exercise-content">
+        <span class="sentence">1. —¿Qué pasa? —Nada. <strong>El problema de siempre</strong>. → <input type="text" data-ans="lo de siempre">.</span>
+        <span class="sentence">2. ¿Sabes <strong>la noticia sobre Arturo</strong>? → ¿Sabes <input type="text" data-ans="lo de Arturo">? ¡Se ha casado!</span>
+        <span class="sentence">3. <strong>La cosa buena</strong> → <input type="text" data-ans="lo bueno"> de viajar es conocer gente.</span>
+        <span class="sentence">4. Me preocupa <strong>la cuestión del dinero</strong> → Me preocupa <input type="text" data-ans="lo del dinero">.</span>
+        <span class="sentence">5. Mi madre cocina mejor <strong>las cosas dulces</strong> → <input type="text" data-ans="lo dulce"> que las cosas saladas → <input type="text" data-ans="lo salado">.</span>
+        <span class="sentence">6. En esta vida <strong>la cosa importante</strong> → <input type="text" data-ans="lo importante"> es ser honrado.</span>
+        <span class="sentence">7. El médico nos ha dicho que <strong>la enfermedad de Rafa</strong> → <input type="text" data-ans="lo de Rafa"> no es muy grave.</span>
+        <span class="sentence">8. <strong>La cosa rara</strong> → <input type="text" data-ans="lo raro"> es que tu abuelo se compre unos patines.</span>
+        <span class="sentence">9. Ahora <strong>la cosa más fácil</strong> → <input type="text" data-ans="lo más fácil"> sería no coger el autobús.</span>
+        <span class="sentence">10. <strong>Lo que pasó ayer</strong> → <input type="text" data-ans="lo de ayer"> fue tremendo.</span>
+    </div>
+
+    <!-- 7.5 -->
+    <div class="exercise-header">
+        <div class="ex-number">7.5</div>
+        <div class="ex-instruction">Complete con el, la, los, las o lo y los adjetivos entre paréntesis.</div>
+    </div>
+    <div class="exercise-content">
+        <span class="sentence">1. ¿Qué naranjas prefiere, <strong>(caro)</strong> <input type="text" data-ans="las caras"> o <strong>(barato)</strong> <input type="text" data-ans="las baratas">?</span>
+        <span class="sentence">2. <strong>(bueno)</strong> <input type="text" data-ans="lo bueno"> del accidente fue que nos conocimos.</span>
+        <span class="sentence">3. No me gusta <strong>(picante)</strong> <input type="text" data-ans="lo picante">.</span>
+        <span class="sentence">4. <strong>(barato)</strong> <input type="text" data-ans="lo barato"> es siempre caro.</span>
+        <span class="sentence">5. ¿Ves a aquellas chicas? Mis hermanas son <strong>(alto)</strong> <input type="text" data-ans="las altas">.</span>
+        <span class="sentence">6. <strong>(importante)</strong> <input type="text" data-ans="lo importante"> es ser feliz.</span>
+        <span class="sentence">7. <strong>(malo)</strong> <input type="text" data-ans="lo malo"> del verano es el calor.</span>
+        <span class="sentence">8. ¿Qué pendientes te gustan más, <strong>(largo)</strong> <input type="text" data-ans="los largos"> o <strong>(corto)</strong> <input type="text" data-ans="los cortos">?</span>
+        <span class="sentence">9. —¿Cuál es tu coche? —<strong>(pequeño)</strong> <input type="text" data-ans="el pequeño">.</span>
+        <span class="sentence">10. <strong>(pequeño)</strong> <input type="text" data-ans="lo pequeño"> es hermoso.</span>
+    </div>
+
+    <!-- Botón de Respuestas -->
+    <button class="btn-answers" onclick="toggleAnswers()">Respuestas Correctas</button>
+
+    <!-- Panel de Respuestas oculto -->
+    <div id="answers-panel">
+        <div class="answers-grid">
+            <div class="ans-group">
+                <h3>7.1</h3>
+                <ul class="ans-list">
+                    <li><strong>1.</strong> la rubia</li>
+                    <li><strong>2.</strong> el alto</li>
+                    <li><strong>3.</strong> el viejo</li>
+                    <li><strong>4.</strong> la nueva</li>
+                    <li><strong>5.</strong> el italiano</li>
+                    <li><strong>6.</strong> las azules</li>
+                    <li><strong>7.</strong> los negros</li>
+                    <li><strong>8.</strong> las morenas</li>
+                </ul>
+            </div>
+            <div class="ans-group">
+                <h3>7.2</h3>
+                <ul class="ans-list">
+                    <li><strong>1.</strong> las de madera</li>
+                    <li><strong>2.</strong> la grande / la pequeña</li>
+                    <li><strong>3.</strong> el de Santander</li>
+                    <li><strong>4.</strong> el de</li>
+                    <li><strong>5.</strong> las verdes / las rojas</li>
+                    <li><strong>6.</strong> la del</li>
+                    <li><strong>7.</strong> los grises</li>
+                    <li><strong>8.</strong> el del</li>
+                    <li><strong>9.</strong> los de</li>
+                    <li><strong>10.</strong> las del</li>
+                </ul>
+            </div>
+            <div class="ans-group">
+                <h3>7.3</h3>
+                <ul class="ans-list">
+                    <li><strong>1.</strong> lo picante</li>
+                    <li><strong>2.</strong> lo peor</li>
+                    <li><strong>3.</strong> lo difícil</li>
+                    <li><strong>4.</strong> lo mejor</li>
+                    <li><strong>5.</strong> lo frío</li>
+                    <li><strong>6.</strong> lo caro / lo barato</li>
+                </ul>
+            </div>
+            <div class="ans-group">
+                <h3>7.4</h3>
+                <ul class="ans-list">
+                    <li><strong>1.</strong> lo de siempre</li>
+                    <li><strong>2.</strong> lo de Arturo</li>
+                    <li><strong>3.</strong> lo bueno</li>
+                    <li><strong>4.</strong> lo del dinero</li>
+                    <li><strong>5.</strong> lo dulce / lo salado</li>
+                    <li><strong>6.</strong> lo importante</li>
+                    <li><strong>7.</strong> lo de Rafa</li>
+                    <li><strong>8.</strong> lo raro</li>
+                    <li><strong>9.</strong> lo fácil</li>
+                    <li><strong>10.</strong> lo de ayer</li>
+                </ul>
+            </div>
+            <div class="ans-group">
+                <h3>7.5</h3>
+                <ul class="ans-list">
+                    <li><strong>1.</strong> las caras / las baratas</li>
+                    <li><strong>2.</strong> lo bueno</li>
+                    <li><strong>3.</strong> lo picante</li>
+                    <li><strong>4.</strong> lo barato</li>
+                    <li><strong>5.</strong> las altas</li>
+                    <li><strong>6.</strong> lo importante</li>
+                    <li><strong>7.</strong> lo malo</li>
+                    <li><strong>8.</strong> los largos / los cortos</li>
+                    <li><strong>9.</strong> el pequeño</li>
+                    <li><strong>10.</strong> lo pequeño</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Obtener todos los inputs de la página para la navegación
+    const inputs = Array.from(document.querySelectorAll('input'));
+
+    inputs.forEach((input, index) => {
+        // Validación en tiempo real (Feedback visual)
+        input.addEventListener('input', function() {
+            const userVal = this.value.trim().toLowerCase();
+            const correctRaw = this.getAttribute('data-ans').toLowerCase();
+            
+            // Soporte para múltiples opciones separadas por '/'
+            const validOptions = correctRaw.split('/').map(opt => opt.trim());
+
+            if (userVal === "") {
+                this.classList.remove('correct', 'incorrect');
+            } else if (validOptions.includes(userVal)) {
+                this.classList.add('correct');
+                this.classList.remove('incorrect');
+            } else {
+                this.classList.add('incorrect');
+                this.classList.remove('correct');
+            }
+        });
+
+        // Navegación con tecla Enter (Regla Crítica)
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Evitar submit accidental
+                const nextInput = inputs[index + 1];
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            }
+        });
+    });
+
+    // Función para mostrar/ocultar el panel de respuestas
+    function toggleAnswers() {
+        const panel = document.getElementById('answers-panel');
+        const isVisible = panel.style.display === 'block';
+        
+        if (isVisible) {
+            panel.style.display = 'none';
+        } else {
+            panel.style.display = 'block';
+            // Scroll suave hacia abajo para ver las respuestas
+            panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+</script>
+
+</body>
+</html>
