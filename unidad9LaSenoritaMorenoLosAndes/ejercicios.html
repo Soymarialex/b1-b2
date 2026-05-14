@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        /* 1. IDENTIDAD CROMÁTICA */
+        :root {
+            --color-primario: #FF79AC;    /* Flamingo Pink */
+            --color-secundario: #FFB3D1;   /* Rosa Claro */
+            --color-texto: #121118;        /* Eerie Black */
+            --color-fondo: #FFFFFF;        /* Blanco Puro */
+            --color-acierto: #D4EDDA;      /* Verde suave */
+            --color-error: #F8D7DA;        /* Rojo suave */
+            --color-divisor: #E0E0E0;      /* Gris claro */
+            --color-banco-fondo: #F9F9F9;  /* Gris tenue */
+        }
+
+        /* 2. DISEÑO GENERAL Y LAYOUT */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* 3. TIPOGRAFÍA */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--color-primario);
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        p, .sentence {
+            font-size: 1.1rem;
+            text-align: justify;
+            margin-bottom: 0.8rem;
+        }
+
+        /* 4. ELEMENTOS INTERACTIVOS (INPUTS) */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            border-bottom: 2px solid var(--color-primario);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: var(--color-primario);
+            font-weight: bold;
+            font-size: 1.9rem;
+        }
+
+        .exercise-instruction {
+            color: var(--color-texto);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .input-gap {
+            border: none;
+            border-bottom: 2px solid #ccc;
+            background-color: transparent;
+            width: 80px;
+            text-align: center;
+            font-size: 1rem;
+            padding: 2px;
+            margin: 0 5px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .input-gap:focus {
+            outline: none;
+            border-color: var(--color-primario);
+        }
+
+        .correct {
+            background-color: var(--color-acierto) !important;
+            border-bottom: 2px solid #28a745 !important;
+        }
+
+        .incorrect {
+            background-color: var(--color-error) !important;
+            border-bottom: 2px solid #dc3545 !important;
+        }
+
+        /* 5. BOTONES */
+        .btn-check {
+            background-color: var(--color-secundario);
+            border: none;
+            border-bottom: 3px solid var(--color-primario);
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 2rem 0;
+            display: inline-block;
+            transition: opacity 0.2s;
+        }
+
+        .btn-check:active {
+            transform: translateY(1px);
+        }
+
+        /* 6. SOLUCIONES */
+        #solutions-area {
+            display: none;
+            background-color: var(--color-banco-fondo);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 2rem;
+            border: 1px solid var(--color-divisor);
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .solution-col h3 {
+            color: var(--color-primario);
+            font-size: 1.4rem;
+            border-bottom: 1px solid var(--color-primario);
+            margin-bottom: 10px;
+        }
+
+        .solution-item {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .solution-num {
+            color: var(--color-primario);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .sentence-row {
+            margin-bottom: 12px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ejercicios</h1>
+
+    <!-- EJERCICIO 9.1 -->
+    <div class="exercise-header">
+        <span class="exercise-number">9.1</span>
+        <span class="exercise-instruction">Complete con una forma del artículo definido cuando sea necesario.</span>
+    </div>
+
+    <div class="sentence-row">1. – <input type="text" class="input-gap" data-answer="ø"> Montejo, ¿dónde está <input type="text" class="input-gap" data-answer="ø"> don Alfonso? –Está reunido con <input type="text" class="input-gap" data-answer="el"> señor Gómez.</div>
+    <div class="sentence-row">2. Ayer estuvimos con <input type="text" class="input-gap" data-answer="ø"> Marisa en un restaurante cerca de <input type="text" class="input-gap" data-answer="la"> Puerta de Alcalá.</div>
+    <div class="sentence-row">3. <input type="text" class="input-gap" data-answer="Los"> Pinto son una familia muy original.</div>
+    <div class="sentence-row">4. ¿Conoce a <input type="text" class="input-gap" data-answer="la"> señora Blanco?</div>
+    <div class="sentence-row">5. <input type="text" class="input-gap" data-answer="Los"> Sres. Costa quieren ver <input type="text" class="input-gap" data-answer="la"> Cibeles de noche.</div>
+    <div class="sentence-row">6. Ha estado aquí <input type="text" class="input-gap" data-answer="el"> capitán Moreno. Quería hablar con <input type="text" class="input-gap" data-answer="el"> general Casado.</div>
+    <div class="sentence-row">7. <input type="text" class="input-gap" data-answer="ø"> señorita Blanco, ¿sabe dónde está <input type="text" class="input-gap" data-answer="ø"> Álvarez?</div>
+    <div class="sentence-row">8. <input type="text" class="input-gap" data-answer="La"> señora Sulleiro solo lee <input type="text" class="input-gap" data-answer="la"> Voz de Galicia.</div>
+    <div class="sentence-row">9. Hay un mensaje (de) <input type="text" class="input-gap" data-answer="del"> señor Córdoba para <input type="text" class="input-gap" data-answer="el"> doctor Casal.</div>
+    <div class="sentence-row">10. <input type="text" class="input-gap" data-answer="ø"> Santiago, compra <input type="text" class="input-gap" data-answer="la"> Gaceta de los Negocios cuando salgas.</div>
+    <div class="sentence-row">11. Hoy tengo clase con <input type="text" class="input-gap" data-answer="la"> profesora Galán.</div>
+    <div class="sentence-row">12. Aquí mataron (a) <input type="text" class="input-gap" data-answer="al"> Presidente Kennedy.</div>
+    <div class="sentence-row">13. No he podido hablar con <input type="text" class="input-gap" data-answer="el"> Dr. Rosso. Está ocupado.</div>
+    <div class="sentence-row">14. <input type="text" class="input-gap" data-answer="Los"> López nos esperan en <input type="text" class="input-gap" data-answer="el"> Hotel Ritz.</div>
+    <div class="sentence-row">15. ¿Ha corregido ya los exámenes, <input type="text" class="input-gap" data-answer="ø"> profesor Mata?</div>
+    <div class="sentence-row">16. <input type="text" class="input-gap" data-answer="El"> Sr. Ministro no ha podido asistir hoy al Consejo.</div>
+
+    <!-- EJERCICIO 9.2 -->
+    <div class="exercise-header">
+        <span class="exercise-number">9.2</span>
+        <span class="exercise-instruction">Complete con una forma del artículo definido cuando sea necesario.</span>
+    </div>
+
+    <div class="sentence-row">1. –¿Dónde estudias? –En <input type="text" class="input-gap" data-answer="la"> Universidad Autónoma.</div>
+    <div class="sentence-row">2. <input type="text" class="input-gap" data-answer="El"> río Misisipi está en <input type="text" class="input-gap" data-answer="los"> Estados Unidos.</div>
+    <div class="sentence-row">3. <input type="text" class="input-gap" data-answer="El"> hotel Central está en <input type="text" class="input-gap" data-answer="la"> Plaza de Roma.</div>
+    <div class="sentence-row">4. –Por favor, ¿sabe dónde está <input type="text" class="input-gap" data-answer="el"> cine París? –Sí, está en <input type="text" class="input-gap" data-answer="la"> calle Palencia.</div>
+    <div class="sentence-row">5. <input type="text" class="input-gap" data-answer="El"> Sáhara llega desde <input type="text" class="input-gap" data-answer="el"> Océano Atlántico hasta <input type="text" class="input-gap" data-answer="el"> Mar Rojo.</div>
+    <div class="sentence-row">6. Los vinos de <input type="text" class="input-gap" data-answer="la"> Rioja (región) son más caros que los de <input type="text" class="input-gap" data-answer="la"> Mancha (región).</div>
+    <div class="sentence-row">7. El fin de semana pasado estuvimos en <input type="text" class="input-gap" data-answer="ø"> Granada y visitamos <input type="text" class="input-gap" data-answer="la"> Alhambra.</div>
+    <div class="sentence-row">8. Siempre veraneamos en <input type="text" class="input-gap" data-answer="la"> República Dominicana.</div>
+    <div class="sentence-row">9. En <input type="text" class="input-gap" data-answer="la"> India tenéis que visitar <input type="text" class="input-gap" data-answer="ø"> Benarés (ciudad). Es muy interesante.</div>
+    <div class="sentence-row">10. <input type="text" class="input-gap" data-answer="ø"> Escocia forma parte (de) <input type="text" class="input-gap" data-answer="del"> Reino Unido de <input type="text" class="input-gap" data-answer="ø"> Gran Bretaña e <input type="text" class="input-gap" data-answer="ø"> Irlanda del Norte.</div>
+    <div class="sentence-row">11. <input type="text" class="input-gap" data-answer="El"> Líbano tiene frontera con <input type="text" class="input-gap" data-answer="ø"> Israel.</div>
+    <div class="sentence-row">12. <input type="text" class="input-gap" data-answer="El"> Ebro (río) desemboca en <input type="text" class="input-gap" data-answer="el"> Mediterráneo (mar).</div>
+    <div class="sentence-row">13. <input type="text" class="input-gap" data-answer="La"> Gran Muralla está en el centro de <input type="text" class="input-gap" data-answer="la"> República Popular China.</div>
+    <div class="sentence-row">14. Este verano queremos ir a <input type="text" class="input-gap" data-answer="ø"> Argentina. Vamos a recorrer <input type="text" class="input-gap" data-answer="la"> Pampa (región) y a llegar hasta <input type="text" class="input-gap" data-answer="ø"> Tierra del Fuego (archipiélago).</div>
+
+    <!-- EJERCICIO 9.3 -->
+    <div class="exercise-header">
+        <span class="exercise-number">9.3</span>
+        <span class="exercise-instruction">Complete con una forma del artículo definido cuando sea necesario.</span>
+    </div>
+
+    <div class="sentence-row">1. En <input type="text" class="input-gap" data-answer="ø"> Salamanca hay que visitar <input type="text" class="input-gap" data-answer="la"> Plaza Mayor.</div>
+    <div class="sentence-row">2. <input type="text" class="input-gap" data-answer="ø"> don Antonio vive en <input type="text" class="input-gap" data-answer="la"> Avenida de la Paz.</div>
+    <div class="sentence-row">3. <input type="text" class="input-gap" data-answer="Los"> Juárez viven en <input type="text" class="input-gap" data-answer="ø"> Ciudad de México.</div>
+    <div class="sentence-row">4. <input type="text" class="input-gap" data-answer="El"> Guernica (cuadro) está en <input type="text" class="input-gap" data-answer="el"> Reina Sofía (museo).</div>
+    <div class="sentence-row">5. <input type="text" class="input-gap" data-answer="Las"> pirámides están en <input type="text" class="input-gap" data-answer="el"> Cairo.</div>
+    <div class="sentence-row">6. <input type="text" class="input-gap" data-answer="El"> Retiro (parque) está cerca (de) <input type="text" class="input-gap" data-answer="el"> Prado (museo) en <input type="text" class="input-gap" data-answer="ø"> Madrid.</div>
+    <div class="sentence-row">7. <input type="text" class="input-gap" data-answer="Los"> González no conocen <input type="text" class="input-gap" data-answer="la"> Giralda de Sevilla (monumento).</div>
+    <div class="sentence-row">8. <input type="text" class="input-gap" data-answer="El"> Etna (volcán) está en <input type="text" class="input-gap" data-answer="ø"> Sicilia (isla).</div>
+    <div class="sentence-row">9. <input type="text" class="input-gap" data-answer="ø"> Texas es un estado de <input type="text" class="input-gap" data-answer="los"> Estados Unidos.</div>
+    <div class="sentence-row">10. <input type="text" class="input-gap" data-answer="La"> Sagrada Familia de Gaudí (monumento) está en <input type="text" class="input-gap" data-answer="ø"> Barcelona.</div>
+    <div class="sentence-row">11. <input type="text" class="input-gap" data-answer="La"> República Sudafricana tiene dos capitales, <input type="text" class="input-gap" data-answer="ø"> Pretoria y <input type="text" class="input-gap" data-answer="ø"> Ciudad del Cabo.</div>
+    <div class="sentence-row">12. <input type="text" class="input-gap" data-answer="El"> Taj Mahal es uno de los monumentos más importante de <input type="text" class="input-gap" data-answer="la"> India.</div>
+    <div class="sentence-row">13. <input type="text" class="input-gap" data-answer="La"> Amazonia (región) es el pulmón de <input type="text" class="input-gap" data-answer="la"> Tierra.</div>
+    <div class="sentence-row">14. <input type="text" class="input-gap" data-answer="Las"> Cícladas (islas) están en <input type="text" class="input-gap" data-answer="el"> mar Egeo.</div>
+    <div class="sentence-row">15. <input type="text" class="input-gap" data-answer="ø"> Tenerife es isla más grande de <input type="text" class="input-gap" data-answer="las"> Canarias (islas).</div>
+
+    <!-- BOTONES -->
+    <div style="display: flex; gap: 15px;">
+        <button class="btn-check" id="btn-show-solutions" onclick="toggleSolutions()">Respuestas correctas</button>
+    </div>
+
+    <!-- AREA DE SOLUCIONES -->
+    <div id="solutions-area">
+        <div class="solutions-grid">
+            <div class="solution-col">
+                <h3>9.1</h3>
+                <div class="solution-item"><span class="solution-num">1.</span> / / el</div>
+                <div class="solution-item"><span class="solution-num">2.</span> / la</div>
+                <div class="solution-item"><span class="solution-num">3.</span> los</div>
+                <div class="solution-item"><span class="solution-num">4.</span> la</div>
+                <div class="solution-item"><span class="solution-num">5.</span> los / la</div>
+                <div class="solution-item"><span class="solution-num">6.</span> el / el</div>
+                <div class="solution-item"><span class="solution-num">7.</span> /</div>
+                <div class="solution-item"><span class="solution-num">8.</span> la / la</div>
+                <div class="solution-item"><span class="solution-num">9.</span> del / el</div>
+                <div class="solution-item"><span class="solution-num">10.</span> / la</div>
+                <div class="solution-item"><span class="solution-num">11.</span> la</div>
+                <div class="solution-item"><span class="solution-num">12.</span> al</div>
+                <div class="solution-item"><span class="solution-num">13.</span> el</div>
+                <div class="solution-item"><span class="solution-num">14.</span> los / el</div>
+                <div class="solution-item"><span class="solution-num">15.</span> /</div>
+                <div class="solution-item"><span class="solution-num">16.</span> el</div>
+            </div>
+            <div class="solution-col">
+                <h3>9.2</h3>
+                <div class="solution-item"><span class="solution-num">1.</span> la</div>
+                <div class="solution-item"><span class="solution-num">2.</span> el / los</div>
+                <div class="solution-item"><span class="solution-num">3.</span> el / la</div>
+                <div class="solution-item"><span class="solution-num">4.</span> el / la</div>
+                <div class="solution-item"><span class="solution-num">5.</span> el / el / el</div>
+                <div class="solution-item"><span class="solution-num">6.</span> la / la</div>
+                <div class="solution-item"><span class="solution-num">7.</span> / la</div>
+                <div class="solution-item"><span class="solution-num">8.</span> la</div>
+                <div class="solution-item"><span class="solution-num">9.</span> la /</div>
+                <div class="solution-item"><span class="solution-num">10.</span> / del / /</div>
+                <div class="solution-item"><span class="solution-num">11.</span> el</div>
+                <div class="solution-item"><span class="solution-num">12.</span> el / el</div>
+                <div class="solution-item"><span class="solution-num">13.</span> la / la</div>
+                <div class="solution-item"><span class="solution-num">14.</span> / la /</div>
+            </div>
+            <div class="solution-col">
+                <h3>9.3</h3>
+                <div class="solution-item"><span class="solution-num">1.</span> / la</div>
+                <div class="solution-item"><span class="solution-num">2.</span> / la</div>
+                <div class="solution-item"><span class="solution-num">3.</span> los /</div>
+                <div class="solution-item"><span class="solution-num">4.</span> el / el</div>
+                <div class="solution-item"><span class="solution-num">5.</span> las / el</div>
+                <div class="solution-item"><span class="solution-num">6.</span> el / el /</div>
+                <div class="solution-item"><span class="solution-num">7.</span> los / la</div>
+                <div class="solution-item"><span class="solution-num">8.</span> el /</div>
+                <div class="solution-item"><span class="solution-num">9.</span> / los</div>
+                <div class="solution-item"><span class="solution-num">10.</span> la /</div>
+                <div class="solution-item"><span class="solution-num">11.</span> la / /</div>
+                <div class="solution-item"><span class="solution-num">12.</span> el / la</div>
+                <div class="solution-item"><span class="solution-num">13.</span> la / la</div>
+                <div class="solution-item"><span class="solution-num">14.</span> las / el</div>
+                <div class="solution-item"><span class="solution-num">15.</span> / las</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /**
+     * Valida un campo individual comparándolo con su respuesta correcta.
+     */
+    function validateSingleField(input) {
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = input.dataset.answer.toLowerCase();
+        
+        // Identificar si la respuesta correcta es omitir (ø o /)
+        const isOmissionExpected = correctAnswer === 'ø' || correctAnswer === '/';
+        // Identificar si el usuario ha omitido (vacío o caracteres de omisión comunes)
+        const hasUserOmitted = userAnswer === '' || userAnswer === '/' || userAnswer === 'ø' || userAnswer === '-';
+
+        if (isOmissionExpected) {
+            if (hasUserOmitted) {
+                input.classList.remove('incorrect');
+                input.classList.add('correct');
+            } else {
+                input.classList.remove('correct');
+                input.classList.add('incorrect');
+            }
+        } else {
+            if (userAnswer === correctAnswer) {
+                input.classList.remove('incorrect');
+                input.classList.add('correct');
+            } else {
+                input.classList.remove('correct');
+                input.classList.add('incorrect');
+            }
+        }
+    }
+
+    /**
+     * Alterna la visibilidad del panel de soluciones.
+     */
+    function toggleSolutions() {
+        const area = document.getElementById('solutions-area');
+        area.style.display = area.style.display === 'block' ? 'none' : 'block';
+        if (area.style.display === 'block') {
+            area.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    /**
+     * Manejo del evento Enter para validación inmediata y salto de campo.
+     */
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            const inputs = Array.from(document.querySelectorAll('.input-gap'));
+            const currentIndex = inputs.indexOf(document.activeElement);
+            
+            if (currentIndex > -1) {
+                event.preventDefault();
+                
+                // 1. Validar la casilla actual (siempre, incluso vacía)
+                validateSingleField(inputs[currentIndex]);
+                
+                // 2. Saltar a la siguiente casilla si no es la última
+                if (currentIndex < inputs.length - 1) {
+                    inputs[currentIndex + 1].focus();
+                }
+            }
+        }
+    });
+
+    console.log("Sistema de validación automática por Enter cargado.");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La señorita Moreno, los Andes</title>
+    <style>
+        /* 1. IDENTIDAD CROMÁTICA Y VARIABLES */
+        :root {
+            --color-primario: #FF79AC;   /* Flamingo Pink */
+            --color-secundario: #FFB3D1;  /* Rosa Claro */
+            --color-texto: #121118;       /* Eerie Black */
+            --color-fondo: #FFFFFF;       /* Blanco Puro */
+            --color-divisores: #E0E0E0;   /* Gris Claro según última instrucción */
+        }
+
+        /* 2. DISEÑO GENERAL (LAYOUT) */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .page-wrapper {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 2.5rem;
+        }
+
+        /* 3. TIPOGRAFÍA */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0;
+            color: var(--color-texto);
+            display: inline-block;
+        }
+
+        .title-accent {
+            color: var(--color-primario);
+            font-weight: normal;
+            font-size: 1.8rem;
+            display: block;
+            margin-top: 0.2rem;
+        }
+
+        .title-translation {
+            color: var(--color-primario);
+            font-style: italic;
+            font-weight: normal;
+            font-size: 1.4rem;
+            display: block;
+        }
+
+        p, div, li {
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        /* 4. ELEMENTOS RECURRENTES */
+        header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            border-bottom: 4px solid var(--color-primario);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .lesson-box {
+            background-color: var(--color-primario);
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            line-height: 1;
+        }
+
+        /* Viñetas */
+        .section-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .bullet {
+            color: var(--color-primario);
+            font-size: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .content-body {
+            flex: 1;
+        }
+
+        .sub-section {
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .dash-item {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .dash-item::before {
+            content: "–";
+            position: absolute;
+            left: 0;
+            color: var(--color-texto);
+        }
+
+        /* Traducciones en Rosa */
+        .lang-pink {
+            color: var(--color-primario);
+            font-style: italic;
+        }
+
+        /* Cuadros PERO */
+        .pero-container {
+            display: flex;
+            background-color: var(--color-secundario);
+            border-left: 4px solid var(--color-primario);
+            margin: 1.5rem 0 1.5rem 1.5rem;
+            align-items: stretch;
+        }
+
+        .pero-badge {
+            background-color: var(--color-primario);
+            color: white;
+            font-weight: bold;
+            padding: 0.8rem 1rem;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+        }
+
+        .pero-text {
+            padding: 0.8rem 1.2rem;
+            flex: 1;
+        }
+
+        /* Grillas de ejemplos */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 10px;
+            margin-top: 0.5rem;
+        }
+
+        .list-inline {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0;
+        }
+
+        .list-inline li {
+            margin-bottom: 0.4rem;
+        }
+
+        .list-inline li span {
+            color: #666;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        /* Cuadro Atención */
+        .atencion-section {
+            border: 1px solid var(--color-divisores);
+            margin-top: 3rem;
+        }
+
+        .atencion-banner {
+            background-color: #FF79AC;
+            color: white;
+            display: inline-block;
+            padding: 4px 15px;
+            font-weight: bold;
+        }
+
+        .atencion-content {
+            padding: 1rem;
+        }
+
+        /* Input para interactividad de cursor */
+        input.auto-focus {
+            border: 1px solid var(--color-primario);
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+    <header>
+        <div class="lesson-box">9</div>
+        <div class="title-group">
+            <h1>la señorita Moreno, los Andes</h1>
+            <span class="title-accent">El artículo definido con nombres propios</span>
+            <span class="title-translation">(the definite article with proper nouns)</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- SECCIÓN PERSONAS -->
+        <div class="section-item">
+            <span class="bullet">●</span>
+            <div class="content-body">
+                <p><strong>El, la, los, las</strong> con nombres de personas <span class="lang-pink">(proper nouns)</span></p>
+                
+                <div class="sub-section">
+                    <div class="dash-item">
+                        Se usa <strong>el, la, los o las</strong> + señor, señora, señorita, profesor, profesora, capitán... (+ nombre) + apellido.
+                        <div class="examples-grid">
+                            <div>¿Has visto a <strong>la señorita Moreno</strong>?</div>
+                            <div>Estoy en el grupo <strong>del profesor Herrero</strong>.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pero-container">
+                    <div class="pero-badge">PERO</div>
+                    <div class="pero-text">
+                        No se usan los artículos definidos en singular antes de <strong>don/doña</strong>, antes de un nombre o un apellido, o cuando hablamos directamente a una persona.
+                        <div class="examples-grid">
+                            <div><strong>Don Alberto</strong> está enfermo.</div>
+                            <div><strong>Lola</strong> es muy simpática.</div>
+                            <div><strong>Gutiérrez</strong> no ha venido hoy.</div>
+                            <div>¿Quiere usted algo, <strong>señorita Moreno</strong>?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-section">
+                    <div class="dash-item">
+                        Se usa <strong>los</strong> + apellido <span class="lang-pink">(last name)</span> singular para referirse a una familia.
+                        <div class="examples-grid">
+                            <div><strong>Los Pérez</strong> son muy agradables.</div>
+                            <div>Esta noche cenamos en casa de <strong>los Martínez</strong>.</div>
+                        </div>
+                    </div>
+
+                    <div class="dash-item">
+                        Se usa <strong>el, la</strong> con nombres de periódicos y revistas <span class="lang-pink">(names of newspapers and magazines)</span>.
+                        <div class="examples-grid">
+                            <div>Cómprame <strong>el Hola</strong>, por favor.</div>
+                            <div>¿Ha salido <strong>la Gaceta</strong>?</div>
+                        </div>
+                    </div>
+
+                    <div class="dash-item">
+                        Se usa <strong>el, la, los, las</strong> con nombres de monumentos y obras de arte <span class="lang-pink">(names of monuments and works of art)</span>.
+                        <div class="examples-grid">
+                            <div>Hemos visitado <strong>la Alhambra</strong>.</div>
+                            <div>¿Habéis visto <strong>el Guernica</strong>?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN LUGARES -->
+        <div class="section-item">
+            <span class="bullet">●</span>
+            <div class="content-body">
+                <p><strong>El, la, los, las</strong> con nombres de lugares <span class="lang-pink">(names of places)</span>.</p>
+                
+                <div class="sub-section">
+                    <div class="dash-item">
+                        Se usa <strong>el, la</strong> + nombres de calles, plazas, avenidas, paseos.
+                        <div class="examples-grid">
+                            <div>El hotel está en <strong>la calle (de) Trafalgar</strong>.</div>
+                            <div>Roberto vive en <strong>la Plaza del Carmen</strong>.</div>
+                        </div>
+                    </div>
+
+                    <div class="dash-item">
+                        Se usa <strong>el, la, los, las</strong> + nombres de cines, teatros, hoteles, museos...
+                        <div class="examples-grid" style="grid-template-columns: repeat(3, 1fr);">
+                            <div><strong>el (hotel) Nacional</strong></div>
+                            <div><strong>el (teatro) Real</strong></div>
+                            <div><strong>el (museo) Reina Sofía</strong></div>
+                            <div><strong>el (cine) Amaya</strong></div>
+                            <div><strong>el (hospital) Doce de Octubre</strong></div>
+                            <div><strong>la (Universidad) Complutense</strong></div>
+                        </div>
+                        <div class="examples-grid" style="margin-top:10px">
+                            <div>Julio está enfermo. Está en <strong>el Doce de Octubre</strong>.</div>
+                            <div>Rosa está haciendo un curso en <strong>la Complutense</strong>.</div>
+                        </div>
+                    </div>
+
+                    <div class="dash-item">
+                        Se usa <strong>el, la, los, las</strong> + nombres de ríos, lagos, mares, océanos, grupos de islas, montañas, cordilleras, volcanes, desiertos.
+                        <div class="examples-grid" style="grid-template-columns: repeat(2, 1fr); gap: 5px;">
+                            <div><strong>el (río) Ebro, el Nilo</strong></div>
+                            <div><strong>el (océano) Pacífico, el Atlántico</strong></div>
+                            <div><strong>los Alpes, los Andes</strong></div>
+                            <div><strong>el (lago) Titicaca</strong></div>
+                            <div><strong>las (islas) Baleares, las Galápagos</strong></div>
+                            <div><strong>el (monte) Everest</strong></div>
+                            <div><strong>el (mar) Cantábrico, el Egeo</strong></div>
+                            <div><strong>el (volcán) Teide, el Etna</strong></div>
+                            <div><strong>el (desierto del) Kalahari</strong></div>
+                        </div>
+                        <div class="examples-grid" style="margin-top:10px">
+                            <div><strong>El Nilo</strong> es el río más largo del mundo.</div>
+                            <div>El verano pasado subimos <strong>al Teide</strong>.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pero-container">
+                    <div class="pero-badge">PERO</div>
+                    <div class="pero-text">
+                        No se usa <strong>el, la, los, las</strong> con nombres de islas cuando no son un grupo: <strong>Tenerife, Creta, Cuba, Jamaica.</strong>
+                        <div style="margin-top:5px">Este verano queremos ir a <strong>Creta</strong>.</div>
+                    </div>
+                </div>
+
+                <div class="sub-section">
+                    <div class="dash-item">
+                        No se usa <strong>el, la, los, las</strong> con nombres de ciudades, regiones, provincias, países, continentes.
+                        <ul class="list-inline">
+                            <li><span>Ciudades:</span> Salamanca, Berlín, Nueva York, Lima, Guadalajara...</li>
+                            <li><span>Países y regiones:</span> Perú, Brasil, Guatemala, China, Castilla, Arizona, Chiapas...</li>
+                            <li><span>Continentes:</span> Europa, Asia...</li>
+                        </ul>
+                        <div class="examples-grid">
+                            <div><strong>Salamanca</strong> está en <strong>Castilla</strong>.</div>
+                            <div><strong>China</strong> está en <strong>Asia</strong>.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pero-container">
+                    <div class="pero-badge">PERO</div>
+                    <div class="pero-text">
+                        Algunos nombres de ciudades, países y regiones llevan <strong>el, la, los, las</strong> como parte del nombre:
+                        <div style="margin-top:5px; font-style: italic;">
+                            La Habana, El Escorial, La Haya, La Paz, Las Palmas, Los Ángeles, El Cairo, El Salvador, (la) India, (el) Líbano, La Mancha, La Rioja, La Pampa.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-section">
+                    <div class="dash-item">
+                        También se usa el artículo definido cuando el nombre del país lleva las palabras <strong>República, Reino</strong> o <strong>Estados</strong>: <strong>la República Argentina, (los) Estados Unidos, el Reino Unido.</strong>
+                        <div class="examples-grid">
+                            <div><strong>Los Ángeles</strong> está en <strong>los Estados Unidos</strong>.</div>
+                            <div><strong>La Pampa</strong> es una zona de <strong>la República Argentina</strong>.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CUADRO ATENCIÓN -->
+        <div class="atencion-section">
+            <div class="atencion-banner">ATENCIÓN:</div>
+            <div class="atencion-content">
+                <p><strong>(la) India, (el) Líbano</strong></p>
+                <p>¿Has estado alguna vez en <strong>la India</strong>?</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    /**
+     * Implementación del salto de cursor automático (focus) 
+     * entre campos mediante la tecla Enter (keydown).
+     */
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            const focusableElements = 'input, select, textarea, button, [contenteditable]';
+            const elements = Array.from(document.querySelectorAll(focusableElements));
+            const index = elements.indexOf(document.activeElement);
+            
+            if (index > -1 && index < elements.length - 1) {
+                event.preventDefault(); // Evita el comportamiento por defecto de Enter
+                elements[index + 1].focus();
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
