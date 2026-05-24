@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lección 10: Gramática Española</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC;
+            --secondary-color: #FFB3D1;
+            --text-color: #121118;
+            --divider-color: #E0E0E0;
+            --bg-color: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2.5rem;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 1rem;
+        }
+
+        .lesson-number {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+            line-height: 1.1;
+        }
+
+        .header-text h2 {
+            font-size: 1.8rem;
+            font-weight: normal;
+            color: var(--primary-color);
+            margin-top: 0.5rem;
+        }
+
+        .header-text .translation {
+            color: var(--primary-color);
+            font-style: italic;
+            font-size: 1.4rem;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+            text-align: justify;
+            font-size: 1.1rem;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-main {
+            flex: 1;
+        }
+
+        .illustration {
+            max-width: 250px;
+        }
+
+        .illustration img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li::before {
+            content: "●";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .blue-text {
+            color: var(--primary-color);
+            font-style: italic;
+        }
+
+        .examples {
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .example-line {
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        .pero-box {
+            background-color: var(--secondary-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pero-label {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            padding: 0.2rem 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .atencion-box {
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .atencion-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.3rem 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .atencion-content {
+            padding: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            border: 1px solid var(--primary-color);
+        }
+
+        td {
+            padding: 1rem;
+            border: 1px solid var(--secondary-color);
+            vertical-align: top;
+        }
+
+        .table-alt {
+            background-color: var(--secondary-color);
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 2fr;
+            gap: 0;
+            border: 1px solid var(--primary-color);
+            margin: 1.5rem 0;
+        }
+
+        .price-col {
+            padding: 1rem;
+            border: 0.5px solid var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="lesson-number">10</div>
+        <div class="header-text">
+            <h1>el cinco de octubre, dos días a la semana</h1>
+            <h2>El artículo definido con expresiones de tiempo y de cantidad</h2>
+            <span class="translation">(with expressions of time and quantity)</span>
+        </div>
+    </header>
+
+    <div class="section">
+        <div class="row">
+            <div class="content-main">
+                <ul>
+                    <li>
+                        Se usa <strong>la, las</strong> + horas <span class="blue-text">(time)</span>.
+                        <div class="examples">
+                            <span class="example-line">El partido empieza a <strong>la una</strong>.</span>
+                            <span class="example-line">—¿A qué hora sale el tren? —A <strong>las catorce</strong> horas.</span>
+                        </div>
+                    </li>
+                    <li>
+                        Se usa <strong>el</strong> + fechas <span class="blue-text">(dates)</span> o días de la semana <span class="blue-text">(days of the week)</span>, cuando hablamos de algún acontecimiento.
+                        <div class="examples">
+                            <span class="example-line"><strong>La boda</strong> es <strong>el cinco</strong> de octubre.</span>
+                            <span class="example-line"><strong>El lunes</strong> tenemos <strong>un examen</strong>. (= el lunes próximo)</span>
+                            <span class="example-line">Mis padres <strong>llegaron el jueves</strong>. (= el jueves de esta semana)</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="illustration">
+                <img src="https://imgur.com/F1aMN6c.png" alt="Ilustración de conversación sobre planes">
+            </div>
+        </div>
+
+        <div class="pero-box">
+            <span class="pero-label">Pero:</span>
+            <span>Hoy es <strong>dos</strong> de mayo. / —¿Qué día es hoy? —<strong>Jueves</strong>. Mañana es <strong>viernes</strong>.</span>
+        </div>
+
+        <div class="atencion-box">
+            <div class="atencion-header">Atención:</div>
+            <div class="atencion-content">
+                día de la semana + fecha &rarr; solo un artículo
+                <br>
+                <p style="margin-top: 0.5rem;">La boda es <strong>el domingo</strong>. La boda es <strong>el diecisiete</strong> de junio. &rarr; La boda es <strong>el domingo, diecisiete</strong> de junio.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <ul>
+            <li>
+                Se usa <strong>los</strong> + días de la semana cuando hablamos de una acción habitual <span class="blue-text">(habitual action)</span>.
+                <div class="examples">
+                    <span class="example-line"><strong>Los lunes</strong> trabajo hasta las diez.</span>
+                    <span class="example-line">¿Qué sueles hacer <strong>los domingos</strong>?</span>
+                </div>
+            </li>
+            <li>
+                No se usa artículo con los nombres de los meses <span class="blue-text">(months)</span>.
+                <div class="examples">
+                    <span class="example-line">Ana y Pedro se casan en <strong>marzo</strong>.</span>
+                </div>
+            </li>
+            <li>
+                Se usa <strong>por la</strong> / <strong>en la</strong> + partes del día <span class="blue-text">(parts of the day)</span>: mañana, tarde, noche.
+                <div class="examples">
+                    <span class="example-line">No puedo ir <strong>por la mañana</strong>. Estoy ocupado.</span>
+                    <span class="example-line">Llámame <strong>en la noche</strong>. Es cuando estoy en casa.</span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="pero-box">
+            <span class="pero-label">Pero:</span>
+            <span><strong>al</strong> mediodía, <strong>de</strong> madrugada, <strong>a la</strong> medianoche
+        </div>
+        <div class="examples" style="padding-left: 4.5rem;">
+            <span class="example-line">Regreso a casa <strong>al mediodía</strong>, a la hora de comer.</span>
+            <span class="example-line">El camión de la basura pasa <strong>de madrugada</strong>.</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <p>● Frecuencia o cantidad <span class="blue-text">(frequency or quantity)</span> + <strong>al/a la</strong> + período de tiempo <span class="blue-text">(period of time)</span>.</p>
+        
+        <div class="row">
+            <div class="content-main">
+                <table>
+                    <tr>
+                        <td>
+                            una vez<br>
+                            dos veces<br>
+                            una hora<br>
+                            ocho horas<br>
+                            dos litros de agua
+                        </td>
+                        <td>
+                            al día<br>
+                            al mes<br>
+                            a la semana<br>
+                            a la hora
+                        </td>
+                        <td>
+                            Voy a Bruselas <strong>una vez al mes</strong>.<br>
+                            Ando <strong>una hora al día</strong>.<br>
+                            Tengo clase <strong>un día a la semana</strong>.<br>
+                            Bebo <strong>dos litros de agua al día</strong>.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="illustration">
+                <img src="https://imgur.com/1Kb7u1i.png" alt="Ilustración de actividad física">
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <p>● Precio <span class="blue-text">(price)</span> + <strong>el, la, los, las</strong> + unidades de medidas <span class="blue-text">(units of measure)</span> (kilo, litro, docena...)</p>
+        
+        <div class="row">
+            <div class="content-main">
+                <div class="price-grid">
+                    <div class="price-col">
+                        un euro<br>
+                        diez pesos<br>
+                        cinco dólares<br>
+                        veinte céntimos
+                    </div>
+                    <div class="price-col">
+                        el kilo, litro...<br>
+                        la docena...<br>
+                        los cien gramos...
+                    </div>
+                    <div class="price-col">
+                        El aceite ha subido <strong>veinte céntimos el litro</strong>.<br>
+                        Esos huevos cuestan <strong>tres euros la docena</strong>.<br>
+                        Es un jamón caro. <strong>Seis euros los cien gramos</strong>.
+                    </div>
+                </div>
+            </div>
+            <div class="illustration">
+                <img src="https://imgur.com/1KL23Ev.png" alt="Ilustración en el mercado">
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <!-- Cargando Tailwind CSS con parámetro de caché anti-rotura -->
+    <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+    <style>
+        /* Tipografía conforme a la guía */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #121118; /* Eerie Black */
+            background-color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 2.5rem; /* Margen externo de 40px */
+        }
+
+        /* Estilo de los encabezados de ejercicios según las especificaciones */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC; /* Línea rosa que abarca todo el ancho */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .exercise-num {
+            color: #FF79AC; /* Flamingo Pink */
+            font-weight: 700;
+            font-size: 1.9rem;
+            margin-right: 1rem;
+            line-height: 1;
+        }
+
+        .exercise-inst {
+            color: #121118; /* Eerie Black */
+            font-weight: 700;
+            font-size: 1.5rem;
+            line-height: 1.2;
+        }
+
+        /* Campos de completación con solo borde inferior */
+        .quiz-input {
+            border: none;
+            border-bottom: 2px solid #E0E0E0; /* Gris claro por defecto */
+            background-color: transparent;
+            text-align: center;
+            font-weight: 600;
+            color: #121118;
+            padding: 0.1rem 0.5rem;
+            transition: all 0.2s ease-in-out;
+            outline: none;
+        }
+
+        .quiz-input:focus {
+            border-bottom-color: #FF79AC; /* Rosa en focus */
+        }
+
+        /* Botón de respuestas correctas según la guía */
+        .btn-correct-answers {
+            background-color: #FFB3D1; /* Rosa claro */
+            border-bottom: 3px solid #FF79AC; /* Flamingo Pink */
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-radius: 4px;
+            color: #121118;
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-correct-answers:hover {
+            background-color: #FF9BBE;
+        }
+
+        /* Alineaciones justificadas para el cuerpo de texto */
+        .text-justified {
+            text-align: justify;
+        }
+    </style>
+</head>
+<body class="py-10">
+
+    <div class="main-container">
+
+        <!-- Título de la Página - Alineado a la izquierda -->
+        <header class="mb-10 text-left">
+            <h1 class="text-[2.5rem] font-bold text-[#FF79AC] leading-none mb-2">Ejercicios</h1>
+        </header>
+
+        <!-- ACTIVIDAD 11.1 -->
+        <div class="exercise-section mb-12">
+            <div class="exercise-header">
+                <span class="exercise-num">11.1</span>
+                <span class="exercise-inst">Complete con el artículo definido cuando sea necesario.</span>
+            </div>
+            
+            <ol class="space-y-4 text-[1.1rem]">
+                <li>1. Pedro está en Brasil aprendiendo <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> portugués.</li>
+                <li>2. <input type="text" class="quiz-input w-20" data-answers='["la"]'> natación es un deporte muy completo.</li>
+                <li>3. <input type="text" class="quiz-input w-20" data-answers='["el"]'> piano es un instrumento muy difícil.</li>
+                <li>4. Laura enseña <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> Geografía en un instituto.</li>
+                <li>5. Mis tres hijos estudian <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> piano.</li>
+                <li>6. Me reúno con unos amigos para jugar a <input type="text" class="quiz-input w-20" data-answers='["las"]'> cartas los sábados.</li>
+                <li>7. —¿Juegas (a) <input type="text" class="quiz-input w-20" data-answers='["al", "el"]'> fútbol? —No, <input type="text" class="quiz-input w-20" data-answers='["el"]'> fútbol me aburre.</li>
+                <li>8. ¿Dónde puedo aprender <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> árabe?</li>
+                <li>9. —¿Haces <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> natación? —No, solo hago <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> gimnasia.</li>
+                <li>10. ¿Quién sabe hablar <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> sueco?</li>
+                <li>11. ¿Alguien de vosotros toca <input type="text" class="quiz-input w-20" data-answers='["la"]'> guitarra?</li>
+                <li>12. Estudiar <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> ruso es duro. Es más difícil que <input type="text" class="quiz-input w-20" data-answers='["el"]'> alemán.</li>
+                <li>13. A veces jugamos a <input type="text" class="quiz-input w-20" data-answers='["los"]'> dados en la cafetería.</li>
+                <li>14. No debes tocar <input type="text" class="quiz-input w-20" data-answers='["la"]'> flauta de madrugada, Mariano.</li>
+            </ol>
+        </div>
+
+        <!-- ACTIVIDAD 11.2 -->
+        <div class="exercise-section mb-12">
+            <div class="exercise-header">
+                <span class="exercise-num">11.2</span>
+                <span class="exercise-inst">Complete con el, la, los, las o un, una.</span>
+            </div>
+            
+            <ol class="space-y-4 text-[1.1rem]">
+                <li>1. Hay alguien en el sótano. Llama a <input type="text" class="quiz-input w-20" data-answers='["la"]'> policía.</li>
+                <li>2. <input type="text" class="quiz-input w-20" data-answers='["el"]'> euro está más fuerte que <input type="text" class="quiz-input w-20" data-answers='["el"]'> dólar.</li>
+                <li>3. Sale mucho humo de la cocina. Llama a <input type="text" class="quiz-input w-20" data-answers='["los"]'> bomberos.</li>
+                <li>4. —¿Has oído <input type="text" class="quiz-input w-20" data-answers='["las"]'> noticias? —No, nunca escucho <input type="text" class="quiz-input w-20" data-answers='["la"]'> radio por la mañana.</li>
+                <li>5. Me gusta leer <input type="text" class="quiz-input w-20" data-answers='["el"]'> periódico después de comer.</li>
+                <li>6. He oído <input type="text" class="quiz-input w-20" data-answers='["una"]'> noticia muy rara.</li>
+                <li>7. —¿Hay <input type="text" class="quiz-input w-20" data-answers='["un"]'> teatro por aquí? —No, solo hay <input type="text" class="quiz-input w-20" data-answers='["un"]'> cine.</li>
+                <li>8. —¿Vais mucho (a) <input type="text" class="quiz-input w-20" data-answers='["al", "el"]'> teatro? —No, vamos más (a) <input type="text" class="quiz-input w-20" data-answers='["al", "el"]'> cine.</li>
+                <li>9. Juan se ha comprado <input type="text" class="quiz-input w-20" data-answers='["un"]'> violín antiguo.</li>
+            </ol>
+        </div>
+
+        <!-- ACTIVIDAD 11.3 -->
+        <div class="exercise-section mb-12">
+            <div class="exercise-header">
+                <span class="exercise-num">11.3</span>
+                <span class="exercise-inst">Complete con el artículo definido cuando sea necesario.</span>
+            </div>
+            
+            <ol class="space-y-4 text-[1.1rem]">
+                <li>1. Luisa ha llamado desde <input type="text" class="quiz-input w-20" data-answers='["el"]'> aeropuerto. Nos espera.</li>
+                <li>2. Mi hermana va a <input type="text" class="quiz-input w-20" data-answers='["la"]'> universidad en <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> autobús.</li>
+                <li>3. —¿Dónde está Rocío? —En <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> clase.</li>
+                <li>4. —Va a llover. —<input type="text" class="quiz-input w-20" data-answers='["el"]'> cielo está muy nublado.</li>
+                <li>5. —¿Habéis estado en <input type="text" class="quiz-input w-20" data-answers='["la"]'> playa este verano? —No, a Pili no le gusta <input type="text" class="quiz-input w-20" data-answers='["el"]'> mar.</li>
+                <li>6. ¿Cómo prefieres volver a <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> casa, en <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> metro o en <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> taxi?</li>
+                <li>7. —¿Cómo vas (a) <input type="text" class="quiz-input w-20" data-answers='["al"]'> trabajo? —Normalmente voy en <input type="text" class="quiz-input w-20" data-answers='["x"]' data-nothing="true"> coche.</li>
+                <li>8. Vengo <input type="text" class="quiz-input w-20" data-answers='["del"]'> banco. Voy (a) <input type="text" class="quiz-input w-20" data-answers='["al"]'> dentista.</li>
+                <li>9. <input type="text" class="quiz-input w-20" data-answers='["el"]'> avión es más rápido que <input type="text" class="quiz-input w-20" data-answers='["el"]'> tren.</li>
+                <li>10. Voy a <input type="text" class="quiz-input w-20" data-answers='["la"]'> oficina de correos. Quiero enviar un paquete.</li>
+                <li>11. Prefiero vivir en <input type="text" class="quiz-input w-20" data-answers='["el"]'> campo. Estás en contacto con <input type="text" class="quiz-input w-20" data-answers='["la"]'> naturaleza.</li>
+                <li>12. ¿Puedo ir (a) <input type="text" class="quiz-input w-20" data-answers='["al"]'> lavabo?</li>
+            </ol>
+        </div>
+
+        <!-- ACTIVIDAD 11.4 -->
+        <div class="exercise-section mb-12">
+            <div class="exercise-header">
+                <span class="exercise-num">11.4</span>
+                <span class="exercise-inst">Añada el artículo cuando sea necesario.</span>
+            </div>
+            
+            <ol class="space-y-6 text-[1.1rem]">
+                <li>
+                    <div class="mb-2">1. Jorge enseña informática en universidad.</div>
+                    <input type="text" class="quiz-input w-full md:max-w-xl text-left pl-2" data-answers='["Jorge enseña informática en la universidad.", "Jorge enseña informática en la universidad"]'>
+                </li>
+                <li>
+                    <div class="mb-2">2. El policía hablaba portugués correctamente.</div>
+                    <input type="text" class="quiz-input w-full md:max-w-xl text-left pl-2" data-answers='["x"]' data-nothing="true"'>
+                </li>
+                <li>
+                    <div class="mb-2">3. Nieve cubría campo.</div>
+                    <input type="text" class="quiz-input w-full md:max-w-xl text-left pl-2" data-answers='["La nieve cubría el campo.", "La nieve cubría el campo"]'>
+                </li>
+                <li>
+                    <div class="mb-2">4. ¿Hablas francés?</div>
+                    <input type="text" class="quiz-input w-full md:max-w-xl text-left pl-2" data-answers='["x"]' data-nothing="true"'>
+
+                </li>
+                <li>
+                    <div class="mb-2">5. Nos encantan mar y montaña.</div>
+                    <input type="text" class="quiz-input w-full md:max-w-xl text-left pl-2" data-answers='["Nos encantan el mar y la montaña.", "Nos encantan el mar y la montaña"]'>
+                </li>
+                <li>
+                    <div class="mb-2">6. María hace alpinismo cuando va a montaña.</div>
+                    <input type="text" class="quiz-input w-full md:max-w-xl text-left pl-2" data-answers='["María hace alpinismo cuando va a la montaña.", "María hace alpinismo cuando va a la montaña"]'>
+                </li>
+                <li>
+                    <div class="mb-2">7. Susana quiere ingresar en ejército.</div>
+                    <input type="text" class="quiz-input w-full md:max-w-xl text-left pl-2" data-answers='["Susana quiere ingresar en el ejército.", "Susana quiere ingresar en el ejército"]'>
+                </li>
+                <li>
+                    <div class="mb-2">8. ¿Dónde enseñas Matemáticas?</div>
+                    <input type="text" class="quiz-input w-full md:max-w-xl text-left pl-2" data-answers='["x"]' data-nothing="true"' data-nothing="true"'>
+
+                </li>
+                <li>
+                    <div class="mb-2">9. Vengo de colegio.</div>
+                    <input type="text" class="quiz-input w-full md:max-w-xl text-left pl-2" data-answers='["Vengo del colegio.", "Vengo del colegio"]'>
+                </li>
+            </ol>
+        </div>
+
+        <!-- SECCIÓN DE RESPUESTAS CORRECTAS -->
+        <footer class="mt-12 pt-6 border-t border-[#E0E0E0]">
+            <button id="btn-toggle-answers" class="btn-correct-answers">
+                Respuestas correctas
+            </button>
+            
+            <div id="answers-panel" class="hidden mt-8 p-6 bg-[#F9F9F9] rounded-lg border border-[#E0E0E0]">
+                <h3 class="text-xl font-bold mb-6 text-[#121118]">Respuestas correctas / Correct answers</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[1rem]">
+                    
+                    <!-- 11.1 -->
+                    <div>
+                        <h4 class="font-bold text-[#FF79AC] text-lg mb-3">11.1</h4>
+                        <div class="grid grid-cols-2 gap-2 font-mono">
+                            <div><span class="text-[#FF79AC]">1.</span> x</div>
+                            <div><span class="text-[#FF79AC]">8.</span> x</div>
+                            <div><span class="text-[#FF79AC]">2.</span> la</div>
+                            <div><span class="text-[#FF79AC]">9.</span> x / x</div>
+                            <div><span class="text-[#FF79AC]">3.</span> el</div>
+                            <div><span class="text-[#FF79AC]">10.</span> x</div>
+                            <div><span class="text-[#FF79AC]">4.</span> x</div>
+                            <div><span class="text-[#FF79AC]">11.</span> la</div>
+                            <div><span class="text-[#FF79AC]">5.</span> x</div>
+                            <div><span class="text-[#FF79AC]">12.</span> x / el</div>
+                            <div><span class="text-[#FF79AC]">6.</span> las</div>
+                            <div><span class="text-[#FF79AC]">13.</span> los</div>
+                            <div><span class="text-[#FF79AC]">7.</span> al / el</div>
+                            <div><span class="text-[#FF79AC]">14.</span> la</div>
+                        </div>
+                    </div>
+
+                    <!-- 11.2 -->
+                    <div>
+                        <h4 class="font-bold text-[#FF79AC] text-lg mb-3">11.2</h4>
+                        <div class="grid grid-cols-1 gap-2 font-mono">
+                            <div><span class="text-[#FF79AC]">1.</span> la</div>
+                            <div><span class="text-[#FF79AC]">2.</span> el / el</div>
+                            <div><span class="text-[#FF79AC]">3.</span> los</div>
+                            <div><span class="text-[#FF79AC]">4.</span> las / la</div>
+                            <div><span class="text-[#FF79AC]">5.</span> el</div>
+                            <div><span class="text-[#FF79AC]">6.</span> una</div>
+                            <div><span class="text-[#FF79AC]">7.</span> un / un</div>
+                            <div><span class="text-[#FF79AC]">8.</span> al / al</div>
+                            <div><span class="text-[#FF79AC]">9.</span> un</div>
+                        </div>
+                    </div>
+
+                    <!-- 11.3 -->
+                    <div class="md:col-span-2">
+                        <h4 class="font-bold text-[#FF79AC] text-lg mb-3">11.3</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 font-mono">
+                            <div><span class="text-[#FF79AC]">1.</span> el</div>
+                            <div><span class="text-[#FF79AC]">5.</span> la / el</div>
+                            <div><span class="text-[#FF79AC]">9.</span> el / el</div>
+                            
+                            <div><span class="text-[#FF79AC]">2.</span> la / x</div>
+                            <div><span class="text-[#FF79AC]">6.</span> x / x / x</div>
+                            <div><span class="text-[#FF79AC]">10.</span> la</div>
+                            
+                            <div><span class="text-[#FF79AC]">3.</span> x</div>
+                            <div><span class="text-[#FF79AC]">7.</span> al / x</div>
+                            <div><span class="text-[#FF79AC]">11.</span> el / la</div>
+                            
+                            <div><span class="text-[#FF79AC]">4.</span> el</div>
+                            <div><span class="text-[#FF79AC]">8.</span> del / al</div>
+                            <div><span class="text-[#FF79AC]">12.</span> al</div>
+                        </div>
+                    </div>
+
+                    <!-- 11.4 -->
+                    <div class="md:col-span-2">
+                        <h4 class="font-bold text-[#FF79AC] text-lg mb-3">11.4</h4>
+                        <ol class="space-y-1.5 list-decimal list-inside font-mono text-[0.95rem]">
+                            <li>... en la universidad</li>
+                            <li>x</li>
+                            <li>La nieve cubría el campo</li>
+                            <li>x</li>
+                            <li>... el mar y la montaña</li>
+                            <li>... va a la montaña</li>
+                            <li>... en el ejército</li>
+                            <li>x</li>
+                            <li>... del colegio</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Script para lógica de validación, auto-focus, y toggle del panel de respuestas -->
+    <script>
+        const COLOR_SUCCESS_BG = '#D4EDDA'; // Verde suave
+        const COLOR_ERROR_BG = '#F8D7DA';   // Rojo suave
+        const COLOR_DEFAULT_BG = 'transparent';
+
+        const inputs = Array.from(document.querySelectorAll('.quiz-input'));
+
+        // Normalizar texto para la comparación (sin acentos, minúsculas, etc.)
+        function normalizeText(text) {
+            return text.toLowerCase()
+                       .trim()
+                       .normalize("NFD")
+                       .replace(/[\u0300-\u036f]/g, "")
+                       .replace(/[¿?¡!.,]/g, ""); // Remueve puntuaciones típicas para mayor facilidad en 11.4
+        }
+
+        // Validación interactiva al presionar Enter
+        inputs.forEach(input => {
+            input.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    
+                    const value = this.value.trim();
+                    const isNothingField = this.dataset.nothing === "true";
+                    let answers = [];
+                    
+                    try {
+                        answers = JSON.parse(this.dataset.answers);
+                    } catch (e) {
+                        answers = [this.dataset.answers];
+                    }
+
+                    let isCorrect = false;
+
+                    // Lógica para casillas "Ø" (nada)
+                    if (isNothingField) {
+                        if (value === "" || value.toLowerCase() === "x" || value.toLowerCase() === "ø") {
+                            isCorrect = true;
+                        }
+                    } else {
+                        // Comprobar contra las respuestas válidas
+                        const normValue = normalizeText(value);
+                        isCorrect = answers.some(ans => normalizeText(ans) === normValue);
+                    }
+
+                    // Aplicación de color de feedback (Verde suave / Rojo suave)
+                    if (isCorrect) {
+                        this.style.backgroundColor = COLOR_SUCCESS_BG;
+                    } else {
+                        this.style.backgroundColor = COLOR_ERROR_BG;
+                        // Restablecer color después de 1.5 segundos si fue un error
+                        setTimeout(() => {
+                            this.style.backgroundColor = COLOR_DEFAULT_BG;
+                        }, 1500);
+                    }
+
+                    // Saltar al siguiente campo dentro de la misma actividad únicamente
+                    const parentSection = this.closest('.exercise-section');
+                    const sectionInputs = Array.from(parentSection.querySelectorAll('.quiz-input'));
+                    const currentIndex = sectionInputs.indexOf(this);
+
+                    if (currentIndex > -1 && currentIndex < sectionInputs.length - 1) {
+                        sectionInputs[currentIndex + 1].focus();
+                    } else {
+                        this.blur(); // Si es la última de la actividad, removemos el foco
+                    }
+                }
+            });
+
+            // Si el usuario escribe de nuevo, limpiamos el color de feedback
+            input.addEventListener('input', function() {
+                this.style.backgroundColor = COLOR_DEFAULT_BG;
+            });
+        });
+
+        // Toggle del panel de respuestas correctas
+        const toggleBtn = document.getElementById('btn-toggle-answers');
+        const answersPanel = document.getElementById('answers-panel');
+
+        toggleBtn.addEventListener('click', () => {
+            const isHidden = answersPanel.classList.contains('hidden');
+            if (isHidden) {
+                answersPanel.classList.remove('hidden');
+                toggleBtn.textContent = 'Ocultar respuestas';
+            } else {
+                answersPanel.classList.add('hidden');
+                toggleBtn.textContent = 'Respuestas correctas';
+            }
+        });
+    </script>
+</body>
+</html>

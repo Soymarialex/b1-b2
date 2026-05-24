@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC;
+            --secondary-color: #FFB3D1;
+            --text-color: #121118;
+            --bg-color: #FFFFFF;
+            --success-bg: #D4EDDA;
+            --error-bg: #F8D7DA;
+            --box-bg: #F9F9F9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 40px 0;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: var(--primary-color);
+            font-size: 1.9rem;
+            font-weight: bold;
+        }
+
+        .exercise-instruction {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 3.5rem;
+        }
+
+        ol.exercise-list {
+            list-style: none;
+            counter-reset: item;
+        }
+
+        ol.exercise-list > li {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 5px;
+            text-align: justify;
+        }
+
+        ol.exercise-list > li::before {
+            content: counter(item) ". ";
+            counter-increment: item;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            border: none;
+            border-bottom: 2px solid #ccc;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.1rem;
+            padding: 2px 5px;
+            outline: none;
+            transition: background-color 0.3s ease;
+            min-width: 60px;
+        }
+
+        input.correct {
+            background-color: var(--success-bg) !important;
+        }
+
+        input.incorrect {
+            background-color: var(--error-bg) !important;
+        }
+
+        .grid-10-4 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .item-10-4 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .item-10-4 img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .item-10-4 span {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .btn-answers {
+            background-color: var(--secondary-color);
+            color: black;
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            padding: 12px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 2rem auto;
+        }
+
+        #answer-key {
+            display: none;
+            background-color: var(--box-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 2rem;
+        }
+
+        .answer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .answer-col h4 {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .answer-item strong {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="page-title">Ejercicios</h1>
+
+    <div class="section">
+        <div class="exercise-header">
+            <span class="exercise-number">10.1</span>
+            <span class="exercise-instruction">Complete con el artículo definido cuando sea necesario.</span>
+        </div>
+        <ol class="exercise-list">
+            <li>Alberto nació <input type="text" data-answer="el" tabindex="1"> seis de <input type="text" data-answer="/" tabindex="2"> diciembre de 2002.</li>
+            <li>—¿Qué hora es? —<input type="text" data-answer="las" tabindex="3"> dos y cinco.</li>
+            <li>—¿Cuándo es el examen? —<input type="text" data-answer="el" tabindex="4"> martes.</li>
+            <li>—¿Qué día es hoy? —<input type="text" data-answer="/" tabindex="5"> miércoles, <input type="text" data-answer="/" tabindex="6"> seis de <input type="text" data-answer="/" tabindex="7"> febrero.</li>
+            <li>—¿Cuándo llega Ana? —<input type="text" data-answer="el" tabindex="8"> día ocho.</li>
+            <li>—¿A qué hora coméis? —A <input type="text" data-answer="la" tabindex="9"> una y media.</li>
+            <li>—¿Trabajas <input type="text" data-answer="el" tabindex="10"> sábado? —No, <input type="text" data-answer="los" tabindex="11"> sábados no trabajo nunca.</li>
+            <li>El tren sale a <input type="text" data-answer="las" tabindex="12"> quince horas.</li>
+            <li>La exposición se inaugura <input type="text" data-answer="el" tabindex="13"> dieciocho de <input type="text" data-answer="/" tabindex="14"> abril.</li>
+            <li>Se van a casar <input type="text" data-answer="el" tabindex="15"> martes, <input type="text" data-answer="/" tabindex="16"> trece de <input type="text" data-answer="/" tabindex="17"> septiembre.</li>
+            <li>Este año estoy muy ocupado. <input type="text" data-answer="los" tabindex="18"> martes tengo clase de inglés y <input type="text" data-answer="los" tabindex="19"> jueves tengo clase de piano.</li>
+            <li>—¿Qué día fue ayer? —<input type="text" data-answer="/" tabindex="20"> veinticinco de junio.</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <div class="exercise-header">
+            <span class="exercise-number">10.2</span>
+            <span class="exercise-instruction">Responda a las preguntas con las palabras entre paréntesis.</span>
+        </div>
+        <ol class="exercise-list">
+            <li>—¿Ves mucho la tele? —Unas (10 horas/semana) <input type="text" data-answer="diez horas a la semana" style="width: 300px;" tabindex="21"></li>
+            <li>—¿Caminas mucho? —(2 horas/día) <input type="text" data-answer="dos horas al día" style="width: 300px;" tabindex="22"></li>
+            <li>—¿Viajáis mucho? —No, (2/año) <input type="text" data-answer="dos veces al año" style="width: 300px;" tabindex="23"></li>
+            <li>—¿Ves mucho a Luis? —(1/mes) <input type="text" data-answer="una vez al mes" style="width: 300px;" tabindex="24"></li>
+            <li>—¿Vas mucho al gimnasio? —No, (1 día/semana) <input type="text" data-answer="un día a la semana" style="width: 300px;" tabindex="25"></li>
+            <li>—¿Hablas mucho con tu madre? —Sí, (2/día) <input type="text" data-answer="dos veces al día" style="width: 300px;" tabindex="26"></li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <div class="exercise-header">
+            <span class="exercise-number">10.3</span>
+            <span class="exercise-instruction">Responda a las preguntas con la información dada.</span>
+        </div>
+        <ol class="exercise-list">
+            <li>—¿Cuándo naciste, Alfonso? —(12/4/95) <input type="text" data-answer="el doce de abril de 1995" style="width: 300px;" tabindex="27"></li>
+            <li>—¿A qué hora te levantas para ir a trabajar? —(7.30) <input type="text" data-answer="a las siete y media" style="width: 300px;" tabindex="28"></li>
+            <li>—¿A qué hora vuelves a casa? —(mediodía) <input type="text" data-answer="al mediodía" style="width: 300px;" tabindex="29"></li>
+            <li>—¿A qué hora comes? —(2.30) <input type="text" data-answer="a las dos y media" style="width: 300px;" tabindex="30"></li>
+            <li>—¿Cuándo estudias? —(noche) <input type="text" data-answer="por la noche - en la noche" style="width: 300px;" tabindex="31"></li>
+            <li>—¿Juegas mucho al baloncesto? —(Lunes,miércoles) <input type="text" data-answer="los lunes y los miércoles - dos veces por semana - dos veces a la semana" style="width: 450px;" tabindex="32"></li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <div class="exercise-header">
+            <span class="exercise-number">10.4</span>
+            <span class="exercise-instruction">Escriba los precios como en el ejemplo.</span>
+        </div>
+        <div class="grid-10-4">
+            <div class="item-10-4"><span>①</span><img src="https://imgur.com/aMjBADz.jpg"><input type="text" data-answer="dos euros el kilo" tabindex="33"></div>
+            <div class="item-10-4"><span>②</span><img src="https://imgur.com/R7khy4a.jpg"><input type="text" data-answer="dos euros el litro" tabindex="34"></div>
+            <div class="item-10-4"><span>③</span><img src="https://imgur.com/lvZzGQg.jpg"><input type="text" data-answer="un peso los cien gramos" tabindex="35"></div>
+            <div class="item-10-4"><span>④</span><img src="https://imgur.com/qedxq3o.jpg"><input type="text" data-answer="cuatro pesos la botella" tabindex="36"></div>
+            <div class="item-10-4"><span>⑤</span><img src="https://imgur.com/LlQJks6.jpg"><input type="text" data-answer="dos euros la docena" tabindex="37"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="exercise-header">
+            <span class="exercise-number">10.5</span>
+            <span class="exercise-instruction">Complete con a, de, por y el artículo definido cuando sea necesario.</span>
+        </div>
+        <ol class="exercise-list">
+            <li>Mañana salimos para Berlín <input type="text" data-answer="de" tabindex="38"> madrugada.</li>
+            <li>Siempre me encuentro a los vecinos <input type="text" data-answer="por las - en las" tabindex="39"> mañanas.</li>
+            <li>La gasolina ya está a más de un euro <input type="text" data-answer="el" tabindex="40"> litro.</li>
+            <li>El gimnasio nos cuesta 200 euros <input type="text" data-answer="al - el" tabindex="41"> trimestre.</li>
+            <li>Beatriz hace gimnasia tres veces <input type="text" data-answer="a la" tabindex="42"> semana.</li>
+            <li>Toda la familia se reúne en casa <input type="text" data-answer="al" tabindex="43"> mediodía.</li>
+            <li>Jugamos al ajedrez <input type="text" data-answer="los" tabindex="44"> sábados <input type="text" data-answer="en la - por la" tabindex="45"> tarde.</li>
+            <li>Es bueno caminar media hora <input type="text" data-answer="al" tabindex="46"> día.</li>
+            <li>Carmen va a revisión médica una vez <input type="text" data-answer="al" tabindex="47"> año.</li>
+            <li>La final de la Champions será <input type="text" data-answer="el" tabindex="48"> domingo <input type="text" data-answer="/" tabindex="49"> 25 de mayo.</li>
+        </ol>
+    </div>
+
+    <button class="btn-answers" onclick="toggleAnswers()">Respuestas correctas</button>
+
+    <div id="answer-key">
+        <div class="answer-grid">
+            <div class="answer-col">
+                <h4>10.1</h4>
+                <div class="answer-item"><strong>1.</strong> el / /</div>
+                <div class="answer-item"><strong>2.</strong> las</div>
+                <div class="answer-item"><strong>3.</strong> el</div>
+                <div class="answer-item"><strong>4.</strong> </div>
+                <div class="answer-item"><strong>5.</strong> el</div>
+                <div class="answer-item"><strong>6.</strong> la</div>
+                <div class="answer-item"><strong>7.</strong> el / los</div>
+                <div class="answer-item"><strong>8.</strong> las</div>
+                <div class="answer-item"><strong>9.</strong> el / </div>
+                <div class="answer-item"><strong>10.</strong> el / / /</div>
+                <div class="answer-item"><strong>11.</strong> los / los</div>
+                <div class="answer-item"><strong>12.</strong> </div>
+            </div>
+            <div class="answer-col">
+                <h4>10.2</h4>
+                <div class="answer-item"><strong>1.</strong> diez horas a la semana</div>
+                <div class="answer-item"><strong>2.</strong> dos horas al día</div>
+                <div class="answer-item"><strong>3.</strong> dos veces al año</div>
+                <div class="answer-item"><strong>4.</strong> una vez al mes</div>
+                <div class="answer-item"><strong>5.</strong> un día a la semana</div>
+                <div class="answer-item"><strong>6.</strong> dos veces al día</div>
+            </div>
+            <div class="answer-col">
+                <h4>10.3</h4>
+                <div class="answer-item"><strong>1.</strong> el doce de abril de 1995</div>
+                <div class="answer-item"><strong>2.</strong> a las siete y media</div>
+                <div class="answer-item"><strong>3.</strong> al medio dia</div>
+                <div class="answer-item"><strong>4.</strong> a las dos y media</div>
+                <div class="answer-item"><strong>5.</strong> por la noche / en la noche</div>
+                <div class="answer-item"><strong>6.</strong> los lunes y miércoles / dos veces por semana / dos veces a la semana </div>
+            </div>
+            <div class="answer-col">
+                <h4>10.4</h4>
+                <div class="answer-item"><strong>1.</strong> dos euros el kilo</div>
+                <div class="answer-item"><strong>2.</strong> dos euros el litro</div>
+                <div class="answer-item"><strong>3.</strong> un peso los cien gramos</div>
+                <div class="answer-item"><strong>4.</strong> cuatro pesos la botella</div>
+                <div class="answer-item"><strong>5.</strong> dos euros la docena</div>
+            </div>
+            <div class="answer-col">
+                <h4>10.5</h4>
+                <div class="answer-item"><strong>1.</strong> de</div>
+                <div class="answer-item"><strong>2.</strong> por las / en las</div>
+                <div class="answer-item"><strong>3.</strong> el</div>
+                <div class="answer-item"><strong>4.</strong> al - el</div>
+                <div class="answer-item"><strong>5.</strong> a la</div>
+                <div class="answer-item"><strong>6.</strong> al</div>
+                <div class="answer-item"><strong>7.</strong> los / en la - por la</div>
+                <div class="answer-item"><strong>8.</strong> al</div>
+                <div class="answer-item"><strong>9.</strong> al</div>
+                <div class="answer-item"><strong>10.</strong> el / /</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputs = document.querySelectorAll('input[type="text"]');
+
+        inputs.forEach(input => {
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    validateInput(input);
+                    const currentTab = parseInt(input.getAttribute('tabindex'));
+                    const next = document.querySelector(`input[tabindex="${currentTab + 1}"]`);
+                    if (next) next.focus();
+                }
+            });
+
+            input.addEventListener('blur', () => {
+                validateInput(input);
+            });
+        });
+    });
+
+    function validateInput(input) {
+        const value = input.value.trim().toLowerCase();
+        const rawAnswers = input.getAttribute('data-answer').toLowerCase();
+        const correctAnswers = rawAnswers.split(' - ');
+        
+        // Comprobar si el campo debe ir vacío (marcado con '/')
+        const isBlankCorrect = correctAnswers.some(ans => ans.trim() === "/");
+
+        if (value === "") {
+            if (isBlankCorrect) {
+                input.classList.add('correct');
+                input.classList.remove('incorrect');
+            } else {
+                input.classList.remove('correct', 'incorrect');
+            }
+            return;
+        }
+
+        const isCorrect = correctAnswers.some(ans => {
+            if (ans.trim() === "/") return value === "" || value === "/" || value === "nada";
+            return value === ans.trim();
+        });
+
+        if (isCorrect) {
+            input.classList.add('correct');
+            input.classList.remove('incorrect');
+        } else {
+            input.classList.add('incorrect');
+            input.classList.remove('correct');
+        }
+    }
+
+    function toggleAnswers() {
+        const div = document.getElementById('answer-key');
+        div.style.display = (div.style.display === 'block') ? 'none' : 'block';
+        if (div.style.display === 'block') div.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

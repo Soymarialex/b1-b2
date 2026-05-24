@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jugar al tenis, el español</title>
+    <style>
+        /* Guía de Estilo Visual */
+        :root {
+            --color-primario: #FF79AC; /* Flamingo Pink */
+            --color-secundario: #FFB3D1; /* Rosa Claro */
+            --color-texto: #121118; /* Eerie Black */
+            --color-fondo: #FFFFFF; /* Blanco puro */
+            --color-divisores: #E0E0E0; /* Gris claro */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+            padding: 2.5rem;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* Cabecera */
+        header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 4px solid var(--color-primario);
+            padding-bottom: 1rem;
+        }
+
+        .numero-leccion {
+            background-color: var(--color-primario);
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            line-height: 1;
+        }
+
+        .titulos-cabecera {
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--color-texto);
+            margin: 0;
+        }
+
+        .subtitulo-it {
+            font-size: 1.8rem;
+            color: var(--color-primario);
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        /* Contenido General */
+        .intro {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+
+        .item-leccion {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Subtítulos con punto rosa - SIN NEGRITA */
+        .titulo-item {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: normal; /* Cambiado a normal según solicitud */
+            margin-bottom: 0.8rem;
+        }
+
+        .bullet {
+            color: var(--color-primario);
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
+        }
+
+        .traduccion {
+            color: var(--color-primario);
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        .ejemplos {
+            margin-left: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .ejemplo-linea {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .top-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .main-image {
+            max-width: 280px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .image-caption {
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+            text-align: right;
+        }
+
+        /* Cuadros PERO */
+        .cuadro-pero {
+            background-color: var(--color-secundario);
+            border-left: 4px solid var(--color-primario);
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0 1.5rem 0;
+        }
+
+        .etiqueta-pero {
+            background-color: var(--color-primario);
+            color: white;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            margin-right: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .pero-contenido {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            font-size: 1rem;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        .sub-lista {
+            list-style: none;
+            margin-left: 1.5rem;
+        }
+
+        .sub-lista li::before {
+            content: "–";
+            color: var(--color-texto);
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .top-content {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+            .ejemplo-linea, .pero-contenido {
+                grid-template-columns: 1fr;
+            }
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="numero-leccion">11</div>
+        <div class="titulos-cabecera">
+            <h1>jugar al tenis, el español</h1>
+            <div class="subtitulo-it">Otros usos del artículo definido</div>
+        </div>
+    </header>
+
+    <div class="intro">
+        Se usa <strong>el, la, los, las</strong> en los casos siguientes:
+    </div>
+
+    <div class="top-content">
+        <div style="flex: 1;">
+            <!-- Instrumentos -->
+            <div class="item-leccion">
+                <div class="titulo-item">
+                    <span class="bullet">●</span> Instrumentos musicales <span class="traduccion"> (musical instruments)</span>
+                </div>
+                <ul class="sub-lista ejemplos">
+                    <li>Para hablar de un instrumento en general.<br>
+                        <strong>El piano</strong> es mi instrumento preferido.
+                    </li>
+                    <li>Con tocar<br>
+                        Me gustaría saber <strong>tocar el violín.</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="image-box">
+            <img src="https://imgur.com/3HBT1W4.jpg" alt="Tina toca la batería" class="main-image">
+            <div class="image-caption">Tina <strong>toca la batería</strong> en un grupo de rock.</div>
+        </div>
+    </div>
+
+    <div class="cuadro-pero">
+        <div class="etiqueta-pero">PERO:</div>
+        <div class="pero-contenido">
+            <div>Rosa <strong>estudia piano.</strong></div>
+            <div>Necesito <strong>un piano</strong> nuevo.</div>
+        </div>
+    </div>
+
+    <!-- Deportes -->
+    <div class="item-leccion">
+        <div class="titulo-item">
+            <span class="bullet">●</span> Deportes y juegos <span class="traduccion">(sports and games)</span>
+        </div>
+        <ul class="sub-lista ejemplos">
+            <li>Para hablar de un deporte o juego en general.
+                <div class="ejemplo-linea" style="margin-top: 0.5rem;">
+                    <div><strong>El alpinismo</strong> es un deporte peligroso.</div>
+                    <div><strong>El parchís</strong> es un juego muy divertido.</div>
+                </div>
+            </li>
+            <li style="margin-top: 0.5rem;">Con jugar
+                <div class="ejemplo-linea" style="margin-top: 0.5rem;">
+                    <div><strong>Juegas</strong> muy bien <strong>al tenis.</strong></div>
+                    <div>¿Quieres aprender a <strong>jugar al ajedrez?</strong></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="cuadro-pero">
+        <div class="etiqueta-pero">PERO:</div>
+        <div class="pero-contenido">
+            <div>Solo <strong>hago alpinismo</strong> en verano.</div>
+            <div>Mi hijo <strong>hace gimnasia</strong> y <strong>natación.</strong></div>
+        </div>
+    </div>
+
+    <!-- Asignaturas -->
+    <div class="item-leccion">
+        <div class="titulo-item">
+            <span class="bullet">●</span> Asignaturas o idiomas <span class="traduccion">(subjects and languages)</span>
+        </div>
+        <div class="ejemplos">
+            <div class="ejemplo-linea">
+                <div>¿Has aprobado <strong>la Historia?</strong></div>
+                <div><strong>El español</strong> es un idioma universal.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cuadro-pero">
+        <div class="etiqueta-pero">PERO:</div>
+        <div class="pero-contenido">
+            <div>No con saber, enseñar, estudiar, hablar<br>Hans <strong>enseña Historia.</strong></div>
+            <div>Mucha gente <strong>estudia español</strong> en los Estados Unidos.</div>
+        </div>
+    </div>
+
+    <!-- Monedas -->
+    <div class="item-leccion">
+        <div class="titulo-item">
+            <span class="bullet">●</span> Nombres de monedas <span class="traduccion">(Currencies)</span>: el euro, el dólar...
+        </div>
+        <div class="ejemplos">
+            <div class="ejemplo-linea">
+                <div><strong>La libra</strong> es una moneda fuerte.</div>
+                <div>La moneda de Venezuela es <strong>el bolívar.</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grupos -->
+    <div class="item-leccion">
+        <div class="titulo-item">
+            <span class="bullet">●</span> la policía, el ejército <span class="traduccion">(army)</span>, los bomberos <span class="traduccion">(firefighters)</span>
+        </div>
+        <div class="ejemplos">
+            <div class="ejemplo-linea">
+                <div>El tío de Andrés es capitán <strong>del ejército.</strong></div>
+                <div>Luis quiere ingresar a <strong>la policía.</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Medios -->
+    <div class="item-leccion">
+        <div class="titulo-item">
+            <span class="bullet">●</span> el cine, el teatro, la radio, la televisión, el periódico, las noticias
+        </div>
+        <div class="ejemplos">
+            <div class="ejemplo-linea">
+                <div>Nunca escucho <strong>la radio</strong> por las mañanas.</div>
+                <div>Luis, compra <strong>el periódico</strong> cuando salgas.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cuadro-pero">
+        <div class="etiqueta-pero">PERO:</div>
+        <div class="pero-contenido">
+            <div>Me he comprado <strong>un televisor.</strong> (= un aparato de televisión)</div>
+            <div>Tengo <strong>una buena noticia.</strong></div>
+        </div>
+    </div>
+
+    <!-- Naturaleza -->
+    <div class="item-leccion">
+        <div class="titulo-item">
+            <span class="bullet">●</span> el mar, el campo, la playa, la montaña, el cielo, la naturaleza
+        </div>
+        <div class="ejemplos">
+            <div class="ejemplo-linea">
+                <div>Es muy sano bañarse en <strong>el mar.</strong></div>
+                <div>Vamos <strong>al campo</strong> todos los fines de semana.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ir a la / estar en la -->
+    <div class="item-leccion">
+        <div class="titulo-item">
+            <span class="bullet">●</span> ir a la... / venir de la... / estar en la... cárcel, iglesia, oficina, universidad...
+        </div>
+        <div class="ejemplos">
+            <div class="ejemplo-linea">
+                <div>Mi hermana <strong>está en la universidad.</strong></div>
+                <div>Los domingos <strong>voy a la iglesia.</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ir al / estar en el -->
+    <div class="item-leccion">
+        <div class="titulo-item">
+            <span class="bullet">●</span> ir al... / venir del... / estar en el... aeropuerto, banco, cine, colegio, médico...
+        </div>
+        <div class="ejemplos">
+            <div class="ejemplo-linea">
+                <div>–¿De dónde <strong>vienes? –Del médico.</strong></div>
+                <div>Tenemos que <strong>estar en el aeropuerto</strong> a las seis.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cuadro-pero">
+        <div class="etiqueta-pero">PERO:</div>
+        <div class="pero-contenido">
+            <div>ir a... / venir de... / estar en... casa, clase, correos</div>
+            <div>¿Dónde está Sara? No <strong>está en clase.</strong></div>
+        </div>
+    </div>
+
+    <!-- Transporte -->
+    <div class="item-leccion">
+        <div class="titulo-item">
+            <span class="bullet">●</span> Medios de transporte <span class="traduccion">(means of transportation)</span>: el metro, el autobús, el tren...
+        </div>
+        <div class="ejemplos">
+            <div><strong>El tren</strong> es un medio de transporte muy agradable.</div>
+        </div>
+    </div>
+
+    <div class="cuadro-pero">
+        <div class="etiqueta-pero">PERO:</div>
+        <div class="pero-contenido" style="display: block;">
+            <div>ir/ venir/ viajar <strong>en</strong> metro, autobús, tren...<br>
+            Me gusta <strong>viajar en tren,</strong> pero para viajes largos, prefiero <strong>ir en avión.</strong></div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
