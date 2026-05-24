@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC;   /* Flamingo Pink */
+            --secondary-color: #FFB3D1; /* Rosa Claro */
+            --text-color: #121118;      /* Eerie Black */
+            --bg-color: #FFFFFF;        /* Blanco */
+            --success-bg: #D4EDDA;      /* Verde suave */
+            --error-bg: #F8D7DA;        /* Rojo suave */
+            --input-border: #CCCCCC;
+            --box-bg: #F9F9F9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        /* Contenedor de encabezado de actividad solicitado */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin: 40px 0 20px 0;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+        }
+
+        .exercise-header-number {
+            font-size: 1.9rem; 
+            color: var(--primary-color);
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .exercise-header-instruction {
+            font-size: 1.5rem; 
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .exercise-block {
+            margin-bottom: 40px;
+        }
+
+        .sentence {
+            margin-bottom: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .num-item {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-right: 8px;
+            min-width: 25px;
+        }
+
+        /* Inputs de texto según guía */
+        input[type="text"] {
+            border: none;
+            border-bottom: 2px solid var(--input-border);
+            background: transparent;
+            text-align: center;
+            font-size: 1rem;
+            font-family: inherit;
+            padding: 2px 5px;
+            width: 85px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-bottom-color: var(--primary-color);
+        }
+
+        input[type="text"].correct {
+            background-color: var(--success-bg) !important;
+            border-bottom-color: #28a745;
+        }
+
+        input[type="text"].incorrect {
+            background-color: var(--error-bg) !important;
+            border-bottom-color: #dc3545;
+        }
+
+        /* Botón de respuestas */
+        .answers-toggle {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        #btn-show-answers {
+            background-color: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            color: black;
+        }
+
+        /* Cuadrícula de respuestas */
+        .answers-grid {
+            display: none;
+            margin-top: 30px;
+            background: var(--box-bg);
+            border-radius: 8px;
+            padding: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .answer-col h4 {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .answer-item {
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            text-align: left;
+        }
+
+        .ans-num-pink {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .exercise-header { flex-direction: column; gap: 4px; border-bottom: none; }
+            .exercise-header-number { border-bottom: 2px solid var(--primary-color); width: 100%; }
+            .exercise-header-instruction { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ejercicios</h1>
+
+    <!-- 5.1 -->
+    <section class="exercise-block">
+        <div class="exercise-header">
+            <span class="exercise-header-number">5.1</span>
+            <span class="exercise-header-instruction">Complete con un, una, unos, unas cuando sea necesario.</span>
+        </div>
+        <div class="sentence"><span class="num-item">1.</span> ¿Queda <input type="text" data-ans="" class="step"> leche en la nevera?</div>
+        <div class="sentence"><span class="num-item">2.</span> ¿Qué prefieres para cenar: <input type="text" data-ans="" class="step"> carne o <input type="text" data-ans="" class="step"> pescado?</div>
+        <div class="sentence"><span class="num-item">3.</span> Tengo <input type="text" data-ans="un" class="step"> vino que te va a gustar.</div>
+        <div class="sentence"><span class="num-item">4.</span> En La Mancha hacen <input type="text" data-ans="unos" class="step"> quesos buenísimos.</div>
+        <div class="sentence"><span class="num-item">5.</span> Nunca tomo <input type="text" data-ans="" class="step"> café por la noche.</div>
+        <div class="sentence"><span class="num-item">6.</span> Póngame <input type="text" data-ans="un" class="step"> café, por favor.</div>
+        <div class="sentence"><span class="num-item">7.</span> Esta mesa es de <input type="text" data-ans="" class="step"> mármol.</div>
+        <div class="sentence"><span class="num-item">8.</span> Esta mesa es de <input type="text" data-ans="un" class="step"> mármol especial.</div>
+        <div class="sentence"><span class="num-item">9.</span> <input type="text" data-ans="una" class="step"> limonada, por favor.</div>
+        <div class="sentence"><span class="num-item">10.</span> Vamos a tomar <input type="text" data-ans="unas" class="step"> cervezas.</div>
+        <div class="sentence"><span class="num-item">11.</span> No queda <input type="text" data-ans="" class="step"> limonada para los niños.</div>
+        <div class="sentence"><span class="num-item">12.</span> No hay ni <input type="text" data-ans="una" class="step"> cerveza en la nevera.</div>
+    </section>
+
+    <!-- 5.2 -->
+    <section class="exercise-block">
+        <div class="exercise-header">
+            <span class="exercise-header-number">5.2</span>
+            <span class="exercise-header-instruction">Complete con un, una, unos, unas cuando sea necesario.</span>
+        </div>
+        <div class="sentence"><span class="num-item">1.</span> Rubén era <input type="text" data-ans="" class="step"> protestante pero luego se hizo <input type="text" data-ans="" class="step"> católico.</div>
+        <div class="sentence"><span class="num-item">2.</span> Mis abuelos eran <input type="text" data-ans="" class="step"> cubanos.</div>
+        <div class="sentence"><span class="num-item">3.</span> Borges era <input type="text" data-ans="un" class="step"> escritor argentino.</div>
+        <div class="sentence"><span class="num-item">4.</span> Casi todos mis amigos quieren ser <input type="text" data-ans="" class="step"> futbolistas.</div>
+        <div class="sentence"><span class="num-item">5.</span> Adela y Marisa son <input type="text" data-ans="unas" class="step"> profesoras muy eficaces.</div>
+        <div class="sentence"><span class="num-item">6.</span> Los padres de Alberto son <input type="text" data-ans="" class="step"> socialistas.</div>
+        <div class="sentence"><span class="num-item">7.</span> Basilia es <input type="text" data-ans="una" class="step"> dominicana muy simpática.</div>
+        <div class="sentence"><span class="num-item">8.</span> Esos chicos son <input type="text" data-ans="" class="step"> ingenieros informáticos.</div>
+        <div class="sentence"><span class="num-item">9.</span> Mis dos primos son <input type="text" data-ans="" class="step"> policías.</div>
+        <div class="sentence"><span class="num-item">10.</span> Botero es <input type="text" data-ans="un" class="step"> pintor y escultor colombiano.</div>
+        <div class="sentence"><span class="num-item">11.</span> Ambos hermanos son <input type="text" data-ans="unos" class="step"> médicos muy famosos.</div>
+    </section>
+
+    <!-- 5.3 -->
+    <section class="exercise-block">
+        <div class="exercise-header">
+            <span class="exercise-header-number">5.3</span>
+            <span class="exercise-header-instruction">Complete con un, una, unos, unas cuando sea necesario.</span>
+        </div>
+        <div class="sentence"><span class="num-item">1.</span> Llevo siempre <input type="text" data-ans="" class="step"> guantes en invierno.</div>
+        <div class="sentence"><span class="num-item">2.</span> Me he comprado <input type="text" data-ans="unos" class="step"> guantes preciosos.</div>
+        <div class="sentence"><span class="num-item">3.</span> Adolfo escribe <input type="text" data-ans="" class="step"> novelas de misterio.</div>
+        <div class="sentence"><span class="num-item">4.</span> Lo siento. No puedes llamarme. No tengo <input type="text" data-ans="" class="step"> teléfono.</div>
+        <div class="sentence"><span class="num-item">5.</span> Colecciono <input type="text" data-ans="" class="step"> búhos.</div>
+        <div class="sentence"><span class="num-item">6.</span> Mis padres me han regalado <input type="text" data-ans="unos" class="step"> búhos africanos.</div>
+        <div class="sentence"><span class="num-item">7.</span> El novio de Ana vende <input type="text" data-ans="" class="step"> apartamentos.</div>
+        <div class="sentence"><span class="num-item">8.</span> En esta fábrica hacen <input type="text" data-ans="" class="step"> juguetes.</div>
+    </section>
+
+    <!-- 5.4 -->
+    <section class="exercise-block">
+        <div class="exercise-header">
+            <span class="exercise-header-number">5.4</span>
+            <span class="exercise-header-instruction">Use un, una, unos, unas cuando sea necesario.</span>
+        </div>
+        <div class="sentence"><span class="num-item">1.</span> Me he comprado <input type="text" data-ans="un" class="step"> abrigo de <input type="text" data-ans="" class="step"> lana.</div>
+        <div class="sentence"><span class="num-item">2.</span> En esta tienda solo venden <input type="text" data-ans="" class="step"> ropa de <input type="text" data-ans="" class="step"> hombre.</div>
+        <div class="sentence"><span class="num-item">3.</span> Mañana vamos a ver <input type="text" data-ans="una" class="step"> exposición de <input type="text" data-ans="" class="step"> arte.</div>
+        <div class="sentence"><span class="num-item">4.</span> Necesitamos <input type="text" data-ans="una" class="step"> secretaria de <input type="text" data-ans="" class="step"> dirección.</div>
+        <div class="sentence"><span class="num-item">5.</span> Alberto es <input type="text" data-ans="un" class="step"> buen jugador de <input type="text" data-ans="" class="step"> póquer.</div>
+        <div class="sentence"><span class="num-item">6.</span> Sebastián es <input type="text" data-ans="" class="step"> peluquero de <input type="text" data-ans="" class="step"> señoras.</div>
+    </section>
+
+    <!-- PANEL DE RESPUESTAS -->
+    <div class="answers-toggle">
+        <button id="btn-show-answers">Respuestas Correctas</button>
+        <div id="answers-container" class="answers-grid">
+            <div class="answer-col">
+                <h4>5.1</h4>
+                <div class="answer-item"><span class="ans-num-pink">1.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">2.</span> — / —</div>
+                <div class="answer-item"><span class="ans-num-pink">3.</span> un</div>
+                <div class="answer-item"><span class="ans-num-pink">4.</span> unos</div>
+                <div class="answer-item"><span class="ans-num-pink">5.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">6.</span> un</div>
+                <div class="answer-item"><span class="ans-num-pink">7.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">8.</span> un</div>
+                <div class="answer-item"><span class="ans-num-pink">9.</span> una</div>
+                <div class="answer-item"><span class="ans-num-pink">10.</span> unas</div>
+                <div class="answer-item"><span class="ans-num-pink">11.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">12.</span> una</div>
+            </div>
+            <div class="answer-col">
+                <h4>5.2</h4>
+                <div class="answer-item"><span class="ans-num-pink">1.</span> — / —</div>
+                <div class="answer-item"><span class="ans-num-pink">2.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">3.</span> un</div>
+                <div class="answer-item"><span class="ans-num-pink">4.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">5.</span> unas</div>
+                <div class="answer-item"><span class="ans-num-pink">6.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">7.</span> una</div>
+                <div class="answer-item"><span class="ans-num-pink">8.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">9.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">10.</span> un</div>
+                <div class="answer-item"><span class="ans-num-pink">11.</span> unos</div>
+            </div>
+            <div class="answer-col">
+                <h4>5.3</h4>
+                <div class="answer-item"><span class="ans-num-pink">1.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">2.</span> unos</div>
+                <div class="answer-item"><span class="ans-num-pink">3.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">4.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">5.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">6.</span> unos</div>
+                <div class="answer-item"><span class="ans-num-pink">7.</span> —</div>
+                <div class="answer-item"><span class="ans-num-pink">8.</span> —</div>
+            </div>
+            <div class="answer-col">
+                <h4>5.4</h4>
+                <div class="answer-item"><span class="ans-num-pink">1.</span> un - —</div>
+                <div class="answer-item"><span class="ans-num-pink">2.</span> — / —</div>
+                <div class="answer-item"><span class="ans-num-pink">3.</span> una - —</div>
+                <div class="answer-item"><span class="ans-num-pink">4.</span> una - —</div>
+                <div class="answer-item"><span class="ans-num-pink">5.</span> un - —</div>
+                <div class="answer-item"><span class="ans-num-pink">6.</span> — / —</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputs = document.querySelectorAll('input.step');
+        const showAnswersBtn = document.getElementById('btn-show-answers');
+        const answersContainer = document.getElementById('answers-container');
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    
+                    const val = input.value.trim().toLowerCase();
+                    const expected = input.getAttribute('data-ans').toLowerCase();
+
+                    // Validación: Vacío cuenta como correcto si se espera vacío
+                    if (val === expected) {
+                        input.classList.add('correct');
+                        input.classList.remove('incorrect');
+                    } else {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    }
+
+                    // Salto automático al siguiente input
+                    const nextInput = inputs[index + 1];
+                    if (nextInput) {
+                        nextInput.focus();
+                    }
+                }
+            });
+        });
+
+        showAnswersBtn.addEventListener('click', () => {
+            const isVisible = answersContainer.style.display === 'grid';
+            answersContainer.style.display = isVisible ? 'none' : 'grid';
+            showAnswersBtn.textContent = isVisible ? 'Respuestas Correctas' : 'Ocultar Respuestas';
+        });
+    });
+</script>
+
+</body>
+</html>

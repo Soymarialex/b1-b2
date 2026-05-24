@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Game</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC;    /* Flamingo Pink */
+            --secondary-color: #FFEBF2;  /* Rosa Claro */
+            --btn-hover: #FFB3D1;        /* Rosa Intermedio */
+            --text-color: #121118;       /* Eerie Black */
+            --bg-color: #FFFFFF;         /* Blanco puro */
+            --success-bg: #D4EDDA;       /* Verde suave */
+            --error-bg: #F8D7DA;         /* Rojo suave */
+            --gray-bg: #F9F9F9;          /* Fondo banco palabras */
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 2.5rem);
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0 0 5px 0;
+        }
+
+        h2 {
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            color: var(--text-color);
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            margin: 0 0 25px 0;
+            padding-bottom: 5px;
+            font-weight: normal;
+            text-transform: lowercase;
+        }
+
+        .level-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .btn-level {
+            background-color: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            border-radius: 5px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .btn-level.active {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background-color: var(--gray-bg);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-word {
+            background-color: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 12px;
+            font-size: 1rem;
+            color: var(--text-color);
+            cursor: pointer;
+            text-align: center;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, color 0.2s;
+            line-height: 1.2;
+        }
+
+        .btn-word.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-word.correct {
+            background-color: var(--success-bg) !important;
+            border-bottom-color: #28a745 !important;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .btn-word.incorrect {
+            background-color: var(--error-bg) !important;
+            border-bottom-color: #dc3545 !important;
+        }
+
+        @media (max-width: 600px) {
+            .game-board { gap: 10px; padding: 10px; }
+            .btn-word { font-size: 0.85rem; padding: 10px 5px; min-height: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Matching game</h1>
+    <h2>test your memory</h2>
+
+    <div class="level-nav" id="levelNav"></div>
+
+    <div class="game-board" id="gameBoard">
+        <div class="column" id="leftCol"></div>
+        <div class="column" id="rightCol"></div>
+    </div>
+</div>
+
+<script>
+    const levels = [
+        [
+            { es: "Gutiérrez no ha venido hoy.", en: "Gutiérrez hasn't come today." },
+            { es: "¿Has visto a la señorita Moreno?", en: "Have you seen Miss Moreno?" },
+            { es: "¿Ha salido la Gaceta?", en: "Has the Gazette been published?" },
+            { es: "¿Has estado alguna vez en la India?", en: "Have you ever been to India?" },
+            { es: "Hemos visitado la Alhambra.", en: "We have visited the Alhambra." },
+            { es: "No he podido hablar con el Dr. Rosso.", en: "I haven't been able to talk to Dr. Rosso." }
+        ],
+        [
+            { es: "Los Pérez son muy agradables.", en: "The Perez family are very nice." },
+            { es: "Esta noche cenamos en casa de los Martínez.", en: "Tonight we're having dinner at the Martinez's." },
+            { es: "Don Alfonso está reunido con el señor Gómez.", en: "Don Alfonso is in a meeting with Mr. Gomez." },
+            { es: "En Salamanca hay que visitar La Plaza Mayor.", en: "In Salamanca you must visit the Plaza Mayor." },
+            { es: "El Nilo es el río más largo del mundo.", en: "The Nile is the longest river in the world." },
+            { es: "Ayer estuvimos con Marisa en un restaurante.", en: "Yesterday we were with Marisa in a restaurant." }
+        ],
+        [
+            { es: "Lagos", en: "Lakes" },
+            { es: "Mares", en: "Seas" },
+            { es: "Océanos", en: "Oceans" },
+            { es: "Ríos", en: "Rivers" },
+            { es: "Cordilleras", en: "Mountain ranges" },
+            { es: "Volcanes", en: "Volcanoes" }
+        ]
+    ];
+
+    let currentLevel = 0;
+    let selectedLeft = null;
+    let selectedRight = null;
+    let busy = false;
+
+    function init() {
+        renderLevelNav();
+        loadLevel(0);
+    }
+
+    function renderLevelNav() {
+        const nav = document.getElementById('levelNav');
+        nav.innerHTML = '';
+        levels.forEach((_, index) => {
+            const btn = document.createElement('button');
+            btn.className = `btn-level ${index === currentLevel ? 'active' : ''}`;
+            btn.innerText = `Nivel ${index + 1}`;
+            btn.onclick = () => loadLevel(index);
+            nav.appendChild(btn);
+        });
+    }
+
+    function loadLevel(index) {
+        if (busy) return;
+        currentLevel = index;
+        selectedLeft = null;
+        selectedRight = null;
+        
+        document.querySelectorAll('.btn-level').forEach((btn, i) => {
+            btn.classList.toggle('active', i === index);
+        });
+
+        const data = levels[index];
+        const leftCol = document.getElementById('leftCol');
+        const rightCol = document.getElementById('rightCol');
+
+        leftCol.innerHTML = '';
+        rightCol.innerHTML = '';
+
+        const shuffledLeft = [...data].sort(() => Math.random() - 0.5);
+        const shuffledRight = [...data].sort(() => Math.random() - 0.5);
+
+        shuffledLeft.forEach(item => {
+            leftCol.appendChild(createWordButton(item.es, 'left', item.en));
+        });
+
+        shuffledRight.forEach(item => {
+            rightCol.appendChild(createWordButton(item.en, 'right', item.en));
+        });
+    }
+
+    function createWordButton(text, side, matchKey) {
+        const btn = document.createElement('button');
+        btn.className = 'btn-word';
+        btn.innerText = text;
+        btn.dataset.side = side;
+        btn.dataset.match = matchKey;
+        btn.onclick = () => handleSelection(btn);
+        return btn;
+    }
+
+    function handleSelection(btn) {
+        if (busy || btn.classList.contains('correct')) return;
+
+        const side = btn.dataset.side;
+
+        if (side === 'left') {
+            if (selectedLeft) selectedLeft.classList.remove('selected');
+            selectedLeft = btn;
+            btn.classList.add('selected');
+        } else {
+            if (selectedRight) selectedRight.classList.remove('selected');
+            selectedRight = btn;
+            btn.classList.add('selected');
+        }
+
+        checkMatch();
+    }
+
+    function checkMatch() {
+        if (selectedLeft && selectedRight) {
+            const leftKey = selectedLeft.dataset.match;
+            const rightKey = selectedRight.dataset.match;
+
+            const tempLeft = selectedLeft;
+            const tempRight = selectedRight;
+
+            if (leftKey === rightKey) {
+                tempLeft.classList.add('correct');
+                tempRight.classList.add('correct');
+                tempLeft.classList.remove('selected');
+                tempRight.classList.remove('selected');
+                selectedLeft = null;
+                selectedRight = null;
+            } else {
+                busy = true;
+                tempLeft.classList.add('incorrect');
+                tempRight.classList.add('incorrect');
+                
+                setTimeout(() => {
+                    tempLeft.classList.remove('incorrect', 'selected');
+                    tempRight.classList.remove('incorrect', 'selected');
+                    busy = false;
+                }, 1000);
+                selectedLeft = null;
+                selectedRight = null;
+            }
+        }
+    }
+
+    window.onload = init;
+</script>
+
+</body>
+</html>

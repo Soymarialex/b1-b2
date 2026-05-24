@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de Artículos</title>
+    <style>
+        :root {
+            --primary: #FF79AC;
+            --secondary: #FFB3D1;
+            --text-color: #121118;
+            --bg-color: #FFFFFF;
+            --success: #D4EDDA;
+            --error: #F8D7DA;
+            --input-border: #CCCCCC;
+            --gray-bg: #F9F9F9;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: bold;
+            text-align: left; 
+            margin-bottom: 2rem;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid var(--primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        .ex-number {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.9rem;
+            margin-right: 15px;
+        }
+
+        .ex-instruction {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .highlight-pink {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .exercise-block {
+            margin-bottom: 2rem;
+        }
+
+        .sentence {
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 1.1rem;
+        }
+
+        /* Contenedor para agrupar opciones específicas como el/un */
+        .option-group {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        input[type="text"] {
+            border: none;
+            border-bottom: 2px solid var(--input-border);
+            background: transparent;
+            text-align: center;
+            padding: 2px 5px;
+            font-size: 1.1rem;
+            width: 110px;
+            outline: none;
+            transition: background-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-bottom-color: var(--primary);
+        }
+
+        input.correct {
+            background-color: var(--success) !important;
+        }
+
+        input.incorrect {
+            background-color: var(--error) !important;
+        }
+
+        .option-btn {
+            background-color: var(--secondary);
+            border: none;
+            border-bottom: 3px solid var(--primary);
+            border-radius: 4px;
+            padding: 2px 10px;
+            margin: 0 2px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .option-btn.correct-choice {
+            background-color: var(--success) !important;
+        }
+
+        .option-btn.incorrect-choice {
+            background-color: var(--error) !important;
+        }
+
+        .full-sentence-input {
+            width: 100% !important;
+            text-align: left !important;
+            margin-top: 8px;
+        }
+
+        .ans-toggle {
+            display: block;
+            margin: 60px auto 20px;
+            background-color: var(--secondary);
+            border: none;
+            border-bottom: 3px solid var(--primary);
+            border-radius: 5px;
+            padding: 12px 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        #answers-panel {
+            display: none;
+            background-color: var(--gray-bg);
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+            border: 1px solid #eee;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+        }
+
+        .ans-col h3 {
+            color: var(--primary);
+            border-bottom: 1px solid var(--primary);
+            margin-top: 0;
+            padding-bottom: 5px;
+        }
+
+        .ans-item {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .ans-num {
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ejercicios</h1>
+
+    <!-- 6.1 -->
+    <div class="exercise-block">
+        <div class="exercise-header">
+            <div class="ex-number">6.1</div>
+            <div class="ex-instruction">Seleccione la forma correcta.</div>
+        </div>
+        
+        <div class="sentence">1. <span class="option-group"><button class="option-btn">el</button>/<button class="option-btn">un</button></span> padre de Lidia es muy simpático.</div>
+        <div class="sentence">2. Esto no funciona. Necesitamos <span class="option-group"><button class="option-btn">la</button>/<button class="option-btn">una</button></span> televisión nueva.</div>
+        <div class="sentence">3. Estoy trabajando. Apaga <span class="option-group"><button class="option-btn">la</button>/<button class="option-btn">una</button></span> televisión, por favor.</div>
+        <div class="sentence">4. -¿Cuándo os vais? -Ahora mismo. Ya he metido <span class="option-group"><button class="option-btn">las</button>/<button class="option-btn">unas</button></span> maletas en <span class="option-group"><button class="option-btn">el</button>/<button class="option-btn">un</button></span> coche.</div>
+        <div class="sentence">5. -Hay <span class="option-group"><button class="option-btn">un</button>/<button class="option-btn">el</button></span> coche en la calle. -Sí, es <span class="option-group"><button class="option-btn">el</button>/<button class="option-btn">un</button></span> coche de Jorge.</div>
+        <div class="sentence">6. -¿Has hablado con <span class="option-group"><button class="option-btn">el</button>/<button class="option-btn">un</button></span> director? -Sí. Empiezo a trabajar <span class="option-group"><button class="option-btn">el</button>/<button class="option-btn">un</button></span> lunes.</div>
+        <div class="sentence">7. Ha llamado Antonio. Te espera en <span class="option-group"><button class="option-btn">la</button>/<button class="option-btn">una</button></span> puerta <span class="option-group"><button class="option-btn">del</button>/<button class="option-btn">de un</button></span> cine.</div>
+        <div class="sentence">8. Me he comprado <span class="option-group"><button class="option-btn">unos</button>/<button class="option-btn">los</button></span> pantalones y <span class="option-group"><button class="option-btn">una</button>/<button class="option-btn">la</button></span> camisa. <span class="option-group"><button class="option-btn">los</button>/<button class="option-btn">unos</button></span> pantalones son azules y <span class="option-group"><button class="option-btn">la</button>/<button class="option-btn">una</button></span> camisa es blanca.</div>
+        <div class="sentence">9. <span class="option-group"><button class="option-btn">los</button>/<button class="option-btn">unos</button></span> abuelos de Sandra tienen <span class="option-group"><button class="option-btn">un</button>/<button class="option-btn">el</button></span> coche antiguo.</div>
+        <div class="sentence">10. -Anita se encontró un gato. -¿Cómo era <span class="option-group"><button class="option-btn">el</button>/<button class="option-btn">un</button></span> gato?</div>
+    </div>
+
+    <!-- 6.2 -->
+    <div class="exercise-block">
+        <div class="exercise-header">
+            <div class="ex-number">6.2</div>
+            <div class="ex-instruction">Ponga el, la, los, las donde sea necesario y escriba frases completas.</div>
+        </div>
+        <div class="sentence">1. vida de mariposa es muy breve<br><input type="text" class="full-sentence-input" data-answer="la vida de la mariposa es muy breve"></div>
+        <div class="sentence">2. lluvia es buena para campo<br><input type="text" class="full-sentence-input" data-answer="la lluvia es buena para el campo"></div>
+        <div class="sentence">3. a españoles les gusta café<br><input type="text" class="full-sentence-input" data-answer="a los españoles les gusta el café"></div>
+        <div class="sentence">4. ballenas son unos mamíferos enormes<br><input type="text" class="full-sentence-input" data-answer="las ballenas son unos mamíferos enormes"></div>
+        <div class="sentence">5. salud es más importante que dinero<br><input type="text" class="full-sentence-input" data-answer="la salud es más importante que el dinero"></div>
+        <div class="sentence">6. desde aquí se ven luces de bahía<br><input type="text" class="full-sentence-input" data-answer="desde aquí se ven las luces de la bahía"></div>
+        <div class="sentence">7. oro es un metal precioso<br><input type="text" class="full-sentence-input" data-answer="el oro es un metal precioso"></div>
+        <div class="sentence">8. me encanta olor de flores<br><input type="text" class="full-sentence-input" data-answer="me encanta el olor de las flores"></div>
+    </div>
+
+    <!-- 6.3 -->
+    <div class="exercise-block">
+        <div class="exercise-header">
+            <div class="ex-number">6.3</div>
+            <div class="ex-instruction">Complete con el, la, los, las o un, una, unos, unas.</div>
+        </div>
+        <div class="sentence">1. Marcel Duchamp hizo una escultura con <input type="text" data-answer="la"> rueda de <input type="text" data-answer="una"> bicicleta.</div>
+        <div class="sentence">2. Ayer nos encontramos en el campo <input type="text" data-answer="la"> piel de <input type="text" data-answer="una"> serpiente.</div>
+        <div class="sentence">3. -¿Qué estás dibujando? -<input type="text" data-answer="la"> cabeza de <input type="text" data-answer="una"> jirafa.</div>
+        <div class="sentence">4. Para hacer este postre necesito <input type="text" data-answer="la"> clara de <input type="text" data-answer="un"> huevo.</div>
+        <div class="sentence">5. Estos dos vasos están hechos con <input type="text" data-answer="los"> cuernos de <input type="text" data-answer="un"> toro.</div>
+    </div>
+
+    <!-- 6.4 -->
+    <div class="exercise-block">
+        <div class="exercise-header">
+            <div class="ex-number">6.4</div>
+            <div class="ex-instruction">Seleccione la forma correcta.</div>
+        </div>
+        <div class="sentence">1. Tengo <span class="option-group"><button class="option-btn">las</button>/<button class="option-btn">mis</button></span> manos frías.</div>
+        <div class="sentence">2. <span class="option-group"><button class="option-btn">mis</button>/<button class="option-btn">los</button></span> padres viven en Valencia.</div>
+        <div class="sentence">3. He dejado <span class="option-group"><button class="option-btn">la</button>/<button class="option-btn">mi</button></span> moto en el garaje.</div>
+        <div class="sentence">4. Me duelen <span class="option-group"><button class="option-btn">los</button>/<button class="option-btn">mis</button></span> pies.</div>
+        <div class="sentence">5. Susana está en <span class="option-group"><button class="option-btn">su</button>/<button class="option-btn">la</button></span> casa.</div>
+        <div class="sentence">6. Veo poco sin <span class="option-group"><button class="option-btn">las</button>/<button class="option-btn">mis</button></span> gafas.</div>
+        <div class="sentence">7. Me ha mordido un perro en <span class="option-group"><button class="option-btn">la</button>/<button class="option-btn">mi</button></span> mano.</div>
+        <div class="sentence">8. Tápate <span class="option-group"><button class="option-btn">la</button>/<button class="option-btn">tu</button></span> boca con <span class="option-group"><button class="option-btn">la</button>/<button class="option-btn">tu</button></span> bufanda.</div>
+        <div class="sentence">9. Tengo <span class="option-group"><button class="option-btn">el</button>/<button class="option-btn">mi</button></span> coche averiado.</div>
+        <div class="sentence">10. Tienes sangre en <span class="option-group"><button class="option-btn">la</button>/<button class="option-btn">tu</button></span> mano derecha.</div>
+    </div>
+
+    <!-- 6.5 -->
+    <div class="exercise-block">
+        <div class="exercise-header">
+            <div class="ex-number">6.5</div>
+            <div class="ex-instruction">
+                Complete con <span class="highlight-pink">al</span>, <span class="highlight-pink">a la</span>, <span class="highlight-pink">del</span> o <span class="highlight-pink">a El</span>, <span class="highlight-pink">de El</span>.
+            </div>
+        </div>
+        <div class="sentence">1. Hemos visto (a) <input type="text" data-answer="al"> nuevo profesor en la cafetería.</div>
+        <div class="sentence">2. Inés ha salido (de)<input type="text" data-answer="del"> banco a toda prisa.</div>
+        <div class="sentence">3. Vamos (a) <input type="text" data-answer="al"> cine casi todas las semanas.</div>
+        <div class="sentence">4. ¿Has leído el editorial (de)<input type="text" data-answer="de El"> País?</div>
+        <div class="sentence">5. ¡Sal (de)<input type="text" data-answer="del"> agua ahora mismo!</div>
+        <div class="sentence">6. -¿Adónde vais? (a)-<input type="text" data-answer="al"> aula de lengua.</div>
+        <div class="sentence">7. Sandra estudia Historia (de)<input type="text" data-answer="del"> Arte.</div>
+        <div class="sentence">8. Este es el cañón (de)<input type="text" data-answer="del"> arma.</div>
+        <div class="sentence">9. Miguel y Ana han venido (de)<input type="text" data-answer="de la"> India muy contentos.</div>
+        <div class="sentence">10. Tengo que llamar (a)<input type="text" data-answer="al"> Sr. Sánchez a la oficina.</div>
+        <div class="sentence">11. Esta noche vamos a cenar (a)<input type="text" data-answer="al"> Rincón de Luis.</div>
+        <div class="sentence">12. El domingo haremos una visita (a)<input type="text" data-answer="a El"> Escorial.</div>
+    </div>
+
+    <button class="ans-toggle" onclick="toggleAnswers()">Ver Respuestas Correctas</button>
+
+    <div id="answers-panel">
+        <!-- Panel de respuestas igual al anterior -->
+        <div class="answers-grid">
+            <div class="ans-col">
+                <h3>6.1</h3>
+                <div class="ans-item"><span class="ans-num">1.</span> el</div>
+                <div class="ans-item"><span class="ans-num">2.</span> una</div>
+                <div class="ans-item"><span class="ans-num">3.</span> la</div>
+                <div class="ans-item"><span class="ans-num">4.</span> las / el</div>
+                <div class="ans-item"><span class="ans-num">5.</span> un / el</div>
+                <div class="ans-item"><span class="ans-num">6.</span> el / el</div>
+                <div class="ans-item"><span class="ans-num">7.</span> la / del</div>
+                <div class="ans-item"><span class="ans-num">8.</span> unos, una, los, la</div>
+                <div class="ans-item"><span class="ans-num">9.</span> los / un</div>
+                <div class="ans-item"><span class="ans-num">10.</span> el</div>
+            </div>
+            <div class="ans-col">
+                <h3>6.2</h3>
+                <div class="ans-item"><span class="ans-num">1-8.</span> Ver frases completas arriba.</div>
+            </div>
+            <div class="ans-col">
+                <h3>6.3</h3>
+                <div class="ans-item"><span class="ans-num">1.</span> la / una</div>
+                <div class="ans-item"><span class="ans-num">2.</span> la / una</div>
+                <div class="ans-item"><span class="ans-num">3.</span> la / una</div>
+                <div class="ans-item"><span class="ans-num">4.</span> la / un</div>
+                <div class="ans-item"><span class="ans-num">5.</span> los / un</div>
+            </div>
+            <div class="ans-col">
+                <h3>6.4</h3>
+                <div class="ans-item"><span class="ans-num">1.</span> las</div>
+                <div class="ans-item"><span class="ans-num">2.</span> mis</div>
+                <div class="ans-item"><span class="ans-num">3.</span> la</div>
+                <div class="ans-item"><span class="ans-num">4.</span> los</div>
+                <div class="ans-item"><span class="ans-num">5.</span> su</div>
+                <div class="ans-item"><span class="ans-num">6.</span> las</div>
+                <div class="ans-item"><span class="ans-num">7.</span> la</div>
+                <div class="ans-item"><span class="ans-num">8.</span> la / la</div>
+                <div class="ans-item"><span class="ans-num">9.</span> el</div>
+                <div class="ans-item"><span class="ans-num">10.</span> la</div>
+            </div>
+            <div class="ans-col">
+                <h3>6.5</h3>
+                <div class="ans-item"><span class="ans-num">1.</span> al</div>
+                <div class="ans-item"><span class="ans-num">2.</span> del</div>
+                <div class="ans-item"><span class="ans-num">3.</span> al</div>
+                <div class="ans-item"><span class="ans-num">4.</span> de El</div>
+                <div class="ans-item"><span class="ans-num">5.</span> del</div>
+                <div class="ans-item"><span class="ans-num">6.</span> al</div>
+                <div class="ans-item"><span class="ans-num">7.</span> del</div>
+                <div class="ans-item"><span class="ans-num">8.</span> del</div>
+                <div class="ans-item"><span class="ans-num">9.</span> de la</div>
+                <div class="ans-item"><span class="ans-num">10.</span> al</div>
+                <div class="ans-item"><span class="ans-num">11.</span> al</div>
+                <div class="ans-item"><span class="ans-num">12.</span> a El</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Respuestas correctas (simplificadas para validación de botones)
+    const validTerms = ["el", "una", "la", "las", "un", "del", "unos", "los", "mis", "su", "tu"];
+
+    // Nueva lógica de botones que respeta otros grupos en la misma frase
+    document.querySelectorAll('.option-btn').forEach((btn) => {
+        btn.addEventListener('click', function() {
+            const val = this.innerText.toLowerCase();
+            // Buscamos el contenedor padre inmediato .option-group
+            const group = this.closest('.option-group');
+            
+            // Si el botón ya tiene clase, no hacemos nada o permitimos cambio
+            // Primero limpiamos solo los botones de ESTE grupo (par el/un)
+            const siblings = group.querySelectorAll('.option-btn');
+            siblings.forEach(s => s.classList.remove('correct-choice', 'incorrect-choice'));
+
+            if (validTerms.includes(val)) {
+                this.classList.add('correct-choice');
+            } else {
+                this.classList.add('incorrect-choice');
+            }
+        });
+    });
+
+    // Lógica para campos de texto (Enter y validación)
+    const allInputs = Array.from(document.querySelectorAll('input[type="text"]'));
+    
+    function validateInput(input) {
+        const val = input.value.trim();
+        const target = input.getAttribute('data-answer');
+        
+        if (val === "") {
+            input.classList.remove('correct', 'incorrect');
+            return;
+        }
+
+        if (val.toLowerCase().replace(/\s+/g, ' ') === target.toLowerCase().replace(/\s+/g, ' ')) {
+            input.classList.add('correct');
+            input.classList.remove('incorrect');
+        } else {
+            input.classList.add('incorrect');
+            input.classList.remove('correct');
+        }
+    }
+
+    allInputs.forEach((input, idx) => {
+        input.addEventListener('blur', function() {
+            validateInput(this);
+        });
+
+        input.addEventListener('keydown', function(e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                validateInput(this);
+                
+                const next = allInputs[idx + 1];
+                if (next) {
+                    next.focus();
+                } else {
+                    this.blur();
+                }
+            }
+        });
+    });
+
+    function toggleAnswers() {
+        const p = document.getElementById('answers-panel');
+        p.style.display = (p.style.display === 'block') ? 'none' : 'block';
+        if(p.style.display === 'block') {
+            p.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>
+
+</body>
+</html>

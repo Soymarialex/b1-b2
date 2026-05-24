@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoría: un, una, unos, unas</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC;   /* Flamingo Pink */
+            --secondary-color: #FFB3D1; /* Rosa Claro */
+            --text-color: #121118;      /* Eerie Black */
+            --bg-color: #FFFFFF;        /* Blanco */
+            --divider-color: #E0E0E0;   /* Gris claro */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            text-align: justify;
+        }
+
+        /* Cabecera con número de lección */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 15px;
+        }
+
+        .lesson-number {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0;
+        }
+
+        .title-group h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .title-group h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .translation {
+            color: var(--primary-color);
+            font-style: italic;
+        }
+
+        section {
+            margin-bottom: 30px;
+            overflow: hidden; /* Limpia floats */
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 35px;
+            font-size: 1.1rem;
+        }
+
+        li::before {
+            content: "●";
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .example-list {
+            margin-left: 20px;
+            border-left: 2px solid var(--divider-color);
+            padding-left: 15px;
+            margin-top: 10px;
+        }
+
+        .example-item {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Cuadro de Excepción (PERO) */
+        .exception-box {
+            background-color: var(--secondary-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            clear: both;
+        }
+
+        .pero-label {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Imágenes Alineadas a la derecha */
+        .img-right {
+            float: right;
+            max-width: 35%; /* Más pequeñas */
+            height: auto;
+            margin-left: 20px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .atencion-banner {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .atencion-box {
+            border: 1px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 650px) {
+            .img-right {
+                float: none;
+                max-width: 80%;
+                display: block;
+                margin: 20px auto;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header">
+        <div class="lesson-number">4</div>
+        <div class="title-group">
+            <h1>un, una, unos, unas</h1>
+            <h2>El artículo indefinido <span class="translation">(The indefinite article)</span></h2>
+        </div>
+    </header>
+
+    <section>
+        <ul>
+            <li>
+                Se usa <span class="translation">(We use)</span> <strong>un, una, unos, unas</strong> + nombre para identificar algo o alguien <span class="translation">(to identify something or someone)</span> como parte de una clase o grupo.
+                <div class="example-list">
+                    <span class="example-item">—¿Qué es eso? —Es <strong>una grabadora</strong>.</span>
+                    <span class="example-item">—¿Quiénes son las chicas de la foto? —Son <strong>unas amigas</strong> de Carlos.</span>
+                    <span class="example-item">—¿Dónde trabaja Lidia? —En <strong>un hospital</strong>.</span>
+                    <span class="example-item">Me han regalado <strong>un disco</strong> de Paco de Lucía.</span>
+                </div>
+            </li>
+            <li>
+                <strong>Un, una</strong> pueden usarse para hablar de alguien o algo en sentido general.
+                <div class="example-list">
+                    <span class="example-item"><strong>Un hospital</strong> es un lugar donde se trata a los enfermos.</span>
+                    <span class="example-item"><strong>Un bolígrafo</strong> es un objeto que sirve para escribir.</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <img src="https://i.imgur.com/GGBjbUj.jpg" alt="[Imagen de camarero]" class="img-right">
+        <ul>
+            <li>
+                Se usa <strong>un, una, unos, unas</strong> + nombre para indicar cantidad <span class="translation">(to indicate the amount)</span>.
+                <div class="example-list">
+                    <span class="example-item"><strong>un, una</strong> + nombres contables en singular = 1</span>
+                    <span class="example-item">Deme <strong>un bocadillo</strong> de jamón, por favor.</span>
+                </div>
+
+                <div class="example-list">
+                    <span class="example-item"><strong>unos, unas</strong> + nombres con forma única de plural = 1</span>
+                    <span class="example-item">He alquilado <strong>unos prismáticos</strong> para ver la ópera.</span>
+                    <span class="example-item">Este año nos vamos de <strong>vacaciones</strong> a Tailandia.</span>
+                </div>
+
+                <div class="example-list">
+                    <span class="example-item"><strong>unos, unas</strong> + nombres contables en plural = algunos, algunas (2, 3, 4...)</span>
+                    <span class="example-item"><strong>Unos chicos</strong> quieren verte.</span>
+                    <span class="example-item">Me han regalado <strong>unos bombones</strong>.</span>
+                </div>
+
+                <div class="example-list">
+                    <span class="example-item"><strong>unos, unas</strong> + cantidad = aproximadamente <span class="translation">(approximately)</span></span>
+                    <span class="example-item">Tengo <strong>unos cien</strong> relojes en mi colección. (=aproximadamente cien relojes)</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <ul>
+            <li>
+                Se usa <strong>un</strong> (no <strong>una</strong>) delante <span class="translation">(in front of)</span> de nombres femeninos en singular que empiezan por <strong>á-</strong> o <strong>há-</strong> acentuada.
+                <div class="example-list">
+                    <span class="example-item">He visto <strong>un águila</strong> en esa montaña.</span>
+                    <span class="example-item">Necesitamos <strong>un hacha</strong> para cortar leña.</span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="exception-box">
+            <span class="pero-label">PERO:</span>
+            <span><strong>unas águilas</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>una pequeña hacha</strong></span>
+        </div>
+    </section>
+
+    <section>
+        <img src="https://i.imgur.com/3HhVQzQ.jpg" alt="[Imagen de clientes]" class="img-right">
+        <ul>
+            <li>
+                Se puede usar <strong>uno, una, unos, unas</strong> en lugar de un nombre mencionado anteriormente <span class="translation">(a previously mentioned noun)</span>.
+                <div class="example-list">
+                    <span class="example-item"><strong>uno, una, unos, unas</strong> + adjetivo</span>
+                    <span class="example-item">—¿Qué tipo de zapatos quiere? —Quiero <strong>unos cómodos</strong>.</span>
+                </div>
+
+                <div class="example-list">
+                    <span class="example-item"><strong>uno, una, unos, unas</strong> + oración de relativo <span class="translation">(relative phrase)</span></span>
+                    <span class="example-item">—¿Qué tipo de zapatos quiere? —Quiero <strong>unos que sean cómodos</strong>.</span>
+                </div>
+            </li>
+        </ul>
+
+        <p>La forma del artículo y del adjetivo (masculino, femenino, singular y plural) es la misma que la del nombre al que se refiere.</p>
+        <div class="example-list">
+            <span class="example-item">—¿Qué <strong>bolígrafo</strong> necesitas? —<strong>Uno rojo</strong>.</span>
+            <span class="example-item">—¿Cuál es tu <strong>maleta</strong>? —<strong>Una que tiene ruedas</strong>.</span>
+        </div>
+    </section>
+
+    <div class="atencion-banner">ATENCIÓN:</div>
+    <div class="atencion-box">
+        —¿Qué libro te gustaría? —<s>Un entretenido</s>. &rarr; <strong>Uno entretenido</strong>.
+    </div>
+</div>
+
+</body>
+</html>

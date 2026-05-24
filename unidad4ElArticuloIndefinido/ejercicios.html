@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC;   /* Flamingo Pink */
+            --secondary-color: #FFB3D1; /* Rosa Claro */
+            --text-color: #121118;      /* Eerie Black */
+            --bg-color: #FFFFFF;        /* Blanco */
+            --success-bg: #D4EDDA;      /* Verde suave */
+            --error-bg: #F8D7DA;        /* Rojo suave */
+            --input-border: #CCCCCC;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+
+        /* Título alineado a la izquierda */
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        /* Contenedor de encabezado de actividad */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin: 40px 0 20px 0;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+        }
+
+        /* Número de actividad en Rosa */
+        .exercise-number {
+            font-size: 1.9rem; 
+            color: var(--primary-color);
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* Instrucción en Negro, Negrita y un poco más grande (1.5rem) */
+        .exercise-instruction {
+            font-size: 1.5rem; 
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .exercise-block {
+            margin-bottom: 30px;
+        }
+
+        .sentence {
+            margin-bottom: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Inputs de texto */
+        input[type="text"] {
+            border: none;
+            border-bottom: 2px solid var(--input-border);
+            background: transparent;
+            text-align: center;
+            font-size: 1rem;
+            font-family: inherit;
+            padding: 2px 5px;
+            width: 80px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"].correct {
+            background-color: var(--success-bg) !important;
+            border-bottom-color: #28a745;
+        }
+
+        input[type="text"].incorrect {
+            background-color: var(--error-bg) !important;
+            border-bottom-color: #dc3545;
+        }
+
+        /* Botones de selección 4.4 */
+        .option-btn {
+            background-color: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 4px 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 0 4px;
+        }
+
+        .option-btn.selected-correct {
+            background-color: var(--success-bg);
+            border-bottom-color: #28a745;
+        }
+
+        .option-btn.selected-incorrect {
+            background-color: var(--error-bg);
+            border-bottom-color: #dc3545;
+        }
+
+        /* Footer de Respuestas */
+        .answers-toggle {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        #btn-show-answers {
+            background-color: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .answers-grid {
+            display: none;
+            margin-top: 30px;
+            background: #F9F9F9;
+            border-radius: 8px;
+            padding: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .answer-col h4 {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .answer-item {
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .num-pink {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            input[type="text"] { width: 65px; }
+            .exercise-header { flex-direction: column; gap: 4px; border-bottom: none; }
+            .exercise-number { border-bottom: 2px solid var(--primary-color); width: 100%; }
+            .exercise-instruction { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ejercicios</h1>
+
+    <!-- ACTIVIDAD 4.1 -->
+    <section class="exercise-block">
+        <div class="exercise-header">
+            <span class="exercise-number">4.1</span>
+            <span class="exercise-instruction">Use los artículos un, una, unos, unas para completar las oraciones.</span>
+        </div>
+        <div id="act-4-1">
+            <div class="sentence">1. —¿Quién es la chica de la foto? — <input type="text" data-ans="una" class="step"> amiga de mi hermana.</div>
+            <div class="sentence">2. —¿Qué llevas en la chaqueta? — <input type="text" data-ans="un" class="step"> clavel.</div>
+            <div class="sentence">3. —¿Qué te han regalado por tu cumpleaños? — <input type="text" data-ans="un" class="step"> ordenador.</div>
+            <div class="sentence">4. —¿Qué tiene Javier en el brazo? — <input type="text" data-ans="un" class="step"> tatuaje.</div>
+            <div class="sentence">5. —¿Qué es un Colt? —Es <input type="text" data-ans="un" class="step"> arma de fuego.</div>
+            <div class="sentence">6. Aquí venden <input type="text" data-ans="unas" class="step"> naranjas buenísimas.</div>
+            <div class="sentence">7. —¿Quiénes son esas señoras? — <input type="text" data-ans="unas" class="step"> vecinas de mi madre.</div>
+            <div class="sentence">8. —¿Qué te han regalado para Reyes? — <input type="text" data-ans="una" class="step"> máquina de coser.</div>
+            <div class="sentence">9. —¿Quién ha llamado? — <input type="text" data-ans="una" class="step"> amiga de Javi.</div>
+            <div class="sentence">10. <input type="text" data-ans="un" class="step"> águila es <input type="text" data-ans="un" class="step"> ave muy bella.</div>
+            <div class="sentence">11. <input type="text" data-ans="un" class="step"> sacacorchos sirve para abrir botellas.</div>
+        </div>
+    </section>
+
+    <!-- ACTIVIDAD 4.2 -->
+    <section class="exercise-block">
+        <div class="exercise-header">
+            <span class="exercise-number">4.2</span>
+            <span class="exercise-instruction">Complete las oraciones con los artículos un, una, unos, unas.</span>
+        </div>
+        <div id="act-4-2">
+            <div class="sentence">1. Póngame <input type="text" data-ans="un" class="step"> café y <input type="text" data-ans="una" class="step"> tostada, por favor.</div>
+            <div class="sentence">2. Necesitamos <input type="text" data-ans="unas" class="step"> tijeras nuevas para la oficina.</div>
+            <div class="sentence">3. Solo hay <input type="text" data-ans="una" class="step"> cuchara en el cajón.</div>
+            <div class="sentence">4. —¿Cuánto dinero tienes? — <input type="text" data-ans="unos" class="step"> cincuenta euros.</div>
+            <div class="sentence">5. Han venido <input type="text" data-ans="unas" class="step"> amigas de Ana.</div>
+            <div class="sentence">6. Necesitamos <input type="text" data-ans="unas" class="step"> doce sillas para la fiesta.</div>
+            <div class="sentence">7. Me he comprado <input type="text" data-ans="unas" class="step"> nuevas gafas de sol.</div>
+            <div class="sentence">8. Ese piso debe de valer <input type="text" data-ans="unos" class="step"> doscientos mil euros.</div>
+            <div class="sentence">9. Solo hay <input type="text" data-ans="un" class="step"> aula libre.</div>
+            <div class="sentence">10. Necesitamos <input type="text" data-ans="un" class="step"> lavaplatos nuevo.</div>
+            <div class="sentence">11. Hay <input type="text" data-ans="unas" class="step"> medias de lana en el cajón.</div>
+            <div class="sentence">12. Necesito <input type="text" data-ans="unas" class="step"> vacaciones. Estoy agotada.</div>
+        </div>
+    </section>
+
+    <!-- ACTIVIDAD 4.3 -->
+    <section class="exercise-block">
+        <div class="exercise-header">
+            <span class="exercise-number">4.3</span>
+            <span class="exercise-instruction">Complete con los artículos uno, una, unos, unas.</span>
+        </div>
+        <div id="act-4-3">
+            <div class="sentence">1. —Necesito un boli. — <input type="text" data-ans="uno" class="step"> negro, si es posible. —No tengo <input type="text" data-ans="uno" class="step"> negro. Te puedo dejar <input type="text" data-ans="uno" class="step"> rojo.</div>
+            <div class="sentence">2. —Esos pantalones son baratos. Cómprate <input type="text" data-ans="unos" class="step">. —No los necesito. Tengo <input type="text" data-ans="unos" class="step"> muy parecidos.</div>
+            <div class="sentence">3. —¿Qué camisas te gustan? —Me gustan <input type="text" data-ans="unas" class="step"> que he visto en el escaparate. Son <input type="text" data-ans="unas" class="step"> azules, de manga corta.</div>
+            <div class="sentence">4. Tengo muchos relojes pero solo uso <input type="text" data-ans="uno" class="step"> que era de mi abuelo.</div>
+            <div class="sentence">5. —¿No hay farmacias por aquí cerca? —Sí. Hay <input type="text" data-ans="una" class="step">, pero es sábado y estará cerrada.</div>
+            <div class="sentence">6. Se me han acabado las pilas de la radio. ¿Me prestas <input type="text" data-ans="unas" class="step">?</div>
+        </div>
+    </section>
+
+    <!-- ACTIVIDAD 4.4 -->
+    <section class="exercise-block">
+        <div class="exercise-header">
+            <span class="exercise-number">4.4</span>
+            <span class="exercise-instruction">Seleccione la forma correcta.</span>
+        </div>
+        <div id="act-4-4">
+            <div class="sentence">1. Ramón es (<button class="option-btn" data-correct="true">un</button>/<button class="option-btn">uno</button>) chico muy simpático.</div>
+            <div class="sentence">2. —¿Quieres un móvil para tu cumpleaños? —No, gracias. Ya tengo (<button class="option-btn">un</button>/<button class="option-btn" data-correct="true">uno</button>).</div>
+            <div class="sentence">3. Elisa es (<button class="option-btn" data-correct="true">un</button>/<button class="option-btn">una</button>) ama de casa excelente.</div>
+            <div class="sentence">4. —¿Quieres un CD? —Bueno. (<button class="option-btn">Un</button>/<button class="option-btn" data-correct="true">Uno</button>) de música clásica.</div>
+            <div class="sentence">5. Veríamos mejor el río con (<button class="option-btn">un</button>/<button class="option-btn" data-correct="true">unos</button>) prismáticos.</div>
+            <div class="sentence">6. Para abrir esa botella necesito (<button class="option-btn" data-correct="true">un</button>/<button class="option-btn">uno</button>) sacacorchos.</div>
+            <div class="sentence">7. En estas montañas hay (<button class="option-btn">unos</button>/<button class="option-btn" data-correct="true">unas</button>) águilas impresionantes.</div>
+            <div class="sentence">8. Buscamos (<button class="option-btn" data-correct="true">un</button>/<button class="option-btn">una</button>) aula vacía para estudiar.</div>
+            <div class="sentence">9. Aquí venden (<button class="option-btn">un</button>/<button class="option-btn" data-correct="true">unos</button>) paraguas muy baratos.</div>
+            <div class="sentence">10. Está lloviendo. ¿Me dejas (<button class="option-btn" data-correct="true">un</button>/<button class="option-btn">unos</button>) paraguas?</div>
+            <div class="sentence">11. (<button class="option-btn">Un</button>/<button class="option-btn" data-correct="true">Uno</button>/<button class="option-btn">Unos</button>) de esos chicos está en mi clase.</div>
+            <div class="sentence">12. Puedes llevarte (<button class="option-btn" data-correct="true">una</button>/<button class="option-btn">unas</button>) de estas fotos.</div>
+            <div class="sentence">13. Necesito (<button class="option-btn" data-correct="true">un</button>/<button class="option-btn">unas</button>) par de medias.</div>
+        </div>
+    </section>
+
+    <!-- BOTÓN DE RESPUESTAS -->
+    <div class="answers-toggle">
+        <button id="btn-show-answers">Respuestas Correctas</button>
+        <div id="answers-container" class="answers-grid">
+            <div class="answer-col">
+                <h4>4.1</h4>
+                <div class="answer-item"><span class="num-pink">1.</span> una</div>
+                <div class="answer-item"><span class="num-pink">2.</span> un</div>
+                <div class="answer-item"><span class="num-pink">3.</span> un</div>
+                <div class="answer-item"><span class="num-pink">4.</span> un</div>
+                <div class="answer-item"><span class="num-pink">5.</span> un</div>
+                <div class="answer-item"><span class="num-pink">6.</span> unas</div>
+                <div class="answer-item"><span class="num-pink">7.</span> unas</div>
+                <div class="answer-item"><span class="num-pink">8.</span> una</div>
+                <div class="answer-item"><span class="num-pink">9.</span> una</div>
+                <div class="answer-item"><span class="num-pink">10.</span> un - un</div>
+                <div class="answer-item"><span class="num-pink">11.</span> un</div>
+            </div>
+            <div class="answer-col">
+                <h4>4.2</h4>
+                <div class="answer-item"><span class="num-pink">1.</span> un - una</div>
+                <div class="answer-item"><span class="num-pink">2.</span> unas</div>
+                <div class="answer-item"><span class="num-pink">3.</span> una</div>
+                <div class="answer-item"><span class="num-pink">4.</span> unos</div>
+                <div class="answer-item"><span class="num-pink">5.</span> unas</div>
+                <div class="answer-item"><span class="num-pink">6.</span> unas</div>
+                <div class="answer-item"><span class="num-pink">7.</span> unas</div>
+                <div class="answer-item"><span class="num-pink">8.</span> unos</div>
+                <div class="answer-item"><span class="num-pink">9.</span> un</div>
+                <div class="answer-item"><span class="num-pink">10.</span> un</div>
+                <div class="answer-item"><span class="num-pink">11.</span> unas</div>
+                <div class="answer-item"><span class="num-pink">12.</span> unas</div>
+            </div>
+            <div class="answer-col">
+                <h4>4.3</h4>
+                <div class="answer-item"><span class="num-pink">1.</span> uno - uno - uno</div>
+                <div class="answer-item"><span class="num-pink">2.</span> unos - unos</div>
+                <div class="answer-item"><span class="num-pink">3.</span> unas - unas</div>
+                <div class="answer-item"><span class="num-pink">4.</span> uno</div>
+                <div class="answer-item"><span class="num-pink">5.</span> una</div>
+                <div class="answer-item"><span class="num-pink">6.</span> unas</div>
+            </div>
+            <div class="answer-col">
+                <h4>4.4</h4>
+                <div class="answer-item"><span class="num-pink">1.</span> un</div>
+                <div class="answer-item"><span class="num-pink">2.</span> uno</div>
+                <div class="answer-item"><span class="num-pink">3.</span> un</div>
+                <div class="answer-item"><span class="num-pink">4.</span> uno</div>
+                <div class="answer-item"><span class="num-pink">5.</span> unos</div>
+                <div class="answer-item"><span class="num-pink">6.</span> un</div>
+                <div class="answer-item"><span class="num-pink">7.</span> unas</div>
+                <div class="answer-item"><span class="num-pink">8.</span> un</div>
+                <div class="answer-item"><span class="num-pink">9.</span> unos</div>
+                <div class="answer-item"><span class="num-pink">10.</span> un</div>
+                <div class="answer-item"><span class="num-pink">11.</span> uno</div>
+                <div class="answer-item"><span class="num-pink">12.</span> una</div>
+                <div class="answer-item"><span class="num-pink">13.</span> un</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputs = document.querySelectorAll('input.step');
+        const showAnswersBtn = document.getElementById('btn-show-answers');
+        const answersContainer = document.getElementById('answers-container');
+
+        // Validación y Salto con Enter
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                const val = e.target.value.trim().toLowerCase();
+                const expected = e.target.getAttribute('data-ans').toLowerCase();
+
+                if (val === "") {
+                    input.classList.remove('correct', 'incorrect');
+                } else if (val === expected) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const nextInput = inputs[index + 1];
+                    if (nextInput) {
+                        nextInput.focus();
+                    }
+                }
+            });
+        });
+
+        // Actividad 4.4 - Botones
+        const optionBtns = document.querySelectorAll('.option-btn');
+        optionBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const parent = btn.parentElement;
+                const siblings = parent.querySelectorAll('.option-btn');
+                
+                siblings.forEach(s => s.classList.remove('selected-correct', 'selected-incorrect'));
+
+                if (btn.getAttribute('data-correct') === 'true') {
+                    btn.classList.add('selected-correct');
+                } else {
+                    btn.classList.add('selected-incorrect');
+                }
+            });
+        });
+
+        // Toggle Respuestas
+        showAnswersBtn.addEventListener('click', () => {
+            const isVisible = answersContainer.style.display === 'grid';
+            answersContainer.style.display = isVisible ? 'none' : 'grid';
+            showAnswersBtn.textContent = isVisible ? 'Respuestas Correctas' : 'Ocultar Respuestas';
+        });
+    });
+</script>
+
+</body>
+</html>

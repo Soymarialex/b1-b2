@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El hombre - La mujer (masculino - femenino)</title>
+    <style>
+        :root {
+            --primary-color: #FF79AC; /* Flamingo Pink */
+            --secondary-color: #FFB3D1; /* Rosa Claro */
+            --text-color: #121118; /* Eerie Black */
+            --bg-color: #FFFFFF; /* Blanco puro */
+            --divider-color: #E0E0E0; /* Gris claro */
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .header-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 4px solid var(--primary-color);
+        }
+
+        .number-box {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+        }
+
+        h1 {
+            color: var(--text-color);
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        h1 span {
+            color: var(--primary-color);
+            font-weight: normal;
+            font-size: 1.8rem;
+        }
+
+        .main-text {
+            text-align: justify;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pink-bullet {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
+        }
+
+        .section-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        li::before {
+            content: "–";
+            position: absolute;
+            left: -1.5rem;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            padding-left: 2rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+
+        .table-container {
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid var(--primary-color);
+        }
+
+        th, td {
+            border: 1px solid var(--primary-color);
+            padding: 0.6rem 1rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            width: 150px;
+        }
+
+        .row-pink {
+            background-color: var(--secondary-color);
+        }
+
+        .pero-box {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            font-weight: bold;
+            margin-right: 10px;
+            text-transform: uppercase;
+        }
+
+        .pero-line {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .long-list {
+            margin-top: 1.5rem;
+        }
+
+        .long-list li {
+            margin-bottom: 0.8rem;
+        }
+
+        .note-box {
+            padding-left: 2rem;
+            margin: 1rem 0;
+        }
+
+        .gender-neutral-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            padding-left: 2rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .animal-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 1rem;
+        }
+
+        .animal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            flex: 1;
+        }
+
+        /* Estilos de ilustración actualizados: imagen más pequeña y sin texto */
+        .illustration {
+            width: 220px; /* Tamaño reducido de 320px a 220px */
+            border: 1px solid var(--divider-color);
+            padding: 0.4rem;
+            text-align: center;
+            margin-left: 1rem;
+        }
+
+        .illustration img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .arrow {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-section">
+        <div class="number-box">1</div>
+        <h1>el hombre, la mujer <br> <span>Masculino, femenino (masculine, feminine) (1)</span></h1>
+    </div>
+
+    <div class="section-row">
+        <span class="pink-bullet">●</span>
+        <p class="main-text">En español, los <strong>nombres de personas</strong> (proper nouns) son masculinos o femeninos.</p>
+    </div>
+
+    <ul>
+        <li>Los nombres referidos (refered) a hombres son masculinos.</li>
+        <li>Los nombres referidos a mujeres son femeninos.</li>
+    </ul>
+
+    <div class="examples-grid">
+        <span>el hombre</span>
+        <span>el padre</span>
+        <span>la mujer</span>
+        <span>la madre</span>
+        <span>el arquitecto</span>
+        <span>el actor</span>
+        <span>la arquitecta</span>
+        <span>la actriz</span>
+    </div>
+
+    <ul>
+        <li>Terminaciones (endings) de masculino y femenino:</li>
+    </ul>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>MASCULINO</th>
+                <td style="width:80px"><strong>-o, -e</strong></td>
+                <td>el niño</td>
+                <td>el abogado</td>
+                <td>el esposo</td>
+                <td>el cliente</td>
+            </tr>
+            <tr class="row-pink">
+                <th>FEMENINO</th>
+                <td><strong>-a</strong></td>
+                <td>la niña</td>
+                <td>la abogada</td>
+                <td>la esposa</td>
+                <td>la clienta</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="pero-line">
+        <span class="pero-box">PERO:</span>
+        <span>el piloto/la piloto, el modelo/la modelo, el soldado/la soldado, el testigo/la testigo, el detective/la detective, el paciente/la paciente, el ayudante/la ayudante</span>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>MASCULINO</th>
+                <td style="width:80px"><strong>-consonante</strong></td>
+                <td>el director</td>
+                <td>el ladrón</td>
+                <td style="border:none"></td>
+                <td style="border:none"></td>
+            </tr>
+            <tr class="row-pink">
+                <th>FEMENINO</th>
+                <td><strong>-consonante + a</strong></td>
+                <td>la directora</td>
+                <td>la ladrona</td>
+                <td style="border:none"></td>
+                <td style="border:none"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="pero-line">
+        <span class="pero-box">PERO:</span>
+        <span>el joven/ la joven</span>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>MASCULINO</th>
+                <td style="width:80px"><strong>-ante, -ista</strong></td>
+                <td>el cantante</td>
+                <td>el periodista</td>
+                <td style="border:none"></td>
+                <td style="border:none"></td>
+            </tr>
+            <tr class="row-pink">
+                <th>FEMENINO</th>
+                <td><strong>-ante, -ista</strong></td>
+                <td>la cantante</td>
+                <td>la periodista</td>
+                <td style="border:none"></td>
+                <td style="border:none"></td>
+            </tr>
+        </table>
+    </div>
+
+    <ul class="long-list">
+        <li>Otras terminaciones: el actor <span class="arrow">▸</span> la actriz, el rey <span class="arrow">▸</span> la reina, el príncipe <span class="arrow">▸</span> la princesa, el alcalde <span class="arrow">▸</span> la alcaldesa, el héroe <span class="arrow">▸</span> la heroína</li>
+        <li>Formas diferentes: el padre <span class="arrow">▸</span> la madre, el papá <span class="arrow">▸</span> la mamá, el hombre <span class="arrow">▸</span> la mujer, el marido <span class="arrow">▸</span> la mujer, el yerno <span class="arrow">▸</span> la nuera</li>
+        <li>Formas iguales (same forms): el guía <span class="arrow">▸</span> la guía, el colega <span class="arrow">▸</span> la colega, el atleta <span class="arrow">▸</span> la atleta, un policía <span class="arrow">▸</span> una policía</li>
+        <li>Algunos nombres tienen dos formas de femenino: el médico <span class="arrow">▸</span> la médico/ la médica, el ministro <span class="arrow">▸</span> la ministro/ la ministra, el juez <span class="arrow">▸</span> la juez / la jueza, el jefe <span class="arrow">▸</span> la jefe / la jefa</li>
+    </ul>
+
+    <div class="note-box">
+        <p>Mercedes es <strong>la jefe/la jefa</strong> del departamento. &nbsp;&nbsp;&nbsp;&nbsp; No me gusta nada <strong>la juez/la jueza</strong> del 46.</p>
+    </div>
+
+    <ul>
+        <li>Algunos nombres son masculinos o femeninos independientemente del sexo de la persona.</li>
+    </ul>
+
+    <div class="gender-neutral-grid">
+        <span>el bebé</span>
+        <span>el genio</span>
+        <span>el personaje</span>
+        <span>el fantasma</span>
+        <span>la persona</span>
+        <span>la víctima</span>
+        <span>la estrella (artista)</span>
+        <span>la visita</span>
+    </div>
+
+    <div class="note-box">
+        <p>–¿Cómo se llama <strong>el bebé</strong>? –María. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Roberto es una persona excelente.</strong></p>
+    </div>
+
+    <div class="section-row">
+        <span class="pink-bullet">●</span>
+        <p class="main-text">Algunos <strong>animales</strong> tienen forma de masculino y de femenino.</p>
+    </div>
+
+    <div class="animal-section">
+        <div class="animal-grid">
+            <span>el perro/ la perra</span>
+            <span>el gato/ la gata</span>
+            <span>el oso/ la osa</span>
+            <span>el lobo/ la loba</span>
+            <span>el cerdo/ la cerda</span>
+            <span>el elefante/ la elefanta</span>
+            <span>el león/ la leona</span>
+            <span>el mono/ la mona</span>
+            <span>el gallo/ la gallina</span>
+            <span>el toro/ la vaca</span>
+            <span>el carnero/ la oveja</span>
+            <span>el caballo/ la yegua</span>
+        </div>
+        <div class="illustration">
+            <img src="https://imgur.com/JtEhlnx.jpg" alt="Ilustración de una mujer y un niño observando un canguro">
+        </div>
+    </div>
+
+    <div class="pero-line">
+        <span class="pero-box">PERO:</span>
+        <span>La mayoría (most) tienen solo forma de masculino o de femenino. Para indicar su sexo se añaden (we add) las palabras <strong>macho</strong> (male) o <strong>hembra</strong> (female).</span>
+    </div>
+
+    <div class="gender-neutral-grid">
+        <span>el canguro</span>
+        <span>el cocodrilo</span>
+        <span>el gorila</span>
+        <span>el avestruz</span>
+        <span>el caracol</span>
+        <span>la jirafa</span>
+        <span>la tortuga</span>
+        <span>la mariposa</span>
+        <span>la liebre</span>
+        <span>la serpiente</span>
+    </div>
+
+    <div class="note-box">
+        <p>Tengo una <strong>tortuga macho</strong>.</p>
+    </div>
+
+</div>
+
+<script>
+    // Foco automático con tecla Enter
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            const elements = Array.from(document.querySelectorAll('input, button, select, textarea'));
+            const index = elements.indexOf(document.activeElement);
+            if (index > -1 && index < elements.length - 1) {
+                elements[index + 1].focus();
+                e.preventDefault();
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
