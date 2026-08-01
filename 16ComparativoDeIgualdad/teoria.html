@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tan alto, igual de alto</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .header-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 15px;
+        }
+
+        .lesson-box {
+            background-color: #FF79AC;
+            color: #FFFFFF;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .header-title-container {
+            flex-grow: 1;
+        }
+
+        h1.page-title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #121118;
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+
+        h2.page-subtitle {
+            font-size: 1.8rem;
+            font-weight: normal;
+            color: #FF79AC;
+            line-height: 1.2;
+        }
+
+        .translation {
+            color: #FF79AC;
+            font-style: italic;
+        }
+
+        .grid-illustrations {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 650px) {
+            .grid-illustrations {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .illustration-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .illustration-card img {
+            max-width: 100%;
+            height: auto;
+            max-height: 220px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .example-list {
+            text-align: left;
+            width: 100%;
+            font-style: italic;
+        }
+
+        .example-list p {
+            margin-bottom: 4px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .intro-text {
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .two-column-examples {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        @media (max-width: 650px) {
+            .two-column-examples {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        .bullet-icon {
+            color: #FF79AC;
+            font-size: 1.5rem;
+            line-height: 1;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .bullet-content {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .rule-box {
+            border: 1px solid #FF79AC;
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            background-color: #FFFFFF;
+        }
+
+        .grid-rule-1 {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        @media (max-width: 650px) {
+            .grid-rule-1 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .grid-rule-3 {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1.8fr;
+            gap: 15px;
+            align-items: center;
+        }
+
+        @media (max-width: 700px) {
+            .grid-rule-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .rule-divider {
+            border-top: 1px solid #E0E0E0;
+            margin: 15px 0;
+        }
+
+        .attention-container {
+            background-color: #FFB3D1;
+            border-left: 4px solid #FF79AC;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 25px;
+        }
+
+        .attention-badge {
+            background-color: #FF79AC;
+            color: #FFFFFF;
+            font-weight: bold;
+            padding: 4px 12px;
+            display: inline-block;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .attention-inner-box {
+            background-color: #FFFFFF;
+            border: 1px solid #FF79AC;
+            border-radius: 4px;
+            padding: 15px 20px;
+        }
+
+        .attention-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .attention-row:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 650px) {
+            .attention-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .strikethrough {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <header class="header-section">
+            <div class="lesson-box">16</div>
+            <div class="header-title-container">
+                <h1 class="page-title">tan alto, igual de alto</h1>
+                <h2 class="page-subtitle">Comparativo de igualdad <span class="translation">(comparative of equality)</span></h2>
+            </div>
+        </header>
+
+        <section class="grid-illustrations">
+            <div class="illustration-card">
+                <img src="https://imgur.com/WjdnUv2.jpg" alt="Rosa y Jorge" onerror="this.src='https://placehold.co/400x220/FFB3D1/121118?text=Rosa+y+Jorge'">
+            </div>
+
+            <div class="illustration-card">
+                <img src="https://imgur.com/4ltspQd.jpg" alt="Bici y Moto" onerror="this.src='https://placehold.co/400x220/FFB3D1/121118?text=Bici+y+Moto'">
+            </div>
+        </section>
+
+        <p class="intro-text">
+            <em>Tan alegre, tan rápida, igual de alegre, igual de rápida</em> son expresiones comparativas <span class="translation">(comparative expressions)</span>. 
+Se usan para indicar si cierta cualidad - <em>alegre, rápida</em> - es igual o no en dos términos (personas, animales o cosas).
+        </p>
+
+        <div class="two-column-examples">
+            <div>
+                <p><strong>Mis padres</strong> son <strong>tan mayores</strong> como <strong>los tuyos</strong>.</p>
+                <p><strong>Los osos no</strong> son <strong>tan altos</strong> como <strong>las jirafas</strong>.</p>
+            </div>
+            <div>
+                <p><strong>Roberto</strong> es <strong>igual de antipático</strong> que <strong>sus hermanos</strong>.</p>
+                <p><strong>Li y Ula</strong> son <strong>igual de encantadoras</strong>.</p>
+            </div>
+        </div>
+
+        <div class="bullet-item">
+            <span class="bullet-icon">●</span>
+            <div class="bullet-content">
+                <strong>Formación del comparativo de igualdad</strong> <span class="translation">(comparative of equality)</span>
+            </div>
+        </div>
+
+        <div class="rule-box">
+            <div class="grid-rule-1">
+                <div>
+                    <p><em>tan</em> + adjetivo (+ <em>como</em>)</p>
+                    <p><em>igual de</em> + adjetivo (+ <em>que</em>)</p>
+                </div>
+                <div>
+                    <p>Julia es <strong>tan alta como</strong> Marta, pero no es <strong>tan guapa</strong>.</p>
+                    <p>Soy <strong>igual de alto que</strong> mi hermano.</p>
+                    <p>Mi hermano y yo somos <strong>igual de altos</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bullet-item">
+            <span class="bullet-icon">●</span>
+            <div class="bullet-content">
+                El adjetivo tiene la misma forma (masculino o femenino, singular o plural) que la persona, animal o cosa a la que se refiere.
+            </div>
+        </div>
+
+        <div class="two-column-examples" style="padding-left: 25px;">
+            <div>
+                <p>Mi <strong>piso</strong> es igual de <strong>pequeño</strong> que el tuyo.</p>
+                <p>Mi <strong>hermana</strong> es tan <strong>trabajadora</strong> como yo.</p>
+            </div>
+            <div>
+                <p><strong>Ana y su madre</strong> son igual de <strong>guapas</strong>.</p>
+                <p><strong>Estos dos televisores</strong> son igual de <strong>caros</strong>.</p>
+            </div>
+        </div>
+
+        <div class="bullet-item">
+            <span class="bullet-icon">●</span>
+            <div class="bullet-content">
+                Construcciones con el comparativo de igualdad
+            </div>
+        </div>
+
+        <div class="rule-box">
+            <div class="grid-rule-3">
+                <div>
+                    <p><em>tan</em> + adjetivo + <em>como</em></p>
+                    <p><em>igual de</em> + adjetivo + <em>que</em></p>
+                </div>
+                <div>
+                    <p>+ sustantivo</p>
+                    <p>+ yo, tú...</p>
+                    <p>+ el mío, el tuyo...</p>
+                </div>
+                <div>
+                    <p>Rafa no es <strong>tan simpático como su hermano</strong>.</p>
+                    <p>Yo soy <strong>igual de inteligente que vosotros</strong>.</p>
+                    <p>Mi coche no es <strong>tan rápido como el tuyo</strong>.</p>
+                </div>
+            </div>
+
+            <div class="rule-divider"></div>
+
+            <div class="grid-rule-3">
+                <div>
+                    <p><em>tan</em> + adjetivo + <em>como</em></p>
+                </div>
+                <div>
+                    <p>+ oración</p>
+                </div>
+                <div>
+                    <p>Julio no es <strong>tan guapo como tú dices</strong>.</p>
+                    <p>El español no es <strong>tan difícil como yo pensaba</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bullet-item">
+            <span class="bullet-icon">●</span>
+            <div class="bullet-content">
+                Cuando está claro a qué nos referimos, no es necesario mencionar el segundo término de comparación.
+            </div>
+        </div>
+
+        <div style="padding-left: 25px; margin-bottom: 20px;">
+            <p>–Felipe es muy amable. –Pues su hermana no es <strong>tan amable</strong>.</p>
+            <p>–Los argentinos son muy agradables. –Pues los chilenos son <strong>igual de agradables</strong>.</p>
+        </div>
+
+        <div class="attention-container">
+            <div class="attention-badge">ATENCIÓN:</div>
+            <div class="attention-inner-box">
+                <div class="attention-row">
+                    <div>
+                        <p>– <em>Rafa es guapo.</em></p>
+                    </div>
+                    <div>
+                        <p>–Pues Luis es <span class="strikethrough">tan guapo</span>.</p>
+                        <p>–Pues Luis es <strong>tan guapo como él</strong>.</p>
+                        <p>–Pues Luis es <strong>igual de guapo</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="rule-divider"></div>
+
+                <div class="attention-row">
+                    <div>
+                        <p>– <em>Rosa es muy inteligente.</em></p>
+                    </div>
+                    <div>
+                        <p>–Pues sus hermanos <strong>no son tan inteligentes</strong>.</p>
+                        <p>–Pues sus hermanos <strong>no son tan inteligentes como ella</strong>.</p>
+                        <p>–Pues sus hermanos <strong>no son igual de inteligentes</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicios</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Rosa Claro */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Blanco puro */
+      --color-acierto: #D4EDDA;      /* Verde suave */
+      --color-error: #F8D7DA;        /* Rojo suave */
+      --color-divisor: #E0E0E0;      /* Gris claro */
+    }
+
+    /* GENERALES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .main-container {
+      max-width: 850px;
+      margin: 40px auto;
+      padding: 0 2.5rem;
+    }
+
+    /* TÍTULO PRINCIPAL */
+    h1.page-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--color-primario);
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ENCABEZADO DE EJERCICIOS */
+    .exercise-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      width: 100%;
+    }
+
+    .ex-number {
+      color: var(--color-primario);
+      font-size: 1.9rem;
+      font-weight: bold;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .ex-instruction {
+      color: var(--color-texto);
+      font-size: 1.5rem;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    /* CUERPO DE TEXTO */
+    p, .sentence-item {
+      font-size: 1.1rem;
+      text-align: justify;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    /* ENTRADAS DE TEXTO */
+    .exercise-input {
+      border: none;
+      border-bottom: 2px solid var(--color-divisor);
+      background-color: transparent;
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--color-texto);
+      font-weight: 600;
+      width: 130px;
+      outline: none;
+      transition: all 0.25s ease;
+      padding: 2px 4px;
+      margin: 0 4px;
+    }
+
+    .exercise-input:focus {
+      border-bottom: 2px solid var(--color-primario);
+    }
+
+    /* ESTADOS DE VALIDACIÓN */
+    .exercise-input.is-valid {
+      background-color: var(--color-acierto) !important;
+      border-bottom: 2px solid #28a745;
+    }
+
+    .exercise-input.is-invalid {
+      background-color: var(--color-error) !important;
+      border-bottom: 2px solid #dc3545;
+    }
+
+    /* RECUADROS DE CONTENIDO */
+    .word-bank-box {
+      background-color: #F9F9F9;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--color-divisor);
+    }
+
+    .word-bank-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--color-texto);
+    }
+
+    .word-bank-item {
+      padding: 0.2rem 0.6rem;
+    }
+
+    /* BOTONES */
+    .btn-answers {
+      background-color: var(--color-secundario);
+      border: none;
+      border-bottom: 3px solid var(--color-primario);
+      border-radius: 5px;
+      color: var(--color-texto);
+      font-size: 0.9rem;
+      font-weight: bold;
+      padding: 0.8rem 1.5rem;
+      cursor: pointer;
+      display: block;
+      margin: 3rem auto 1rem auto;
+      transition: opacity 0.2s;
+    }
+
+    .btn-answers:hover {
+      opacity: 0.9;
+    }
+
+    /* SECCIÓN DE RESPUESTAS */
+    .answers-grid-container {
+      display: none;
+      background-color: #F9F9F9;
+      border: 1px solid var(--color-primario);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 1.5rem;
+    }
+
+    .answers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      .answers-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .answers-column {
+      font-size: 0.95rem;
+    }
+
+    .answers-column h3 {
+      font-size: 1.2rem;
+      color: var(--color-primario);
+      font-weight: bold;
+      margin-bottom: 0.8rem;
+      border-bottom: 1px solid var(--color-secundario);
+      padding-bottom: 0.2rem;
+    }
+
+    .answers-list-item {
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+
+    .pink-highlight {
+      color: var(--color-primario);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- TÍTULO PRINCIPAL -->
+    <h1 class="page-title">Ejercicios</h1>
+
+    <!-- ================= ACTIVIDAD 13.1 ================= -->
+    <section id="actividad-13-1">
+      <div class="exercise-header">
+        <span class="ex-number">13.1.</span>
+        <span class="ex-instruction">Complete con la forma correcta de los adjetivos entre paréntesis.</span>
+      </div>
+
+      <div class="sentence-item">
+        <strong>1.</strong> ¡Qué elegante! Lleva un vestido (rojo) 
+        <input type="text" class="exercise-input" data-index="1" data-correct="rojo">, 
+        zapatos (blanco) 
+        <input type="text" class="exercise-input" data-index="2" data-correct="blancos"> 
+        y una chaqueta (rojo) 
+        <input type="text" class="exercise-input" data-index="3" data-correct="roja">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>2.</strong> Los hermanos de Sofía son (alto) 
+        <input type="text" class="exercise-input" data-index="4" data-correct="altos">, 
+        (fuerte) 
+        <input type="text" class="exercise-input" data-index="5" data-correct="fuertes"> 
+        y muy (guapo) 
+        <input type="text" class="exercise-input" data-index="6" data-correct="guapos">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>3.</strong> La economía (capitalista) 
+        <input type="text" class="exercise-input" data-index="7" data-correct="capitalista"> 
+        es muy potente.
+      </div>
+
+      <div class="sentence-item">
+        <strong>4.</strong> Alberto tiene la nariz (grande) 
+        <input type="text" class="exercise-input" data-index="8" data-correct="grande">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>5.</strong> Quiero comprarme una blusa (azul) 
+        <input type="text" class="exercise-input" data-index="9" data-correct="azul">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>6.</strong> Me gustan los coches (veloz) 
+        <input type="text" class="exercise-input" data-index="10" data-correct="veloces">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>7.</strong> Luisa es una persona (encantador) 
+        <input type="text" class="exercise-input" data-index="11" data-correct="encantadora">, 
+        pero es un poco (mandón) 
+        <input type="text" class="exercise-input" data-index="12" data-correct="mandona">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>8.</strong> Luisa y su hermano son (rubio) 
+        <input type="text" class="exercise-input" data-index="13" data-correct="rubios">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>9.</strong> No me gustan los chistes (fácil) 
+        <input type="text" class="exercise-input" data-index="14" data-correct="fáciles">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>10.</strong> Ana es (jóven) 
+        <input type="text" class="exercise-input" data-index="15" data-correct="jóven|joven">, 
+        pero muy (inteligente) 
+        <input type="text" class="exercise-input" data-index="16" data-correct="inteligente">.
+      </div>
+    </section>
+
+    <!-- ================= ACTIVIDAD 13.2 ================= -->
+    <section id="actividad-13-2">
+      <div class="exercise-header">
+        <span class="ex-number">13.2.</span>
+        <span class="ex-instruction">Complete con la forma correcta de los adjetivos entre paréntesis.</span>
+      </div>
+
+      <div class="sentence-item">
+        <strong>1.</strong> El madroño es una fruta (comestible) 
+        <input type="text" class="exercise-input" data-index="17" data-correct="comestible">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>2.</strong> Estoy cansada. Ha sido un día (agotador) 
+        <input type="text" class="exercise-input" data-index="18" data-correct="agotador">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>3.</strong> Sonia es una chica (adorable) 
+        <input type="text" class="exercise-input" data-index="19" data-correct="adorable">, 
+        pero está siempre (triste) 
+        <input type="text" class="exercise-input" data-index="20" data-correct="triste">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>4.</strong> Rosa y Luis están (divorciado) 
+        <input type="text" class="exercise-input" data-index="21" data-correct="divorciados">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>5.</strong> Pepa y Andrés son muy (feliz) 
+        <input type="text" class="exercise-input" data-index="22" data-correct="felices">. 
+        Tienen unos hijos (encantador) 
+        <input type="text" class="exercise-input" data-index="23" data-correct="encantadores">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>6.</strong> Me he comprado una falda (marrón) 
+        <input type="text" class="exercise-input" data-index="24" data-correct="marrón">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>7.</strong> Ana es mi hermana (mayor) 
+        <input type="text" class="exercise-input" data-index="25" data-correct="mayor">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>8.</strong> Nuria y Olga son muy (cursi) 
+        <input type="text" class="exercise-input" data-index="26" data-correct="cursis">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>9.</strong> ¿Dónde está mi camisa (gris) 
+        <input type="text" class="exercise-input" data-index="27" data-correct="gris">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>10.</strong> Compra esa otra cámara. Es (mejor) 
+        <input type="text" class="exercise-input" data-index="28" data-correct="mejor">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>11.</strong> Alberto y su hermano son muy (cortés) 
+        <input type="text" class="exercise-input" data-index="29" data-correct="corteses">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>12.</strong> ¿Por qué eres siempre tan (pesimista) 
+        <input type="text" class="exercise-input" data-index="30" data-correct="pesimista">, Sergio?
+      </div>
+    </section>
+
+    <!-- ================= ACTIVIDAD 13.3 ================= -->
+    <section id="actividad-13-3">
+      <div class="exercise-header">
+        <span class="ex-number">13.3.</span>
+        <span class="ex-instruction">Complete con la forma correcta del adjetivo correspondiente.</span>
+      </div>
+
+      <!-- BANCO DE PALABRAS -->
+      <div class="word-bank-box">
+        <div class="word-bank-list">
+          <span class="word-bank-item">andaluz</span>
+          <span class="word-bank-item">belga</span>
+          <span class="word-bank-item">canadiense</span>
+          <span class="word-bank-item">chileno</span>
+          <span class="word-bank-item">francés</span>
+          <span class="word-bank-item">griego</span>
+          <span class="word-bank-item">iraní</span>
+          <span class="word-bank-item">israelí</span>
+          <span class="word-bank-item">marroquí (2)</span>
+        </div>
+      </div>
+
+      <div class="sentence-item">
+        <strong>1.</strong> Mohamed es de Marruecos. Es 
+        <input type="text" class="exercise-input" data-index="31" data-correct="marroquí">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>2.</strong> Nana y Sofía son de Grecia. Son 
+        <input type="text" class="exercise-input" data-index="32" data-correct="griegas">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>3.</strong> Tomás y Elsa son de Chile. Son 
+        <input type="text" class="exercise-input" data-index="33" data-correct="chilenos">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>4.</strong> Mi amiga Hada es de Irán. Es 
+        <input type="text" class="exercise-input" data-index="34" data-correct="iraní">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>5.</strong> Rocío y Belén son de Andalucía. Son 
+        <input type="text" class="exercise-input" data-index="35" data-correct="andaluzas">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>6.</strong> Hilary y Susan son de Canadá. Son 
+        <input type="text" class="exercise-input" data-index="36" data-correct="canadienses">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>7.</strong> Fátima y Zoraida son de Marruecos. Son 
+        <input type="text" class="exercise-input" data-index="37" data-correct="marroquís|marroquíes">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>8.</strong> David y Sharon son de Israel. Son 
+        <input type="text" class="exercise-input" data-index="38" data-correct="israelíes|israelís">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>9.</strong> Jean es de Bélgica. Es 
+        <input type="text" class="exercise-input" data-index="39" data-correct="belga">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>10.</strong> Marie es de Francia. Es 
+        <input type="text" class="exercise-input" data-index="40" data-correct="francesa">.
+      </div>
+    </section>
+
+    <!-- ================= ACTIVIDAD 13.4 ================= -->
+    <section id="actividad-13-4">
+      <div class="exercise-header">
+        <span class="ex-number">13.4.</span>
+        <span class="ex-instruction">Complete con la forma correcta del adjetivo correspondiente.</span>
+      </div>
+
+      <!-- BANCO DE PALABRAS -->
+      <div class="word-bank-box">
+        <div class="word-bank-list">
+          <span class="word-bank-item">brasileño</span>
+          <span class="word-bank-item">canadiense</span>
+          <span class="word-bank-item">escocés</span>
+          <span class="word-bank-item">estadounidense</span>
+          <span class="word-bank-item">finlandés</span>
+          <span class="word-bank-item">hindú</span>
+          <span class="word-bank-item">iraquí</span>
+          <span class="word-bank-item">japonés</span>
+          <span class="word-bank-item">peruano</span>
+          <span class="word-bank-item">ruso</span>
+        </div>
+      </div>
+
+      <div class="sentence-item">
+        <strong>1.</strong> Glasgow es una ciudad 
+        <input type="text" class="exercise-input" data-index="41" data-correct="escocesa">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>2.</strong> El yen es la moneda 
+        <input type="text" class="exercise-input" data-index="42" data-correct="japonesa">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>3.</strong> Ivan y Vladimir son nombres 
+        <input type="text" class="exercise-input" data-index="43" data-correct="rusos">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>4.</strong> Kennedy y Reagan fueron presidentes 
+        <input type="text" class="exercise-input" data-index="44" data-correct="estadounidenses">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>5.</strong> Helsinki es la capital 
+        <input type="text" class="exercise-input" data-index="45" data-correct="finlandesa">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>6.</strong> São Paulo es una ciudad 
+        <input type="text" class="exercise-input" data-index="46" data-correct="brasileña">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>7.</strong> El sol es la moneda 
+        <input type="text" class="exercise-input" data-index="47" data-correct="peruana">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>8.</strong> Montreal es una ciudad 
+        <input type="text" class="exercise-input" data-index="48" data-correct="canadiense">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>9.</strong> Bagdad y Basora son ciudades 
+        <input type="text" class="exercise-input" data-index="49" data-correct="iraquíes|iraquís">.
+      </div>
+
+      <div class="sentence-item">
+        <strong>10.</strong> Kali es una diosa 
+        <input type="text" class="exercise-input" data-index="50" data-correct="hindú">.
+      </div>
+    </section>
+
+    <!-- BOTÓN DE RESPUESTAS CORRECTAS -->
+    <button class="btn-answers" onclick="toggleAnswers()">Mostrar Respuestas Correctas</button>
+
+    <!-- SECCIÓN DE RESPUESTAS EN CUADRÍCULA -->
+    <div class="answers-grid-container" id="answersContainer">
+      <div class="answers-grid">
+        
+        <!-- Bloque 13.1 -->
+        <div class="answers-column">
+          <h3><span class="pink-highlight">13.1</span></h3>
+          <div class="answers-list-item"><strong>1.</strong> rojo / blancos / roja</div>
+          <div class="answers-list-item"><strong>2.</strong> altos / fuertes / guapos</div>
+          <div class="answers-list-item"><strong>3.</strong> capitalista</div>
+          <div class="answers-list-item"><strong>4.</strong> grande</div>
+          <div class="answers-list-item"><strong>5.</strong> azul</div>
+          <div class="answers-list-item"><strong>6.</strong> veloces</div>
+          <div class="answers-list-item"><strong>7.</strong> encantadora / mandona</div>
+          <div class="answers-list-item"><strong>8.</strong> rubios</div>
+          <div class="answers-list-item"><strong>9.</strong> fáciles</div>
+          <div class="answers-list-item"><strong>10.</strong> jóven / inteligente</div>
+        </div>
+
+        <!-- Bloque 13.2 -->
+        <div class="answers-column">
+          <h3><span class="pink-highlight">13.2</span></h3>
+          <div class="answers-list-item"><strong>1.</strong> comestible</div>
+          <div class="answers-list-item"><strong>2.</strong> agotador</div>
+          <div class="answers-list-item"><strong>3.</strong> adorable / triste</div>
+          <div class="answers-list-item"><strong>4.</strong> divorciados</div>
+          <div class="answers-list-item"><strong>5.</strong> felices / encantadores</div>
+          <div class="answers-list-item"><strong>6.</strong> marrón</div>
+          <div class="answers-list-item"><strong>7.</strong> mayor</div>
+          <div class="answers-list-item"><strong>8.</strong> cursis</div>
+          <div class="answers-list-item"><strong>9.</strong> gris</div>
+          <div class="answers-list-item"><strong>10.</strong> mejor</div>
+          <div class="answers-list-item"><strong>11.</strong> corteses</div>
+          <div class="answers-list-item"><strong>12.</strong> pesimista</div>
+        </div>
+
+        <!-- Bloque 13.3 -->
+        <div class="answers-column">
+          <h3><span class="pink-highlight">13.3</span></h3>
+          <div class="answers-list-item"><strong>1.</strong> marroquí</div>
+          <div class="answers-list-item"><strong>2.</strong> griegas</div>
+          <div class="answers-list-item"><strong>3.</strong> chilenos</div>
+          <div class="answers-list-item"><strong>4.</strong> iraní</div>
+          <div class="answers-list-item"><strong>5.</strong> andaluzas</div>
+          <div class="answers-list-item"><strong>6.</strong> canadienses</div>
+          <div class="answers-list-item"><strong>7.</strong> marroquís / marroquíes</div>
+          <div class="answers-list-item"><strong>8.</strong> israelíes / israelís</div>
+          <div class="answers-list-item"><strong>9.</strong> belga</div>
+          <div class="answers-list-item"><strong>10.</strong> francesa</div>
+        </div>
+
+        <!-- Bloque 13.4 -->
+        <div class="answers-column">
+          <h3><span class="pink-highlight">13.4</span></h3>
+          <div class="answers-list-item"><strong>1.</strong> escocesa</div>
+          <div class="answers-list-item"><strong>2.</strong> japonesa</div>
+          <div class="answers-list-item"><strong>3.</strong> rusos</div>
+          <div class="answers-list-item"><strong>4.</strong> estadounidenses</div>
+          <div class="answers-list-item"><strong>5.</strong> finlandesa</div>
+          <div class="answers-list-item"><strong>6.</strong> brasileña</div>
+          <div class="answers-list-item"><strong>7.</strong> peruana</div>
+          <div class="answers-list-item"><strong>8.</strong> canadiense</div>
+          <div class="answers-list-item"><strong>9.</strong> iraquíes / iraquís</div>
+          <div class="answers-list-item"><strong>10.</strong> hindú</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // FUNCIÓN PARA MOSTRAR / OCULTAR RESPUESTAS CORRECTAS
+    function toggleAnswers() {
+      const container = document.getElementById("answersContainer");
+      const button = document.querySelector(".btn-answers");
+      if (container.style.display === "block") {
+        container.style.display = "none";
+        button.textContent = "Mostrar Respuestas Correctas";
+      } else {
+        container.style.display = "block";
+        button.textContent = "Ocultar Respuestas Correctas";
+        container.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // GESTIÓN DE VALIDACIÓN EN TIEMPO REAL E INTERACTIVIDAD DE TECLADO
+    document.addEventListener("DOMContentLoaded", () => {
+      const inputs = Array.from(document.querySelectorAll(".exercise-input"));
+
+      inputs.forEach((input) => {
+        // Validación en directo (al escribir y perder el foco)
+        input.addEventListener("input", validateInput);
+        input.addEventListener("blur", validateInput);
+
+        // REGLA CRÍTICA: Salto automático al presionar Enter respetando el orden numérico secuencial (1-50)
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault(); // Evitamos comportamiento nativo
+            const currentIndex = parseInt(input.getAttribute("data-index"), 10);
+            const nextInput = document.querySelector(`.exercise-input[data-index="${currentIndex + 1}"]`);
+            if (nextInput) {
+              nextInput.focus();
+            }
+          }
+        });
+      });
+
+      function validateInput(e) {
+        const input = e.target;
+        const val = input.value.trim().toLowerCase();
+        const correctAnswers = input.getAttribute("data-correct").split("|");
+
+        if (val === "") {
+          input.classList.remove("is-valid", "is-invalid");
+          return;
+        }
+
+        // Comprobamos si el valor ingresado coincide con alguna de las opciones aceptadas
+        const isCorrect = correctAnswers.some(ans => ans.trim().toLowerCase() === val);
+
+        if (isCorrect) {
+          input.classList.add("is-valid");
+          input.classList.remove("is-invalid");
+        } else {
+          input.classList.add("is-invalid");
+          input.classList.remove("is-valid");
+        }
+      }
+    });
+  </script>
+</body>
+</html>

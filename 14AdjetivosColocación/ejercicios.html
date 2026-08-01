@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicios</title>
+  <style>
+    /* VARIABLES DE DISEÑO (Guía de Estilo) */
+    :root {
+      --primary-color: #FF79AC;     /* Flamingo Pink */
+      --secondary-color: #FFB3D1;   /* Rosa Claro */
+      --secondary-light: #FFEBF2;   /* Rosa muy claro */
+      --text-color: #121118;        /* Eerie Black */
+      --bg-color: #FFFFFF;          /* Blanco puro */
+      --success-bg: #D4EDDA;        /* Verde suave */
+      --error-bg: #F8D7DA;          /* Rojo suave */
+      --gray-bg: #F9F9F9;           /* Gris muy tenue */
+      --border-gray: #CCCCCC;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 850px;
+    }
+
+    /* TITULO PRINCIPAL */
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 2.5rem);
+      font-weight: bold;
+      color: var(--primary-color);
+      margin: 0 0 25px 0;
+      text-align: left; /* Alineado a la izquierda */
+    }
+
+    /* ENCABEZADOS DE EJERCICIO (Regla crítica) */
+    .exercise-header {
+      display: flex;
+      align-items: baseline;
+      gap: 15px;
+      border-bottom: 2px solid var(--primary-color);
+      width: 100%;
+      padding-bottom: 5px;
+      margin: 35px 0 20px 0;
+    }
+
+    .exercise-num {
+      color: var(--primary-color);
+      font-weight: bold;
+      font-size: 1.9rem;
+      line-height: 1;
+    }
+
+    .exercise-instruction {
+      color: var(--text-color);
+      font-weight: bold;
+      font-size: 1.5rem;
+      line-height: 1.2;
+    }
+
+    /* LISTA DE EJERCICIOS */
+    .exercise-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .exercise-item {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    .parenthesis-hint {
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    /* INPUTS INTERACTIVOS */
+    .input-fill {
+      border: none;
+      border-bottom: 2px solid var(--border-gray);
+      background-color: transparent;
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--text-color);
+      padding: 2px 5px;
+      outline: none;
+      transition: background-color 0.2s, border-color 0.2s;
+      width: 250px;
+      max-width: 100%;
+    }
+
+    .input-fill:focus {
+      border-bottom-color: var(--primary-color);
+    }
+
+    /* ESTADOS DE VALIDACIÓN */
+    .input-fill.correct {
+      background-color: var(--success-bg) !important;
+      border-bottom-color: #28a745 !important;
+    }
+
+    .input-fill.incorrect {
+      background-color: var(--error-bg) !important;
+      border-bottom-color: #dc3545 !important;
+    }
+
+    /* BOTONES */
+    .btn-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn-action {
+      background-color: var(--secondary-color);
+      border: none;
+      border-bottom: 3px solid var(--primary-color);
+      border-radius: 5px;
+      padding: 10px 25px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: var(--text-color);
+      cursor: pointer;
+      transition: transform 0.1s, opacity 0.2s;
+    }
+
+    .btn-action:hover {
+      opacity: 0.9;
+    }
+
+    .btn-action:active {
+      transform: translateY(1px);
+    }
+
+    /* CUADRÍCULA DE RESPUESTAS CORRECTAS */
+    .answers-box {
+      display: none;
+      margin-top: 25px;
+      background-color: var(--gray-bg);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: left;
+    }
+
+    .answers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .answers-column h3 {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--primary-color);
+      padding-bottom: 3px;
+    }
+
+    .answers-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .answers-column li {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: var(--text-color);
+    }
+
+    .ans-num {
+      color: var(--primary-color);
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    @media (max-width: 600px) {
+      .exercise-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+      .input-fill {
+        width: 100%;
+        margin-top: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Ejercicios</h1>
+
+    <!-- ACTIVIDAD 14.1 -->
+    <div class="exercise-header">
+      <div class="exercise-num">14.1</div>
+      <div class="exercise-instruction">Coloque los nombres y adjetivos en el orden correcto.</div>
+    </div>
+
+    <ul class="exercise-list">
+      <li class="exercise-item">
+        1. No me gustan las <span class="parenthesis-hint">(personas/egoístas)</span> 
+        <input type="text" class="input-fill" data-index="1" data-answers='["personas egoístas"]'>.
+      </li>
+      <li class="exercise-item">
+        2. Pon <span class="parenthesis-hint">(platos/limpios)</span> 
+        <input type="text" class="input-fill" data-index="2" data-answers='["platos limpios"]'>.
+      </li>
+      <li class="exercise-item">
+        3. Javier y Marta tienen <span class="parenthesis-hint">(problemas/serios)</span> 
+        <input type="text" class="input-fill" data-index="3" data-answers='["serios problemas"]'>.
+      </li>
+      <li class="exercise-item">
+        4. Me he comprado una <span class="parenthesis-hint">(chaqueta/azul)</span> 
+        <input type="text" class="input-fill" data-index="4" data-answers='["chaqueta azul"]'>.
+      </li>
+      <li class="exercise-item">
+        5. Es una <span class="parenthesis-hint">(persona/mala)</span> 
+        <input type="text" class="input-fill" data-index="5" data-answers='["mala persona"]'>.
+      </li>
+      <li class="exercise-item">
+        6. He visto a mi <span class="parenthesis-hint">(amigo/bueno)</span> 
+        <input type="text" class="input-fill" data-index="6" data-answers='["buen amigo"]'> Tomás.
+      </li>
+      <li class="exercise-item">
+        7. Hoy he tenido un <span class="parenthesis-hint">(día/malo)</span> 
+        <input type="text" class="input-fill" data-index="7" data-answers='["mal día"]'>.
+      </li>
+      <li class="exercise-item">
+        8. Hemos visto el <em>Guernica</em>, el <span class="parenthesis-hint">(cuadro/famoso)</span> 
+        <input type="text" class="input-fill" data-index="8" data-answers='["famoso cuadro", "cuadro famoso"]'> de Picasso.
+      </li>
+      <li class="exercise-item">
+        9. He tenido una <span class="parenthesis-hint">(discusión/fuerte)</span> 
+        <input type="text" class="input-fill" data-index="9" data-answers='["fuerte discusión", "discusión fuerte"]'> con mi jefe.
+      </li>
+      <li class="exercise-item">
+        10. Me he comprado un CD de <em>Parsifal</em>, la <span class="parenthesis-hint">(ópera/maravillosa)</span> 
+        <input type="text" class="input-fill" data-index="10" data-answers='["maravillosa ópera"]'> de Wagner.
+      </li>
+    </ul>
+
+    <!-- ACTIVIDAD 14.2 -->
+    <div class="exercise-header">
+      <div class="exercise-num">14.2</div>
+      <div class="exercise-instruction">Coloque los nombres y adjetivos en el orden correcto.</div>
+    </div>
+
+    <ul class="exercise-list">
+      <li class="exercise-item">
+        1. Jorge vive en el <span class="parenthesis-hint">(piso/décimo)</span> 
+        <input type="text" class="input-fill" data-index="11" data-answers='["piso décimo", "décimo piso"]'>.
+      </li>
+      <li class="exercise-item">
+        2. El domingo es el <span class="parenthesis-hint">(día/último)</span> 
+        <input type="text" class="input-fill" data-index="12" data-answers='["último día"]'> de la semana.
+      </li>
+      <li class="exercise-item">
+        3. El actual rey de España es 
+        <input type="text" class="input-fill" data-index="13" data-answers='["Juan Carlos primero"]'> <span class="parenthesis-hint">(Juan Carlos/primero)</span>.
+      </li>
+      <li class="exercise-item">
+        4. Mi <span class="parenthesis-hint">(esposa/primera)</span> 
+        <input type="text" class="input-fill" data-index="14" data-answers='["primera esposa"]'> murió muy joven.
+      </li>
+      <li class="exercise-item">
+        5. Ayer vi a Pepa con su <span class="parenthesis-hint">(marido/anterior)</span> 
+        <input type="text" class="input-fill" data-index="15" data-answers='["anterior marido"]'>.
+      </li>
+      <li class="exercise-item">
+        6. ¿Has leído ya el <span class="parenthesis-hint">(capítulo/quinto)</span> 
+        <input type="text" class="input-fill" data-index="16" data-answers='["capítulo quinto", "quinto capítulo"]'>?
+      </li>
+      <li class="exercise-item">
+        7. Mi <span class="parenthesis-hint">(jefe/antiguo)</span> 
+        <input type="text" class="input-fill" data-index="17" data-answers='["antiguo jefe"]'> era holandés.
+      </li>
+      <li class="exercise-item">
+        8. Las oficinas están en el 
+        <input type="text" class="input-fill" data-index="18" data-answers='["segundo piso", "piso segundo"]'> <span class="parenthesis-hint">(piso/segundo)</span>.
+      </li>
+      <li class="exercise-item">
+        9. El <span class="parenthesis-hint">(domingo/próximo)</span> 
+        <input type="text" class="input-fill" data-index="19" data-answers='["próximo domingo"]'> es mi cumpleaños.
+      </li>
+      <li class="exercise-item">
+        10. ¿Quién fue el <span class="parenthesis-hint">(rey/último)</span> 
+        <input type="text" class="input-fill" data-index="20" data-answers='["último rey"]'> de Francia?
+      </li>
+      <li class="exercise-item">
+        11. ¿Cuál es la <span class="parenthesis-hint">(hora/mejor)</span> 
+        <input type="text" class="input-fill" data-index="21" data-answers='["mejor hora"]'> para visitar la exposición?
+      </li>
+      <li class="exercise-item">
+        12. Creo que esa es la <span class="parenthesis-hint">(solución/peor)</span> 
+        <input type="text" class="input-fill" data-index="22" data-answers='["peor solución"]'> de todas.
+      </li>
+    </ul>
+
+    <!-- ACTIVIDAD 14.3 -->
+    <div class="exercise-header">
+      <div class="exercise-num">14.3</div>
+      <div class="exercise-instruction">Coloque los nombres y adjetivos en el orden correcto.</div>
+    </div>
+
+    <ul class="exercise-list">
+      <li class="exercise-item">
+        1. Luis trabaja en un comedor para <span class="parenthesis-hint">(niños/pobres)</span> 
+        <input type="text" class="input-fill" data-index="23" data-answers='["niños pobres"]'>.
+      </li>
+      <li class="exercise-item">
+        2. ¡<span class="parenthesis-hint">(Niños/pobres)</span> 
+        <input type="text" class="input-fill" data-index="24" data-answers='["pobres niños"]'>! No tienen padres.
+      </li>
+      <li class="exercise-item">
+        3. Ese cuadro es pequeño. Necesito un <span class="parenthesis-hint">(cuadro/grande)</span> 
+        <input type="text" class="input-fill" data-index="25" data-answers='["cuadro grande"]'> para esa pared.
+      </li>
+      <li class="exercise-item">
+        4. Mi abuelo era un <span class="parenthesis-hint">(hombre/grande)</span> 
+        <input type="text" class="input-fill" data-index="26" data-answers='["hombre grande"]'>. Medía 185 cm.
+      </li>
+      <li class="exercise-item">
+        5. Picasso fue un <span class="parenthesis-hint">(pintor/grande)</span> 
+        <input type="text" class="input-fill" data-index="27" data-answers='["gran pintor"]'>.
+      </li>
+      <li class="exercise-item">
+        6. ¿Has leído mi <span class="parenthesis-hint">(novela/nueva)</span> 
+        <input type="text" class="input-fill" data-index="28" data-answers='["nueva novela"]'>?
+      </li>
+      <li class="exercise-item">
+        7. Pedro y yo nos conocemos hace muchos años. Somos <span class="parenthesis-hint">(amigos/viejos)</span> 
+        <input type="text" class="input-fill" data-index="29" data-answers='["viejos amigos"]'>.
+      </li>
+      <li class="exercise-item">
+        8. Amalia y Jorge han tenido un <span class="parenthesis-hint">(hijo/nuevo)</span> 
+        <input type="text" class="input-fill" data-index="30" data-answers='["nuevo hijo"]'>.
+      </li>
+      <li class="exercise-item">
+        9. Tengo <span class="parenthesis-hint">(amigos/jóvenes)</span> 
+        <input type="text" class="input-fill" data-index="31" data-answers='["amigos jóvenes"]'> y <span class="parenthesis-hint">(amigos/viejos)</span> 
+        <input type="text" class="input-fill" data-index="32" data-answers='["amigos viejos"]'>.
+      </li>
+      <li class="exercise-item">
+        10. Londres y París son dos <span class="parenthesis-hint">(ciudades/grandes)</span> 
+        <input type="text" class="input-fill" data-index="33" data-answers='["grandes ciudades"]'> europeas.
+      </li>
+    </ul>
+
+    <!-- ACTIVIDAD 14.4 -->
+    <div class="exercise-header">
+      <div class="exercise-num">14.4</div>
+      <div class="exercise-instruction">Ordene las frases.</div>
+    </div>
+
+    <ul class="exercise-list">
+      <li class="exercise-item">
+        1. rotos / están / los vasos <br>
+        <input type="text" class="input-fill" style="width: 100%; text-align: left;" data-index="34" data-answers='["Los vasos están rotos", "Los vasos están rotos."]'>
+      </li>
+      <li class="exercise-item" style="margin-top: 15px;">
+        2. cansados / mis padres / se sienten <br>
+        <input type="text" class="input-fill" style="width: 100%; text-align: left;" data-index="35" data-answers='["Mis padres se sienten cansados", "Mis padres se sienten cansados."]'>
+      </li>
+      <li class="exercise-item" style="margin-top: 15px;">
+        3. parece / Luis / nervioso <br>
+        <input type="text" class="input-fill" style="width: 100%; text-align: left;" data-index="36" data-answers='["Luis parece nervioso", "Luis parece nervioso.", "Luis parece nerviso", "Luis parece nerviso."]'>
+      </li>
+      <li class="exercise-item" style="margin-top: 15px;">
+        4. han llegado / rotos / los huevos <br>
+        <input type="text" class="input-fill" style="width: 100%; text-align: left;" data-index="37" data-answers='["Los huevos han llegado rotos", "Los huevos han llegado rotos."]'>
+      </li>
+      <li class="exercise-item" style="margin-top: 15px;">
+        5. mala / la carne / se ha puesto <br>
+        <input type="text" class="input-fill" style="width: 100%; text-align: left;" data-index="38" data-answers='["La carne se ha puesto mala", "La carne se ha puesto mala."]'>
+      </li>
+      <li class="exercise-item" style="margin-top: 15px;">
+        6. es / esa falda / cara <br>
+        <input type="text" class="input-fill" style="width: 100%; text-align: left;" data-index="39" data-answers='["Esa falda es cara", "Esa falda es cara."]'>
+      </li>
+      <li class="exercise-item" style="margin-top: 15px;">
+        7. malas / esas naranjas / están <br>
+        <input type="text" class="input-fill" style="width: 100%; text-align: left;" data-index="40" data-answers='["Esas naranjas están malas", "Esas naranjas están malas."]'>
+      </li>
+      <li class="exercise-item" style="margin-top: 15px;">
+        8. triste / me siento <br>
+        <input type="text" class="input-fill" style="width: 100%; text-align: left;" data-index="41" data-answers='["Me siento triste", "Me siento triste."]'>
+      </li>
+      <li class="exercise-item" style="margin-top: 15px;">
+        9. rojo / se ha puesto / Carlos <br>
+        <input type="text" class="input-fill" style="width: 100%; text-align: left;" data-index="42" data-answers='["Carlos se ha puesto rojo", "Carlos se ha puesto rojo."]'>
+      </li>
+    </ul>
+
+    <!-- BOTÓN Y CUADRO DE RESPUESTAS -->
+    <div class="btn-container">
+      <button class="btn-action" id="btnToggleAnswers" onclick="toggleAnswers()">Respuestas Correctas</button>
+    </div>
+
+    <div class="answers-box" id="answersBox">
+      <div class="answers-grid">
+        <!-- 14.1 -->
+        <div class="answers-column">
+          <h3>14.1</h3>
+          <ul>
+            <li><span class="ans-num">1.</span> personas egoístas</li>
+            <li><span class="ans-num">2.</span> platos limpios</li>
+            <li><span class="ans-num">3.</span> serios problemas</li>
+            <li><span class="ans-num">4.</span> chaqueta azul</li>
+            <li><span class="ans-num">5.</span> mala persona</li>
+            <li><span class="ans-num">6.</span> buen amigo</li>
+            <li><span class="ans-num">7.</span> mal día</li>
+            <li><span class="ans-num">8.</span> famoso cuadro / cuadro famoso</li>
+            <li><span class="ans-num">9.</span> fuerte discusión / discusión fuerte</li>
+            <li><span class="ans-num">10.</span> maravillosa ópera</li>
+          </ul>
+        </div>
+
+        <!-- 14.2 -->
+        <div class="answers-column">
+          <h3>14.2</h3>
+          <ul>
+            <li><span class="ans-num">1.</span> piso décimo / décimo piso</li>
+            <li><span class="ans-num">2.</span> último día</li>
+            <li><span class="ans-num">3.</span> Juan Carlos primero</li>
+            <li><span class="ans-num">4.</span> primera esposa</li>
+            <li><span class="ans-num">5.</span> anterior marido</li>
+            <li><span class="ans-num">6.</span> capítulo quinto / quinto capítulo</li>
+            <li><span class="ans-num">7.</span> antiguo jefe</li>
+            <li><span class="ans-num">8.</span> segundo piso / piso segundo</li>
+            <li><span class="ans-num">9.</span> próximo domingo</li>
+            <li><span class="ans-num">10.</span> último rey</li>
+            <li><span class="ans-num">11.</span> mejor hora</li>
+            <li><span class="ans-num">12.</span> peor solución</li>
+          </ul>
+        </div>
+
+        <!-- 14.3 -->
+        <div class="answers-column">
+          <h3>14.3</h3>
+          <ul>
+            <li><span class="ans-num">1.</span> niños pobres</li>
+            <li><span class="ans-num">2.</span> pobres niños</li>
+            <li><span class="ans-num">3.</span> cuadro grande</li>
+            <li><span class="ans-num">4.</span> hombre grande</li>
+            <li><span class="ans-num">5.</span> gran pintor</li>
+            <li><span class="ans-num">6.</span> nueva novela</li>
+            <li><span class="ans-num">7.</span> viejos amigos</li>
+            <li><span class="ans-num">8.</span> nuevo hijo</li>
+            <li><span class="ans-num">9.</span> amigos jóvenes / amigos viejos</li>
+            <li><span class="ans-num">10.</span> grandes ciudades</li>
+          </ul>
+        </div>
+
+        <!-- 14.4 -->
+        <div class="answers-column">
+          <h3>14.4</h3>
+          <ul>
+            <li><span class="ans-num">1.</span> Los vasos están rotos</li>
+            <li><span class="ans-num">2.</span> Mis padres se sienten cansados</li>
+            <li><span class="ans-num">3.</span> Luis parece nervioso</li>
+            <li><span class="ans-num">4.</span> Los huevos han llegado rotos</li>
+            <li><span class="ans-num">5.</span> La carne se ha puesto mala</li>
+            <li><span class="ans-num">6.</span> Esa falda es cara</li>
+            <li><span class="ans-num">7.</span> Esas naranjas están malas</li>
+            <li><span class="ans-num">8.</span> Me siento triste</li>
+            <li><span class="ans-num">9.</span> Carlos se ha puesto rojo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const inputs = Array.from(document.querySelectorAll(".input-fill"));
+
+      inputs.forEach((input) => {
+        // Validación en tiempo real (al cambiar de campo o al perder el foco)
+        input.addEventListener("change", () => validateField(input));
+        input.addEventListener("blur", () => validateField(input));
+
+        // Validación dinámica sobre la marcha para borrar el color si el campo está vacío
+        input.addEventListener("input", () => {
+          if (input.value.trim() === "") {
+            input.classList.remove("correct", "incorrect");
+          }
+        });
+
+        // Salto de cursor secuencial de 1 a 42 con la tecla Enter
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            const currentIndex = parseInt(input.getAttribute("data-index"), 10);
+            const nextInput = inputs.find(i => parseInt(i.getAttribute("data-index"), 10) === currentIndex + 1);
+            if (nextInput) {
+              nextInput.focus();
+            } else {
+              input.blur();
+            }
+          }
+        });
+      });
+    });
+
+    // Función que normaliza y valida cada campo de manera estricta
+    function validateField(input) {
+      const value = input.value.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+      if (value === "") {
+        input.classList.remove("correct", "incorrect");
+        return;
+      }
+
+      // Obtener respuestas correctas de la lista
+      const answers = JSON.parse(input.getAttribute("data-answers"));
+      
+      // Normalizar las opciones de respuesta del dataset
+      const isCorrect = answers.some(ans => {
+        const normalizedAns = ans.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+        return value === normalizedAns;
+      });
+
+      if (isCorrect) {
+        input.classList.remove("incorrect");
+        input.classList.add("correct");
+      } else {
+        input.classList.remove("correct");
+        input.classList.add("incorrect");
+      }
+    }
+
+    // Mostrar/ocultar el cuadro de respuestas
+    function toggleAnswers() {
+      const box = document.getElementById("answersBox");
+      const btn = document.getElementById("btnToggleAnswers");
+      
+      if (box.style.display === "block") {
+        box.style.display = "none";
+        btn.textContent = "Respuestas Correctas";
+      } else {
+        box.style.display = "block";
+        box.scrollIntoView({ behavior: 'smooth' });
+        btn.textContent = "Ocultar Respuestas";
+      }
+    }
+  </script>
+</body>
+</html>

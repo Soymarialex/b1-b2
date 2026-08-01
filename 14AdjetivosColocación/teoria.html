@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>un niño pobre, un pobre niño</title>
+  <style>
+    /* VARIABLES DE DISEÑO */
+    :root {
+      --primary-color: #FF79AC;     /* Flamingo Pink */
+      --secondary-color: #FFB3D1;   /* Rosa Claro */
+      --text-color: #121118;        /* Eerie Black */
+      --bg-color: #FFFFFF;          /* Blanco puro */
+      --divider-color: #E0E0E0;     /* Gris claro */
+    }
+
+    /* GENERALES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* CABECERA (LESSON HEADER) */
+    .header-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      border-bottom: 4px solid var(--primary-color);
+      padding-bottom: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .lesson-number {
+      background-color: var(--primary-color);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      line-height: 1;
+      display: inline-block;
+      align-self: flex-start;
+    }
+
+    .title-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--text-color);
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--primary-color);
+      margin-top: 0.25rem;
+    }
+
+    .subtitle-translation {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--primary-color);
+      font-style: italic;
+    }
+
+    /* SECCIONES Y LISTAS */
+    section {
+      margin-bottom: 3rem;
+    }
+
+    ul.custom-bullets {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul.custom-bullets > li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    ul.custom-bullets > li::before {
+      content: "●";
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      position: absolute;
+      left: 0;
+      top: -0.2rem;
+      line-height: 1;
+    }
+
+    .bullet-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+
+    ul.sub-bullets {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.5rem;
+    }
+
+    ul.sub-bullets > li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+      text-align: justify;
+    }
+
+    ul.sub-bullets > li::before {
+      content: "–";
+      color: var(--text-color);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* ENFASIS Y TRADUCCIONES */
+    .translation-inline {
+      color: var(--primary-color);
+      font-style: italic;
+    }
+
+    .example-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 0.8rem 0;
+      padding-left: 1rem;
+      font-size: 1.05rem;
+    }
+
+    @media (max-width: 600px) {
+      .example-block {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+    }
+
+    .example-item {
+      font-style: normal;
+    }
+
+    /* COMPARACIONES (TABLAS) */
+    .compare-label {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .compare-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--divider-color);
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 1rem 0 1.5rem 0;
+    }
+
+    .compare-header {
+      background-color: var(--primary-color);
+      color: #FFFFFF;
+      padding: 0.6rem;
+      font-weight: bold;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+
+    .compare-header:first-child {
+      border-right: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .compare-cell {
+      padding: 1rem;
+      background-color: #FFFFFF;
+      font-size: 1.05rem;
+    }
+
+    .compare-cell:first-child {
+      border-right: 1px solid var(--divider-color);
+    }
+
+    .compare-cell p {
+      margin-bottom: 0.5rem;
+    }
+    .compare-cell p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* CUADROS DE EXCEPCIÓN: "PERO" */
+    .pero-box {
+      background-color: var(--secondary-color);
+      border-left: 4px solid var(--primary-color);
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .pero-badge {
+      background-color: var(--primary-color);
+      color: #FFFFFF;
+      font-weight: bold;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    .pero-content {
+      font-size: 1.05rem;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* CUADROS DE ATENCIÓN */
+    .atencion-box {
+      border: 1px solid var(--primary-color);
+      background-color: #FFFDFE;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 4px;
+    }
+
+    .atencion-title {
+      color: var(--primary-color);
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.8rem;
+      border-bottom: 1px solid var(--secondary-color);
+      padding-bottom: 0.3rem;
+      display: inline-block;
+    }
+
+    .atencion-content {
+      font-size: 1.05rem;
+    }
+
+    .atencion-examples {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- CABECERA -->
+    <header class="header-container">
+      <div class="lesson-number">14</div>
+      <div class="title-group">
+        <h1 class="main-title">un niño pobre, un pobre niño</h1>
+        <div class="subtitle">
+          Adjetivos: colocación <span class="subtitle-translation">(adjective placement)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECCIÓN 1: Colocación de los adjetivos respecto al nombre -->
+    <section>
+      <ul class="custom-bullets">
+        <li>
+          <div class="bullet-title">Colocación de los adjetivos respecto al sustantivo</div>
+          
+          <ul class="sub-bullets">
+            <!-- Regla 1 -->
+            <li>
+              Los adjetivos van normalmente después del sustantivo <span class="translation-inline">(after the noun)</span>. En este caso el adjetivo diferencia a esa persona, animal o cosa de las demás personas, animales o cosas.
+              <div class="example-block">
+                <div class="example-item">Hemos comprado <strong>un piso nuevo</strong>. (= no un piso viejo)</div>
+                <div class="example-item">Magritte era <strong>un pintor belga</strong>. (= de esa nacionalidad, no de otra)</div>
+              </div>
+            </li>
+
+            <!-- Regla 2 -->
+            <li>
+              Los adjetivos pueden ir antes del sustantivo <span class="translation-inline">(before the noun)</span> para dar énfasis o para destacar una cualidad.
+              <div class="example-block">
+                <div class="example-item">Jorge ha tenido <strong>un grave accidente</strong>.</div>
+                <div class="example-item">Estoy leyendo "Don Quijote", <strong>la célebre obra</strong> de Cervantes.</div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Comparación 1 -->
+          <div class="compare-label">Compare:</div>
+          <div class="compare-table">
+            <div class="compare-header">sustantivo + adjetivo</div>
+            <div class="compare-header">adjetivo + sustantivo</div>
+            
+            <div class="compare-cell">
+              <p>Necesitamos una <strong>persona joven</strong>.</p>
+              <p style="color: #555;">(= hay limitación: solo personas jóvenes.)</p>
+            </div>
+            <div class="compare-cell">
+              <p>Ayer estuve con mi <strong>joven amigo Roque</strong>.</p>
+              <p style="color: #555;">(= un amigo en concreto que tiene una cualidad concreta.)</p>
+            </div>
+          </div>
+
+          <ul class="sub-bullets">
+            <!-- Regla 3 -->
+            <li>
+              Los números ordinales <span class="translation-inline">(ordinal numbers)</span> y otros adjetivos que indican orden <span class="translation-inline">(order)</span>: <em>antiguo, nuevo, anterior, próximo, último...</em> suelen ir antes del sustantivo.
+              <div class="example-block">
+                <div class="example-item">La academia está en el <strong>tercer piso</strong>.</div>
+                <div class="example-item">-¿Has leído mi <strong>nueva novela</strong>? –Sí, voy por el <strong>décimo capítulo</strong>.</div>
+                <div class="example-item">López es un <strong>antiguo compañero</strong> de colegio.</div>
+                <div class="example-item">Nos pagan el <strong>último día</strong> del mes.</div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Excepción PERO 1 -->
+          <div class="pero-box">
+            <div class="pero-badge">Pero:</div>
+            <div class="pero-content">
+              <div>Con <em>piso, planta</em> o <em>capítulo</em>, los ordinales también pueden ir después del sustantivo.</div>
+            </div>
+          </div>
+          <div class="example-block" style="margin-top: -0.5rem; margin-bottom: 1.5rem; padding-left: 3.5rem;">
+            <div class="example-item">La academia está en el <strong>piso tercero</strong>.</div>
+            <div class="example-item">Voy por el <strong>capítulo décimo</strong>.</div>
+          </div>
+
+          <ul class="sub-bullets">
+            <!-- Regla 4 -->
+            <li>
+              Con los nombres de reyes o papas <span class="translation-inline">(kings or popes)</span>, los ordinales van siempre después.
+              <div class="example-block">
+                <div class="example-item">Felipe V <em>(quinto)</em></div>
+                <div class="example-item">Juan Pablo II <em>(segundo)</em></div>
+              </div>
+            </li>
+
+            <!-- Regla 5 -->
+            <li>
+              <em>Mejor</em> y <em>peor</em> suelen ir antes del sustantivo.
+              <div class="example-block">
+                <div class="example-item">El sábado es el <strong>peor día</strong> para salir.</div>
+              </div>
+            </li>
+
+            <!-- Regla 6 -->
+            <li>
+              En algunos casos, la colocación del adjetivo cambia el significado.
+            </li>
+          </ul>
+
+          <!-- Comparación 2 -->
+          <div class="compare-label">Compare:</div>
+          <div class="compare-table">
+            <div class="compare-header">sustantivo + adjetivo</div>
+            <div class="compare-header">adjetivo + sustantivo</div>
+            
+            <div class="compare-cell">
+              <p><em>un niño pobre</em> (= sin dinero)</p>
+              <p><em>un libro grande</em> (= tamaño)</p>
+              <p><em>un piso nuevo</em> (= sin usar, recién construido)</p>
+              <p><em>un amigo viejo</em> (= de edad)</p>
+             </div>
+            <div class="compare-cell">
+              <p><em>un pobre niño</em> (= desgraciado)</p>
+              <p><em>un gran libro</em> (= calidad)</p>
+              <p><em>un nuevo piso</em> (= otro, adicional al que ya tengo)</p>
+              <p><em>un viejo amigo</em> (= de mucho tiempo)</p>
+            </div>
+          </div>
+
+          <!-- Atención 1 -->
+          <div class="atencion-box">
+            <div class="atencion-title">Atención:</div>
+            <div class="atencion-content">
+              <div><em>bueno, grande, malo</em> + sustantivo &rarr; <em>buen, gran, mal</em></div>
+              <div class="atencion-examples">
+                <div>Madrid es una <strong>gran ciudad</strong>.</div>
+                <div>Es un <strong>buen hombre</strong>.</div>
+                <div>Hoy tengo un <strong>mal día</strong>.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Excepción PERO 2 -->
+          <div class="pero-box">
+            <div class="pero-badge">Pero:</div>
+            <div class="pero-content">
+              <div>Es una <strong>buena mujer</strong>.</div>
+              <div>Londres y París son dos <strong>grandes ciudades</strong>.</div>
+            </div>
+          </div>
+
+        </li>
+      </ul>
+    </section>
+
+    <!-- SECCIÓN 2: Colocación de los adjetivos respecto al verbo -->
+    <section style="margin-bottom: 0;">
+      <ul class="custom-bullets">
+        <li style="margin-bottom: 0;">
+          <div class="bullet-title">Colocación de los adjetivos respecto al verbo</div>
+
+          <ul class="sub-bullets">
+            <!-- Regla 1 respecto al verbo -->
+            <li>
+              Con los verbos <em>ser, estar, parecer, sentirse, ponerse</em> los adjetivos van después del verbo.
+              <div class="example-block">
+                <div class="example-item">El novio de Ángela <strong>es italiano</strong>.</div>
+                <div class="example-item">La sala <strong>está vacía</strong>.</div>
+                <div class="example-item"><strong>Pareces asustado</strong>.</div>
+                <div class="example-item">No <strong>se sienten felices</strong>.</div>
+              </div>
+            </li>
+
+            <!-- Regla 2 respecto al verbo -->
+            <li style="margin-bottom: 0;">
+              También van después del verbo cuando indican el resultado de una acción.
+              <div class="example-block">
+                <div class="example-item"><strong>Llegaron cansados</strong>.</div>
+                <div class="example-item">Tuvieron un accidente, pero <strong>salieron ilesos</strong>.</div>
+              </div>
+            </li>
+          </ul>
+
+        </li>
+      </ul>
+    </section>
+
+  </div>
+
+</body>
+</html>
