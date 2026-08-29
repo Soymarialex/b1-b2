@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Page Title */
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* Exercise Header Structure (Critical Rule) */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        /* Word Bank / Info Box */
+        .info-box {
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            text-align: center;
+        }
+        
+        .info-box span.key-symbol {
+            font-weight: bold;
+            color: #121118;
+        }
+
+        /* Content Lists */
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker, .exercise-item::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Fill-in Input Styles */
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA;
+            border-bottom-color: #28A745;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA;
+            border-bottom-color: #DC3545;
+        }
+
+        /* Width Utilities */
+        .w-xs { width: 100px; }
+        .w-sm { width: 150px; }
+        .w-md { width: 230px; }
+        .w-lg { width: 320px; }
+        .w-xl { width: 380px; }
+
+        /* Answers Button */
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        /* Answers Panel */
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 22.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">22.1</span>
+            <span class="exercise-instruction">Complete con <strong>alguien, algo, nadie</strong> o <strong>nada</strong> y el adjetivo entre paréntesis donde lo haya.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Quiero hacer <em>(divertido)</em> <input type="text" class="fill-input w-md" data-ans="algo divertido">.
+            </li>
+            <li class="exercise-item">
+                Ayer vi a Julia con <em>(sospechoso)</em> <input type="text" class="fill-input w-md" data-ans="alguien sospechoso">.
+            </li>
+            <li class="exercise-item">
+                –Te llama Lola. –Lo siento. No quiero hablar con <input type="text" class="fill-input w-sm" data-ans="nadie">.
+            </li>
+            <li class="exercise-item">
+                –¿Qué te ha regalado Andrés? –<input type="text" class="fill-input w-sm" data-ans="nada">. Es muy tacaño.
+            </li>
+            <li class="exercise-item">
+                ¿Quieres hacer <input type="text" class="fill-input w-sm" data-ans="algo"> este domingo?
+            </li>
+            <li class="exercise-item">
+                Me gustaría conocer a <em>(interesante)</em> <input type="text" class="fill-input w-md" data-ans="alguien interesante">.
+            </li>
+            <li class="exercise-item">
+                Estoy cansada. No tengo ganas de hacer <input type="text" class="fill-input w-sm" data-ans="nada">.
+            </li>
+            <li class="exercise-item">
+                No conozco a <input type="text" class="fill-input w-sm" data-ans="nadie"> en la fiesta.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 22.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">22.2</span>
+            <span class="exercise-instruction">Complete con <strong>alguien</strong> o <strong>nadie</strong>. Utilice <strong>de</strong> en caso necesario.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Me gustaría conocer a <input type="text" class="fill-input w-sm" data-ans="alguien de"> mi país.
+            </li>
+            <li class="exercise-item">
+                No conozco a <input type="text" class="fill-input w-sm" data-ans="nadie de"> esta clase.
+            </li>
+            <li class="exercise-item">
+                No conocemos a <input type="text" class="fill-input w-sm" data-ans="nadie"> en Lima.
+            </li>
+            <li class="exercise-item">
+                Alicia no conoce a <input type="text" class="fill-input w-sm" data-ans="nadie de"> mi familia.
+            </li>
+            <li class="exercise-item">
+                Me gustaría ser <input type="text" class="fill-input w-sm" data-ans="alguien"> importante.
+            </li>
+            <li class="exercise-item">
+                Si tienes un problema, habla con <input type="text" class="fill-input w-sm" data-ans="alguien de"> la dirección.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 22.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">22.3</span>
+            <span class="exercise-instruction">Vuelva a escribir las frases.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                No me llama nadie. <input type="text" class="fill-input w-lg" data-ans="nadie me llama">
+            </li>
+            <li class="exercise-item">
+                No me ha visto nadie. <input type="text" class="fill-input w-lg" data-ans="nadie me ha visto">
+            </li>
+            <li class="exercise-item">
+                Nadie ha visto la película. <input type="text" class="fill-input w-lg" data-ans="no ha visto nadie la película|no la ha visto nadie">
+            </li>
+            <li class="exercise-item">
+                Para Luisa, nada tiene importancia. <input type="text" class="fill-input w-xl" data-ans="para luisa, no tiene importancia nada|para luisa no tiene importancia nada">
+            </li>
+            <li class="exercise-item">
+                Nadie quiso acompañarme. <input type="text" class="fill-input w-lg" data-ans="no quiso acompañarme nadie">
+            </li>
+            <li class="exercise-item">
+                A Luis, nada le altera. <input type="text" class="fill-input w-lg" data-ans="a luis no le altera nada|a luis, no le altera nada">
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 22.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">22.4</span>
+            <span class="exercise-instruction">Complete según la clave siguiente y con las palabras entre paréntesis en la forma adecuada. Use <strong>de</strong> cuando sea necesario.</span>
+        </div>
+
+        <div class="info-box">
+            <span class="key-symbol">(+)</span>: alguien, algo, algún/alguno/alguna/algunos/algunas &nbsp;&nbsp;|&nbsp;&nbsp; 
+            <span class="key-symbol">(-)</span>: nadie, nada, ningún/ninguno/ninguna
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                ¿Conoces a (+, <em>esos chicos</em>) <input type="text" class="fill-input w-md" data-ans="alguno de esos chicos">?
+            </li>
+            <li class="exercise-item">
+                No me ha ayudado (–) <input type="text" class="fill-input w-sm" data-ans="nadie">.
+            </li>
+            <li class="exercise-item">
+                ¿Quiere venir (+) <input type="text" class="fill-input w-sm" data-ans="alguien"> al teatro?
+            </li>
+            <li class="exercise-item">
+                No quiero (–, <em>tus regalos</em>) <input type="text" class="fill-input w-md" data-ans="ninguno de tus regalos">.
+            </li>
+            <li class="exercise-item">
+                Gabriel no se habla con (–, <em>su clase</em>) <input type="text" class="fill-input w-md" data-ans="nadie de su clase">.
+            </li>
+            <li class="exercise-item">
+                ¿Te ha regalado Alberto (+) <input type="text" class="fill-input w-sm" data-ans="algo">?
+            </li>
+            <li class="exercise-item">
+                ¿Conoces a (+, <em>actor</em>) <input type="text" class="fill-input w-sm" data-ans="algún actor">?
+            </li>
+            <li class="exercise-item">
+                (+, <em>tus amigos</em>) <input type="text" class="fill-input w-md" data-ans="algunos de tus amigos"> son muy antipáticos.
+            </li>
+            <li class="exercise-item">
+                No quiere ayudarme (–) <input type="text" class="fill-input w-sm" data-ans="nadie">.
+            </li>
+            <li class="exercise-item">
+                No quiere ayudarme (–, <em>mis compañeros</em>) <input type="text" class="fill-input w-md" data-ans="ninguno de mis compañeros">.
+            </li>
+            <li class="exercise-item">
+                –¿De quién es esto? –No sé. Será de (+, <em>mis tías</em>) <input type="text" class="fill-input w-md" data-ans="alguna de mis tías">.
+            </li>
+            <li class="exercise-item">
+                (+, <em>esas tiendas</em>) <input type="text" class="fill-input w-md" data-ans="algunas de esas tiendas"> son muy caras.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 22.5 -->
+        <div class="exercise-header">
+            <span class="exercise-number">22.5</span>
+            <span class="exercise-instruction">Complete con <strong>alguien, algo, nadie</strong> o <strong>nada, alguno, ninguno</strong> y <strong>más</strong> en caso necesario.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –Ayer me vio Pedro en el parque. –¿Te vio <input type="text" class="fill-input w-sm" data-ans="alguien más">?
+            </li>
+            <li class="exercise-item">
+                Solo tenemos dos velas. Compra <input type="text" class="fill-input w-sm" data-ans="alguna más">.
+            </li>
+            <li class="exercise-item">
+                –Ayer estuve en una discoteca con Carmen. –¿Te vio <input type="text" class="fill-input w-sm" data-ans="alguien">?
+            </li>
+            <li class="exercise-item">
+                –Póngame dos kilos de naranjas y uno de plátanos. –Aquí tiene. ¿Quiere <input type="text" class="fill-input w-sm" data-ans="algo más">? –No, gracias.
+            </li>
+            <li class="exercise-item">
+                –Ya tienes muchas corbatas. –Sí, pero quiero <input type="text" class="fill-input w-sm" data-ans="alguna más">.
+            </li>
+            <li class="exercise-item">
+                Ya tengo dos relojes. No me regales <input type="text" class="fill-input w-sm" data-ans="ninguno más">.
+            </li>
+            <li class="exercise-item">
+                –He invitado a 20 personas. –No invites a <input type="text" class="fill-input w-sm" data-ans="nadie más">. Somos muchos.
+            </li>
+            <li class="exercise-item">
+                Juan y yo vamos a ir a Toledo el domingo. ¿Quiere venir <input type="text" class="fill-input w-sm" data-ans="alguien|alguien más">?
+            </li>
+        </ol>
+
+        <!-- BUTTON AND ANSWERS PANEL -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">22.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> algo divertido</li>
+                        <li><span class="answer-num">2.</span> alguien sospechoso</li>
+                        <li><span class="answer-num">3.</span> nadie</li>
+                        <li><span class="answer-num">4.</span> Nada</li>
+                        <li><span class="answer-num">5.</span> algo</li>
+                        <li><span class="answer-num">6.</span> alguien interesante</li>
+                        <li><span class="answer-num">7.</span> nada</li>
+                        <li><span class="answer-num">8.</span> nadie</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">22.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> alguien de</li>
+                        <li><span class="answer-num">2.</span> nadie de</li>
+                        <li><span class="answer-num">3.</span> nadie</li>
+                        <li><span class="answer-num">4.</span> nadie de</li>
+                        <li><span class="answer-num">5.</span> alguien</li>
+                        <li><span class="answer-num">6.</span> alguien de</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">22.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Nadie me llama.</li>
+                        <li><span class="answer-num">2.</span> Nadie me ha visto.</li>
+                        <li><span class="answer-num">3.</span> No ha visto nadie la película.</li>
+                        <li><span class="answer-num">4.</span> Para Luisa, no tiene importancia nada.</li>
+                        <li><span class="answer-num">5.</span> No quiso acompañarme nadie.</li>
+                        <li><span class="answer-num">6.</span> A Luis no le altera nada.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">22.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> alguno de esos chicos</li>
+                        <li><span class="answer-num">2.</span> nadie</li>
+                        <li><span class="answer-num">3.</span> alguien</li>
+                        <li><span class="answer-num">4.</span> ninguno de tus regalos</li>
+                        <li><span class="answer-num">5.</span> nadie de su clase</li>
+                        <li><span class="answer-num">6.</span> algo</li>
+                        <li><span class="answer-num">7.</span> algún actor</li>
+                        <li><span class="answer-num">8.</span> Algunos de tus amigos</li>
+                        <li><span class="answer-num">9.</span> nadie</li>
+                        <li><span class="answer-num">10.</span> ninguno de mis compañeros</li>
+                        <li><span class="answer-num">11.</span> alguna de mis tías</li>
+                        <li><span class="answer-num">12.</span> Algunas de esas tiendas</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">22.5</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> alguien más</li>
+                        <li><span class="answer-num">2.</span> alguna más</li>
+                        <li><span class="answer-num">3.</span> alguien</li>
+                        <li><span class="answer-num">4.</span> algo más</li>
+                        <li><span class="answer-num">5.</span> alguna más</li>
+                        <li><span class="answer-num">6.</span> ninguno más</li>
+                        <li><span class="answer-num">7.</span> nadie más</li>
+                        <li><span class="answer-num">8.</span> alguien (más)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalize text for evaluation (lowercase, trim spaces and trailing periods)
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/\.$/, '');
+            }
+
+            // Function to validate text input
+            function validateInput(input) {
+                const userVal = normalizeText(input.value);
+                if (userVal === '') {
+                    input.classList.remove('correct', 'incorrect');
+                    return;
+                }
+
+                // Handle multiple correct options split by "|"
+                const acceptedAnswers = input.getAttribute('data-ans').split('|').map(normalizeText);
+                
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            // Listeners for inputs: validation and sequential focus jump on Enter
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    validateInput(this);
+                });
+
+                input.addEventListener('blur', function() {
+                    validateInput(this);
+                });
+
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this);
+                        // Jump to next input if it exists
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Toggle Answers Panel visibility
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

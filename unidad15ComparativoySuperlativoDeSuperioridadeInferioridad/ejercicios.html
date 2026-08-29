@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.3rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-header .ex-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 10px;
+            line-height: 1.2;
+            flex-shrink: 0;
+        }
+
+        .exercise-header .ex-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .info-box {
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .data-table th, .data-table td {
+            padding: 8px;
+            border: 1px solid #E0E0E0;
+        }
+
+        .data-table th {
+            background-color: #FF79AC;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .data-table th.header-sub {
+            background-color: #FFB3D1;
+            color: #121118;
+        }
+
+        .exercise-content {
+            text-align: justify;
+            margin-bottom: 25px;
+        }
+
+        .ol-exercise {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .ol-exercise li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .item-num {
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #999999;
+            background: transparent;
+            text-align: center;
+            color: #121118;
+            font-size: 1rem;
+            font-family: inherit;
+            padding: 2px 6px;
+            outline: none;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            display: inline-block;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28a745 !important;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #dc3545 !important;
+        }
+
+        .grid-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 650px) {
+            .grid-two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .col-header {
+            font-weight: bold;
+            color: #FF79AC;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #FFB3D1;
+            padding-bottom: 4px;
+        }
+
+        .btn-action {
+            background-color: #FFB3D1;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            color: #121118;
+            font-size: 0.9rem;
+            font-weight: bold;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            display: inline-block;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .btn-action:hover {
+            opacity: 0.9;
+        }
+
+        .btn-action:active {
+            transform: translateY(1px);
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .answer-block-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .pink-num {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .answers-grid ol {
+            padding-left: 20px;
+            font-size: 0.95rem;
+        }
+
+        .button-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <h1 class="page-title">Ejercicios</h1>
+
+        <div class="exercise-header">
+            <span class="ex-number">15.1</span>
+            <span class="ex-instruction">Escriba las frases comparando a Antonio y a Sofía.</span>
+        </div>
+
+        <div class="info-box">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>1.7.</th>
+                        <th>2.</th>
+                        <th>3.</th>
+                        <th>4.</th>
+                        <th>5.</th>
+                        <th>6.</th>
+                        <th>7.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold; text-align: left;">Antonio</td>
+                        <td>25 años</td>
+                        <td>178 cm</td>
+                        <td>(-) inteligente</td>
+                        <td>(-) trabajador</td>
+                        <td>(-) popular</td>
+                        <td>(+) alegre</td>
+                        <td>(-) simpático</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; text-align: left;">Sofía</td>
+                        <td>23 años</td>
+                        <td>175 cm</td>
+                        <td>(+) inteligente</td>
+                        <td>(+) trabajadora</td>
+                        <td>(+) popular</td>
+                        <td>(-) alegre</td>
+                        <td>(+) simpática</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="exercise-content">
+            <div class="grid-two-col">
+                <div>
+                    <div class="col-header">Antonio</div>
+                    <ol class="ol-exercise">
+                        <li><span class="item-num">1.</span> Soy <input type="text" class="fill-input" data-answer="mayor que Sofía" style="width: 170px;">.</li>
+                        <li><span class="item-num">2.</span> Soy <input type="text" class="fill-input" data-answer="más alto que Sofía" style="width: 170px;">.</li>
+                        <li><span class="item-num">3.</span> Soy <input type="text" class="fill-input" data-answer="menos inteligente que Sofía" style="width: 210px;">.</li>
+                        <li><span class="item-num">4.</span> Soy <input type="text" class="fill-input" data-answer="menos trabajador que Sofía" style="width: 210px;">.</li>
+                        <li><span class="item-num">5.</span> Soy <input type="text" class="fill-input" data-answer="menos popular que Sofía" style="width: 200px;">.</li>
+                        <li><span class="item-num">6.</span> Soy <input type="text" class="fill-input" data-answer="más alegre que Sofía" style="width: 170px;">.</li>
+                        <li><span class="item-num">7.</span> Soy <input type="text" class="fill-input" data-answer="menos simpático que Sofía" style="width: 200px;">.</li>
+                    </ol>
+                </div>
+                <div>
+                    <div class="col-header">Sofía</div>
+                    <ol class="ol-exercise">
+                        <li><span class="item-num">1.</span> Soy <input type="text" class="fill-input" data-answer="menor que Antonio" style="width: 170px;">.</li>
+                        <li><span class="item-num">2.</span> Soy <input type="text" class="fill-input" data-answer="más baja que Antonio" style="width: 170px;">.</li>
+                        <li><span class="item-num">3.</span> Soy <input type="text" class="fill-input" data-answer="más inteligente que Antonio" style="width: 210px;">.</li>
+                        <li><span class="item-num">4.</span> Soy <input type="text" class="fill-input" data-answer="más trabajadora que Antonio" style="width: 210px;">.</li>
+                        <li><span class="item-num">5.</span> Soy <input type="text" class="fill-input" data-answer="más popular que Antonio" style="width: 200px;">.</li>
+                        <li><span class="item-num">6.</span> Soy <input type="text" class="fill-input" data-answer="menos alegre que Antonio" style="width: 190px;">.</li>
+                        <li><span class="item-num">7.</span> Soy <input type="text" class="fill-input" data-answer="más simpática que Antonio" style="width: 200px;">.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-header">
+            <span class="ex-number">15.2</span>
+            <span class="ex-instruction">Complete las frases con un superlativo.</span>
+        </div>
+
+        <div class="exercise-content">
+            <ol class="ol-exercise">
+                <li><span class="item-num">1.</span> ¿Cuál es <em>(ciudad, + bonito)</em> <input type="text" class="fill-input" data-answer="la ciudad más bonita" style="width: 180px;"> de Cuba?</li>
+                <li><span class="item-num">2.</span> ¿Cuál es <em>(país, - poblado)</em> <input type="text" class="fill-input" data-answer="el país menos poblado" style="width: 180px;"> de Latinoamérica?</li>
+                <li><span class="item-num">3.</span> ¿Cuál es <em>(ciudad, + grande)</em> <input type="text" class="fill-input" data-answer="la ciudad más grande" style="width: 180px;"> de Bolivia?</li>
+                <li><span class="item-num">4.</span> ¿Cuál es <em>(volcán, + alto)</em> <input type="text" class="fill-input" data-answer="el volcán más alto" style="width: 170px;"> de Perú?</li>
+                <li><span class="item-num">5.</span> ¿Cuál es <em>(ciudad, - contaminado)</em> <input type="text" class="fill-input" data-answer="la ciudad menos contaminada" style="width: 230px;"> de España?</li>
+                <li><span class="item-num">6.</span> ¿Cuál es <em>(río, + largo)</em> <input type="text" class="fill-input" data-answer="el río mas largo|el río más largo" style="width: 160px;"> de México?</li>
+                <li><span class="item-num">7.</span> ¿Cuál es <em>(capital, + alto)</em> <input type="text" class="fill-input" data-answer="la capital más alta" style="width: 170px;"> de América del Sur?</li>
+                <li><span class="item-num">8.</span> ¿Cuál es <em>(isla, + pequeño)</em> <input type="text" class="fill-input" data-answer="la isla más pequeña" style="width: 170px;"> del Caribe?</li>
+            </ol>
+        </div>
+
+        <div class="exercise-header">
+            <span class="ex-number">15.3</span>
+            <span class="ex-instruction">Observe la información del recuadro y escriba frases sobre este grupo de amigos.</span>
+        </div>
+
+        <div class="info-box">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="header-sub">Lucas</th>
+                        <th class="header-sub">Marina</th>
+                        <th class="header-sub">Cristina</th>
+                        <th class="header-sub">Leo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold; text-align: left;">simpático</td>
+                        <td>++</td>
+                        <td>--</td>
+                        <td>+</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; text-align: left;">trabajador</td>
+                        <td>+</td>
+                        <td>++</td>
+                        <td>++</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; text-align: left;">inteligente</td>
+                        <td>+</td>
+                        <td>+</td>
+                        <td>-</td>
+                        <td>++</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; text-align: left;">elegante</td>
+                        <td>+</td>
+                        <td>--</td>
+                        <td>++</td>
+                        <td>--</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; text-align: left;">atractivo</td>
+                        <td>-</td>
+                        <td>++</td>
+                        <td>+</td>
+                        <td>++</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="exercise-content">
+            <div class="grid-two-col">
+                <ol class="ol-exercise">
+                    <li><span class="item-num">1.</span> Cristina es <em>(simpático)</em> <input type="text" class="fill-input" data-answer="más simpática|Más simpática" style="width: 140px;"> que Marina.</li>
+                    <li><span class="item-num">2.</span> Lucas es <em>(simpático)</em> <input type="text" class="fill-input" data-answer="el más simpático|El más simpático" style="width: 150px;"> de sus amigos.</li>
+                    <li><span class="item-num">3.</span> Marina es <em>(simpático)</em> <input type="text" class="fill-input" data-answer="la menos simpática|La menos simpática" style="width: 160px;">.</li>
+                    <li><span class="item-num">4.</span> Marina es <em>(trabajador)</em> <input type="text" class="fill-input" data-answer="más trabajadora|Más trabajadora" style="width: 150px;"> que Lucas.</li>
+                    <li><span class="item-num">5.</span> Marina y Cristina son <em>(trabajador)</em> <input type="text" class="fill-input" data-answer="las más trabajadoras|Las más trabajadoras" style="width: 170px;">.</li>
+                    <li><span class="item-num">6.</span> Leo es <em>(trabajador)</em> <input type="text" class="fill-input" data-answer="el menos trabajador|El menos trabajador" style="width: 160px;">.</li>
+                    <li><span class="item-num">7.</span> Lucas es <em>(inteligente)</em> <input type="text" class="fill-input" data-answer="menos inteligente|Menos inteligente" style="width: 150px;"> que Leo.</li>
+                </ol>
+                <ol class="ol-exercise" start="8">
+                    <li><span class="item-num">8.</span> Cristina es <em>(inteligente)</em> <input type="text" class="fill-input" data-answer="la menos inteligente" style="width: 170px;">.</li>
+                    <li><span class="item-num">9.</span> Leo es <em>(elegante)</em> <input type="text" class="fill-input" data-answer="menos elegante" style="width: 140px;"> que Lucas.</li>
+                    <li><span class="item-num">10.</span> Cristina es <em>(elegante)</em> <input type="text" class="fill-input" data-answer="la más elegante" style="width: 140px;">.</li>
+                    <li><span class="item-num">11.</span> Marina y Leo son <em>(elegante)</em> <input type="text" class="fill-input" data-answer="los menos elegantes" style="width: 170px;">.</li>
+                    <li><span class="item-num">12.</span> Lucas es <em>(atractivo)</em> <input type="text" class="fill-input" data-answer="el menos atractivo" style="width: 160px;">.</li>
+                    <li><span class="item-num">13.</span> Marina es <em>(atractivo)</em> <input type="text" class="fill-input" data-answer="más atractiva" style="width: 130px;"> que Cristina.</li>
+                    <li><span class="item-num">14.</span> Marina y Leo son <em>(atractivo)</em> <input type="text" class="fill-input" data-answer="los más atractivos" style="width: 160px;">.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="exercise-header">
+            <span class="ex-number">15.4</span>
+            <span class="ex-instruction">Complete estos eslóganes publicitarios.</span>
+        </div>
+
+        <div class="exercise-content">
+            <ol class="ol-exercise">
+                <li><span class="item-num">1.</span> Agua de Monteviejo, <em>(bebida, + sano)</em> <input type="text" class="fill-input" data-answer="la bebida más sana|La bebida más sana" style="width: 170px;"> y <em>(+ refrescante)</em> <input type="text" class="fill-input" data-answer="la más refrescante" style="width: 160px;">.</li>
+                <li><span class="item-num">2.</span> “Regina”, <em>(reloj, + caro)</em> <input type="text" class="fill-input" data-answer="el reloj más caro|El reloj más caro" style="width: 150px;"> del mundo.</li>
+                <li><span class="item-num">3.</span> Ordenadores portátiles Misima, <em>(+ pequeño)</em> <input type="text" class="fill-input" data-answer="los más pequeños|Los más pequeños" style="width: 160px;"> y <em>(+ potente)</em> <input type="text" class="fill-input" data-answer="los más potentes" style="width: 150px;">.</li>
+                <li><span class="item-num">4.</span> Ropa deportiva “Libre”, <em>(+ cómodo)</em> <input type="text" class="fill-input" data-answer="la más cómoda|La más cómoda" style="width: 150px;"> y <em>(+ elegante)</em> <input type="text" class="fill-input" data-answer="la más elegante" style="width: 150px;">.</li>
+                <li><span class="item-num">5.</span> Galletas Artaneda, <em>(+ bueno)</em> <input type="text" class="fill-input" data-answer="las mejores|Las mejores" style="width: 120px;"> para el desayuno.</li>
+                <li><span class="item-num">6.</span> Leche fresca “Norte”, <em>(+ bueno)</em> <input type="text" class="fill-input" data-answer="la mejor|La mejor" style="width: 100px;"> para su familia.</li>
+            </ol>
+        </div>
+
+        <div class="exercise-header">
+            <span class="ex-number">15.5</span>
+            <span class="ex-instruction">Complete las frases con un comparativo o superlativo y de, del que o de lo que.</span>
+        </div>
+
+        <div class="exercise-content">
+            <ol class="ol-exercise">
+                <li><span class="item-num">1.</span> Julia es <em>(chica, + alegre)</em> <input type="text" class="fill-input" data-answer="la chica más alegre que|La chica más alegre que" style="width: 210px;"> conozco.</li>
+                <li><span class="item-num">2.</span> Marieta es <em>(+ vieja)</em> <input type="text" class="fill-input" data-answer="mayor de lo que|Mayor de lo que" style="width: 160px;"> parece.</li>
+                <li><span class="item-num">3.</span> Para mí, el café de Colombia es <em>(+ bueno)</em> <input type="text" class="fill-input" data-answer="el mejor del|El mejor del" style="width: 130px;"> mundo.</li>
+                <li><span class="item-num">4.</span> Santiago y Pedro son <em>(estudiante, + malo)</em> <input type="text" class="fill-input" data-answer="los peores estudiantes de|Los peores estudiantes de" style="width: 220px;"> la clase.</li>
+                <li><span class="item-num">5.</span> Las ruinas de Machu Picchu son <em>(+ impresionante)</em> <input type="text" class="fill-input" data-answer="las más impresionantes que|Las más impresionantes que" style="width: 240px;"> he visto.</li>
+                <li><span class="item-num">6.</span> Ramón es <em>(+ guapo)</em> <input type="text" class="fill-input" data-answer="más guapo de lo que|Más guapo de lo que" style="width: 180px;"> me dijiste.</li>
+                <li><span class="item-num">7.</span> ¿Cuál es <em>(novela, + bueno)</em> <input type="text" class="fill-input" data-answer="la mejor novela que|La mejor novela que" style="width: 180px;"> has leído?</li>
+                <li><span class="item-num">8.</span> Rosita es <em>(+ viejo)</em> <input type="text" class="fill-input" data-answer="la mayor de|La mayor de" style="width: 130px;"> mis hermanas.</li>
+            </ol>
+        </div>
+
+        <div class="button-bar">
+            <button class="btn-action" id="toggleAnswersBtn" onclick="toggleAnswers()">Respuestas correctas</button>
+        </div>
+
+        <div id="answersContainer" class="info-box" style="display: none; margin-top: 15px;">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-block-title"><span class="pink-num">15.1</span> Antonio</div>
+                    <ol>
+                        <li>mayor que Sofía</li>
+                        <li>más alto que Sofía</li>
+                        <li>menos inteligente que Sofía</li>
+                        <li>menos trabajador que Sofía</li>
+                        <li>menos popular que Sofía</li>
+                        <li>más alegre que Sofía</li>
+                        <li>menos simpático que Sofía</li>
+                    </ol>
+                </div>
+
+                <div>
+                    <div class="answer-block-title"><span class="pink-num">15.1</span> Sofía</div>
+                    <ol>
+                        <li>menor que Antonio</li>
+                        <li>más baja que Antonio</li>
+                        <li>más inteligente que Antonio</li>
+                        <li>más trabajadora que Antonio</li>
+                        <li>más popular que Antonio</li>
+                        <li>menos alegre que Antonio</li>
+                        <li>más simpática que Antonio</li>
+                    </ol>
+                </div>
+
+                <div>
+                    <div class="answer-block-title"><span class="pink-num">15.2</span></div>
+                    <ol>
+                        <li>La ciudad más bonita</li>
+                        <li>El país menos poblado</li>
+                        <li>La ciudad más grande</li>
+                        <li>El volcán más alto</li>
+                        <li>La ciudad menos contaminada</li>
+                        <li>El río mas largo</li>
+                        <li>La capital más alta</li>
+                        <li>La isla más pequeña</li>
+                    </ol>
+                </div>
+
+                <div>
+                    <div class="answer-block-title"><span class="pink-num">15.3</span></div>
+                    <ol>
+                        <li>Más simpática</li>
+                        <li>El más simpático</li>
+                        <li>La menos simpática</li>
+                        <li>Más trabajadora</li>
+                        <li>Las más trabajadoras</li>
+                        <li>El menos trabajador</li>
+                        <li>Menos inteligente</li>
+                        <li>la menos inteligente</li>
+                        <li>menos elegante</li>
+                        <li>la más elegante</li>
+                        <li>los menos elegantes</li>
+                        <li>el menos atractivo</li>
+                        <li>más atractiva</li>
+                        <li>los más atractivos</li>
+                    </ol>
+                </div>
+
+                <div>
+                    <div class="answer-block-title"><span class="pink-num">15.4</span></div>
+                    <ol>
+                        <li>La bebida más sana - la más refrescante</li>
+                        <li>El reloj más caro</li>
+                        <li>Los más pequeños - los más potentes</li>
+                        <li>La más cómoda - la más elegante</li>
+                        <li>Las mejores</li>
+                        <li>La mejor</li>
+                    </ol>
+                </div>
+
+                <div>
+                    <div class="answer-block-title"><span class="pink-num">15.5</span></div>
+                    <ol>
+                        <li>La chica más alegre que</li>
+                        <li>Mayor de lo que</li>
+                        <li>El mejor del</li>
+                        <li>Los peores estudiantes de</li>
+                        <li>Las más impresionantes que</li>
+                        <li>Más guapo de lo que</li>
+                        <li>La mejor novela que</li>
+                        <li>La mayor de</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            
+            inputs.forEach((input, index) => {
+                input.setAttribute('data-index', index);
+                
+                // Jump to next input on Enter key press
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateSingleInput(input);
+                        const nextInput = inputs[index + 1];
+                        if (nextInput) {
+                            nextInput.focus();
+                        }
+                    }
+                });
+
+                // Validate on blur if not empty
+                input.addEventListener('blur', () => {
+                    if (input.value.trim() !== '') {
+                        validateSingleInput(input);
+                    } else {
+                        input.classList.remove('correct', 'incorrect');
+                    }
+                });
+            });
+        });
+
+        function validateSingleInput(input) {
+            const val = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+            const rawAnswers = input.getAttribute('data-answer') || '';
+            const validAnswers = rawAnswers.split('|').map(a => a.trim().toLowerCase().replace(/\s+/g, ' '));
+            
+            if (val === '') {
+                input.classList.remove('correct', 'incorrect');
+                return;
+            }
+
+            if (validAnswers.includes(val)) {
+                input.classList.add('correct');
+                input.classList.remove('incorrect');
+            } else {
+                input.classList.add('incorrect');
+                input.classList.remove('correct');
+            }
+        }
+
+        function toggleAnswers() {
+            const container = document.getElementById('answersContainer');
+            const btn = document.getElementById('toggleAnswersBtn');
+            if (container.style.display === 'none' || container.style.display === '') {
+                container.style.display = 'block';
+                btn.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                container.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

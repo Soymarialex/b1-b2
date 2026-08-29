@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+        }
+
+        .w-xs { width: 70px; }
+        .w-sm { width: 140px; }
+        .w-md { width: 240px; }
+        .w-lg { width: 340px; }
+        .w-full-line { width: 100%; max-width: 520px; text-align: left !important; padding-left: 10px; }
+
+        .underline-text {
+            text-decoration: underline;
+        }
+
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 500px) {
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 27.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">27.1</span>
+            <span class="exercise-instruction">Responda a las preguntas usando los pronombres adecuados.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –¿Conoces a Manuel? –Sí, <input type="text" class="fill-input w-xs" data-ans="lo"> conozco.
+            </li>
+            <li class="exercise-item">
+                –¿Ves a mi hermana? –Sí, <input type="text" class="fill-input w-xs" data-ans="la"> veo.
+            </li>
+            <li class="exercise-item">
+                –¿Traes el periódico? –Sí, <input type="text" class="fill-input w-xs" data-ans="lo"> traigo.
+            </li>
+            <li class="exercise-item">
+                –¿Nos llamaste anoche? –No, no <input type="text" class="fill-input w-xs" data-ans="os|los|las"> llamé.
+            </li>
+            <li class="exercise-item">
+                –¿Ayudas a tus padres? –Sí, <input type="text" class="fill-input w-xs" data-ans="los"> ayudo.
+            </li>
+            <li class="exercise-item">
+                –¿Me oyes? –Sí, <input type="text" class="fill-input w-xs" data-ans="te"> oigo.
+            </li>
+            <li class="exercise-item">
+                –¿Te ha invitado Juana? –Sí, <input type="text" class="fill-input w-xs" data-ans="me"> ha invitado.
+            </li>
+            <li class="exercise-item">
+                –¿Me vieron tus padres? –No, no <input type="text" class="fill-input w-xs" data-ans="te"> vieron.
+            </li>
+            <li class="exercise-item">
+                –¿Has arreglado la impresora? –No, no <input type="text" class="fill-input w-xs" data-ans="la"> he arreglado.
+            </li>
+            <li class="exercise-item">
+                –¿Te ha llamado Alberto? –Sí, <input type="text" class="fill-input w-xs" data-ans="me"> ha llamado.
+            </li>
+            <li class="exercise-item">
+                –¿Nos han llamado? –No, a ustedes no <input type="text" class="fill-input w-xs" data-ans="los|las"> han llamado.
+            </li>
+            <li class="exercise-item">
+                –¿Me viste en la ópera? –No, a usted no <input type="text" class="fill-input w-xs" data-ans="lo|la"> vi.
+            </li>
+            <li class="exercise-item">
+                –¿Has comprado las velas? –No, no <input type="text" class="fill-input w-xs" data-ans="las"> he comprado.
+            </li>
+            <li class="exercise-item">
+                –¿Os ha visto alguien? –No, no <input type="text" class="fill-input w-xs" data-ans="nos"> ha visto nadie.
+            </li>
+            <li class="exercise-item">
+                –¿Has llamado a Cristina? –No, no <input type="text" class="fill-input w-xs" data-ans="la"> he llamado.
+            </li>
+            <li class="exercise-item">
+                –¿Las han invitado a ustedes? –Sí, <input type="text" class="fill-input w-xs" data-ans="nos"> han invitado.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 27.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">27.2</span>
+            <span class="exercise-instruction">Escriba las oraciones cambiando las palabras subrayadas por un pronombre.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                ¿Dijiste <span class="underline-text">a Pedro</span> la verdad? 
+                <input type="text" class="fill-input w-full-line" data-ans="¿Le dijiste la verdad?|Le dijiste la verdad|Le dijiste la verdad?">
+            </li>
+            <li class="exercise-item">
+                Trajeron las flores <span class="underline-text">a Lucía</span>. 
+                <input type="text" class="fill-input w-full-line" data-ans="Le trajeron las flores.|Le trajeron las flores">
+            </li>
+            <li class="exercise-item">
+                Regalé bombones <span class="underline-text">a las niñas</span>. 
+                <input type="text" class="fill-input w-full-line" data-ans="Les regalé bombones.|Les regalé bombones">
+            </li>
+            <li class="exercise-item">
+                Conté el chiste <span class="underline-text">a mi novia</span>. 
+                <input type="text" class="fill-input w-full-line" data-ans="Le conté el chiste.|Le conté el chiste">
+            </li>
+            <li class="exercise-item">
+                Sirvieron <span class="underline-text">a los chicos</span> la sopa. 
+                <input type="text" class="fill-input w-full-line" data-ans="Les sirvieron la sopa.|Les sirvieron la sopa">
+            </li>
+            <li class="exercise-item">
+                Dieron dinero <span class="underline-text">a Felipe y a mí</span>. 
+                <input type="text" class="fill-input w-full-line" data-ans="Nos dieron dinero.|Nos dieron dinero">
+            </li>
+            <li class="exercise-item">
+                ¿Ha devuelto Rosa el libro <span class="underline-text">a ti</span>? 
+                <input type="text" class="fill-input w-full-line" data-ans="¿Te ha devuelto Rosa el libro?|Te ha devuelto Rosa el libro?|¿Te ha devuelto Rosa el libro|Te ha devuelto Rosa el libro">
+            </li>
+            <li class="exercise-item">
+                He devuelto <span class="underline-text">a Julio</span> el anillo. 
+                <input type="text" class="fill-input w-full-line" data-ans="Le he devuelto el anillo.|Le he devuelto el anillo">
+            </li>
+            <li class="exercise-item">
+                María ya ha escrito <span class="underline-text">a sus padres</span>. 
+                <input type="text" class="fill-input w-full-line" data-ans="María ya les ha escrito.|María ya les ha escrito">
+            </li>
+            <li class="exercise-item">
+                ¿Has dado las gracias <span class="underline-text">a tu prima</span>? 
+                <input type="text" class="fill-input w-full-line" data-ans="¿Le has dado las gracias?|Le has dado las gracias?|¿Le has dado las gracias|Le has dado las gracias">
+            </li>
+            <li class="exercise-item">
+                Laura mandó besos <span class="underline-text">a mí</span>. 
+                <input type="text" class="fill-input w-full-line" data-ans="Laura me mandó besos.|Laura me mandó besos">
+            </li>
+            <li class="exercise-item">
+                Tengo miedo <span class="underline-text">a las arañas</span>. 
+                <input type="text" class="fill-input w-full-line" data-ans="Les tengo miedo.|Les tengo miedo">
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 27.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">27.3</span>
+            <span class="exercise-instruction">Responda a las preguntas usando los pronombres adecuados.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –¿Has dado el correo a Gloria? –Sí, <input type="text" class="fill-input w-xs" data-ans="se"> <input type="text" class="fill-input w-xs" data-ans="lo"> he dado.
+            </li>
+            <li class="exercise-item">
+                –¿Has devuelto la grabadora a Carlos? –Sí, <input type="text" class="fill-input w-xs" data-ans="se"> <input type="text" class="fill-input w-xs" data-ans="la"> he devuelto.
+            </li>
+            <li class="exercise-item">
+                –¿Le has dado las raquetas a Anita? –No, no <input type="text" class="fill-input w-xs" data-ans="se"> <input type="text" class="fill-input w-xs" data-ans="las"> he dado.
+            </li>
+            <li class="exercise-item">
+                –¿Le has prestado los prismáticos a Juan? –Sí, <input type="text" class="fill-input w-xs" data-ans="se"> <input type="text" class="fill-input w-xs" data-ans="los"> he prestado.
+            </li>
+            <li class="exercise-item">
+                –¿Le has regalado tu ordenador a Javi? –Sí, <input type="text" class="fill-input w-xs" data-ans="se"> <input type="text" class="fill-input w-xs" data-ans="lo"> he regalado.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 27.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">27.4</span>
+            <span class="exercise-instruction">Complete con los pronombres adecuados.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –¿ <input type="text" class="fill-input w-xs" data-ans="Le|le"> has dicho a Juan que necesito el coche? –Sí, <input type="text" class="fill-input w-xs" data-ans="se"> <input type="text" class="fill-input w-xs" data-ans="lo"> he dicho, pero dice que él también <input type="text" class="fill-input w-xs" data-ans="lo"> necesita.
+            </li>
+            <li class="exercise-item">
+                –¿Sabes que me voy a Colombia? –No, no <input type="text" class="fill-input w-xs" data-ans="lo"> sabía.
+            </li>
+            <li class="exercise-item">
+                –Ángela dice que tiene mucho dinero. ¿Es cierto? – <input type="text" class="fill-input w-xs" data-ans="Lo|lo"> es, pero no <input type="text" class="fill-input w-xs" data-ans="lo"> parece.
+            </li>
+            <li class="exercise-item">
+                –¿Sabe papá que necesito dinero? – <input type="text" class="fill-input w-xs" data-ans="Lo|lo"> sabe, pero dice que <input type="text" class="fill-input w-xs" data-ans="se"> <input type="text" class="fill-input w-xs" data-ans="lo"> pidas a mamá.
+            </li>
+            <li class="exercise-item">
+                No <input type="text" class="fill-input w-xs" data-ans="lo"> entiendo. <input type="text" class="fill-input w-xs" data-ans="Le|le"> he ofrecido ayuda a Tere, pero no <input type="text" class="fill-input w-xs" data-ans="la"> ha aceptado.
+            </li>
+            <li class="exercise-item">
+                –Tú no eres actriz. –Claro que <input type="text" class="fill-input w-xs" data-ans="lo"> soy, pero no <input type="text" class="fill-input w-xs" data-ans="lo"> sabe nadie.
+            </li>
+            <li class="exercise-item">
+                –Juan y Lola se han casado. –Nunca imaginé que <input type="text" class="fill-input w-xs" data-ans="lo"> harían.
+            </li>
+            <li class="exercise-item">
+                –Se ha muerto Momo. –¡Cuánto <input type="text" class="fill-input w-xs" data-ans="lo"> siento! Yo <input type="text" class="fill-input w-xs" data-ans="lo"> quería mucho.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 27.5 -->
+        <div class="exercise-header">
+            <span class="exercise-number">27.5</span>
+            <span class="exercise-instruction">Ordene las palabras para formar frases.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –(¿Ves/me?) <input type="text" class="fill-input w-sm" data-ans="¿Me ves?|¿Me ves|Me ves?"> ? –No, (no/veo/te) <input type="text" class="fill-input w-sm" data-ans="no te veo"> bien.
+            </li>
+            <li class="exercise-item">
+                –¿Qué (ha dicho/te) <input type="text" class="fill-input w-sm" data-ans="te ha dicho"> el médico? –(ha dicho/me) <input type="text" class="fill-input w-md" data-ans="Me ha dicho|me ha dicho"> que estoy bien.
+            </li>
+            <li class="exercise-item">
+                Este bolso (lo/regaló/me) <input type="text" class="fill-input w-md" data-ans="me lo regaló"> Jesús.
+            </li>
+            <li class="exercise-item">
+                –¿(Han dicho/lo/se) <input type="text" class="fill-input w-md" data-ans="¿Se lo han dicho|Se lo han dicho|¿Se lo han dicho ya?|Se lo han dicho ya"> ya? –No, (no/se/han dicho/lo) <input type="text" class="fill-input w-md" data-ans="no se lo han dicho"> todavía.
+            </li>
+            <li class="exercise-item">
+                –¿(Prestas/lo/me) <input type="text" class="fill-input w-sm" data-ans="¿Me lo prestas?|¿Me lo prestas|Me lo prestas"> ? –No, (puedo/lo/no/te) <input type="text" class="fill-input w-md" data-ans="no te lo puedo"> prestar.
+            </li>
+        </ol>
+
+        <!-- BUTTON AND ANSWERS PANEL -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">27.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> lo</li>
+                        <li><span class="answer-num">2.</span> la</li>
+                        <li><span class="answer-num">3.</span> lo</li>
+                        <li><span class="answer-num">4.</span> os / los / las</li>
+                        <li><span class="answer-num">5.</span> los</li>
+                        <li><span class="answer-num">6.</span> te</li>
+                        <li><span class="answer-num">7.</span> me</li>
+                        <li><span class="answer-num">8.</span> te</li>
+                        <li><span class="answer-num">9.</span> la</li>
+                        <li><span class="answer-num">10.</span> me</li>
+                        <li><span class="answer-num">11.</span> los / las</li>
+                        <li><span class="answer-num">12.</span> lo / la</li>
+                        <li><span class="answer-num">13.</span> las</li>
+                        <li><span class="answer-num">14.</span> nos</li>
+                        <li><span class="answer-num">15.</span> la</li>
+                        <li><span class="answer-num">16.</span> nos</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">27.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> ¿Le dijiste la verdad?</li>
+                        <li><span class="answer-num">2.</span> Le trajeron las flores.</li>
+                        <li><span class="answer-num">3.</span> Les regalé bombones.</li>
+                        <li><span class="answer-num">4.</span> Le conté el chiste.</li>
+                        <li><span class="answer-num">5.</span> Les sirvieron la sopa.</li>
+                        <li><span class="answer-num">6.</span> Nos dieron dinero.</li>
+                        <li><span class="answer-num">7.</span> ¿Te ha devuelto Rosa el libro?</li>
+                        <li><span class="answer-num">8.</span> Le he devuelto el anillo.</li>
+                        <li><span class="answer-num">9.</span> María ya les ha escrito.</li>
+                        <li><span class="answer-num">10.</span> ¿Le has dado las gracias?</li>
+                        <li><span class="answer-num">11.</span> Laura me mandó besos.</li>
+                        <li><span class="answer-num">12.</span> Les tengo miedo.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">27.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> se lo</li>
+                        <li><span class="answer-num">2.</span> se la</li>
+                        <li><span class="answer-num">3.</span> se las</li>
+                        <li><span class="answer-num">4.</span> se los</li>
+                        <li><span class="answer-num">5.</span> se lo</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">27.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Le; se lo; lo</li>
+                        <li><span class="answer-num">2.</span> lo</li>
+                        <li><span class="answer-num">3.</span> Lo; lo</li>
+                        <li><span class="answer-num">4.</span> Lo; se lo</li>
+                        <li><span class="answer-num">5.</span> lo; Le; la</li>
+                        <li><span class="answer-num">6.</span> lo; lo</li>
+                        <li><span class="answer-num">7.</span> lo</li>
+                        <li><span class="answer-num">8.</span> lo; lo</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">27.5</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> ¿Me ves?; no te veo</li>
+                        <li><span class="answer-num">2.</span> te ha dicho; Me ha dicho</li>
+                        <li><span class="answer-num">3.</span> me lo regaló</li>
+                        <li><span class="answer-num">4.</span> ¿Se lo han dicho ya?; no se lo han dicho</li>
+                        <li><span class="answer-num">5.</span> ¿Me lo prestas?; no te lo puedo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input:not([readonly])'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalize string for validation
+            function normalizeText(text) {
+                return text.trim().toLowerCase();
+            }
+
+            function validateInput(input, triggerType = 'enter') {
+                const rawVal = input.value;
+                const userVal = normalizeText(rawVal);
+                const rawAccepted = input.getAttribute('data-ans').split('|');
+                const acceptedAnswers = rawAccepted.map(normalizeText);
+                const allowsEmpty = acceptedAnswers.some(ans => ['ø', '-', 'ninguno', 'nada', ''].includes(ans));
+
+                if (userVal === '') {
+                    if (allowsEmpty) {
+                        input.classList.add('correct');
+                        input.classList.remove('incorrect');
+                    } else {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    }
+                    return;
+                }
+
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            inputs.forEach((indexInput, index) => {
+                // Remove feedback colors while actively typing
+                indexInput.addEventListener('input', function() {
+                    this.classList.remove('correct', 'incorrect');
+                });
+
+                indexInput.addEventListener('blur', function() {
+                    validateInput(this, 'blur');
+                });
+
+                indexInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this, 'enter');
+                        // Jump to next input sequentially
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

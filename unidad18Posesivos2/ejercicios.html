@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Page Title */
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* Exercise Header Structure */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        /* Exercise Content Lists */
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker, .exercise-item::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Input Styles */
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA;
+            border-bottom-color: #28A745;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA;
+            border-bottom-color: #DC3545;
+        }
+
+        /* Input Width Utilities */
+        .w-xs { width: 75px; }
+        .w-sm { width: 120px; }
+        .w-md { width: 190px; }
+        .w-lg { width: 280px; }
+        .w-full-line { width: 100%; max-width: 540px; margin-top: 4px; }
+
+        /* Answers Button */
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        /* Answers Panel */
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .exercise-header {
+                flex-direction: row;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 18.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">18.1</span>
+            <span class="exercise-instruction">Complete con <em>mi, tu, su...</em> o <em>mío, tuyo, suyo...</em></span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                El hombre alto es <input type="text" class="fill-input w-xs" data-ans="mi"> padre.
+            </li>
+            <li class="exercise-item">
+                Tengo dos libros <input type="text" class="fill-input w-sm" data-ans="tuyos">. Te los devuelvo cuando los acabe.
+            </li>
+            <li class="exercise-item">
+                Un amigo <input type="text" class="fill-input w-sm" data-ans="mío|mio"> habla chino perfectamente.
+            </li>
+            <li class="exercise-item">
+                Rocío me dijo que una prima <input type="text" class="fill-input w-sm" data-ans="suya"> vivía en Colombia.
+            </li>
+            <li class="exercise-item">
+                Ayer estuve con Andrés y <input type="text" class="fill-input w-xs" data-ans="su"> novia.
+            </li>
+            <li class="exercise-item">
+                –Ayer vi a Ana con Elisa. –¿Quién es Elisa? –Una prima <input type="text" class="fill-input w-sm" data-ans="suya">.
+            </li>
+            <li class="exercise-item">
+                –Necesito escribir una carta. –Usa <input type="text" class="fill-input w-xs" data-ans="mi"> ordenador. Ahora no lo necesito.
+            </li>
+            <li class="exercise-item">
+                Acabo de hablar con <input type="text" class="fill-input w-xs" data-ans="tu"> madre, Pedro. Es muy simpática.
+            </li>
+            <li class="exercise-item">
+                Amparo, yo y dos amigos <input type="text" class="fill-input w-md" data-ans="nuestros|míos|mios"> queremos ir a Grecia.
+            </li>
+            <li class="exercise-item">
+                ¿Dónde podemos guardar <input type="text" class="fill-input w-sm" data-ans="nuestra"> ropa, Adela?
+            </li>
+            <li class="exercise-item">
+                Mi madre tiene unas fotos <input type="text" class="fill-input w-md" data-ans="vuestras|suyas">, de ti y de Alfonso.
+            </li>
+            <li class="exercise-item">
+                Le he comprado a Tina unos cuadros <input type="text" class="fill-input w-sm" data-ans="suyos">. Son muy buenos.
+            </li>
+        </ol>
+
+
+        <!-- EJERCICIO 18.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">18.2</span>
+            <span class="exercise-instruction">Complete las frases con el posesivo correspondiente y el nombre dado.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                (Tengo un hermano) “Juan trabaja con (yo/hermano) <input type="text" class="fill-input w-md" data-ans="mi hermano">.”
+            </li>
+            <li class="exercise-item">
+                (Tengo tres hermanos) “Juan trabaja con (yo/hermano) <input type="text" class="fill-input w-lg" data-ans="un hermano mío|un hermano mio">.”
+            </li>
+            <li class="exercise-item">
+                (Elena tiene varios profesores) “(ella/profesor) <input type="text" class="fill-input w-lg" data-ans="un profesor suyo"> es argentino.”
+            </li>
+            <li class="exercise-item">
+                (Alberto tiene tres hermanas) “(él/hermanas) <input type="text" class="fill-input w-md" data-ans="sus hermanas"> están casadas.”
+            </li>
+            <li class="exercise-item">
+                (Doña Rosario tiene dos hijas) “Trabajo con (usted/hija) <input type="text" class="fill-input w-lg" data-ans="una hija suya">, doña Rosario.”
+            </li>
+            <li class="exercise-item">
+                (Luis y Ana tienen una abuela) “Acabo de ver a (vosotros/abuela) <input type="text" class="fill-input w-lg" data-ans="vuestra abuela">.”
+            </li>
+            <li class="exercise-item">
+                (Joaquín tiene muchos sellos) “Joaquín ha vendido (él/algunos sellos) <input type="text" class="fill-input w-lg" data-ans="algunos sellos suyos">.”
+            </li>
+            <li class="exercise-item">
+                (Sofía ha escrito varios libros) “He leído (tú/libro) <input type="text" class="fill-input w-md" data-ans="un libro tuyo">, Sofía.”
+            </li>
+            <li class="exercise-item">
+                (Alberto tiene muchos amigos) “Alberto está cenando con (él/unos amigos) <input type="text" class="fill-input w-lg" data-ans="unos amigos suyos">.”
+            </li>
+            <li class="exercise-item">
+                (Gema tiene muchos alumnos) “Gema se preocupa mucho por (ella/alumnos) <input type="text" class="fill-input w-md" data-ans="sus alumnos">.”
+            </li>
+            <li class="exercise-item">
+                (Elena tiene dos abuelos) “Elena pasa la Navidad con (ella/abuelo) <input type="text" class="fill-input w-lg" data-ans="un abuelo suyo">.”
+            </li>
+            <li class="exercise-item">
+                (Mi hermano y yo tenemos tres perros) “Todas las tardes paseo a (nosotros/perros) <input type="text" class="fill-input w-lg" data-ans="nuestros perros">.”
+            </li>
+        </ol>
+
+
+        <!-- EJERCICIO 18.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">18.3</span>
+            <span class="exercise-instruction">Vuelva a escribir las frases.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Una amiga mía toca en una orquesta.<br>
+                <input type="text" class="fill-input w-full-line" data-ans="una de mis amigas toca en una orquesta">
+            </li>
+            <li class="exercise-item">
+                Un profesor suyo está enfermo.<br>
+                <input type="text" class="fill-input w-full-line" data-ans="uno de sus profesores está enfermo|uno de sus profesores esta enfermo">
+            </li>
+            <li class="exercise-item">
+                Le he comprado un cuadro suyo.<br>
+                <input type="text" class="fill-input w-full-line" data-ans="le he comprado uno de sus cuadros">
+            </li>
+            <li class="exercise-item">
+                ¿Me prestas un libro tuyo?<br>
+                <input type="text" class="fill-input w-full-line" data-ans="¿me prestas uno de tus libros?|me prestas uno de tus libros?|me prestas uno de tus libros">
+            </li>
+            <li class="exercise-item">
+                Dos primos míos viven en Brasil.<br>
+                <input type="text" class="fill-input w-full-line" data-ans="dos de mis primos viven en brasil">
+            </li>
+            <li class="exercise-item">
+                Un hermano nuestro es profesor de Historia.<br>
+                <input type="text" class="fill-input w-full-line" data-ans="uno de nuestros hermanos es catedrático de historia|uno de nuestros hermanos es profesor de historia">
+            </li>
+            <li class="exercise-item">
+                Déjame una corbata tuya.<br>
+                <input type="text" class="fill-input w-full-line" data-ans="déjame una de tus corbatas|dejame una de tus corbatas">
+            </li>
+            <li class="exercise-item">
+                Hemos conocido a dos vecinos vuestros.<br>
+                <input type="text" class="fill-input w-full-line" data-ans="hemos conocido a dos de vuestros vecinos">
+            </li>
+            <li class="exercise-item">
+                Estamos veraneando con dos compañeros nuestros.<br>
+                <input type="text" class="fill-input w-full-line" data-ans="estamos veraneando con dos de nuestros compañeros|estamos veraneando con dos de nuestros companeros">
+            </li>
+            <li class="exercise-item">
+                Marta sale con un alumno suyo.<br>
+                <input type="text" class="fill-input w-full-line" data-ans="marta sale con uno de sus alumnos">
+            </li>
+        </ol>
+
+
+        <!-- EJERCICIO 18.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">18.4</span>
+            <span class="exercise-instruction">Vuelva a escribir las frases subrayadas con <em>de + pronombre personal</em>.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                (El compañero es de Lola.) He visto a Lola con <u>un compañero suyo</u>, don Diego.<br>
+                <input type="text" class="fill-input w-lg" data-ans="un compañero de ella|un compañero de ella.">
+            </li>
+            <li class="exercise-item">
+                (El amigo es de doña Asunción) He visto a Pedro con <u>un amigo suyo</u>, doña Asunción.<br>
+                <input type="text" class="fill-input w-lg" data-ans="un amigo de usted|un amigo de usted.">
+            </li>
+            <li class="exercise-item">
+                (La prima es del Sr. Villa) –¿Dónde trabaja Eva? –Con <u>una prima suya</u>, Sr. Villa.<br>
+                <input type="text" class="fill-input w-lg" data-ans="una prima de usted|una prima de usted.">
+            </li>
+            <li class="exercise-item">
+                (El tío es de Diego) –¿Dónde está Diego? –En Buenos Aires, con <u>un tío suyo</u>.<br>
+                <input type="text" class="fill-input w-lg" data-ans="un tío de él|un tio de el|un tío de él.">
+            </li>
+            <li class="exercise-item">
+                (Los amigos son de Luisa y Alberto) –¿Con quién están cenando Luisa y Alberto? –Con <u>unos amigos suyos</u>, don Luis.<br>
+                <input type="text" class="fill-input w-lg" data-ans="unos amigos de ellos|unos amigos de ellos.">
+            </li>
+        </ol>
+
+
+        <!-- BUTTON AND ANSWERS PANEL -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">18.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> mi</li>
+                        <li><span class="answer-num">2.</span> tuyos</li>
+                        <li><span class="answer-num">3.</span> mío</li>
+                        <li><span class="answer-num">4.</span> suya</li>
+                        <li><span class="answer-num">5.</span> su</li>
+                        <li><span class="answer-num">6.</span> suya</li>
+                        <li><span class="answer-num">7.</span> mi</li>
+                        <li><span class="answer-num">8.</span> tu</li>
+                        <li><span class="answer-num">9.</span> nuestros / míos</li>
+                        <li><span class="answer-num">10.</span> nuestra</li>
+                        <li><span class="answer-num">11.</span> vuestras / suyas</li>
+                        <li><span class="answer-num">12.</span> suyos</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">18.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> mi hermano</li>
+                        <li><span class="answer-num">2.</span> un hermano mío</li>
+                        <li><span class="answer-num">3.</span> un profesor suyo</li>
+                        <li><span class="answer-num">4.</span> sus hermanas</li>
+                        <li><span class="answer-num">5.</span> una hija suya</li>
+                        <li><span class="answer-num">6.</span> vuestra abuela</li>
+                        <li><span class="answer-num">7.</span> algunos sellos suyos</li>
+                        <li><span class="answer-num">8.</span> un libro tuyo</li>
+                        <li><span class="answer-num">9.</span> unos amigos suyos</li>
+                        <li><span class="answer-num">10.</span> sus alumnos</li>
+                        <li><span class="answer-num">11.</span> un abuelo suyo</li>
+                        <li><span class="answer-num">12.</span> nuestros perros</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">18.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> una de mis amigas toca en una orquesta</li>
+                        <li><span class="answer-num">2.</span> uno de sus profesores está enfermo</li>
+                        <li><span class="answer-num">3.</span> le he comprado uno de sus cuadros</li>
+                        <li><span class="answer-num">4.</span> ¿me prestas uno de tus libros?</li>
+                        <li><span class="answer-num">5.</span> dos de mis primos viven en Brasil</li>
+                        <li><span class="answer-num">6.</span> uno de nuestros hermanos es profesor de historia</li>
+                        <li><span class="answer-num">7.</span> déjame una de tus corbatas</li>
+                        <li><span class="answer-num">8.</span> hemos conocido a dos de vuestros vecinos</li>
+                        <li><span class="answer-num">9.</span> estamos veraneando con dos de nuestros compañeros</li>
+                        <li><span class="answer-num">10.</span> Marta sale con uno de sus alumnos</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">18.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Un compañero de ella</li>
+                        <li><span class="answer-num">2.</span> Un amigo de usted</li>
+                        <li><span class="answer-num">3.</span> Una prima de usted</li>
+                        <li><span class="answer-num">4.</span> Un tío de él</li>
+                        <li><span class="answer-num">5.</span> Unos amigos de ellos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalize text for comparison (remove trailing dots, extra spaces, lower case)
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/\.$/, '');
+            }
+
+            // Function to validate an input field
+            function validateInput(input) {
+                const userVal = normalizeText(input.value);
+                if (userVal === '') {
+                    input.classList.remove('correct', 'incorrect');
+                    return;
+                }
+
+                const acceptedAnswers = input.getAttribute('data-ans').split('|').map(normalizeText);
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            // Input event listeners for validation & navigation
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    validateInput(this);
+                });
+
+                input.addEventListener('blur', function() {
+                    validateInput(this);
+                });
+
+                // Sequential focus jump on Enter key: 1, 2, 3, 4, 5...
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this);
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Toggle Answers Panel visibility
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

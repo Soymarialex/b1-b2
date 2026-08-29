@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lección 20 - un, otro (Indefinidos 2)</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Rosa Claro */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Blanco puro */
+      --color-borde: #E0E0E0;        /* Gris claro */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* ENCABEZADO DE LA LECCIÓN */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    .translation-text {
+      color: var(--color-primario);
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    /* VIÑETAS PRINCIPALES */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.15rem;
+      color: var(--color-texto);
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    /* SECCIÓN DE IMÁGENES Y SUB-EJEMPLOS */
+    .images-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .images-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .image-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .image-card img {
+      max-width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .image-caption {
+      margin-top: 0.5rem;
+      font-size: 1.05rem;
+      text-align: center;
+    }
+
+    .note-text {
+      color: #555555;
+      font-size: 0.98rem;
+    }
+
+    /* TABLAS DE REGLAS Y ESTRUCTURAS */
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--color-primario);
+    }
+
+    .rule-table td {
+      border: 1px solid var(--color-primario);
+      padding: 12px 16px;
+      vertical-align: middle;
+      background-color: #FFFFFF;
+    }
+
+    .rule-table-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    /* ESTRUCTURA FLEXIBLE PARA TABLAS COMPLEJAS CON LLAVES */
+    .bracket-structure {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bracket-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    /* SUB-EJEMPLOS Y LISTAS CON SANGRÍA */
+    .sub-examples {
+      padding-left: 1.8rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+    }
+
+    .sub-examples p {
+      margin-bottom: 0.4rem;
+    }
+
+    .flex-with-img {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .flex-with-img {
+        flex-direction: column;
+      }
+    }
+
+    .side-img-container {
+      flex-shrink: 0;
+      max-width: 280px;
+    }
+
+    .side-img-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    /* GRIDS DE DOS COLUMNAS */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding-left: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">20</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">un, otro</h1>
+        <h2 class="page-subtitle">
+          Indefinidos (2)
+        </h2>
+      </div>
+    </header>
+
+    <!-- SECCIÓN 1: un, una, unos, unas -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em>un, una, unos, unas</em>
+        </div>
+      </div>
+
+      <!-- IMÁGENES SUPERIORES -->
+      <div class="images-grid">
+        <div class="image-card">
+          <img src="https://imgur.com/7Rkvo2I.jpg" alt="Te ha llamado una amiga">
+          <div class="image-caption">
+            <em><strong>un, una</strong> = un elemento indeterminado</em><br>
+            <span class="note-text">(No se dice cuál.)</span>
+          </div>
+        </div>
+
+        <div class="image-card">
+          <img src="https://imgur.com/me3itfp.jpg" alt="Me voy. He quedado con unos amigos">
+          <div class="image-caption">
+            <em><strong>unos, unas</strong> = identidad y cantidad indeterminadas</em><br>
+            <span class="note-text">(No se dice cuáles ni cuántos.)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLA 1: un, una / unos, unas -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 50%;">
+              <em><strong>un, una</strong> + nombre singular</em>
+            </td>
+            <td style="width: 50%;">
+              <p class="mb-1"><em>Rosa está saliendo con <strong>un italiano</strong>.</em></p>
+              <p><em>Te ha llamado <strong>una amiga</strong>.</em></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <em><strong>unos, unas</strong> + nombre plural</em>
+            </td>
+            <td>
+              <p><em>Me han regalado <strong>unas flores</strong>.</em></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- TABLA 2: uno, una + de -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 50%;">
+              <div class="bracket-structure">
+                <div><em><strong>uno, una + de</strong></em></div>
+                <div style="border-left: 2px solid var(--color-primario); padding-left: 10px;" class="bracket-list">
+                  <div>+ <em>nosotros, vosotros...</em></div>
+                  <div>+ <em>los, las</em></div>
+                  <div>+ <em>mis, tus...</em></div>
+                  <div>+ <em>estos, esos...</em></div>
+                </div>
+                <div>+ nombre plural</div>
+              </div>
+            </td>
+            <td style="width: 50%;">
+              <p class="mb-1"><em><strong>Uno de vosotros</strong> tiene que ayudarme.</em></p>
+              <p class="mb-1"><em>Julián es <strong>uno de los participantes</strong>.</em></p>
+              <p class="mb-1"><em>He visto a <strong>una de tus hermanas</strong>.</em></p>
+              <p><em>Quiero <strong>una de esas carteras</strong>.</em></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SECCIÓN 2: otro, otra, otros, otras -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em>otro, otra, otros, otras</em>
+        </div>
+      </div>
+
+      <div class="flex-with-img mb-4">
+        <div class="sub-examples" style="padding-left: 1rem; margin-bottom: 0;">
+          <!-- Regla A -->
+          <p class="mb-1">– <em>otro, otra, otros, otras</em> = más elementos del mismo tipo</p>
+          <div class="pl-4 mb-3">
+            <p class="mb-1"><em>Los Blanco van a tener <strong>otro hijo</strong>.</em> <span class="note-text">(= un hijo más)</span></p>
+            <p><em>Han llegado <strong>otros tres alumnos</strong>.</em> <span class="note-text">(= tres alumnos más)</span></p>
+          </div>
+
+          <!-- Regla B -->
+          <p class="mb-1">– <em>otro, otra, otros, otras</em> = elementos diferentes</p>
+          <div class="pl-4">
+            <p class="mb-1"><em>Hoy estoy ocupado. Ven <strong>otro día</strong>.</em> <span class="note-text">(= un día distinto a hoy)</span></p>
+            <p><em>—¿Ya no vives aquí? —No, ahora vivo en <strong>otro barrio</strong>.</em> <span class="note-text">(= un barrio diferente)</span></p>
+          </div>
+        </div>
+
+        <!-- Imagen Abajo A la Derecha -->
+        <div class="side-img-container">
+          <img src="https://imgur.com/IAXUL9I.jpg" alt="Otro vaso de agua, por favor">
+        </div>
+      </div>
+
+      <!-- TABLA 3: (el, la) / mi, tu... / este, ese... + otro, otra -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 50%;">
+              <div class="bracket-structure">
+                <div class="bracket-list">
+                  <div><em>(el, la)</em></div>
+                  <div><em>mi, tu...</em></div>
+                  <div><em>este, ese...</em></div>
+                </div>
+                <div>+ <em><strong>otro, otra</strong></em></div>
+                <div>+ nombre singular</div>
+              </div>
+            </td>
+            <td style="width: 50%;">
+              <p class="mb-1"><em>Pásame <strong>el otro plato</strong>.</em></p>
+              <p class="mb-1"><em>Este es <strong>mi otro hijo</strong>.</em></p>
+              <p><em>Prefiero <strong>ese otro plátano</strong>.</em></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- TABLA 4: (los, las) / mis, tus... + otros, otras -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 50%;">
+              <div class="bracket-structure">
+                <div class="bracket-list">
+                  <div><em>(los, las)</em></div>
+                  <div><em>mis, tus</em></div>
+                  <div><em>estos, esos...</em></div>
+                </div>
+                <div>+ <em><strong>otros, otras</strong></em></div>
+                <div>+ <em>(dos, tres...)</em></div>
+                <div style="border-left: 2px solid var(--color-primario); padding-left: 8px;">
+                  + nombre<br>plural
+                </div>
+              </div>
+            </td>
+            <td style="width: 50%;">
+              <p class="mb-1"><em>Esas no. Quiero <strong>las otras botas</strong>.</em></p>
+              <p class="mb-1"><em><strong>Mis otros dos primos</strong>.</em></p>
+              <p><em><strong>Esas otras manzanas</strong> son mejores.</em></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- TABLA 5: otro, otra + de -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 50%;">
+              <div class="bracket-structure">
+                <div><em><strong>otro, otra + de</strong></em></div>
+                <div style="border-left: 2px solid var(--color-primario); padding-left: 10px;" class="bracket-list">
+                  <div>+ <em>nosotros, vosotros...</em></div>
+                  <div>+ <em>los, las...</em></div>
+                  <div>+ <em>mis, tus...</em></div>
+                  <div>+ <em>estos, esos...</em></div>
+                </div>
+                <div style="border-left: 2px solid var(--color-primario); padding-left: 8px;">
+                  + nombre<br>plural
+                </div>
+              </div>
+            </td>
+            <td style="width: 50%;">
+              <p class="mb-1"><em>Quiere que vaya <strong>otro de nosotros</strong>.</em></p>
+              <p class="mb-1"><em>Pásame <strong>otro de los pasteles</strong> de chocolate.</em></p>
+              <p class="mb-1"><em>He perdido <strong>otra de mis plumas</strong>.</em></p>
+              <p><em>Dame <strong>otra de esas ciruelas</strong>.</em></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- REGLAS ADICIONALES (SUB-BULLETS) -->
+      <div class="sub-examples">
+        <p class="mb-2">
+          – <em>el otro día, la otra mañana/tarde/noche</em> = pasado reciente (<span class="translation-text">recent past</span>)
+        </p>
+        <div class="pl-4 mb-3">
+          <p class="mb-1"><em><strong>El otro día</strong> vi a Kika.</em> <span class="note-text">(= hace unos días)</span></p>
+          <p><em><strong>La otra noche</strong> salimos todos los de la oficina.</em> <span class="note-text">(= hace unas noches)</span></p>
+        </div>
+
+        <p class="mb-2">
+          – <em>otro, otra, otros, otras</em> = se pueden usar solos cuando está claro de quién o de qué se habla
+        </p>
+        <div class="pl-4 mb-3">
+          <p><em>—¡Qué ricos están los pasteles! —Coge <strong>otro</strong>.</em> <span class="note-text">(= otro pastel)</span></p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

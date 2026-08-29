@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker, .exercise-item::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .two-column-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 30px;
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA;
+            border-bottom-color: #28A745;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA;
+            border-bottom-color: #DC3545;
+        }
+
+        .opt-btn {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 2px 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0 2px;
+            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .opt-btn:hover {
+            background-color: #FFA2C7;
+        }
+
+        .opt-btn:active {
+            transform: translateY(1px);
+        }
+
+        .opt-btn.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+            color: #155724;
+        }
+
+        .opt-btn.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+            color: #721C24;
+        }
+
+        .w-xs { width: 90px; }
+        .w-sm { width: 140px; }
+        .w-md { width: 220px; }
+
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .two-column-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 26.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">26.1</span>
+            <span class="exercise-instruction">Sustituya las palabras entre paréntesis por pronombres.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                (Mario) <input type="text" class="fill-input w-xs" data-ans="Él|El|él|el"> se va a casar con (Mar) <input type="text" class="fill-input w-xs" data-ans="ella"> en verano.
+            </li>
+            <li class="exercise-item">
+                Van a vivir con (los padres de Mar) <input type="text" class="fill-input w-sm" data-ans="ellos">.
+            </li>
+            <li class="exercise-item">
+                (Mi hermana y yo) <input type="text" class="fill-input w-sm" data-ans="Nosotros|Nosotras|Nosotros/as|nosotros|nosotras"> los conocemos.
+            </li>
+            <li class="exercise-item">
+                Han traído un paquete para (Sara y Lola) <input type="text" class="fill-input w-xs" data-ans="ellas">.
+            </li>
+            <li class="exercise-item">
+                ¿Queréis venir a casa (Rosa y tú) <input type="text" class="fill-input w-sm" data-ans="vosotros|vosotras|vosotros/as">?
+            </li>
+            <li class="exercise-item">
+                Señor López, tengo algo para (usted y su señora) <input type="text" class="fill-input w-sm" data-ans="ustedes">.
+            </li>
+            <li class="exercise-item">
+                (Joaquín y yo) <input type="text" class="fill-input w-sm" data-ans="Nosotros|Nosotras|Nosotros/as|nosotros|nosotras"> tenemos una sorpresa para (Luis y Carlos) <input type="text" class="fill-input w-xs" data-ans="ellos">.
+            </li>
+            <li class="exercise-item">
+                ¿Esto es para (Susana) <input type="text" class="fill-input w-xs" data-ans="ella"> o para (Alberto) <input type="text" class="fill-input w-xs" data-ans="él|el">?
+            </li>
+            <li class="exercise-item">
+                (Susana) <input type="text" class="fill-input w-xs" data-ans="Ella|ella"> no estudia, pero (Alberto) <input type="text" class="fill-input w-xs" data-ans="él|el"> está en segundo de Medicina.
+            </li>
+            <li class="exercise-item">
+                (Fernando) <input type="text" class="fill-input w-xs" data-ans="Él|El|él|el"> vive con (sus padres) <input type="text" class="fill-input w-xs" data-ans="ellos">.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 26.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">26.2</span>
+            <span class="exercise-instruction">Complete con el pronombre adecuado, cuando sea necesario.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                ¿Has visto a Rita? Tengo un recado para <input type="text" class="fill-input w-xs" data-ans="ella">.
+            </li>
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-xs" data-ans="Yo|yo"> sé de ese asunto más que nadie.
+            </li>
+            <li class="exercise-item">
+                –Esta noche <input type="text" class="fill-input w-xs" data-ans="yo"> no salgo. – <input type="text" class="fill-input w-xs" data-ans="Tú|Tu|tú|tu"> haz lo que quieras.
+            </li>
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-xs" data-ans="ø|-|ninguno|nada"> gritan como locos.
+            </li>
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-sm" data-ans="Nosotros|Nosotras|Nosotros/as|nosotros|nosotras"> no vemos mucho a Tolo. ¿Y <input type="text" class="fill-input w-xs" data-ans="tú|tu">? Si <input type="text" class="fill-input w-xs" data-ans="ø|-|ninguno|nada"> lo ves, dale nuestra nueva dirección.
+            </li>
+            <li class="exercise-item">
+                Los chicos nos necesitan. <input type="text" class="fill-input w-xs" data-ans="ø|-|ninguno|nada"> no saben hacer nada sin <input type="text" class="fill-input w-sm" data-ans="nosotros|nosotras">.
+            </li>
+            <li class="exercise-item">
+                Mi madre está enfadada con José. Según <input type="text" class="fill-input w-xs" data-ans="ella">, <input type="text" class="fill-input w-xs" data-ans="él|el|ø|-|ninguno|nada"> gasta mucho en teléfono.
+            </li>
+            <li class="exercise-item">
+                ¿No sabes <input type="text" class="fill-input w-xs" data-ans="ø|-|ninguno|nada"> la noticia? <input type="text" class="fill-input w-xs" data-ans="ø|-|ninguno|nada"> se casan en mayo.
+            </li>
+            <li class="exercise-item">
+                ¿Has puesto sal a la sopa? <input type="text" class="fill-input w-xs" data-ans="ø|-|ninguno|nada"> está muy sosa.
+            </li>
+            <li class="exercise-item">
+                Es <input type="text" class="fill-input w-xs" data-ans="usted"> muy amable, Sr. Cobo.
+            </li>
+            <li class="exercise-item">
+                – <input type="text" class="fill-input w-xs" data-ans="Yo|yo"> me quedo en casa. –¿Qué vas a hacer <input type="text" class="fill-input w-xs" data-ans="tú|tu">?
+            </li>
+            <li class="exercise-item">
+                ¿Son <input type="text" class="fill-input w-sm" data-ans="ustedes"> los últimos, Sres. López?
+            </li>
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-xs" data-ans="Yo|yo"> no trabajo, pero <input type="text" class="fill-input w-xs" data-ans="ø|-|ninguno|nada"> estudio muchísimo.
+            </li>
+            <li class="exercise-item">
+                ¿Sabes <input type="text" class="fill-input w-xs" data-ans="ø|-|ninguno|nada"> leer?
+            </li>
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-xs" data-ans="ø|-|ninguno|nada"> no me han aprobado.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 26.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">26.3</span>
+            <span class="exercise-instruction">Seleccione la forma correcta.</span>
+        </div>
+
+        <ol class="two-column-list">
+            <li class="exercise-item">
+                Según <span class="opt-group" data-ans="tú"><button type="button" class="opt-btn">ti</button> / <button type="button" class="opt-btn">tú</button></span>, ¿quién es el mejor cantante del mundo?
+            </li>
+            <li class="exercise-item">
+                Hace tiempo que no sé nada de <span class="opt-group" data-ans="ti"><button type="button" class="opt-btn">ti</button> / <button type="button" class="opt-btn">tú</button></span>.
+            </li>
+            <li class="exercise-item">
+                Todos trajeron regalos menos <span class="opt-group" data-ans="yo"><button type="button" class="opt-btn">yo</button> / <button type="button" class="opt-btn">mí</button></span>.
+            </li>
+            <li class="exercise-item">
+                ¿Quién estaba <span class="opt-group" data-ans="contigo"><button type="button" class="opt-btn">contigo</button> / <button type="button" class="opt-btn">tú</button></span> anoche?
+            </li>
+            <li class="exercise-item">
+                Eva siempre se acuerda de <span class="opt-group" data-ans="ti"><button type="button" class="opt-btn">tú</button> / <button type="button" class="opt-btn">ti</button></span>.
+            </li>
+            <li class="exercise-item">
+                Daremos la fiesta entre Tomás y <span class="opt-group" data-ans="yo"><button type="button" class="opt-btn">mí</button> / <button type="button" class="opt-btn">yo</button></span>.
+            </li>
+            <li class="exercise-item">
+                Pensaremos en <span class="opt-group" data-ans="ti"><button type="button" class="opt-btn">ti</button> / <button type="button" class="opt-btn">tú</button></span> cuando no estés aquí.
+            </li>
+            <li class="exercise-item">
+                Todos tendremos que pagar la multa, incluso <span class="opt-group" data-ans="tú"><button type="button" class="opt-btn">ti</button> / <button type="button" class="opt-btn">tú</button></span>.
+            </li>
+            <li class="exercise-item">
+                No podré vivir sin <span class="opt-group" data-ans="ti"><button type="button" class="opt-btn">tú</button> / <button type="button" class="opt-btn">ti</button></span>.
+            </li>
+            <li class="exercise-item">
+                A <span class="opt-group" data-ans="mí"><button type="button" class="opt-btn">yo</button> / <button type="button" class="opt-btn">mí</button></span> no me dijeron la verdad.
+            </li>
+            <li class="exercise-item">
+                Alicia subió al autobús detrás de <span class="opt-group" data-ans="ti"><button type="button" class="opt-btn">ti</button> / <button type="button" class="opt-btn">tú</button></span>.
+            </li>
+            <li class="exercise-item">
+                ¿Han traído algún paquete para <span class="opt-group" data-ans="mí"><button type="button" class="opt-btn">mí</button> / <button type="button" class="opt-btn">mi</button></span>?
+            </li>
+            <li class="exercise-item">
+                ¿Quién viene al cine <span class="opt-group" data-ans="conmigo"><button type="button" class="opt-btn">conmigo</button> / <button type="button" class="opt-btn">yo</button></span>?
+            </li>
+            <li class="exercise-item">
+                Estoy triste. Han aprobado todos excepto <span class="opt-group" data-ans="yo"><button type="button" class="opt-btn">yo</button> / <button type="button" class="opt-btn">mí</button></span>.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 26.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">26.4</span>
+            <span class="exercise-instruction">Complete con la forma adecuada del pronombre personal.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Nuestros hijos vienen con <input type="text" class="fill-input w-sm" data-ans="nosotros"> a todas partes.
+            </li>
+            <li class="exercise-item">
+                ¿Dónde están tus amigas? Tengo algo para <input type="text" class="fill-input w-xs" data-ans="ellas">.
+            </li>
+            <li class="exercise-item">
+                Según <input type="text" class="fill-input w-xs" data-ans="tú|tu"> y tus amigos, yo tengo la culpa.
+            </li>
+            <li class="exercise-item">
+                Voy a dar un paseo. ¿Vienes <input type="text" class="fill-input w-sm" data-ans="conmigo">?
+            </li>
+            <li class="exercise-item">
+                ¿Has visto a Sabina? Un chico pregunta por <input type="text" class="fill-input w-xs" data-ans="ella">.
+            </li>
+            <li class="exercise-item">
+                Entre tú y <input type="text" class="fill-input w-xs" data-ans="yo">: aquí todos están locos.
+            </li>
+            <li class="exercise-item">
+                Rosa, toma. Tengo algo para <input type="text" class="fill-input w-xs" data-ans="ti">.
+            </li>
+            <li class="exercise-item">
+                Todos quieren que me vaya, hasta <input type="text" class="fill-input w-xs" data-ans="tú|tu">, Pedro.
+            </li>
+            <li class="exercise-item">
+                ¿Un paquete para <input type="text" class="fill-input w-xs" data-ans="mí|mi">? No estoy esperando nada.
+            </li>
+            <li class="exercise-item">
+                ¿Estás cansada? Quiero bailar <input type="text" class="fill-input w-sm" data-ans="contigo">.
+            </li>
+        </ol>
+
+        <!-- BUTTON AND ANSWERS PANEL -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">26.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Él; ella</li>
+                        <li><span class="answer-num">2.</span> ellos</li>
+                        <li><span class="answer-num">3.</span> Nosotros/as</li>
+                        <li><span class="answer-num">4.</span> ellas</li>
+                        <li><span class="answer-num">5.</span> vosotros/as</li>
+                        <li><span class="answer-num">6.</span> ustedes</li>
+                        <li><span class="answer-num">7.</span> Nosotros; ellos</li>
+                        <li><span class="answer-num">8.</span> ella; él</li>
+                        <li><span class="answer-num">9.</span> Ella; él</li>
+                        <li><span class="answer-num">10.</span> Él; ellos</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">26.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> ella</li>
+                        <li><span class="answer-num">2.</span> Yo</li>
+                        <li><span class="answer-num">3.</span> yo; Tú</li>
+                        <li><span class="answer-num">4.</span> ø</li>
+                        <li><span class="answer-num">5.</span> Nosotros/as; tú; ø</li>
+                        <li><span class="answer-num">6.</span> ø; nosotros</li>
+                        <li><span class="answer-num">7.</span> ella; él/ø</li>
+                        <li><span class="answer-num">8.</span> ø; ø</li>
+                        <li><span class="answer-num">9.</span> ø</li>
+                        <li><span class="answer-num">10.</span> usted</li>
+                        <li><span class="answer-num">11.</span> Yo; tú</li>
+                        <li><span class="answer-num">12.</span> ustedes</li>
+                        <li><span class="answer-num">13.</span> Yo; ø</li>
+                        <li><span class="answer-num">14.</span> ø</li>
+                        <li><span class="answer-num">15.</span> ø</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">26.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> tú</li>
+                        <li><span class="answer-num">2.</span> ti</li>
+                        <li><span class="answer-num">3.</span> yo</li>
+                        <li><span class="answer-num">4.</span> contigo</li>
+                        <li><span class="answer-num">5.</span> ti</li>
+                        <li><span class="answer-num">6.</span> yo</li>
+                        <li><span class="answer-num">7.</span> ti</li>
+                        <li><span class="answer-num">8.</span> tú</li>
+                        <li><span class="answer-num">9.</span> ti</li>
+                        <li><span class="answer-num">10.</span> mí</li>
+                        <li><span class="answer-num">11.</span> ti</li>
+                        <li><span class="answer-num">12.</span> mí</li>
+                        <li><span class="answer-num">13.</span> conmigo</li>
+                        <li><span class="answer-num">14.</span> yo</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">26.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> nosotros</li>
+                        <li><span class="answer-num">2.</span> ellas</li>
+                        <li><span class="answer-num">3.</span> tú</li>
+                        <li><span class="answer-num">4.</span> conmigo</li>
+                        <li><span class="answer-num">5.</span> ella</li>
+                        <li><span class="answer-num">6.</span> yo</li>
+                        <li><span class="answer-num">7.</span> ti</li>
+                        <li><span class="answer-num">8.</span> tú</li>
+                        <li><span class="answer-num">9.</span> mí</li>
+                        <li><span class="answer-num">10.</span> contigo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input:not([readonly])'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalize string for validation (lowercase, trim spaces and trailing periods)
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/\.$/, '');
+            }
+
+            function validateInput(input, triggerType = 'input') {
+                const userVal = normalizeText(input.value);
+                const acceptedAnswers = input.getAttribute('data-ans').split('|').map(normalizeText);
+                const allowsEmpty = acceptedAnswers.some(ans => ['ø', '-', 'ninguno', 'nada', ''].includes(ans));
+
+                if (userVal === '') {
+                    if (triggerType === 'enter' || triggerType === 'blur') {
+                        if (allowsEmpty) {
+                            input.classList.add('correct');
+                            input.classList.remove('incorrect');
+                        } else {
+                            input.classList.add('incorrect');
+                            input.classList.remove('correct');
+                        }
+                    } else {
+                        input.classList.remove('correct', 'incorrect');
+                    }
+                    return;
+                }
+
+                if (acceptedAnswers.includes(userVal) || (allowsEmpty && ['ø', '-', 'ninguno', 'nada'].includes(userVal))) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            inputs.forEach((indexInput, index) => {
+                indexInput.addEventListener('input', function() {
+                    validateInput(this, 'input');
+                });
+
+                indexInput.addEventListener('blur', function() {
+                    validateInput(this, 'blur');
+                });
+
+                indexInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this, 'enter');
+                        // Jump to next input sequentially in numerical order
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            const optGroups = document.querySelectorAll('.opt-group');
+            optGroups.forEach(group => {
+                const correctAns = group.getAttribute('data-ans').trim().toLowerCase();
+                const buttons = group.querySelectorAll('.opt-btn');
+
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const val = this.textContent.trim().toLowerCase();
+                        
+                        // Reset status on sibling buttons in the same group
+                        buttons.forEach(b => b.classList.remove('correct', 'incorrect'));
+
+                        if (val === correctAns) {
+                            this.classList.add('correct');
+                        } else {
+                            this.classList.add('incorrect');
+                        }
+                    });
+                });
+            });
+
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

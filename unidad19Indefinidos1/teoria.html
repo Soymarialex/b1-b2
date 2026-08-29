@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lección 19 - todos, algunos, varios, uno, ninguno, alguno</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Rosa Claro */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Blanco puro */
+      --color-borde: #E0E0E0;        /* Gris claro */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* ENCABEZADO DE LA LECCIÓN */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    .translation-text {
+      color: var(--color-primario);
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    /* VIÑETAS PRINCIPALES */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+      color: var(--color-texto);
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    /* SUB-EJEMPLOS Y LISTAS */
+    .sub-examples {
+      padding-left: 1.8rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+    }
+
+    .sub-examples p {
+      margin-bottom: 0.35rem;
+    }
+
+    .note-text {
+      color: #555555;
+      font-size: 0.98rem;
+    }
+
+    .sub-rule {
+      font-weight: normal;
+      margin-top: 0.6rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* FILAS Y GRIDS DE EJEMPLOS */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding-left: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+    }
+
+    /* SECCIÓN DE COMPARACIÓN (TABLAS Y CAJAS) */
+    .compare-label {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+    }
+
+    .compare-table td {
+      border: 1px solid var(--color-primario);
+      padding: 12px;
+      vertical-align: top;
+      background-color: #FFFFFF;
+      width: 50%;
+    }
+
+    /* CUADROS DE ATENCIÓN */
+    .attention-box {
+      background-color: #FFF5F8;
+      border: 1px solid var(--color-secundario);
+      border-left: 4px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .attention-badge-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .attention-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 0.85rem;
+      padding: 3px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.5px;
+    }
+
+    .attention-lines {
+      height: 12px;
+      width: 2px;
+      background-color: var(--color-primario);
+      display: inline-block;
+    }
+
+    .strikethrough {
+      text-decoration: line-through;
+      color: #777777;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">19</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">todos, algunos, varios, uno, ninguno, alguno</h1>
+        <h2 class="page-subtitle">
+          Indefinidos <span class="translation-text">(indefinite reference)</span> (1)
+        </h2>
+      </div>
+    </header>
+
+    <!-- REGLA 1: USO GENERAL -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usan <em>todos, algunos, varios, uno, ninguno, alguno</em> para referirse a los componentes de un grupo <span class="translation-text">(parts of a group)</span>.
+        </div>
+      </div>
+
+      <div class="sub-examples">
+        <p><em><strong>Todos mis amigos</strong> son simpáticos.</em> <span class="note-text">(= la totalidad del grupo)</span></p>
+        <p><em><strong>Algunos de mis amigos</strong> son estudiantes.</em> <span class="note-text">(= una parte indeterminada del grupo)</span></p>
+        <p><em><strong>Varios de mis amigos</strong> son arquitectos.</em> <span class="note-text">(= un número indeterminado del grupo)</span></p>
+        <p><em><strong>Uno de mis amigos</strong> habla chino.</em> <span class="note-text">(= uno indeterminado; no digo cuál)</span></p>
+        <p><em><strong>Ninguno de mis amigos</strong> es antipático.</em> <span class="note-text">(= nadie del grupo)</span></p>
+      </div>
+    </section>
+
+    <!-- REGLA 2: TODOS, TODAS -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em>todos, todas</em>
+        </div>
+      </div>
+
+      <div class="sub-examples">
+        <div class="sub-rule">
+          – <em>todos, todas + los, las.../mis, tus.../estos, esos...</em> + sustantivo plural; <em>todos + nosotros, vosotros... ; todas + nosotras...</em>
+        </div>
+      </div>
+
+      <div class="grid-2col">
+        <div>
+          <p class="mb-1"><em><strong>Todos los asientos</strong> están ocupados.</em></p>
+          <p><em>Deme <strong>todas esas manzanas</strong>, por favor.</em></p>
+        </div>
+        <div>
+          <p class="mb-1"><em><strong>Todas mis amigas</strong> hablan español.</em></p>
+          <p><em><strong>Todos vosotros</strong> sois muy amables.</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGLA 3: UN, UNA, ALGÚN, ALGUNDA... -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em>un, una, algún, alguna, algunos, algunas, ningún, ninguno, ninguna</em>
+        </div>
+      </div>
+
+      <div class="sub-examples">
+        <!-- Sub-regla A -->
+        <div class="sub-rule">
+          – <em>uno, una, ningún, ninguna, algún, alguna</em> + sustantivo singular
+        </div>
+        <div class="grid-2col mb-3">
+          <div>
+            <p class="mb-1"><em><strong>Una señora</strong> ha preguntado por ti.</em></p>
+            <p><em>No veo <strong>ningún elefante</strong>.</em></p>
+          </div>
+          <div>
+            <p><em>¿Ha llegado <strong>algún alumno</strong>?</em></p>
+          </div>
+        </div>
+
+        <!-- Sub-regla B -->
+        <div class="sub-rule">
+          – <em>algunos, algunas</em> + nombre plural
+        </div>
+        <div class="pl-4 mb-3">
+          <p><em><strong>Algunas setas</strong> pueden ser venenosas.</em></p>
+        </div>
+
+        <!-- Sub-regla C -->
+        <div class="sub-rule">
+          – <em>uno, una, alguno, alguna, algunos, algunas, ninguno, ninguna + de + los, las.../mis, tus.../estos, esos...</em> + sustantivo plural; <em>uno, una, alguno... + de + nosotros, vosotros...</em>
+        </div>
+        <div class="grid-2col mb-3">
+          <div>
+            <p class="mb-1"><em><strong>Una de las ruedas</strong> está rota.</em></p>
+            <p class="mb-1"><em><strong>Algunos de esos libros</strong> son muy raros.</em></p>
+            <p><em>¿<strong>Alguno de vosotros</strong> conduce?</em></p>
+          </div>
+          <div>
+            <p class="mb-1"><em>¿<strong>Alguna de tus tías</strong> vive en Caracas?</em></p>
+            <p><em>No veo a <strong>ninguno de los niños</strong>.</em></p>
+          </div>
+        </div>
+
+        <!-- Sub-regla D -->
+        <div class="sub-rule">
+          – <em>algún, alguno</em> y <em>alguna</em> se suelen emplear en preguntas. Preguntan por cantidad e identidad indeterminadas.
+        </div>
+        <div class="grid-2col mb-3">
+          <div>
+            <p><em>¿Tienen <strong>algún libro nuevo</strong>?</em></p>
+          </div>
+          <div>
+            <p><em>¿<strong>Alguno de vosotros</strong> habla árabe?</em></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUADRO DE COMPARACIÓN -->
+      <div class="compare-label">Compare:</div>
+      <table class="compare-table">
+        <tbody>
+          <tr>
+            <td>
+              <em>Te está esperando <strong>un alumno</strong>.</em><br>
+              <span class="note-text">(= cantidad determinada e identidad indeterminada)</span>
+            </td>
+            <td>
+              <em>¿Hay <strong>algún alumno</strong> en la clase?</em><br>
+              <span class="note-text">(= cantidad e identidad indeterminadas)</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- CUADRO DE ATENCIÓN -->
+    <aside class="attention-box">
+      <div class="attention-badge-wrapper">
+        <span class="attention-badge">ATENCIÓN:</span>
+        <span class="attention-lines"></span>
+        <span class="attention-lines"></span>
+      </div>
+
+      <div class="sub-examples my-1">
+        <p class="mb-2">
+          <em>algún, ningún</em> + sustantivo singular masculino
+        </p>
+        <p class="pl-4 mb-3">
+          <em>¿Hay <span class="strikethrough">alguno</span> <strong>paquete</strong> abierto? &rarr; ¿Hay <strong>algún paquete</strong> abierto?</em>
+        </p>
+
+        <p class="mb-2">
+          <em>algún, ningún</em> + sustantivo femenino singular empezando por <em>a-</em> o <em>ha-</em> acentuadas
+        </p>
+        <div class="grid-2col mb-3">
+          <div>
+            <p><em>¿Has visto <strong>algún águila</strong> por esta zona?</em></p>
+          </div>
+          <div>
+            <p><em>No hay <strong>ningún aula</strong> libre en toda la academia.</em></p>
+          </div>
+        </div>
+
+        <p class="mb-1">
+          <em>ningún, ninguno, ninguna</em> + verbo afirmativo &rarr; <em><strong>Ninguno</strong> de mis amigos <strong>habla</strong> chino.</em>
+        </p>
+        <p>
+          verbo negativo + <em>ningún, ninguno, ninguna</em> &rarr; <em><strong>No habla</strong> chino <strong>ninguno</strong> de mis amigos.</em>
+        </p>
+      </div>
+    </aside>
+
+    <!-- REGLA 4: VARIOS, VARIAS -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em>varios, varias</em> = un número indeterminado <span class="translation-text">(indefinite number)</span> de personas o cosas
+        </div>
+      </div>
+
+      <div class="sub-examples">
+        <div class="sub-rule">
+          – <em>varios, varias</em> + sustantivo plural
+        </div>
+        <div class="pl-4 mb-3">
+          <p><em>Me gustan <strong>varios escritores</strong> españoles.</em></p>
+        </div>
+
+        <div class="sub-rule">
+          – <em>varios, varias + de + los, las.../mis, tus.../estos, esos.../nosotros, vosotros...</em> + sustantivo plural
+        </div>
+        <div class="grid-2col">
+          <div>
+            <p class="mb-1"><em>Quiero comprar <strong>varios de esos recuerdos</strong>.</em></p>
+            <p><em>Tengo malas noticias para <strong>varios de vosotros</strong>.</em></p>
+          </div>
+          <div>
+            <p class="mb-1"><em>Ya he leído <strong>varios de los libros</strong> que me prestaste.</em></p>
+            <p><em>Conozco a <strong>varias de tus primas</strong>.</em></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGLA 5: USO SOLOS -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em>Todos, todas, uno, una, alguno, alguna, algunos, algunas, varios, varias y ninguno, ninguna</em> se pueden usar solos cuando está claro de quién o de qué se habla.
+        </div>
+      </div>
+
+      <div class="sub-examples">
+        <p class="mb-1"><em>—Conozco a <strong>todas esas chicas</strong>. —Pues yo no conozco a <strong>ninguna</strong>.</em></p>
+        <p><em>—¿Has leído <strong>alguna obra</strong> de Borges? —Sí, <strong>varias</strong>.</em></p>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

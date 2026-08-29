@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yo, para mí, conmigo - Pronombres personales de sujeto y con preposición</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Rosa Claro */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Blanco puro */
+      --color-borde: #E0E0E0;        /* Gris claro */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* ENCABEZADO DE LA LECCIÓN */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    .translation-text {
+      color: var(--color-primario);
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    /* VIÑETAS Y ESTRUCTURA DE TEXTO */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.15rem;
+      color: var(--color-texto);
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    .sub-dash-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+      margin-bottom: 0.5rem;
+      padding-left: 1.2rem;
+      text-align: justify;
+    }
+
+    .sub-dot-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+      margin-bottom: 0.4rem;
+      padding-left: 1.2rem;
+      text-align: justify;
+    }
+
+    .small-dot-icon {
+      color: var(--color-primario);
+      font-size: 1rem;
+      line-height: 1.5;
+      flex-shrink: 0;
+    }
+
+    /* TABLAS DE PRONOMBRES Y COMPARACIONES */
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.8rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--color-primario);
+    }
+
+    .custom-table th, .custom-table td {
+      border: 1px solid var(--color-primario);
+      padding: 0.5rem 0.6rem;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .custom-table th {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .custom-table td.header-cell {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    /* CUADROS DE ATENCIÓN Y NOTAS */
+    .atencion-box {
+      border: 1px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 0.8rem 1.2rem;
+      margin-top: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .atencion-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 3px;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      margin-right: 0.8rem;
+    }
+
+    /* COMPARACIÓN */
+    .compare-container {
+      border: 1px solid var(--color-primario);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .compare-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      padding: 0.6rem 1rem;
+      gap: 1rem;
+    }
+
+    .compare-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 0.8rem 1rem;
+      gap: 1rem;
+      background-color: #FFFFFF;
+    }
+
+    .compare-body > div:first-child {
+      border-right: 1px solid var(--color-borde);
+      padding-right: 1rem;
+    }
+
+    /* INPUTS / INTERACTIVIDAD */
+    input[type="text"] {
+      border: 1px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--color-primario);
+      box-shadow: 0 0 0 2px var(--color-secundario);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">26</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">yo, para mí, conmigo</h1>
+        <h2 class="page-subtitle">Pronombres personales de sujeto y con preposición</h2>
+      </div>
+    </header>
+
+    <!-- SECCIÓN 1: Pronombres personales de sujeto y con preposición -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Pronombres personales de sujeto <span class="translation-text">(subject pronouns)</span> y con preposición <span class="translation-text">(preposition)</span>: formas
+        </div>
+      </div>
+
+      <!-- TABLA DE PRONOMBRES -->
+      <div class="overflow-x-auto">
+        <table class="custom-table">
+          <tbody>
+            <tr>
+              <td class="header-cell">pronombre de sujeto</td>
+              <td>yo</td>
+              <td>tú</td>
+              <td>usted</td>
+              <td>él</td>
+              <td>ella</td>
+              <td>nosotros<br>nosotras</td>
+              <td>vosotros<br>vosotras</td>
+              <td>ustedes</td>
+              <td>ellos</td>
+              <td>ellas</td>
+            </tr>
+            <tr>
+              <td class="header-cell">con preposición <em>(a, de...)</em></td>
+              <td>mí</td>
+              <td>ti</td>
+              <td>usted</td>
+              <td>él</td>
+              <td>ella</td>
+              <td>nosotros<br>nosotras</td>
+              <td>vosotros<br>vosotras</td>
+              <td>ustedes</td>
+              <td>ellos</td>
+              <td>ellas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- CUADRO ATENCIÓN 1 -->
+      <div class="atencion-box">
+        <div class="flex items-center flex-wrap gap-2 mb-1">
+          <span class="atencion-badge">ATENCIÓN:</span>
+          <strong>masculino + femenino = plural masculino</strong>
+        </div>
+        <div class="italic text-justify pl-1">
+          Tengo un paquete para <strong>Marta y Juan</strong>. &rarr; Tengo un paquete para <strong>ellos</strong>.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: Uso de los pronombres de sujeto -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="w-full">
+          Los pronombres de sujeto se usan para referirnos a la persona que hace la acción del verbo o de la que se dice algo (sujeto).
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pl-6 my-2 italic">
+        <div><strong>Yo</strong> he viajado por todo el mundo.</div>
+        <div><strong>Ustedes</strong> no fuman, ¿verdad?</div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start mt-4">
+        <div class="lg:col-span-2 space-y-3">
+          
+          <!-- Sub-item 1 -->
+          <div class="sub-dash-bullet">
+            <span class="font-bold">–</span>
+            <div>
+              Normalmente no es necesario usar los pronombres de sujeto con el verbo.
+              <div class="italic my-1 pl-2">
+                <div>(Nosotras) trabajamos en una empresa alemana.</div>
+                <div>—¿Qué haces (tú)? —(Yo) estudio Arquitectura.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub-item 2 -->
+          <div class="sub-dash-bullet">
+            <span class="font-bold">–</span>
+            <div class="w-full">
+              <div>Se usan los pronombres personales de sujeto:</div>
+              
+              <div class="sub-dot-bullet">
+                <span class="small-dot-icon">●</span>
+                <div>
+                  para indicar contraste, dar énfasis <span class="translation-text">(stress)</span> o dejar claro de quién se está hablando.
+                  <div class="italic my-1 pl-2">
+                    <div><strong>Nosotras</strong> estamos trabajando todo el día y <strong>él</strong> siempre está en casa.</div>
+                    <div>¿Qué dices? <strong>Tú</strong> estás loco.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sub-dot-bullet">
+                <span class="small-dot-icon">●</span>
+                <div>
+                  cuando van con otras personas.
+                  <div class="italic my-1 pl-2">
+                    <div>Jorge y <strong>tú</strong> hacéis muy buena pareja.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sub-dot-bullet">
+                <span class="small-dot-icon">●</span>
+                <div>
+                  solos, para identificar a alguien.
+                  <div class="italic my-1 pl-2">
+                    <div>—¿Quién ha usado el microondas? —<strong>Yo</strong>.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub-item 3 -->
+          <div class="sub-dash-bullet">
+            <span class="font-bold">–</span>
+            <div>
+              No se usan nunca los pronombres personales <em>ellos, ellas</em> cuando se refieren a un sujeto desconocido o no identificado previamente.
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 italic my-1 pl-2">
+                <div>Llaman a la puerta.</div>
+                <div>Me han invitado a una fiesta.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ILUSTRACIÓN ADJUNTA -->
+        <div class="flex justify-center my-2 lg:my-0">
+          <img src="https://imgur.com/VMdYbEV.jpg" alt="Ilustración pronombres de sujeto" class="max-w-full h-auto rounded border border-gray-200 shadow-sm" style="max-height: 240px;">
+        </div>
+      </div>
+
+      <!-- CUADRO DE COMPARACIÓN -->
+      <div class="mt-6">
+        <p class="font-bold mb-2">Compare:</p>
+        <div class="compare-container">
+          <div class="compare-header">
+            <div>pronombre de sujeto posible: referencia conocida</div>
+            <div>pronombre de sujeto no posible: referencia desconocida</div>
+          </div>
+          <div class="compare-body">
+            <div class="italic">
+              —¿Qué dicen tus padres? —(Ellos) quieren que estudie.
+            </div>
+            <div class="italic">
+              —<span class="line-through text-red-500">Ellos</span> me han gastado una broma. —¿Quién? —Unos chicos. No los conozco.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: Formas con preposición -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="w-full">
+          Las formas <em>usted/él, ella, nosotros/-as, vosotros/-as, ustedes/ellos/ellas</em> se usan también con preposiciones.
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pl-6 my-2 italic">
+        <div>—¿Habéis visto a David? —Sí, ayer estuvimos <strong>con él</strong>.</div>
+        <div>—¿Para quién es esto? ¿Es <strong>para nosotras</strong>?</div>
+        <div>—¿Es esto <strong>de ustedes</strong>?</div>
+      </div>
+
+      <!-- Sub-item 1 de preposiciones -->
+      <div class="sub-dash-bullet">
+        <span class="font-bold">–</span>
+        <div class="w-full">
+          <div><em>Yo</em> y <em>tú</em> se usan con las siguientes preposiciones: <em>entre, excepto, hasta (= incluso), incluso, menos, según</em>.</div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 my-2 italic pl-2">
+            <div>Esto lo hemos hecho <strong>entre Jaime y yo</strong>.</div>
+            <div><strong>Incluso yo</strong> podría conducir ese camión.</div>
+            <div><strong>Según tú</strong>, ¿quién es el culpable?</div>
+            <div>Han aprobado todos <strong>menos yo</strong>.</div>
+            <div>Todo el mundo puede aprender un idioma, <strong>hasta tú</strong>.</div>
+            <div>Me felicitó todo el mundo <strong>excepto tú</strong>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-item 2 de preposiciones -->
+      <div class="sub-dash-bullet">
+        <span class="font-bold">–</span>
+        <div class="w-full">
+          <div>Con el resto de preposiciones, se usan <em>mí</em> y <em>ti</em> en lugar de <em>yo</em> y <em>tú</em>.</div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1 my-2 italic pl-2">
+            <div>¿Para quién es esto? ¿Es <strong>para mí</strong>?</div>
+            <div>¿Quién te lo ha dicho <strong>a ti</strong>?</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUADRO ATENCIÓN 2 -->
+      <div class="atencion-box mt-4">
+        <div class="mb-2">
+          <span class="atencion-badge">ATENCIÓN:</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pl-2">
+          <div class="flex flex-col gap-1">
+            <div><strong>con + mí = conmigo</strong></div>
+            <div class="italic pl-2">Ven <strong>conmigo</strong>. Quiero enseñarte algo.</div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <div><strong>con + ti = contigo</strong></div>
+            <div class="italic pl-2">No me gusta jugar <strong>contigo</strong>. Haces trampa.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Soporte para salto de cursor automático con la tecla Enter entre campos si existiesen
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = inputs.indexOf(event.target);
+        if (index > -1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

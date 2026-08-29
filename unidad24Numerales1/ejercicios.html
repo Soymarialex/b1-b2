@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Page Title */
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* Exercise Header Structure */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        /* Exercise Grid Layout (For 24.1) */
+        .exercise-grid-3 {
+            display: grid;
+            grid-template-rows: repeat(6, auto);
+            grid-auto-flow: column;
+            gap: 14px 20px;
+            list-style: none;
+            padding: 0;
+            margin-bottom: 25px;
+        }
+
+        .exercise-grid-item {
+            display: flex;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+
+        .exercise-grid-item .item-num {
+            font-weight: bold;
+            margin-right: 6px;
+            min-width: 25px;
+        }
+
+        .exercise-grid-item .item-label {
+            margin-right: 8px;
+            font-weight: 500;
+        }
+
+        /* Content Lists */
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker, .exercise-item::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Fill-in Input Styles */
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA;
+            border-bottom-color: #28A745;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA;
+            border-bottom-color: #DC3545;
+        }
+
+        /* Width Utilities */
+        .w-xs { width: 110px; }
+        .w-sm { width: 160px; }
+        .w-md { width: 220px; }
+        .w-lg { width: 300px; }
+        .w-xl { width: 380px; }
+
+        /* Answers Button */
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        /* Answers Panel */
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .exercise-grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: unset;
+                grid-auto-flow: row;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .exercise-grid-3 {
+                grid-template-columns: 1fr;
+                grid-template-rows: unset;
+                grid-auto-flow: row;
+            }
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 24.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">24.1</span>
+            <span class="exercise-instruction">Escriba los ordinales correspondientes a estas clasificaciones.</span>
+        </div>
+
+        <ul class="exercise-grid-3">
+            <li class="exercise-grid-item">
+                <span class="item-num">1.</span> <span class="item-label">1ª</span>
+                <input type="text" class="fill-input w-sm" data-ans="primera">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">2.</span> <span class="item-label">4ª</span>
+                <input type="text" class="fill-input w-sm" data-ans="cuarta">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">3.</span> <span class="item-label">9º</span>
+                <input type="text" class="fill-input w-sm" data-ans="noveno">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">4.</span> <span class="item-label">10ª</span>
+                <input type="text" class="fill-input w-sm" data-ans="décima|decima">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">5.</span> <span class="item-label">11ª</span>
+                <input type="text" class="fill-input w-sm" data-ans="undécima|undecima">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">6.</span> <span class="item-label">12º</span>
+                <input type="text" class="fill-input w-sm" data-ans="duodécimo|duodecimo">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">7.</span> <span class="item-label">15º</span>
+                <input type="text" class="fill-input w-sm" data-ans="decimoquinto">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">8.</span> <span class="item-label">18º</span>
+                <input type="text" class="fill-input w-sm" data-ans="decimoctavo">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">9.</span> <span class="item-label">20ª</span>
+                <input type="text" class="fill-input w-sm" data-ans="vigésima|vigesima">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">10.</span> <span class="item-label">23º</span>
+                <input type="text" class="fill-input w-sm" data-ans="vigésimo tercero|vigesimo tercero">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">11.</span> <span class="item-label">26ª</span>
+                <input type="text" class="fill-input w-sm" data-ans="vigésimo sexta|vigesimo sexta">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">12.</span> <span class="item-label">38º</span>
+                <input type="text" class="fill-input w-sm" data-ans="trigésimo octavo|trigesimo octavo">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">13.</span> <span class="item-label">40º</span>
+                <input type="text" class="fill-input w-sm" data-ans="cuadragésimo|cuadragesimo">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">14.</span> <span class="item-label">41ª</span>
+                <input type="text" class="fill-input w-sm" data-ans="cuadragésimo primera|cuadragesimo primera">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">15.</span> <span class="item-label">57º</span>
+                <input type="text" class="fill-input w-sm" data-ans="quincuagésimo séptimo|quincuagesimo septimo">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">16.</span> <span class="item-label">76º</span>
+                <input type="text" class="fill-input w-sm" data-ans="septuagésimo sexto|septuagesimo sexto">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">17.</span> <span class="item-label">104º</span>
+                <input type="text" class="fill-input w-sm" data-ans="centésimo cuarto|centesimo cuarto">
+            </li>
+            <li class="exercise-grid-item">
+                <span class="item-num">18.</span> <span class="item-label">1001ª</span>
+                <input type="text" class="fill-input w-sm" data-ans="milésimo primera|milesimo primera">
+            </li>
+        </ul>
+
+        <!-- EJERCICIO 24.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">24.2</span>
+            <span class="exercise-instruction">Complete con los ordinales o cardinales correspondientes.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –¿En qué piso está la academia? –En el (1º) <input type="text" class="fill-input w-md" data-ans="primero">.
+            </li>
+            <li class="exercise-item">
+                Alquilan una oficina en el piso (20º) <input type="text" class="fill-input w-md" data-ans="veinte">.
+            </li>
+            <li class="exercise-item">
+                –¿En qué año de la carrera está Jesús? –En (3º) <input type="text" class="fill-input w-md" data-ans="tercero">.
+            </li>
+            <li class="exercise-item">
+                Este libro es muy largo. Tiene 40 capítulos y voy por el (19º) <input type="text" class="fill-input w-md" data-ans="diecinueve">.
+            </li>
+            <li class="exercise-item">
+                El abuelo de Ramón nació en el siglo XIX (<input type="text" class="fill-input w-md" data-ans="diecinueve">).
+            </li>
+            <li class="exercise-item">
+                –¿En qué puesto vais en la liga? –En el (12º) <input type="text" class="fill-input w-md" data-ans="duodécimo|duodecimo">.
+            </li>
+            <li class="exercise-item">
+                He empezado a escribir el (3º) <input type="text" class="fill-input w-md" data-ans="tercer"> capítulo de mi novela.
+            </li>
+            <li class="exercise-item">
+                Juan XXIII (<input type="text" class="fill-input w-md" data-ans="veintitrés|veintitres">) fue un buen Papa.
+            </li>
+            <li class="exercise-item">
+                –¿Quién es la reina de Inglaterra? –Isabel II (<input type="text" class="fill-input w-md" data-ans="segunda">).
+            </li>
+            <li class="exercise-item">
+                Esta es la (3º) <input type="text" class="fill-input w-md" data-ans="tercera"> vez que veo esta película.
+            </li>
+            <li class="exercise-item">
+                –¿Cuántos candidatos hay? –Unos quinientos. –¿Y en qué lugar estas tú? –En el (125º) <input type="text" class="fill-input w-lg" data-ans="ciento veinticinco">.
+            </li>
+            <li class="exercise-item">
+                Este año celebramos nuestro (25º) <input type="text" class="fill-input w-lg" data-ans="vigésimo quinto|vigesimo quinto|veinticinco"> aniversario de boda.
+            </li>
+            <li class="exercise-item">
+                Mi obra preferida es la (5º) <input type="text" class="fill-input w-md" data-ans="quinta"> Sinfonía de Beethoven.
+            </li>
+            <li class="exercise-item">
+                La niña de Carlos nació a principios del siglo XXI (<input type="text" class="fill-input w-md" data-ans="veintiuno">).
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 24.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">24.3</span>
+            <span class="exercise-instruction">Complete con los ordinales correspondientes.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Pronto se va a celebrar el (50º) <input type="text" class="fill-input w-lg" data-ans="quincuagésimo|quincuagesimo"> aniversario de la muerte de Picasso.
+            </li>
+            <li class="exercise-item">
+                Este año se celebra la (15ª) <input type="text" class="fill-input w-lg" data-ans="decimoquinta"> edición de la Feria de Arte.
+            </li>
+            <li class="exercise-item">
+                Esta universidad ocupa el (32º) <input type="text" class="fill-input w-lg" data-ans="trigésimo segundo|trigesimo segundo"> puesto mundial en la lista de calidad.
+            </li>
+            <li class="exercise-item">
+                Hoy se corre la (17ª) <input type="text" class="fill-input w-lg" data-ans="decimoséptima|decimoseptima"> etapa de la Vuelta a España.
+            </li>
+            <li class="exercise-item">
+                En 2008 se celebró la (60ª) <input type="text" class="fill-input w-lg" data-ans="sexagésima|sexagesima"> edición de la Feria del Libro de Francfurt.
+            </li>
+            <li class="exercise-item">
+                El Primer Ministro acudió a la fiesta del (100º) <input type="text" class="fill-input w-lg" data-ans="centésimo|centesimo"> aniversario de la fundación de la empresa.
+            </li>
+            <li class="exercise-item">
+                En noviembre se celebra la (34ª) <input type="text" class="fill-input w-lg" data-ans="trigésimo cuarta|trigesimo cuarta"> edición del Festival de Cine de Huelva.
+            </li>
+            <li class="exercise-item">
+                La (16ª) <input type="text" class="fill-input w-lg" data-ans="decimosexta"> prueba de los campeonatos del mundo se celebra en Brasil.
+            </li>
+            <li class="exercise-item">
+                El equipo español quedó en el (21º) <input type="text" class="fill-input w-lg" data-ans="vigésimo primer|vigesimo primer"> puesto de la clasificación.
+            </li>
+            <li class="exercise-item">
+                Mañana se juega la (25ª) <input type="text" class="fill-input w-lg" data-ans="vigésimo quinta|vigesimo quinta"> jornada del campeonato de Liga.
+            </li>
+            <li class="exercise-item">
+                La (18ª) <input type="text" class="fill-input w-lg" data-ans="décimo octava|decimo octava"> Cumbre Iberoamericana se celebró en El Salvador.
+            </li>
+            <li class="exercise-item">
+                Pronto se va a celebrar la (40ª) <input type="text" class="fill-input w-lg" data-ans="cuadragésima|cuadragesima"> edición de la Olimpiada de Ajedrez.
+            </li>
+            <li class="exercise-item">
+                En 2008 se celebró la (22ª) <input type="text" class="fill-input w-lg" data-ans="vigésimo segunda|vigesimo segunda"> Feria Internacional del Libro de Guadalajara.
+            </li>
+            <li class="exercise-item">
+                ¿Cuándo se celebra la (100ª) <input type="text" class="fill-input w-lg" data-ans="centésima|centesima"> edición del Campeonato español de Liga?
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 24.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">24.4</span>
+            <span class="exercise-instruction">Complete con los ordinales correspondientes en la forma correcta.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Fuimos los (1º) <input type="text" class="fill-input w-md" data-ans="primeros"> en llegar a la fiesta.
+            </li>
+            <li class="exercise-item">
+                Es la (2ª) <input type="text" class="fill-input w-md" data-ans="segunda"> vez que salgo con Marta.
+            </li>
+            <li class="exercise-item">
+                La cantante española quedó (13ª) <input type="text" class="fill-input w-md" data-ans="decimotercera"> en el concurso de Eurovisión.
+            </li>
+            <li class="exercise-item">
+                Ana y Rosa fueron las (2ª) <input type="text" class="fill-input w-md" data-ans="segundas"> clasificadas por equipos.
+            </li>
+            <li class="exercise-item">
+                Es la (4ª) <input type="text" class="fill-input w-md" data-ans="cuarta"> película que vemos esta semana.
+            </li>
+            <li class="exercise-item">
+                Los atletas españoles quedaron (13º) <input type="text" class="fill-input w-md" data-ans="decimoterceros"> en la clasificación final.
+            </li>
+            <li class="exercise-item">
+                Yo soy la (3ª) <input type="text" class="fill-input w-md" data-ans="tercera"> de mis hermanas.
+            </li>
+            <li class="exercise-item">
+                Teresa y su hermana quedaron (10ª) <input type="text" class="fill-input w-md" data-ans="décimas|decimas"> en el concurso del colegio.
+            </li>
+        </ol>
+
+        <!-- BUTTON AND ANSWERS PANEL -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">24.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> primera</li>
+                        <li><span class="answer-num">2.</span> cuarta</li>
+                        <li><span class="answer-num">3.</span> noveno</li>
+                        <li><span class="answer-num">4.</span> décima</li>
+                        <li><span class="answer-num">5.</span> undécima</li>
+                        <li><span class="answer-num">6.</span> duodécimo</li>
+                        <li><span class="answer-num">7.</span> decimoquinto</li>
+                        <li><span class="answer-num">8.</span> decimoctavo</li>
+                        <li><span class="answer-num">9.</span> vigésima</li>
+                        <li><span class="answer-num">10.</span> vigésimo tercero</li>
+                        <li><span class="answer-num">11.</span> vigésimo sexta</li>
+                        <li><span class="answer-num">12.</span> trigésimo octavo</li>
+                        <li><span class="answer-num">13.</span> cuadragésimo</li>
+                        <li><span class="answer-num">14.</span> cuadragésimo primera</li>
+                        <li><span class="answer-num">15.</span> quincuagésimo séptimo</li>
+                        <li><span class="answer-num">16.</span> septuagésimo sexto</li>
+                        <li><span class="answer-num">17.</span> centésimo cuarto</li>
+                        <li><span class="answer-num">18.</span> milésimo primera</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">24.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> primero</li>
+                        <li><span class="answer-num">2.</span> veinte</li>
+                        <li><span class="answer-num">3.</span> tercero</li>
+                        <li><span class="answer-num">4.</span> diecinueve</li>
+                        <li><span class="answer-num">5.</span> diecinueve</li>
+                        <li><span class="answer-num">6.</span> duodécimo</li>
+                        <li><span class="answer-num">7.</span> tercer</li>
+                        <li><span class="answer-num">8.</span> veintitrés</li>
+                        <li><span class="answer-num">9.</span> segunda</li>
+                        <li><span class="answer-num">10.</span> tercera</li>
+                        <li><span class="answer-num">11.</span> ciento veinticinco</li>
+                        <li><span class="answer-num">12.</span> vigésimo quinto / veinticinco</li>
+                        <li><span class="answer-num">13.</span> Quinta</li>
+                        <li><span class="answer-num">14.</span> veintiuno</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">24.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> quincuagésimo</li>
+                        <li><span class="answer-num">2.</span> decimoquinta</li>
+                        <li><span class="answer-num">3.</span> trigésimo segundo</li>
+                        <li><span class="answer-num">4.</span> decimoséptima</li>
+                        <li><span class="answer-num">5.</span> sexagésima</li>
+                        <li><span class="answer-num">6.</span> centésimo</li>
+                        <li><span class="answer-num">7.</span> trigésimo cuarta</li>
+                        <li><span class="answer-num">8.</span> decimosexta</li>
+                        <li><span class="answer-num">9.</span> vigésimo primer</li>
+                        <li><span class="answer-num">10.</span> vigésimo quinta</li>
+                        <li><span class="answer-num">11.</span> décimo octava</li>
+                        <li><span class="answer-num">12.</span> cuadragésima</li>
+                        <li><span class="answer-num">13.</span> vigésimo segunda</li>
+                        <li><span class="answer-num">14.</span> centésima</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">24.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> primeros</li>
+                        <li><span class="answer-num">2.</span> segunda</li>
+                        <li><span class="answer-num">3.</span> decimotercera</li>
+                        <li><span class="answer-num">4.</span> segundas</li>
+                        <li><span class="answer-num">5.</span> cuarta</li>
+                        <li><span class="answer-num">6.</span> decimoterceros</li>
+                        <li><span class="answer-num">7.</span> tercera</li>
+                        <li><span class="answer-num">8.</span> décimas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalize string for validation (lowercase, trim spaces and trailing periods)
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/\.$/, '');
+            }
+
+            // Function to validate text input against data-ans attribute
+            function validateInput(input) {
+                const userVal = normalizeText(input.value);
+                if (userVal === '') {
+                    input.classList.remove('correct', 'incorrect');
+                    return;
+                }
+
+                // Handle multiple accepted options separated by "|"
+                const acceptedAnswers = input.getAttribute('data-ans').split('|').map(normalizeText);
+                
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            // Input listeners for real-time feedback and Enter key navigation
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    validateInput(this);
+                });
+
+                input.addEventListener('blur', function() {
+                    validateInput(this);
+                });
+
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this);
+                        // Focus on next input sequentially
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Toggle Answers Panel visibility
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

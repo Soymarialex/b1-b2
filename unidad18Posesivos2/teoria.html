@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lección 18 - mi profesor, un profesor mío</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Rosa Claro */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Blanco puro */
+      --color-borde: #E0E0E0;        /* Gris claro */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CONTENEDOR PRINCIPAL (Layout 950px max width, 2.5rem padding) */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* ENCABEZADO DE LA LECCIÓN */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.1;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    .translation-text {
+      color: var(--color-primario);
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    /* GALERÍA DE IMÁGENES */
+    .images-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .images-grid img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 640px) {
+      .images-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* VIÑETAS PRINCIPALES */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+      color: var(--color-texto);
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    /* SUB-EJEMPLOS Y LISTAS */
+    .sub-examples {
+      padding-left: 1.8rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+    }
+
+    .sub-examples p {
+      margin-bottom: 0.3rem;
+    }
+
+    .note-text {
+      color: #555555;
+      font-size: 0.98rem;
+    }
+
+    /* SECCIÓN DE COMPARACIÓN (TABLAS Y CAJAS) */
+    .compare-label {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+    }
+
+    .compare-table th {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      padding: 10px;
+      text-align: center;
+      border: 1px solid var(--color-primario);
+      width: 50%;
+    }
+
+    .compare-table td {
+      border: 1px solid var(--color-primario);
+      padding: 12px;
+      vertical-align: top;
+      background-color: #FFFFFF;
+      width: 50%;
+    }
+
+    .compare-table tr:nth-child(even) td {
+      background-color: rgba(255, 179, 209, 0.08);
+    }
+
+    .compare-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--color-primario);
+      border-radius: 4px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .compare-3col-item {
+      padding: 12px;
+      border-right: 1px solid var(--color-primario);
+      background-color: #FFFFFF;
+      font-size: 1rem;
+    }
+
+    .compare-3col-item:last-child {
+      border-right: none;
+    }
+
+    @media (max-width: 640px) {
+      .compare-3col {
+        grid-template-columns: 1fr;
+      }
+      .compare-3col-item {
+        border-right: none;
+        border-bottom: 1px solid var(--color-primario);
+      }
+      .compare-3col-item:last-child {
+        border-bottom: none;
+      }
+    }
+
+    /* DOS COLUMNAS DE COMPARACIÓN DIRECTA */
+    .grid-2col-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding-left: 1.8rem;
+      margin-top: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .grid-2col-comparison {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .grid-2col-header {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--color-texto);
+    }
+
+    /* CUADROS DE ATENCIÓN */
+    .attention-box {
+      background-color: #FFF5F8;
+      border: 1px solid var(--color-secundario);
+      border-left: 4px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .attention-badge-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .attention-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 0.85rem;
+      padding: 3px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.5px;
+    }
+
+    .attention-lines {
+      height: 12px;
+      width: 2px;
+      background-color: var(--color-primario);
+      display: inline-block;
+    }
+
+    /* LÍNEA DIVISORA FUERA DE LAS REGLAS */
+    .divider-line {
+      border: 0;
+      height: 1px;
+      background-color: var(--color-borde);
+      margin: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">18</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">mi profesor / un profesor mío</h1>
+        <h2 class="page-subtitle">
+          Posesivos <span class="translation-text">(possessives)</span> (2)
+        </h2>
+      </div>
+    </header>
+
+    <!-- GALERÍA DE IMÁGENES DE LA LECCIÓN -->
+    <section>
+      <div class="images-grid">
+        <div>
+          <img src="https://imgur.com/pLOyQEZ.jpg" alt="Imagen izquierda - Juan, te presento a Silvia, mi novia" />
+        </div>
+        <div>
+          <img src="https://imgur.com/Ac8vzw3.jpg" alt="Imagen derecha - Mira, una foto tuya de pequeña" />
+        </div>
+      </div>
+    </section>
+
+    <!-- REGLA 1: ÚNICO O ESPECÍFICO -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usan <em>mi, tu, su...</em> + sustantivo cuando nos referimos a alguien o algo único o específico (único en esa situación - <span class="translation-text">(unique in that situation)</span>.
+        </div>
+      </div>
+
+      <div class="sub-examples">
+        <p><em>Te presento a Silvia, <strong>mi novia</strong>.</em> <span class="note-text">(Solo tengo una novia.)</span></p>
+        <p><em>He visto a <strong>tu compañero</strong> de oficina.</em> <span class="note-text">(Solo tiene un compañero en la oficina, o es el compañero con el que trabaja.)</span></p>
+      </div>
+
+      <!-- REGLA 2: PARTE DE UN GRUPO -->
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usa <em>un/una, dos, tres... unos/unas</em> + sustantivo + <em>mío, tuyo...</em> cuando hablamos de alguien o algo como parte de un grupo <span class="translation-text">(part of a group)</span>.
+        </div>
+      </div>
+
+      <div class="sub-examples">
+        <p><em>Mira, <strong>una foto tuya</strong> de pequeña.</em> <span class="note-text">(Una de tus muchas fotos.)</span></p>
+        <p><em><strong>Un primo mío</strong> es campeón de kárate.</em> <span class="note-text">(Uno de mis muchos primos.)</span></p>
+        <p><em>Tengo <strong>unas medallas tuyas</strong> de cuando hacías atletismo.</em> <span class="note-text">(Algunas de tus medallas.)</span></p>
+      </div>
+
+      <!-- TABLA DE COMPARACIÓN 1 -->
+      <div class="compare-label">Compare:</div>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>
+              <em>mi, tu, su...</em> + sustantivo<br>
+              <span class="font-normal">(único o único en la situación)</span>
+            </th>
+            <th>
+              <em>un/una, dos...</em> + sustantivo + <em>mío, tuyo...</em><br>
+              <span class="font-normal">(uno o unos de un grupo)</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <em><strong>Mi profesor</strong> de español es de Palencia.</em><br>
+              <span class="note-text">(Solo tengo un profesor de español.)</span>
+            </td>
+            <td>
+              <em><strong>Un profesor mío</strong> es de Palencia.</em><br>
+              <span class="note-text">(Uno de mi grupo de profesores.)</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <em><strong>Tu dibujo</strong> es excelente.</em><br>
+              <span class="note-text">(El dibujo que me acabas de enseñar.)</span>
+            </td>
+            <td>
+              <em>He enmarcado <strong>un dibujo tuyo</strong>.</em><br>
+              <span class="note-text">(Uno de un conjunto; hay más.)</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <em><strong>Sus dos hermanas</strong> viven en México.</em><br>
+              <span class="note-text">(Las dos hermanas que tiene.)</span>
+            </td>
+            <td>
+              <em><strong>Dos hermanas suyas</strong> viven en México.</em><br>
+              <span class="note-text">(Dos de las hermanas que tiene; tiene más.)</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- REGLA 3: SER + SUSTANTIVO + MÍO, TUYO... PARA RELACIONES -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usa <em>ser</em> + sustantivo + <em>mío, tuyo...</em> para indicar únicamente relaciones <span class="translation-text">(relationship)</span>.
+        </div>
+      </div>
+
+      <div class="sub-examples">
+        <p><em>Alonso es <strong>cuñado mío</strong>.</em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>Rosa y Teresa son <strong>compañeras mías</strong>.</em></p>
+      </div>
+
+      <!-- COMPARACIÓN EN 3 COLUMNAS -->
+      <div class="compare-label">Compare:</div>
+      <div class="compare-3col">
+        <div class="compare-3col-item">
+          <p><em>Juan es <strong>mi sobrino</strong>.</em></p>
+          <p class="note-text">(Solo tengo un sobrino o es el sobrino del que te hablé.)</p>
+        </div>
+        <div class="compare-3col-item">
+          <p><em>Juan es <strong>un sobrino mío</strong>.</em></p>
+          <p class="note-text">(Tengo más sobrinos.)</p>
+        </div>
+        <div class="compare-3col-item">
+          <p><em>Juan es <strong>sobrino mío</strong>.</em></p>
+          <p class="note-text">(Solo indico la relación; puedo tener más sobrinos o no)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGLA 4: UNO/UNA, DOS... DE + MIS, TUS, SUS... -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Para hablar de alguien o algo como parte de un grupo, se puede usar también <em>uno/una, dos... + de + mis, tus, sus...</em> + sustantivo.
+        </div>
+      </div>
+
+      <div class="grid-2col-comparison">
+        <div>
+          <div class="grid-2col-header"><em>un/una, dos...</em> + sustantivo + <em>mío, tuyo...</em></div>
+          <p class="mb-2"><em><strong>Un profesor mío</strong> es de Palencia.</em></p>
+          <p class="mb-2"><em>He enmarcado <strong>un dibujo tuyo</strong>.</em></p>
+          <p class="mb-2"><em><strong>Dos hermanas suyas</strong> viven en México.</em></p>
+        </div>
+        <div>
+          <div class="grid-2col-header"><em>uno/una, dos... de + mi, tu, su...</em> + sustantivo plural</div>
+          <p class="mb-2"><em><strong>Uno de mis profesores</strong> es de Palencia.</em></p>
+          <p class="mb-2"><em>He enmarcado <strong>uno de tus dibujos</strong>.</em></p>
+          <p class="mb-2"><em><strong>Dos de sus hermanas</strong> viven en México.</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUADRO DE ATENCIÓN -->
+    <aside class="attention-box">
+      <div class="attention-badge-wrapper">
+        <span class="attention-badge">ATENCIÓN:</span>
+        <span class="attention-lines"></span>
+        <span class="attention-lines"></span>
+      </div>
+
+      <p class="font-medium mb-3">
+        <em>su, suyo, suya, sus, suyos, suyas = de él, de ella, de usted, de ellos, de ellas, de ustedes</em>
+      </p>
+
+      <p class="mb-3">
+        Generalmente, la situación indica a quién se refiere <em>su, suyo, suya, sus, suyos, suyas</em>.
+      </p>
+
+      <div class="sub-examples my-2">
+        <p><em>He visto a Jesús con uno de <strong>sus</strong> profesores. (= de él, de Jesús)</em></p>
+        <p><em>Don Alberto, ¿me presta una de <strong>sus</strong> corbatas? (= de usted, de don Alberto)</em></p>
+      </div>
+
+      <p class="mt-4 mb-2">
+        En caso necesario, se usa <em>de</em> + renombre personal o nombre propio para dejar claro a quién se refiere.
+      </p>
+
+      <div class="sub-examples my-2">
+        <p><em>—He visto a Lola con <strong>una amiga suya</strong>, doña Teresa. —¿Con una amiga mía? —No, con <strong>una amiga de ella</strong>.</em></p>
+      </div>
+    </aside>
+
+  </div>
+
+</body>
+</html>

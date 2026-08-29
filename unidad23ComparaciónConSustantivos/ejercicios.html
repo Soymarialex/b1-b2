@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Page Title */
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* Exercise Header Structure */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        /* Content Lists */
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker, .exercise-item::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Fill-in Input Styles */
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA;
+            border-bottom-color: #28A745;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA;
+            border-bottom-color: #DC3545;
+        }
+
+        /* Width Utilities */
+        .w-xs { width: 110px; }
+        .w-sm { width: 160px; }
+        .w-md { width: 240px; }
+        .w-lg { width: 340px; }
+        .w-xl { width: 440px; }
+
+        /* Answers Button */
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        /* Answers Panel */
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 23.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">23.1</span>
+            <span class="exercise-instruction">Vuelva a escribir las frases con <strong>más</strong> o <strong>menos</strong> en el lugar adecuado.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Necesitamos pan. (+) <input type="text" class="fill-input w-xl" data-ans="necesitamos más pan|necesitamos mas pan">
+            </li>
+            <li class="exercise-item">
+                Hay que comprar comida. (–) <input type="text" class="fill-input w-xl" data-ans="hay que comprar menos comida">
+            </li>
+            <li class="exercise-item">
+                Compra dos kilos. (+) <input type="text" class="fill-input w-xl" data-ans="compra dos kilos más|compra dos kilos mas">
+            </li>
+            <li class="exercise-item">
+                Échale agua a las plantas. (–) <input type="text" class="fill-input w-xl" data-ans="echa menos agua a las plantas">
+            </li>
+            <li class="exercise-item">
+                Quiero sopa. (–) <input type="text" class="fill-input w-xl" data-ans="quiero menos sopa">
+            </li>
+            <li class="exercise-item">
+                Han venido otros dos invitados. (+) <input type="text" class="fill-input w-xl" data-ans="han venido otros dos invitados más|han venido otros dos invitados mas">
+            </li>
+            <li class="exercise-item">
+                Hoy hace frío. (+) <input type="text" class="fill-input w-xl" data-ans="hoy hace más frío|hoy hace mas frio">
+            </li>
+            <li class="exercise-item">
+                Me han dado veinte euros. (–) <input type="text" class="fill-input w-xl" data-ans="me han dado veinte euros menos">
+            </li>
+            <li class="exercise-item">
+                Necesito otra hora. (+) <input type="text" class="fill-input w-xl" data-ans="necesito otra hora más|necesito otra hora mas">
+            </li>
+            <li class="exercise-item">
+                Hoy tengo tiempo. (+) <input type="text" class="fill-input w-xl" data-ans="hoy tengo más tiempo|hoy tengo mas tiempo">
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 23.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">23.2</span>
+            <span class="exercise-instruction">Complete con <strong>más</strong>, <strong>menos</strong> y las cantidades entre paréntesis donde las haya.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –He comprado dos kilos de naranjas. –Compra (1) <input type="text" class="fill-input w-md" data-ans="un kilo más|un kilo mas|uno más ">. Somos muchos.
+            </li>
+            <li class="exercise-item">
+                –Hoy hace frío. –Sí, pero ayer hizo <input type="text" class="fill-input w-xs" data-ans="más|mas">.
+            </li>
+            <li class="exercise-item">
+                –En mi calle hay muchos árboles. –Sí, pero en la mía hay <input type="text" class="fill-input w-xs" data-ans="más|mas">.
+            </li>
+            <li class="exercise-item">
+                –Tengo poco dinero. –Pues yo tengo <input type="text" class="fill-input w-xs" data-ans="menos">.
+            </li>
+            <li class="exercise-item">
+                –Tenemos cinco hijos. –Nosotros tenemos (2) <input type="text" class="fill-input w-md" data-ans="dos menos">. Tenemos tres.
+            </li>
+            <li class="exercise-item">
+                –Tengo poca suerte. –Pues yo tengo <input type="text" class="fill-input w-xs" data-ans="menos">.
+            </li>
+            <li class="exercise-item">
+                –Hay seis sillas. –Necesitamos (1) <input type="text" class="fill-input w-md" data-ans="una más|una mas">. Somos siete.
+            </li>
+            <li class="exercise-item">
+                –Hoy hay mucha gente. –Sí, pero ayer hubo <input type="text" class="fill-input w-xs" data-ans="más|mas">.
+            </li>
+            <li class="exercise-item">
+                –Tengo seis copas. –Necesitamos (3) <input type="text" class="fill-input w-md" data-ans="tres más|tres mas">. Vamos a ser nueve.
+            </li>
+            <li class="exercise-item">
+                –Tengo dos ordenadores. –Yo tengo (1) <input type="text" class="fill-input w-md" data-ans="uno más|uno mas">. Tengo tres.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 23.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">23.3</span>
+            <span class="exercise-instruction">Complete con <strong>más</strong>, <strong>más de</strong>, <strong>menos</strong> y <strong>menos de</strong>.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Aquí no hay mucha gente. Hay <input type="text" class="fill-input w-md" data-ans="menos de"> veinticinco personas.
+            </li>
+            <li class="exercise-item">
+                No hay suficiente. Necesitamos <input type="text" class="fill-input w-xs" data-ans="más|mas"> comida.
+            </li>
+            <li class="exercise-item">
+                Cinco kilos son muchas. Compra <input type="text" class="fill-input w-xs" data-ans="menos"> naranjas.
+            </li>
+            <li class="exercise-item">
+                Fue un gran éxito. Había <input type="text" class="fill-input w-md" data-ans="más de|mas de"> mil personas.
+            </li>
+            <li class="exercise-item">
+                Eso es muy caro. No pagues <input type="text" class="fill-input w-md" data-ans="más de|mas de"> cincuenta euros.
+            </li>
+            <li class="exercise-item">
+                Daniel tiene una gran colección de plumas. Tiene <input type="text" class="fill-input w-md" data-ans="más de|mas de"> quinientas.
+            </li>
+            <li class="exercise-item">
+                Hay mucha gente. Necesitamos <input type="text" class="fill-input w-xs" data-ans="más|mas"> sillas.
+            </li>
+            <li class="exercise-item">
+                Si cuesta <input type="text" class="fill-input w-md" data-ans="menos de"> diez euros, es barato.
+            </li>
+            <li class="exercise-item">
+                Sara no puede entrar al casino. Tiene <input type="text" class="fill-input w-md" data-ans="menos de"> dieciocho años.
+            </li>
+            <li class="exercise-item">
+                Trabajas mucho. Tienes que trabajar <input type="text" class="fill-input w-xs" data-ans="menos"> horas.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 23.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">23.4</span>
+            <span class="exercise-instruction">Escriba comparaciones con las palabras dadas.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Julio / tiene / + / corbata / Rafa <input type="text" class="fill-input w-xl" data-ans="julio tiene más corbatas que rafa|julio tiene mas corbatas que rafa">
+            </li>
+            <li class="exercise-item">
+                Ana / tiene / = / pulsera / yo <input type="text" class="fill-input w-xl" data-ans="ana tiene tantas pulseras como yo">
+            </li>
+            <li class="exercise-item">
+                En esta ciudad / hay / + / tráfico / en Madrid <input type="text" class="fill-input w-xl" data-ans="en esta ciudad hay más tráfico que en madrid|en esta ciudad hay mas trafico que en madrid">
+            </li>
+            <li class="exercise-item">
+                Tú / tienes / + / vacaciones / Marta <input type="text" class="fill-input w-xl" data-ans="tú tienes más vacaciones que marta|tu tienes mas vacaciones que marta">
+            </li>
+            <li class="exercise-item">
+                Hoy / hace / = / calor / ayer <input type="text" class="fill-input w-xl" data-ans="hoy hace tanto calor como ayer">
+            </li>
+            <li class="exercise-item">
+                Hoy / hay / + / nube <input type="text" class="fill-input w-xl" data-ans="hoy hay más nubes|hoy hay mas nubes">
+            </li>
+            <li class="exercise-item">
+                Hugo / tiene / - / juguete / su hermana <input type="text" class="fill-input w-xl" data-ans="hugo tiene menos juguetes que su hermana">
+            </li>
+            <li class="exercise-item">
+                Hoy / tengo / - / sueño / anoche <input type="text" class="fill-input w-xl" data-ans="hoy tengo menos sueño que anoche">
+            </li>
+            <li class="exercise-item">
+                Hoy / hay / = / gente / el domingo pasado <input type="text" class="fill-input w-xl" data-ans="hoy hay tanta gente como el domingo pasado">
+            </li>
+            <li class="exercise-item">
+                No hablo / = / idioma / mi padre <input type="text" class="fill-input w-xl" data-ans="no hablo tantos idiomas como mi padre">
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 23.5 -->
+        <div class="exercise-header">
+            <span class="exercise-number">23.5</span>
+            <span class="exercise-instruction">Complete con <strong>tanto/a/os/as</strong>.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –Tienes mucha suerte. –Pues tú tienes <input type="text" class="fill-input w-md" data-ans="tanta como yo">.
+            </li>
+            <li class="exercise-item">
+                –Tengo muchas vacaciones. Treinta días. –Yo no tengo <input type="text" class="fill-input w-lg" data-ans="tantas|tantas como tú|tantas como tu">. Solo veinte días.
+            </li>
+            <li class="exercise-item">
+                –Ayer hizo mucho frío. –Pues hoy hace <input type="text" class="fill-input w-md" data-ans="tanto como ayer">.
+            </li>
+            <li class="exercise-item">
+                –En mi empresa hay muchos trabajadores. –Pues en mi empresa no hay <input type="text" class="fill-input w-lg" data-ans="tantos|tantos como en la tuya">.
+            </li>
+            <li class="exercise-item">
+                –Bebo mucha agua. Dos litros al día. –Pues yo no bebo <input type="text" class="fill-input w-md" data-ans="tanta|tanta como tú|tanta como tu">. La mitad.
+            </li>
+            <li class="exercise-item">
+                –Rosana tiene casi treinta alumnos. –Pues yo no tengo <input type="text" class="fill-input w-md" data-ans="tantos|tantos como ella">.
+            </li>
+        </ol>
+
+        <!-- BUTTON AND ANSWERS PANEL -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">23.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Necesitamos más pan.</li>
+                        <li><span class="answer-num">2.</span> Hay que comprar menos comida.</li>
+                        <li><span class="answer-num">3.</span> Compra dos kilos más.</li>
+                        <li><span class="answer-num">4.</span> Echa menos agua a las plantas.</li>
+                        <li><span class="answer-num">5.</span> Quiero menos sopa.</li>
+                        <li><span class="answer-num">6.</span> Han venido otros dos invitados más.</li>
+                        <li><span class="answer-num">7.</span> Hoy hace más frío.</li>
+                        <li><span class="answer-num">8.</span> Me han dado veinte euros menos.</li>
+                        <li><span class="answer-num">9.</span> Necesito otra hora más.</li>
+                        <li><span class="answer-num">10.</span> Hoy tengo más tiempo.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">23.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> un kilo más / uno más</li>
+                        <li><span class="answer-num">2.</span> más</li>
+                        <li><span class="answer-num">3.</span> más</li>
+                        <li><span class="answer-num">4.</span> menos</li>
+                        <li><span class="answer-num">5.</span> dos menos</li>
+                        <li><span class="answer-num">6.</span> menos</li>
+                        <li><span class="answer-num">7.</span> una más</li>
+                        <li><span class="answer-num">8.</span> más</li>
+                        <li><span class="answer-num">9.</span> tres más</li>
+                        <li><span class="answer-num">10.</span> uno más</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">23.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> menos de</li>
+                        <li><span class="answer-num">2.</span> más</li>
+                        <li><span class="answer-num">3.</span> menos</li>
+                        <li><span class="answer-num">4.</span> más de</li>
+                        <li><span class="answer-num">5.</span> más de</li>
+                        <li><span class="answer-num">6.</span> más de</li>
+                        <li><span class="answer-num">7.</span> más</li>
+                        <li><span class="answer-num">8.</span> menos de</li>
+                        <li><span class="answer-num">9.</span> menos de</li>
+                        <li><span class="answer-num">10.</span> menos</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">23.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Julio tiene más corbatas que Rafa.</li>
+                        <li><span class="answer-num">2.</span> Ana tiene tantas pulseras como yo.</li>
+                        <li><span class="answer-num">3.</span> En esta ciudad hay más tráfico que en Madrid.</li>
+                        <li><span class="answer-num">4.</span> Tú tienes más vacaciones que Marta.</li>
+                        <li><span class="answer-num">5.</span> Hoy hace tanto calor como ayer.</li>
+                        <li><span class="answer-num">6.</span> Hoy hay más nubes.</li>
+                        <li><span class="answer-num">7.</span> Hugo tiene menos juguetes que su hermana.</li>
+                        <li><span class="answer-num">8.</span> Hoy tengo menos sueño que anoche.</li>
+                        <li><span class="answer-num">9.</span> Hoy hay tanta gente como el domingo pasado.</li>
+                        <li><span class="answer-num">10.</span> No hablo tantos idiomas como mi padre.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">23.5</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> tanta como yo</li>
+                        <li><span class="answer-num">2.</span> tantas (como tú)</li>
+                        <li><span class="answer-num">3.</span> tanto como ayer</li>
+                        <li><span class="answer-num">4.</span> tantos (como en la tuya)</li>
+                        <li><span class="answer-num">5.</span> tanta (como tú)</li>
+                        <li><span class="answer-num">6.</span> tantos (como ella)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalize string for validation (lowercase, trim spaces and trailing periods)
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/\.$/, '');
+            }
+
+            // Function to validate text input against data-ans attribute
+            function validateInput(input) {
+                const userVal = normalizeText(input.value);
+                if (userVal === '') {
+                    input.classList.remove('correct', 'incorrect');
+                    return;
+                }
+
+                // Handle multiple accepted options separated by "|"
+                const acceptedAnswers = input.getAttribute('data-ans').split('|').map(normalizeText);
+                
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            // Input listeners for real-time feedback and Enter navigation
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    validateInput(this);
+                });
+
+                input.addEventListener('blur', function() {
+                    validateInput(this);
+                });
+
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this);
+                        // Jump to next field sequentially
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Toggle Answers Panel visibility
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

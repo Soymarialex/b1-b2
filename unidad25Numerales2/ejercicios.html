@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker, .exercise-item::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .two-column-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 30px;
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .underlined-target {
+            text-decoration: underline;
+        }
+
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA;
+            border-bottom-color: #28A745;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA;
+            border-bottom-color: #DC3545;
+        }
+
+        input.fill-input.example-input {
+            border-bottom-color: #28A745;
+            background-color: #E2F0D9;
+            color: #121118;
+            font-weight: 500;
+        }
+
+        .w-xs { width: 90px; }
+        .w-sm { width: 140px; }
+        .w-md { width: 220px; }
+        .w-lg { width: 340px; }
+        .w-full-line { width: calc(100% - 30px); margin-top: 4px; }
+
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .two-column-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 25.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">25.1</span>
+            <span class="exercise-instruction">Indique la cantidad subrayada con un quebrado (/) o un multiplicador (x).</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Esto es solo <span class="underlined-target">una décima parte</span> de lo que tienes que hacer. <input type="text" class="fill-input w-xs example-input" value="1/10" readonly>
+            </li>
+            <li class="exercise-item">
+                Compra <span class="underlined-target">medio</span> kilo de manzanas. <input type="text" class="fill-input w-xs" data-ans="1/2">
+            </li>
+            <li class="exercise-item">
+                Juan está <span class="underlined-target">el doble</span> de gordo que hace un año. <input type="text" class="fill-input w-xs" data-ans="x2|X2|*2">
+            </li>
+            <li class="exercise-item">
+                A Antonio le corresponde <span class="underlined-target">un quinto</span> de la herencia. <input type="text" class="fill-input w-xs" data-ans="1/5">
+            </li>
+            <li class="exercise-item">
+                Teresa gana <span class="underlined-target">el triple</span> que yo. <input type="text" class="fill-input w-xs" data-ans="x3|X3|*3">
+            </li>
+            <li class="exercise-item">
+                El <span class="underlined-target">séptulo</span> de 7 es 49. <input type="text" class="fill-input w-xs" data-ans="x7|X7|*7">
+            </li>
+            <li class="exercise-item">
+                Este trozo es <span class="underlined-target">la doceava parte</span> de la tarta. <input type="text" class="fill-input w-xs" data-ans="1/12">
+            </li>
+            <li class="exercise-item">
+                Han aprobado <span class="underlined-target">dos tercios</span> de mis alumnos. <input type="text" class="fill-input w-xs" data-ans="2/3">
+            </li>
+            <li class="exercise-item">
+                Quiero <span class="underlined-target">tres cuartos</span> de filetes. <input type="text" class="fill-input w-xs" data-ans="3/4">
+            </li>
+            <li class="exercise-item">
+                Mi piso me ha costado <span class="underlined-target">el cuádruple</span> que el tuyo. <input type="text" class="fill-input w-xs" data-ans="x4|X4|*4">
+            </li>
+            <li class="exercise-item">
+                Un iceberg muestra solo <span class="underlined-target">un cuarto</span> de su tamaño. <input type="text" class="fill-input w-xs" data-ans="1/4">
+            </li>
+            <li class="exercise-item">
+                <span class="underlined-target">Un tercio</span> de los españoles no hace deporte. <input type="text" class="fill-input w-xs" data-ans="1/3">
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 25.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">25.2</span>
+            <span class="exercise-instruction">Vuelva a escribir las frases con la palabra <i>parte</i>.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Esto es un quinto de mi biblioteca. <br>
+                <input type="text" class="fill-input w-full-line example-input" value="Esto es una quinta parte de mi biblioteca." readonly>
+            </li>
+            <li class="exercise-item">
+                Más de un cuarto de la población no suele votar en las elecciones. <br>
+                <input type="text" class="fill-input w-full-line" data-ans="Más de una cuarta parte de la población no suele votar en las elecciones.|Más de una cuarta parte de la población no suele votar en las elecciones|Más de una cuarta parte de la población|Mas de una cuarta parte de la poblacion no suele votar en las elecciones">
+            </li>
+            <li class="exercise-item">
+                Felipe pasa un sexto de su tiempo libre viendo la tele. <br>
+                <input type="text" class="fill-input w-full-line" data-ans="Felipe pasa una sexta parte de su tiempo libre viendo la tele.|Felipe pasa una sexta parte de su tiempo libre viendo la tele|Felipe pasa una sexta parte de su tiempo|Felipe pasa una sexta parte de su tiempo libre viendo la televisión">
+            </li>
+            <li class="exercise-item">
+                Enrique solo ha dado un tercio de lo que prometió. <br>
+                <input type="text" class="fill-input w-full-line" data-ans="Enrique solo ha dado una tercera parte de lo que prometió.|Enrique solo ha dado una tercera parte de lo que prometió|Enrique solo ha dado una tercera parte de|Enrique solo ha dado una tercera parte de lo que prometio">
+            </li>
+            <li class="exercise-item">
+                Esto es solo un décimo de mi colección. <br>
+                <input type="text" class="fill-input w-full-line" data-ans="Esto es solo una décima parte de mi colección.|Esto es solo una décima parte de mi colección|Esto es solo una décima parte de|Esto es solo una decima parte de mi coleccion">
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 25.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">25.3</span>
+            <span class="exercise-instruction">Complete con el numeral indicado entre paréntesis.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Prefiero ganar menos, pero trabajar (1/2) <input type="text" class="fill-input w-sm example-input" value="la mitad" readonly>.
+            </li>
+            <li class="exercise-item">
+                Póngame, (1/2) <input type="text" class="fill-input w-sm" data-ans="medio"> kilo de cerezas, por favor.
+            </li>
+            <li class="exercise-item">
+                –Te doy 50 euros por ese cedé. –¿Estás loco? Es (x5) <input type="text" class="fill-input w-sm" data-ans="el quíntuplo|el quintuplo"> de lo que vale.
+            </li>
+            <li class="exercise-item">
+                (1/3) <input type="text" class="fill-input w-sm" data-ans="un tercio"> de mis amigos son extranjeros.
+            </li>
+            <li class="exercise-item">
+                Mi hija gana (32) <input type="text" class="fill-input w-sm" data-ans="el doble"> que yo.
+            </li>
+            <li class="exercise-item">
+                Antonia me ha devuelto solo (1/5) <input type="text" class="fill-input w-sm" data-ans="un quinto"> de lo que me debe.
+            </li>
+            <li class="exercise-item">
+                Esto es solo (1/10) <input type="text" class="fill-input w-sm" data-ans="una décima|una decima"> parte de lo que puedes ganar con nosotros.
+            </li>
+            <li class="exercise-item">
+                Ya solo queda (1/2) <input type="text" class="fill-input w-sm" data-ans="media"> tarta.
+            </li>
+            <li class="exercise-item">
+                Este año he ganado (33) <input type="text" class="fill-input w-sm" data-ans="el triple"> que el año pasado.
+            </li>
+            <li class="exercise-item">
+                (36) <input type="text" class="fill-input w-sm" data-ans="el séxtuplo|el sextuplo"> de 10 es 60.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 25.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">25.4</span>
+            <span class="exercise-instruction">Vuelva a escribir las frases con <i>veces más/mayor</i> o <i>veces menos/menor</i>.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Esto es el quíntuplo de lo que necesitamos. <br>
+                <input type="text" class="fill-input w-full-line example-input" value="Esto es cinco veces más de lo que necesitamos." readonly>
+            </li>
+            <li class="exercise-item">
+                Me han pedido 2000 euros por ese cuadro. Es el cuádruple de lo que vale. <br>
+                <input type="text" class="fill-input w-full-line" data-ans="Es cuatro veces más de lo que vale.|Es cuatro veces más de lo que vale|Es cuatro veces mas de lo que vale">
+            </li>
+            <li class="exercise-item">
+                He regateado y lo he comprado por un quinto de lo que pedía. <br>
+                <input type="text" class="fill-input w-full-line" data-ans="Lo he comprado por cinco veces menos de lo que pedía.|Lo he comprado por cinco veces menos de lo que pedía|Lo he comprado por 5 veces menos de lo que pedía|Lo he comprado por cinco veces menos de lo que pedia">
+            </li>
+            <li class="exercise-item">
+                El piso costaba un tercio de lo que anunciaban. <br>
+                <input type="text" class="fill-input w-full-line" data-ans="El piso costaba tres veces menos de lo que anunciaban.|El piso costaba tres veces menos de lo que anunciaban|El piso costaba 3 veces menos de lo que anunciaban">
+            </li>
+            <li class="exercise-item">
+                Este paquete pesa un décimo de lo que debería. <br>
+                <input type="text" class="fill-input w-full-line" data-ans="Este paquete pesa diez veces menos de lo que debería.|Este paquete pesa diez veces menos de lo que debería|Este paquete pesa 10 veces menos de lo que debería|Este paquete pesa diez veces menos de lo que deberia">
+            </li>
+            <li class="exercise-item">
+                Este año tenemos el séxtuplo de alumnos que el año pasado. <br>
+                <input type="text" class="fill-input w-full-line" data-ans="Este año tenemos seis veces más alumnos que el año pasado.|Este año tenemos seis veces más alumnos que el año pasado|Este año tenemos 6 veces más alumnos que el año pasado|Este año tenemos seis veces mas alumnos que el año pasado">
+            </li>
+            <li class="exercise-item">
+                Este año he ganado el séptulo de lo que esperaba. <br>
+                <input type="text" class="fill-input w-full-line" data-ans="Este año he ganado siete veces menos de lo que esperaba.|Este año he ganado siete veces menos de lo que esperaba|Este año he ganado 7 veces menos de lo que esperaba|Este año he ganado siete veces menos de lo que esperaba">
+            </li>
+            <li class="exercise-item">
+                He conseguido una doceava parte de las firmas que necesitamos. <br>
+                <input type="text" class="fill-input w-full-line" data-ans="He conseguido doce veces menos firmas de las que necesitamos.|He conseguido doce veces menos firmas de las que necesitamos|He conseguido 12 veces menos firmas de las que necesitamos">
+            </li>
+            <li class="exercise-item">
+                Esto es un octavo de lo que me prometiste. <br>
+                <input type="text" class="fill-input w-full-line" data-ans="Esto es ocho veces menos de lo que me prometiste.|Esto es ocho veces menos de lo que me prometiste|Esto es 8 veces menos de lo que me prometiste">
+            </li>
+            <li class="exercise-item">
+                La piscina de Enrique es el triple de grande que la tuya. <br>
+                <input type="text" class="fill-input w-full-line" data-ans="La piscina de Enrique es tres veces más grande que la tuya.|La piscina de Enrique es tres veces más grande que la tuya|La piscina de Enrique es 3 veces más grande que la tuya|La piscina de Enrique es tres veces mas grande que la tuya">
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 25.5 -->
+        <div class="exercise-header">
+            <span class="exercise-number">25.5</span>
+            <span class="exercise-instruction">Complete con <i>de</i>, <i>que</i> o <i>de lo que</i>.</span>
+        </div>
+
+        <ol class="two-column-list">
+            <li class="exercise-item">
+                Dame la mitad <input type="text" class="fill-input w-xs example-input" value="de" readonly> ese bocadillo.
+            </li>
+            <li class="exercise-item">
+                Esto es el doble <input type="text" class="fill-input w-sm" data-ans="de lo que"> yo esperaba.
+            </li>
+            <li class="exercise-item">
+                Ana gana la mitad <input type="text" class="fill-input w-xs" data-ans="que"> yo.
+            </li>
+            <li class="exercise-item">
+                Eso es dos veces menos <input type="text" class="fill-input w-sm" data-ans="de lo que"> me dijiste.
+            </li>
+            <li class="exercise-item">
+                Luis duerme el triple <input type="text" class="fill-input w-xs" data-ans="que"> nosotros.
+            </li>
+            <li class="exercise-item">
+                La mitad <input type="text" class="fill-input w-xs" data-ans="de"> nosotros trabajamos en una empresa.
+            </li>
+            <li class="exercise-item">
+                Esto es solo una quinta parte <input type="text" class="fill-input w-sm" data-ans="de lo que"> te voy a dar.
+            </li>
+            <li class="exercise-item">
+                Necesitamos el doble <input type="text" class="fill-input w-xs" data-ans="de"> alumnos.
+            </li>
+        </ol>
+
+        <!-- BUTTON AND ANSWERS PANEL -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">25.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> 1/10</li>
+                        <li><span class="answer-num">2.</span> 1/2</li>
+                        <li><span class="answer-num">3.</span> X2</li>
+                        <li><span class="answer-num">4.</span> 1/5</li>
+                        <li><span class="answer-num">5.</span> X3</li>
+                        <li><span class="answer-num">6.</span> X7</li>
+                        <li><span class="answer-num">7.</span> 1/12</li>
+                        <li><span class="answer-num">8.</span> 2/3</li>
+                        <li><span class="answer-num">9.</span> 3/4</li>
+                        <li><span class="answer-num">10.</span> X4</li>
+                        <li><span class="answer-num">11.</span> 1/4</li>
+                        <li><span class="answer-num">12.</span> 1/3</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">25.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Esto es una quinta parte de mi biblioteca.</li>
+                        <li><span class="answer-num">2.</span> Más de una cuarta parte de la población...</li>
+                        <li><span class="answer-num">3.</span> Felipe pasa una sexta parte de su tiempo...</li>
+                        <li><span class="answer-num">4.</span> Enrique solo ha dado una tercera parte de...</li>
+                        <li><span class="answer-num">5.</span> Esto es solo una décima parte de...</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">25.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> la mitad</li>
+                        <li><span class="answer-num">2.</span> medio</li>
+                        <li><span class="answer-num">3.</span> el quíntuplo</li>
+                        <li><span class="answer-num">4.</span> un tercio</li>
+                        <li><span class="answer-num">5.</span> el doble</li>
+                        <li><span class="answer-num">6.</span> un quinto</li>
+                        <li><span class="answer-num">7.</span> una décima</li>
+                        <li><span class="answer-num">8.</span> media</li>
+                        <li><span class="answer-num">9.</span> el triple</li>
+                        <li><span class="answer-num">10.</span> el séxtuplo</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">25.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Esto es cinco veces más de lo que necesitamos.</li>
+                        <li><span class="answer-num">2.</span> Es cuatro veces más de lo que vale.</li>
+                        <li><span class="answer-num">3.</span> Lo he comprado por cinco veces menos de lo que pedía.</li>
+                        <li><span class="answer-num">4.</span> El piso costaba tres veces menos de lo que anunciaban.</li>
+                        <li><span class="answer-num">5.</span> Este paquete pesa diez veces menos de lo que debería.</li>
+                        <li><span class="answer-num">6.</span> Este año tenemos seis veces más alumnos que el año pasado.</li>
+                        <li><span class="answer-num">7.</span> Este año he ganado siete veces menos de lo que esperaba.</li>
+                        <li><span class="answer-num">8.</span> He conseguido doce veces menos firmas de las que necesitamos.</li>
+                        <li><span class="answer-num">9.</span> Esto es ocho veces menos de lo que me prometiste.</li>
+                        <li><span class="answer-num">10.</span> La piscina de Enrique es tres veces más grande que la tuya.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">25.5</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> de</li>
+                        <li><span class="answer-num">2.</span> de lo que</li>
+                        <li><span class="answer-num">3.</span> que</li>
+                        <li><span class="answer-num">4.</span> de lo que</li>
+                        <li><span class="answer-num">5.</span> que</li>
+                        <li><span class="answer-num">6.</span> de</li>
+                        <li><span class="answer-num">7.</span> de lo que</li>
+                        <li><span class="answer-num">8.</span> de</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input:not([readonly])'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalize string for validation (lowercase, trim spaces and trailing periods)
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/\.$/, '');
+            }
+
+            function validateInput(input) {
+                const userVal = normalizeText(input.value);
+                if (userVal === '') {
+                    input.classList.remove('correct', 'incorrect');
+                    return;
+                }
+
+                const acceptedAnswers = input.getAttribute('data-ans').split('|').map(normalizeText);
+                
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    validateInput(this);
+                });
+
+                input.addEventListener('blur', function() {
+                    validateInput(this);
+                });
+
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this);
+                        // Jump to next input sequentially in numerical order
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

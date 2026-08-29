@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Header Title */
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* Exercise Header Structure */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        /* Exercise Content Lists */
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker, .exercise-item::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 14px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Inputs Styling */
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA;
+            border-bottom-color: #28A745;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA;
+            border-bottom-color: #DC3545;
+        }
+
+        /* Custom width utilities for inputs */
+        .w-xs { width: 70px; }
+        .w-sm { width: 110px; }
+        .w-md { width: 170px; }
+        .w-lg { width: 280px; }
+        .w-full-line { width: 100%; max-width: 520px; margin-top: 4px; }
+        .w-dialog { width: 60%; max-width: 450px; min-width: 200px; }
+
+        /* Answers Button */
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        /* Answers Grid Panel */
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .exercise-header {
+                flex-direction: row;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 17.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">17.1</span>
+            <span class="exercise-instruction">Complete con la forma correcta de <em>mi, tu, su...</em> o <em>mío, tuyo, suyo...</em></span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –¿Es <input type="text" class="fill-input w-sm" data-ans="tuyo"> ese coche? –No, no es <input type="text" class="fill-input w-sm" data-ans="mío|mio">. Yo no tengo coche.
+            </li>
+            <li class="exercise-item">
+                ¿Te gusta <input type="text" class="fill-input w-xs" data-ans="mi"> coche? Lo acabo de comprar.
+            </li>
+            <li class="exercise-item">
+                –¿De quién son esas fotos? –Son <input type="text" class="fill-input w-sm" data-ans="mías|mias">. Me han regalado una cámara.
+            </li>
+            <li class="exercise-item">
+                –Alicia, ¿son <input type="text" class="fill-input w-sm" data-ans="tuyos"> estos CD´s? –No, no son <input type="text" class="fill-input w-sm" data-ans="míos|mios">.
+            </li>
+            <li class="exercise-item">
+                Ayer estuve con Alberto y <input type="text" class="fill-input w-xs" data-ans="su"> familia.
+            </li>
+            <li class="exercise-item">
+                –Raúl y yo guardamos <input type="text" class="fill-input w-md" data-ans="nuestras"> cosas en este armario.
+            </li>
+            <li class="exercise-item">
+                –¿Dónde está Sonia? –Está de viaje con <input type="text" class="fill-input w-xs" data-ans="sus"> padres.
+            </li>
+            <li class="exercise-item">
+                –¿Dónde está Raquel? –Está en <input type="text" class="fill-input w-xs" data-ans="su"> casa. Acaba de llamarme.
+            </li>
+            <li class="exercise-item">
+                –¿Son <input type="text" class="fill-input w-sm" data-ans="tuyos"> estos dibujos, Mario? Son estupendos. –Gracias.
+            </li>
+            <li class="exercise-item">
+                –¿De quién son estas maletas? ¿Son de Rosa? –Sí, son <input type="text" class="fill-input w-sm" data-ans="suyas">.
+            </li>
+            <li class="exercise-item">
+                –¿Es eso de Andrés? –Sí, es <input type="text" class="fill-input w-sm" data-ans="suyo">.
+            </li>
+            <li class="exercise-item">
+                –Julia, Ana, ¿son <input type="text" class="fill-input w-md" data-ans="vuestras|suyas"> estas llaves? –No, no son <input type="text" class="fill-input w-md" data-ans="nuestras">.
+            </li>
+            <li class="exercise-item">
+                –¿Has visto <input type="text" class="fill-input w-xs" data-ans="mis"> gafas? –Sí, están encima de la tele.
+            </li>
+            <li class="exercise-item">
+                Tenéis que dejarme <input type="text" class="fill-input w-md" data-ans="vuestros|suyos"> pasaportes.
+            </li>
+            <li class="exercise-item">
+                –¿De quién es ese ordenador? ¿Es de Ana? –No, no es <input type="text" class="fill-input w-sm" data-ans="suyo">. Es de una amiga.
+            </li>
+        </ol>
+
+
+        <!-- EJERCICIO 17.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">17.2</span>
+            <span class="exercise-instruction">Complete con la forma correcta de <em>el, la, los, las + mío, tuyo, suyo...</em></span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –¿Es este tu abrigo? –No, <input type="text" class="fill-input w-sm" data-ans="el mío|el mio"> es gris.
+            </li>
+            <li class="exercise-item">
+                –¿Son esas las fotos de Carlos? –No, <input type="text" class="fill-input w-md" data-ans="las suyas"> son en color.
+            </li>
+            <li class="exercise-item">
+                –¿Nos prestas el coche? <input type="text" class="fill-input w-md" data-ans="el nuestro"> está averiado.
+            </li>
+            <li class="exercise-item">
+                –¿De quién son esos dibujos? ¿Son de Andrés? –No, <input type="text" class="fill-input w-md" data-ans="los suyos"> son mejores.
+            </li>
+            <li class="exercise-item">
+                –¿De quién es la habitación 10? ¿Es la nuestra? –No, <input type="text" class="fill-input w-lg" data-ans="la nuestra|la vuestra|la suya"> es la 30.
+            </li>
+            <li class="exercise-item">
+                –¿Has visto mi ordenador? –Está bien, pero <input type="text" class="fill-input w-sm" data-ans="el mío|el mio"> es mejor.
+            </li>
+            <li class="exercise-item">
+                –Mi madre es de Zamora. ¿Y <input type="text" class="fill-input w-sm" data-ans="la tuya">? –<input type="text" class="fill-input w-sm" data-ans="la mía|la mia"> es de Ávila.
+            </li>
+            <li class="exercise-item">
+                –¿Me prestas la bici? –¿Dónde está <input type="text" class="fill-input w-sm" data-ans="la tuya">?
+            </li>
+            <li class="exercise-item">
+                Este no es el abrigo de Inés. <input type="text" class="fill-input w-sm" data-ans="el suyo"> es negro.
+            </li>
+            <li class="exercise-item">
+                –Mira. El perro de Jorge. –No, <input type="text" class="fill-input w-sm" data-ans="el suyo"> es más grande.
+            </li>
+            <li class="exercise-item">
+                –¿Es esa vuestra profesora? –No, <input type="text" class="fill-input w-md" data-ans="la nuestra"> es rubia.
+            </li>
+            <li class="exercise-item">
+                –¿De quién son estas entradas? ¿Son nuestras? –No, <input type="text" class="fill-input w-lg" data-ans="las nuestras|las vuestras|las suyas"> las tiene Ángel.
+            </li>
+        </ol>
+
+
+        <!-- EJERCICIO 17.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">17.3</span>
+            <span class="exercise-instruction">Complete los diálogos con <em>de + pronombres personal</em>.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –Pedro está durmiendo en su habitación, Sr. López.<br>
+                –¿En mi habitación? –Sí, en <input type="text" class="fill-input w-dialog" data-ans="la habitación de usted|la habitacion de usted">.
+            </li>
+            <li class="exercise-item">
+                –Sr. Pérez, Margarita y Mercedes están en su casa.<br>
+                –¿En mi casa? –No, en <input type="text" class="fill-input w-dialog" data-ans="la casa de ellas">.
+            </li>
+            <li class="exercise-item">
+                –He visto a Rita con su perro.<br>
+                –¿Con mi perro? –No, con <input type="text" class="fill-input w-dialog" data-ans="el perro de ella">.
+            </li>
+            <li class="exercise-item">
+                –He visto a Flor con sus hijos, don Alberto.<br>
+                –¿Con mis hijos? –Sí, con <input type="text" class="fill-input w-dialog" data-ans="los hijos de usted">.
+            </li>
+            <li class="exercise-item">
+                –Los señores Palacio están pasando unos días en su pueblo.<br>
+                –¿En mi pueblo? –No, en <input type="text" class="fill-input w-dialog" data-ans="el pueblo de ellos">.
+            </li>
+            <li class="exercise-item">
+                –Ismael está jugando con sus hijas, doña Rosalía.<br>
+                –¿Con mis hijas? –No, con <input type="text" class="fill-input w-dialog" data-ans="las hijas de él|las hijas de el">.
+            </li>
+        </ol>
+
+
+        <!-- EJERCICIO 17.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">17.4</span>
+            <span class="exercise-instruction">Escriba frases con las palabras dadas.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                duele / boca<br>
+                <input type="text" class="fill-input w-full-line" data-ans="me duele la boca">
+            </li>
+            <li class="exercise-item">
+                tengo / camisa sucia<br>
+                <input type="text" class="fill-input w-full-line" data-ans="tengo la camisa sucia">
+            </li>
+            <li class="exercise-item">
+                hecho daño en / pierna<br>
+                <input type="text" class="fill-input w-full-line" data-ans="me he hecho daño en la pierna">
+            </li>
+            <li class="exercise-item">
+                poneos / abrigos<br>
+                <input type="text" class="fill-input w-full-line" data-ans="poneos los abrigos">
+            </li>
+            <li class="exercise-item">
+                he roto / gafas<br>
+                <input type="text" class="fill-input w-full-line" data-ans="me he roto las gafas|he roto las gafas">
+            </li>
+            <li class="exercise-item">
+                tienes / cara sucia<br>
+                <input type="text" class="fill-input w-full-line" data-ans="tienes la cara sucia">
+            </li>
+            <li class="exercise-item">
+                he perdido / cartera<br>
+                <input type="text" class="fill-input w-full-line" data-ans="he perdido la cartera">
+            </li>
+            <li class="exercise-item">
+                se ha averiado / coche<br>
+                <input type="text" class="fill-input w-full-line" data-ans="se me ha averiado el coche">
+            </li>
+            <li class="exercise-item">
+                ¿duele / cabeza / a vosotros?<br>
+                <input type="text" class="fill-input w-full-line" data-ans="¿os duele la cabeza?|os duele la cabeza|¿os duele la cabeza">
+            </li>
+            <li class="exercise-item">
+                tenemos / frigorífico estropeado<br>
+                <input type="text" class="fill-input w-full-line" data-ans="tenemos el frigorífico estropeado|tenemos el frigorifico estropeado">
+            </li>
+        </ol>
+
+        <!-- BUTTON AND ANSWERS PANEL -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">17.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> tuyo; mío</li>
+                        <li><span class="answer-num">2.</span> mi</li>
+                        <li><span class="answer-num">3.</span> mías</li>
+                        <li><span class="answer-num">4.</span> tuyos; míos</li>
+                        <li><span class="answer-num">5.</span> su</li>
+                        <li><span class="answer-num">6.</span> nuestras</li>
+                        <li><span class="answer-num">7.</span> sus</li>
+                        <li><span class="answer-num">8.</span> su</li>
+                        <li><span class="answer-num">9.</span> tuyos</li>
+                        <li><span class="answer-num">10.</span> suyas</li>
+                        <li><span class="answer-num">11.</span> suyo</li>
+                        <li><span class="answer-num">12.</span> vuestras / suyas; nuestras</li>
+                        <li><span class="answer-num">13.</span> mis</li>
+                        <li><span class="answer-num">14.</span> vuestros / suyos</li>
+                        <li><span class="answer-num">15.</span> suyo</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">17.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> el mío</li>
+                        <li><span class="answer-num">2.</span> las suyas</li>
+                        <li><span class="answer-num">3.</span> el nuestro</li>
+                        <li><span class="answer-num">4.</span> los suyos</li>
+                        <li><span class="answer-num">5.</span> la nuestra / la vuestra / la suya</li>
+                        <li><span class="answer-num">6.</span> el mío</li>
+                        <li><span class="answer-num">7.</span> la tuya; la mía</li>
+                        <li><span class="answer-num">8.</span> la tuya</li>
+                        <li><span class="answer-num">9.</span> el suyo</li>
+                        <li><span class="answer-num">10.</span> el suyo</li>
+                        <li><span class="answer-num">11.</span> la nuestra</li>
+                        <li><span class="answer-num">12.</span> las nuestras / las vuestras / las suyas</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">17.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> la habitación de usted</li>
+                        <li><span class="answer-num">2.</span> la casa de ellas</li>
+                        <li><span class="answer-num">3.</span> el perro de ella</li>
+                        <li><span class="answer-num">4.</span> los hijos de usted</li>
+                        <li><span class="answer-num">5.</span> el pueblo de ellos</li>
+                        <li><span class="answer-num">6.</span> las hijas de él</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">17.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Me duele la boca</li>
+                        <li><span class="answer-num">2.</span> Tengo la camisa sucia</li>
+                        <li><span class="answer-num">3.</span> Me he hecho daño en la pierna</li>
+                        <li><span class="answer-num">4.</span> Poneos los abrigos</li>
+                        <li><span class="answer-num">5.</span> Me he roto las gafas / he roto las gafas</li>
+                        <li><span class="answer-num">6.</span> Tienes la cara sucia</li>
+                        <li><span class="answer-num">7.</span> He perdido la cartera</li>
+                        <li><span class="answer-num">8.</span> Se me ha averiado el coche</li>
+                        <li><span class="answer-num">9.</span> ¿os duele la cabeza?</li>
+                        <li><span class="answer-num">10.</span> Tenemos el frigorífico estropeado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalize text for comparison (remove trailing dots, extra spaces, lower case)
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/\.$/, '');
+            }
+
+            // Function to validate an input field
+            function validateInput(input) {
+                const userVal = normalizeText(input.value);
+                if (userVal === '') {
+                    input.classList.remove('correct', 'incorrect');
+                    return;
+                }
+
+                const acceptedAnswers = input.getAttribute('data-ans').split('|').map(normalizeText);
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            // Input event listeners for validation & navigation
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    validateInput(this);
+                });
+
+                input.addEventListener('blur', function() {
+                    validateInput(this);
+                });
+
+                // Focus jump on Enter key sequentially: 1, 2, 3, 4, 5...
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this);
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Toggle Answers Panel visibility
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>más, menos, tanto - Comparación con sustantivos (1)</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Rosa Claro */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Blanco puro */
+      --color-borde: #E0E0E0;        /* Gris claro */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* ENCABEZADO DE LA LECCIÓN */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    .translation-text {
+      color: var(--color-primario);
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    /* VIÑETAS PRINCIPALES */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.15rem;
+      color: var(--color-texto);
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    /* TABLAS Y CUADROS DE REGLAS */
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--color-primario);
+    }
+
+    .rule-table td {
+      border: 1px solid var(--color-primario);
+      padding: 10px 16px;
+      vertical-align: middle;
+      background-color: #FFFFFF;
+    }
+
+    /* CUADRO DE ATENCIÓN / PERO */
+    .attention-box {
+      background-color: #FFF2F7;
+      border: 1px solid var(--color-primario);
+      border-left: 5px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      margin-top: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .attention-badge {
+      display: inline-block;
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 0.95rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 3px;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* SUB-EJEMPLOS Y SECCIONES TEXTUALES */
+    .sub-examples {
+      padding-left: 1.5rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+    }
+
+    .sub-examples p {
+      margin-bottom: 0.5rem;
+    }
+
+    .sub-indent {
+      padding-left: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ESTILOS PARA TACHADO EN REGLAS */
+    .strikethrough {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    /* IMÁGENES TOP GRID */
+    .images-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      align-items: end;
+    }
+
+    @media (max-width: 640px) {
+      .images-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .image-card {
+      text-align: center;
+    }
+
+    .image-card img {
+      max-width: 100%;
+      height: 180px;
+      object-fit: contain;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .image-caption {
+      margin-top: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* INPUTS / INTERACTIVIDAD */
+    input[type="text"] {
+      border: 1px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--color-primario);
+      box-shadow: 0 0 0 2px var(--color-secundario);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">23</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">más, menos, tanto</h1>
+        <h2 class="page-subtitle">Comparación con sustantivos <span class="translation-text">(comparison with nouns)</span></h2>
+      </div>
+    </header>
+
+    <!-- SECCIÓN DE ILUSTRACIONES SUPERIORES -->
+    <section>
+      <div class="images-grid">
+        <div class="image-card">
+          <img src="https://imgur.com/zw61bPl.jpg" alt="No quiero más vino. Gracias.">
+          <div class="image-caption">
+            <strong><em>más</em></strong> = mayor cantidad (+)
+          </div>
+        </div>
+        <div class="image-card">
+          <img src="https://imgur.com/4ZUGo1p.jpg" alt="¡Qué bien! Hoy hace menos calor que ayer.">
+          <div class="image-caption">
+            <strong><em>menos</em></strong> = menor cantidad (–)
+          </div>
+        </div>
+      </div>
+
+      <p class="mb-4" style="text-align: justify;">
+        <strong><em>Más</em></strong> y <strong><em>menos</em></strong> sirven para indicar cantidad indeterminada.
+      </p>
+    </section>
+
+    <!-- SECCIÓN 1: más, menos -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em><strong>más, menos</strong></em>
+        </div>
+      </div>
+
+      <!-- TABLA DE REGLAS 1 -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 18%; vertical-align: middle;">
+              <em><strong>más</strong></em><br>
+              <em><strong>menos</strong></em>
+            </td>
+            <td style="width: 42%; vertical-align: middle;">
+              + sustantivo singular no contable (<em>agua, aire...</em>)
+            </td>
+            <td style="width: 40%; vertical-align: middle;">
+              <em>Necesitamos <strong>más lluvia</strong>.</em><br>
+              <em>Hoy hace <strong>menos calor</strong>.</em>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: middle;">
+              <em><strong>más</strong></em><br>
+              <em><strong>menos</strong></em>
+            </td>
+            <td style="vertical-align: middle;">
+              + sustantivo contable plural
+            </td>
+            <td style="vertical-align: middle;">
+              <em>Jorge tiene <strong>más libros</strong> que yo.</em><br>
+              <em>Tienes que trabajar <strong>menos horas</strong>.</em>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="vertical-align: middle;">
+              <p><em>otro/otra, un/una</em> + sustantivo contable singular</p>
+              <p><em>(otros/otras) dos, tres...</em> + sustantivo contable plural</p>
+            </td>
+            <td style="vertical-align: middle;">
+              <div style="display: flex; gap: 0.8rem; align-items: center;">
+                <div style="border-left: 2px solid var(--color-primario); padding-left: 0.5rem;">
+                  <em>+ <strong>más</strong></em><br>
+                  <em>+ <strong>menos</strong></em>
+                </div>
+                <div>
+                  <em>Compra <strong>otro litro más</strong>.</em><br>
+                  <em>Ahora tenemos <strong>un coche menos</strong>.</em><br>
+                  <em>Necesitamos <strong>dos entradas más</strong>.</em><br>
+                  <em>Estaría mejor con <strong>cinco kilos menos</strong>.</em>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="sub-examples">
+        <p>
+          – <em>Más</em> y <em>menos</em> se pueden usar solos cuando está claro de qué estamos hablando.
+        </p>
+        <div class="sub-indent">
+          <p>– <em>¿Quieres carne? –No quiero <strong>más</strong> (carne), gracias.</em></p>
+          <p>– <em>He comprado tres refrescos. –Necesitamos <strong>dos más</strong> (refrescos). Somos cinco.</em></p>
+        </div>
+      </div>
+
+      <!-- CUADRO DE ATENCIÓN 1 -->
+      <div class="attention-box">
+        <span class="attention-badge">ATENCIÓN:</span>
+        <div>
+          <em>–Tengo dos hijos. –Yo tengo <span class="strikethrough">un</span> <strong>más</strong>. Tengo tres.</em> &nbsp;→&nbsp; <em>–Yo tengo <strong>uno más</strong>. Tengo tres.</em>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: más de, menos de -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em><strong>más de</strong></em> (= por encima de), <em><strong>menos de</strong></em> (= por debajo de)
+        </div>
+      </div>
+
+      <!-- TABLA DE REGLAS 2 -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 25%; vertical-align: middle;">
+              <em><strong>más de</strong></em><br>
+              <em><strong>menos de</strong></em>
+            </td>
+            <td style="width: 25%; vertical-align: middle;">
+              + cantidad
+            </td>
+            <td style="width: 50%; vertical-align: middle;">
+              <em>Había <strong>más de cien personas</strong> en la conferencia.</em><br>
+              <em>Este CD tiene que costar <strong>menos de 20 euros</strong>.</em>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SECCIÓN 3: Comparaciones -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em>Más, menos</em> y <em>tanto</em> se usan para hacer comparaciones con sustantivos.
+        </div>
+      </div>
+
+      <!-- TABLA DE REGLAS 3 -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 30%; vertical-align: middle;">
+              <em><strong>más (+)</strong></em><br>
+              <em><strong>menos (–)</strong></em>
+            </td>
+            <td style="width: 20%; vertical-align: middle;">
+              + sustantivo
+            </td>
+            <td style="width: 20%; vertical-align: middle;">
+              (+ <strong>que</strong>)
+            </td>
+            <td style="width: 30%; vertical-align: middle;">
+              <em>En mi barrio hay <strong>más árboles que</strong> en el tuyo.</em><br>
+              <em>Hoy ha venido <strong>menos gente que</strong> ayer.</em>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: middle;">
+              <em><strong>tanto, tanta,<br>tantos, tantas (=)</strong></em>
+            </td>
+            <td style="vertical-align: middle;">
+              + sustantivo
+            </td>
+            <td style="vertical-align: middle;">
+              (+ <strong>como</strong>)
+            </td>
+            <td style="vertical-align: middle;">
+              <em>Esta ciudad tiene <strong>tanto tráfico como</strong> cualquier otra.</em><br>
+              <em>No tengo <strong>tantos amigos como</strong> mi hermana.</em>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="sub-examples">
+        <p>– <em>que/como</em> + pronombres personales de sujeto</p>
+        <div class="sub-indent mb-3">
+          <p><em>Voy a ayudar a Luisa. Tiene <strong>más trabajo que yo</strong>.</em></p>
+          <p><em>No tengo <strong>tanta suerte como tú</strong>.</em></p>
+        </div>
+
+        <p>– Normalmente no se usa <em>que/como</em> + término de comparación cuando está claro con qué se compara.</p>
+        <div class="sub-indent">
+          <p><em>Hoy hace <strong>menos calor</strong>.</em> (= menos que ayer)</p>
+          <p><em>Ahora estoy <strong>más tranquilo</strong>.</em> (= más que hace un momento)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: Uso en solitario y Cuadro PERO -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em>Más, menos, tanto/a/os/as</em> se pueden usar solos cuando el nombre al que se refieren se ha mencionado anteriormente.
+        </div>
+      </div>
+
+      <div class="sub-examples">
+        <p>– <em>–Tienes mucha <strong>suerte</strong>. Te ha tocado la lotería. –Tú tienes <strong>más</strong>. Te toca casi todas las semanas.</em></p>
+        <p>– <em>Alberto y yo coleccionamos <strong>sellos</strong>. Yo tengo unos dos mil, pero Alberto no tiene <strong>tantos</strong>.</em></p>
+      </div>
+
+      <!-- CUADRO DE ATENCIÓN / PERO -->
+      <div class="attention-box">
+        <span class="attention-badge">PERO:</span>
+        <div style="display: inline;">
+          En frases afirmativas <em>tanto/a/os/as</em> va siempre con <em><strong>como</strong></em> + término <span class="translation-text">(element)</span> de comparación.
+        </div>
+        <div style="margin-top: 0.6rem; padding-left: 1rem;">
+          <em>–Elisa tiene una gran colección de postales. –<span class="strikethrough">Yo tengo tantas.</span> &nbsp;→&nbsp; –Yo tengo <strong>tantas como ella</strong>.</em>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Soporte para salto de cursor automático con la tecla Enter entre campos si los hubiere
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = inputs.indexOf(event.target);
+        if (index > -1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

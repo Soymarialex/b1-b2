@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alguien, algo, nadie, nada - Indefinidos (4)</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Rosa Claro */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Blanco puro */
+      --color-borde: #E0E0E0;        /* Gris claro */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* ENCABEZADO DE LA LECCIÓN */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    .translation-text {
+      color: var(--color-primario);
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    /* VIÑETAS PRINCIPALES */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.15rem;
+      color: var(--color-texto);
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    /* TABLAS Y CUADROS DE REGLAS */
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--color-primario);
+    }
+
+    .rule-table td {
+      border: 1px solid var(--color-primario);
+      padding: 10px 16px;
+      vertical-align: middle;
+      background-color: #FFFFFF;
+    }
+
+    /* CUADRO DE ATENCIÓN */
+    .attention-box {
+      background-color: #FFF2F7;
+      border: 1px solid var(--color-primario);
+      border-left: 5px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      margin-top: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .attention-badge {
+      display: inline-block;
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 0.95rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 3px;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* CUADRO DE COMPARACIÓN */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    @media (max-width: 640px) {
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .compare-card {
+      border: 1px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 1rem;
+      background-color: #FFFFFF;
+    }
+
+    /* SUB-EJEMPLOS Y SECCIONES TEXTUALES */
+    .sub-examples {
+      padding-left: 1.5rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+    }
+
+    .sub-examples p {
+      margin-bottom: 0.5rem;
+    }
+
+    .sub-indent {
+      padding-left: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .flex-2col {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      .flex-2col {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+
+    /* ESTILOS DE FORMULARIO/INTERACTIVIDAD */
+    input[type="text"] {
+      border: 1px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--color-primario);
+      box-shadow: 0 0 0 2px var(--color-secundario);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">22</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">alguien, algo, nadie, nada</h1>
+        <h2 class="page-subtitle">Indefinidos (4)</h2>
+      </div>
+    </header>
+
+    <!-- SECCIÓN 1 -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usan <em>alguien, algo, nadie</em> y <em>nada</em> para referirse a personas o cosas de identidad desconocida <span class="translation-text">(of unknown identity)</span>.
+        </div>
+      </div>
+
+      <!-- TABLA 1: DEFINICIONES Y EJEMPLOS -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 55%;"><em><strong>alguien</strong></em> = una persona (o varias), pero no decimos quién</td>
+            <td style="width: 45%;"><em>Te ha llamado <strong>alguien</strong>.</em></td>
+          </tr>
+          <tr>
+            <td><em><strong>nadie</strong></em> = ninguna persona</td>
+            <td><em><strong>Nadie</strong> conoce al Sr. Rojas.</em></td>
+          </tr>
+          <tr>
+            <td><em><strong>algo</strong></em> = una cosa (o varias), pero no decimos qué</td>
+            <td><em>Tengo <strong>algo</strong> para ti. Es una sorpresa.</em></td>
+          </tr>
+          <tr>
+            <td><em><strong>nada</strong></em> = ninguna cosa</td>
+            <td><em>No hay <strong>nada</strong> en la caja.</em></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- SUB-PUNTOS SECCIÓN 1 -->
+      <div class="sub-examples">
+        <p>
+          – Se usan <em>alguien</em> y <em>nadie</em> para hablar de personas y <em>algo</em> y <em>nada</em> para hablar de cosas.
+        </p>
+        <div class="sub-indent">
+          <p>– <em>¿Ha llamado <strong>alguien</strong>? Estoy esperando una llamada de un amigo italiano. – No, lo siento. No ha llamado <strong>nadie</strong>.</em></p>
+          <p>– <em>Mañana es mi cumpleaños. Espero que mis hijos me regalen <strong>algo</strong>. El año pasado no me regalaron <strong>nada</strong>.</em></p>
+        </div>
+
+        <p class="mt-3">
+          – Se pueden usar adjetivos detrás de <em>alguien, algo, nadie</em> y <em>nada</em>. El adjetivo va en singular masculino.
+        </p>
+        <div class="sub-indent">
+          <p>– <em>¿Con quién está hablando José? – No sé. Parece <strong>alguien muy importante</strong>.</em></p>
+          <p>– <em>¿Qué quieres para tu cumpleaños? – Quiero <strong>algo bonito</strong>. No quiero <strong>nada caro</strong>.</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2 -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em><strong>Alguien de, nadie de</strong></em>
+        </div>
+      </div>
+
+      <div class="sub-examples">
+        <p>
+          – Para hablar de una (o varias) personas de identidad desconocida de un grupo, se usan <em>alguien de, nadie de</em>.
+        </p>
+        <div class="sub-indent">
+          <p>– <em>¿Quién me llamó? – No me acuerdo ahora. Era <strong>alguien de tu familia</strong>.</em></p>
+          <p>– <em>¿Quién ha roto la ventana? – No ha sido <strong>nadie de esta clase</strong>.</em></p>
+        </div>
+      </div>
+
+      <!-- PRIMER CUADRO DE ATENCIÓN -->
+      <div class="attention-box">
+        <span class="attention-badge">ATENCIÓN:</span>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tbody>
+            <tr>
+              <td style="width: 40%; vertical-align: top; padding-bottom: 0.8rem;">
+                <em>nadie, nada</em> + verbo afirmativo
+              </td>
+              <td style="width: 30%; vertical-align: top; padding-bottom: 0.8rem;">
+                <em><strong>Nadie</strong> quiere hacerlo.</em>
+              </td>
+              <td style="width: 30%; vertical-align: top; padding-bottom: 0.8rem;">
+                <em><strong>Nada</strong> le importa.</em>
+              </td>
+            </tr>
+            <tr>
+              <td style="vertical-align: top;">
+                verbo negativo + <em>nadie, nada</em>
+              </td>
+              <td style="vertical-align: top;">
+                <p><em><strong>No</strong> quiere hacerlo <strong>nadie</strong>.</em></p>
+                <p><em><strong>Nunca</strong> viene <strong>nadie</strong>.</em></p>
+              </td>
+              <td style="vertical-align: top;">
+                <p><em><strong>No</strong> le importa <strong>nada</strong>.</em></p>
+                <p><em><strong>Nunca</strong> quiere <strong>nada</strong>.</em></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3 -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em><strong>Alguien, algo, alguno, nadie, nada, ninguno</strong></em>
+        </div>
+      </div>
+
+      <div class="sub-examples">
+        <p>
+          – <em>Alguien, algo, nadie, nada</em> no dan información alguna sobre la persona o cosa a la que se refieren.
+        </p>
+        <div class="sub-indent mb-3">
+          <p><em>Ha llamado <strong>alguien</strong>, pero no ha dicho el nombre.</em> (No sabemos nada sobre la persona que ha llamado.)</p>
+          <p><em>Te han comprado <strong>algo</strong> para tu cumpleaños.</em> (No sabemos nada sobre el regalo.)</p>
+        </div>
+
+        <p>
+          – <em>Algún, alguno, alguna, ningún, ninguno, ninguna</em> dan información sobre el grupo o se refieren a algo mencionado anteriormente <span class="translation-text">(previously)</span>.
+        </p>
+        <div class="sub-indent">
+          <p>– <em>¿Has visto a <strong>alguna de mis amigas</strong>? – No, no he visto a <strong>ninguna</strong>.</em> (Sabemos que es una amiga.)</p>
+          <p><em><strong>Ninguno de mis alumnos</strong> ha suspendido.</em> (Sabemos que son alumnos.)</p>
+        </div>
+      </div>
+
+      <!-- SECCIÓN COMPARE -->
+      <div style="font-weight: bold; font-size: 1.15rem; margin-top: 1.2rem; margin-bottom: 0.4rem;">
+        Compare:
+      </div>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <p><em>¿Hay <strong>algo</strong> en la mesa?</em></p>
+          <p style="color: #444; font-size: 0.98rem; margin-top: 0.3rem;">(No se especifica ningún tipo de objeto.)</p>
+        </div>
+        <div class="compare-card">
+          <p><em>¿Hay <strong>algún paquete</strong> en la mesa?</em></p>
+          <p style="color: #444; font-size: 0.98rem; margin-top: 0.3rem;">(Se especifica un tipo de objeto.)</p>
+        </div>
+      </div>
+
+      <!-- SEGUNDO CUADRO DE ATENCIÓN -->
+      <div class="attention-box">
+        <span class="attention-badge">ATENCIÓN:</span>
+        <div style="margin-bottom: 0.8rem;">
+          <p><em><strong>alguien de, nadie de</strong></em> + sustantivo singular</p>
+          <div style="display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 0.3rem; padding-left: 1rem;">
+            <div><em>No conozco a <strong>nadie de tu familia</strong>.</em></div>
+            <div><em>Ha llamado <strong>alguien de tu familia</strong>.</em></div>
+          </div>
+        </div>
+        <div>
+          <p><em><strong>alguno de, alguna de, algunos de, algunas de, ninguno de, ninguna de</strong></em> + sustantivo plural</p>
+          <div style="margin-top: 0.3rem; padding-left: 1rem;">
+            <em>Conozco a <strong>alguno de tus amigos</strong>.</em>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4 -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em><strong>Alguien, algo, nadie, nada, algún/alguno, alguna, ningún/ninguno, ninguna</strong></em> + <em><strong>más</strong></em> (<em>más</em> = otro, otros)
+        </div>
+      </div>
+
+      <div class="sub-examples">
+        <div class="flex-2col mb-2">
+          <div><em>Enfermera, ¿hay <strong>alguien más</strong> esperando?</em></div>
+          <div><em>¿Tienes <strong>alguna pregunta más</strong>?</em></div>
+        </div>
+        <div>
+          <em>– ¿Postre? – No, gracias. Estoy lleno. No quiero <strong>nada más</strong>.</em>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Soporte para salto de cursor automático con la tecla Enter entre campos si los hubiere
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = inputs.indexOf(event.target);
+        if (index > -1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

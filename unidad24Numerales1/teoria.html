@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>primero, undécimo, vigésimo primero - Numerales (1)</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Rosa Claro */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Blanco puro */
+      --color-borde: #E0E0E0;        /* Gris claro */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* ENCABEZADO DE LA LECCIÓN */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    .translation-text {
+      color: var(--color-primario);
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    /* VIÑETAS PRINCIPALES */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.15rem;
+      color: var(--color-texto);
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    /* TABLAS Y CUADROS DE REGLAS */
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--color-primario);
+    }
+
+    .rule-table td {
+      border: 1px solid var(--color-primario);
+      padding: 8px 14px;
+      vertical-align: middle;
+      background-color: #FFFFFF;
+    }
+
+    /* CUADRO DE ATENCIÓN */
+    .attention-box {
+      background-color: #FFF2F7;
+      border: 1px solid var(--color-primario);
+      border-left: 5px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 0.8rem 1.2rem;
+      margin-top: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .attention-badge {
+      display: inline-block;
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 0.95rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 3px;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* COMPARES AND SUB-ITEMS */
+    .compare-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--color-primario);
+      border-radius: 4px;
+      margin-top: 0.8rem;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .compare-column {
+      padding: 0.8rem 1.2rem;
+      background-color: #FFFFFF;
+    }
+
+    .compare-column:first-child {
+      border-right: 1px solid var(--color-primario);
+    }
+
+    .list-item-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+      align-items: baseline;
+    }
+
+    @media (max-width: 640px) {
+      .compare-container {
+        grid-template-columns: 1fr;
+      }
+      .compare-column:first-child {
+        border-right: none;
+        border-bottom: 1px solid var(--color-primario);
+      }
+      .list-item-row {
+        grid-template-columns: 1fr;
+        gap: 0.2rem;
+      }
+    }
+
+    .flex-split {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* INPUTS / INTERACTIVIDAD */
+    input[type="text"] {
+      border: 1px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--color-primario);
+      box-shadow: 0 0 0 2px var(--color-secundario);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">24</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">primero, undécimo, vigésimo primero</h1>
+        <h2 class="page-subtitle">Numerales <span class="translation-text">(numbers)</span> (1)</h2>
+      </div>
+    </header>
+
+    <!-- INTRODUCCIÓN -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Los números ordinales <span class="translation-text">(ordinal numbers)</span> se usan para indicar el orden <span class="translation-text">(the order)</span> en una clasificación o secuencia (<em>primero</em> = que ocupa el lugar número uno, <em>milésimo</em> = que ocupa el lugar número mil).
+        </div>
+      </div>
+
+      <div class="flex-split mb-4 pl-6">
+        <div><em>Jesús vive en <strong>el segundo (2.º) piso</strong>.</em></div>
+        <div><em>El Getafe va <strong>duodécimo (12.º)</strong> en la Liga.</em></div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 1: Formas de los números ordinales -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Números ordinales: formas
+        </div>
+      </div>
+
+      <!-- TABLA 1: 1º A 1000º -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 50%;">
+              <table style="width: 100%; border: none;">
+                <tr style="border: none;"><td style="border: none; width: 30%;">1.º / 1.ª</td><td style="border: none;">primero, primer/primera</td></tr>
+                <tr style="border: none;"><td style="border: none;">2.º / 2.ª</td><td style="border: none;">segundo/segunda</td></tr>
+                <tr style="border: none;"><td style="border: none;">3.º / 3.ª</td><td style="border: none;">tercero, tercer /tercera</td></tr>
+                <tr style="border: none;"><td style="border: none;">4.º / 4.ª</td><td style="border: none;">cuarto/cuarta</td></tr>
+                <tr style="border: none;"><td style="border: none;">5.º / 5.ª</td><td style="border: none;">quinto/quinta</td></tr>
+                <tr style="border: none;"><td style="border: none;">6.º / 6.ª</td><td style="border: none;">sexto/sexta</td></tr>
+                <tr style="border: none;"><td style="border: none;">7.º / 7.ª</td><td style="border: none;">séptimo/séptima</td></tr>
+                <tr style="border: none;"><td style="border: none;">8.º / 8.ª</td><td style="border: none;">octavo/octava</td></tr>
+                <tr style="border: none;"><td style="border: none;">9.º / 9.ª</td><td style="border: none;">noveno/novena</td></tr>
+                <tr style="border: none;"><td style="border: none;">10.º / 10.ª</td><td style="border: none;">décimo/décima</td></tr>
+              </table>
+            </td>
+            <td style="width: 50%;">
+              <table style="width: 100%; border: none;">
+                <tr style="border: none;"><td style="border: none; width: 35%;">20.º / 20.ª</td><td style="border: none;">vigésimo/vigésima</td></tr>
+                <tr style="border: none;"><td style="border: none;">30.º / 30.ª</td><td style="border: none;">trigésimo/trigésima</td></tr>
+                <tr style="border: none;"><td style="border: none;">40.º / 40.ª</td><td style="border: none;">cuadragésimo/cuadragésima</td></tr>
+                <tr style="border: none;"><td style="border: none;">50.º / 50.ª</td><td style="border: none;">quincuagésimo/quincuagésima</td></tr>
+                <tr style="border: none;"><td style="border: none;">60.º / 60.ª</td><td style="border: none;">sexagésimo/sexagésima</td></tr>
+                <tr style="border: none;"><td style="border: none;">70.º / 70.ª</td><td style="border: none;">septuagésimo/septuagésima</td></tr>
+                <tr style="border: none;"><td style="border: none;">80.º / 80.ª</td><td style="border: none;">octogésimo/octogésima</td></tr>
+                <tr style="border: none;"><td style="border: none;">90.º / 90.ª</td><td style="border: none;">nonagésimo/nonagésima</td></tr>
+                <tr style="border: none;"><td style="border: none;">100.º / 100.ª</td><td style="border: none;">centésimo/centésima</td></tr>
+                <tr style="border: none;"><td style="border: none;">1000.º / 1000.ª</td><td style="border: none;">milésimo/milésima</td></tr>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- TABLA 2: 11º A 99º COMPUESTOS -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 50%;">
+              <table style="width: 100%; border: none;">
+                <tr style="border: none;"><td style="border: none; width: 30%;">11.º / 11.ª</td><td style="border: none;">undécimo/undécima</td></tr>
+                <tr style="border: none;"><td style="border: none;">12.º / 12.ª</td><td style="border: none;">duodécimo/duodécima</td></tr>
+                <tr style="border: none;"><td style="border: none;">13.º / 13.ª</td><td style="border: none;">decimotercero/decimotercera</td></tr>
+                <tr style="border: none;"><td style="border: none;">14.º / 14.ª</td><td style="border: none;">decimocuarto/decimocuarta</td></tr>
+                <tr style="border: none;"><td style="border: none;">15.º / 15.ª</td><td style="border: none;">decimoquinto/decimoquinta</td></tr>
+                <tr style="border: none;"><td style="border: none;">16.º / 16.ª</td><td style="border: none;">decimosexto/decimosexta</td></tr>
+                <tr style="border: none;"><td style="border: none;">17.º / 17.ª</td><td style="border: none;">decimoséptimo/decimoséptima</td></tr>
+                <tr style="border: none;"><td style="border: none;">18.º / 18.ª</td><td style="border: none;">decimoctavo/decimoctava</td></tr>
+                <tr style="border: none;"><td style="border: none;">19.º / 19.ª</td><td style="border: none;">decimonoveno/decimonovena</td></tr>
+              </table>
+            </td>
+            <td style="width: 50%;">
+              <table style="width: 100%; border: none;">
+                <tr style="border: none;"><td style="border: none; width: 35%;">21.º / 21.ª</td><td style="border: none;">vigésimo primero/vigésima primera</td></tr>
+                <tr style="border: none;"><td style="border: none;">32.º / 32.ª</td><td style="border: none;">trigésimo segundo/trigésima segunda</td></tr>
+                <tr style="border: none;"><td style="border: none;">43.º / 43.ª</td><td style="border: none;">cuadragésimo tercero/cuadragésima tercera</td></tr>
+                <tr style="border: none;"><td style="border: none;">54.º / 54.ª</td><td style="border: none;">quincuagésimo cuarto/quincuagésima cuarta</td></tr>
+                <tr style="border: none;"><td style="border: none;">65.º / 65.ª</td><td style="border: none;">sexagésimo quinto/sexagésima quinta</td></tr>
+                <tr style="border: none;"><td style="border: none;">76.º / 76.ª</td><td style="border: none;">septuagésimo sexto/septuagésima sexta</td></tr>
+                <tr style="border: none;"><td style="border: none;">87.º / 87.ª</td><td style="border: none;">octogésimo séptimo/octogésima séptima</td></tr>
+                <tr style="border: none;"><td style="border: none;">98.º / 98.ª</td><td style="border: none;">nonagésimo octavo/nonagésima octava</td></tr>
+                <tr style="border: none;"><td style="border: none;">99.º / 99.ª</td><td style="border: none;">nonagésimo noveno/nonagésima novena</td></tr>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- CUADRO DE ATENCIÓN -->
+      <div class="attention-box">
+        <span class="attention-badge">ATENCIÓN:</span>
+        <div>
+          <em>primero, tercero</em> + nombre masculino singular = <em>primer, tercer</em>
+        </div>
+        <div style="margin-top: 0.4rem; padding-left: 1rem;">
+          <em>Esta empresa ocupa el <strong>vigésimo primer puesto</strong> en la lista de empresas más eficientes.</em>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: Uso cotidiano y Comparaciones -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          En el habla diaria, los ordinales se usan solo hasta el décimo (10.º).
+        </div>
+      </div>
+
+      <p class="font-bold mb-2">Compare:</p>
+      <div class="compare-container">
+        <div class="compare-column">
+          <p><em>Jesús vive en <strong>el segundo piso</strong>.</em></p>
+          <p><em>–¿En qué puesto has quedado? –En <strong>el quinto</strong>.</em></p>
+        </div>
+        <div class="compare-column">
+          <p><em>Vivo en <strong>el piso veinte</strong>.</em></p>
+          <p><em>–¿En qué puesto has quedado? –En <strong>el cuarenta y cuatro</strong>.</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: Lenguaje Formal -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          En lenguaje formal también se usan los ordinales a partir del undécimo (11.º) para:
+        </div>
+      </div>
+
+      <div class="pl-6 mb-4">
+        <div class="list-item-row">
+          <div>aniversarios:</div>
+          <div><em>Este año se celebra <strong>el centésimo aniversario</strong> del nacimiento de Picasso.</em></div>
+        </div>
+
+        <div class="list-item-row">
+          <div>clasificaciones:</div>
+          <div>
+            <em>España ha quedado <strong>duodécima</strong> en las Olimpiadas de Matemáticas.</em><br>
+            <em>Margarita está en <strong>el centésimo puesto</strong> de la lista de candidatos.</em>
+          </div>
+        </div>
+
+        <div class="list-item-row">
+          <div>acontecimientos <span class="translation-text">(events)</span>:</div>
+          <div>
+            <em><strong>Decimoctava</strong> Escuela de Verano.</em><br>
+            <em>Mañana se celebra la <strong>vigésima séptima edición</strong> del Festival de Benidorm.</em>
+          </div>
+        </div>
+
+        <div class="list-item-row">
+          <div>colocación en series:</div>
+          <div><em>Hoy se corre la <strong>decimoquinta etapa</strong> de la Vuelta a España.</em></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: Uso de ordinales solos o con nombres -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Los números ordinales pueden ir con sustantivos o solos.
+        </div>
+      </div>
+
+      <div class="flex-split pl-6 mb-2">
+        <div><em>Este mes es el <strong>vigésimo quinto aniversario</strong> de la fundación del club.</em></div>
+        <div><em>–¿Qué etapa es esta? –<strong>La undécima</strong>.</em></div>
+      </div>
+
+      <p class="pl-6 mb-2">
+        Tienen la misma forma (masculino, femenino, singular o plural) que el sustantivo al que acompañan o al que se refieren.
+      </p>
+
+      <div class="flex-split pl-6 mb-2">
+        <div><em>Siempre me aburro en <strong>los primeros días</strong> de las vacaciones.</em></div>
+        <div><em>Esta es la <strong>cuarta obra</strong> que publico.</em></div>
+      </div>
+
+      <div class="pl-6 mb-2">
+        <em>El equipo español de natación ha quedado <strong>decimotercero</strong> en los Mundiales.</em>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Soporte para salto de cursor automático con la tecla Enter entre campos si los hubiere
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = inputs.indexOf(event.target);
+        if (index > -1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <link rel="stylesheet" href="style.css?v=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Page Title */
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* Exercise Header Structure */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        /* Word Bank / Info Box */
+        .info-box {
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        /* Content Lists */
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker, .exercise-item::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Fill-in Input Styles */
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA;
+            border-bottom-color: #28A745;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA;
+            border-bottom-color: #DC3545;
+        }
+
+        /* Width Utilities */
+        .w-xs { width: 100px; }
+        .w-sm { width: 150px; }
+        .w-md { width: 230px; }
+        .w-lg { width: 320px; }
+        .w-full-line { width: 100%; max-width: 550px; margin-top: 6px; }
+
+        /* Answers Button */
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        /* Answers Panel */
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .exercise-header {
+                flex-direction: row;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 21.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">21.1</span>
+            <span class="exercise-instruction">Complete con <strong>cada, cada uno, cada uno de</strong> o <strong>cada una de</strong>.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Pon una botella por <input type="text" class="fill-input w-xs" data-ans="cada"> cuatro invitados.
+            </li>
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-xs" data-ans="cada"> alumno tiene su mesa.
+            </li>
+            <li class="exercise-item">
+                Quiero por igual a <input type="text" class="fill-input w-sm" data-ans="cada uno de"> mis hijos.
+            </li>
+            <li class="exercise-item">
+                Os llamaré uno a uno. Quiero hablar con <input type="text" class="fill-input w-sm" data-ans="cada uno de"> vosotros.
+            </li>
+            <li class="exercise-item">
+                He comprado un regalo para <input type="text" class="fill-input w-sm" data-ans="cada una de"> mis amigas.
+            </li>
+            <li class="exercise-item">
+                Hay que poner flores en <input type="text" class="fill-input w-xs" data-ans="cada"> mesa.
+            </li>
+            <li class="exercise-item">
+                En casa <input type="text" class="fill-input w-sm" data-ans="cada uno"> tiene su habitación.
+            </li>
+            <li class="exercise-item">
+                ¿Cuánto cuesta <input type="text" class="fill-input w-xs" data-ans="cada"> entrada?
+            </li>
+            <li class="exercise-item">
+                En esta empresa <input type="text" class="fill-input w-sm" data-ans="cada uno"> tiene su responsabilidad.
+            </li>
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-xs" data-ans="cada"> vez que veo esta película, lloro.
+            </li>
+            <li class="exercise-item">
+                Tienes que tomar una de estas pastillas <input type="text" class="fill-input w-xs" data-ans="cada"> ocho horas.
+            </li>
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-sm" data-ans="cada uno"> de los regalos cuesta más de cien euros.
+            </li>
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-sm" data-ans="cada uno"> debe tomar sus propias decisiones.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 21.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">21.2</span>
+            <span class="exercise-instruction">Complete con <strong>todos, todas, uno, una, o cada uno, cada una</strong>.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Ayer vi a <input type="text" class="fill-input w-xs" data-ans="uno"> de tus amigos, Jorge.
+            </li>
+            <li class="exercise-item">
+                Llama a todo el mundo. El jefe quiere decirnos algo a <input type="text" class="fill-input w-xs" data-ans="todos">.
+            </li>
+            <li class="exercise-item">
+                ¿Pongo la ensalada en un plato para <input type="text" class="fill-input w-xs" data-ans="todos"> o en un plato para <input type="text" class="fill-input w-sm" data-ans="cada uno">?
+            </li>
+            <li class="exercise-item">
+                –Somos cinco. ¿Preparo un bocadillo para <input type="text" class="fill-input w-sm" data-ans="cada uno">?
+            </li>
+            <li class="exercise-item">
+                Aquí no se puede trabajar bien. Hay solo un ordenador para <input type="text" class="fill-input w-xs" data-ans="todos">.
+            </li>
+            <li class="exercise-item">
+                Solo hay que preparar <input type="text" class="fill-input w-xs" data-ans="una"> habitación. Solo hay un huésped.
+            </li>
+            <li class="exercise-item">
+                –¿Compro una botella de agua para <input type="text" class="fill-input w-xs" data-ans="todos">? –Sí, compra una botella grande.
+            </li>
+            <li class="exercise-item">
+                Aquí solo hay comida para <input type="text" class="fill-input w-xs" data-ans="uno">.
+            </li>
+            <li class="exercise-item">
+                Compra comida para <input type="text" class="fill-input w-xs" data-ans="todos">. Luego te damos el dinero.
+            </li>
+            <li class="exercise-item">
+                –¿Les has escrito a tus amigas? –Sí, les he escrito una carta a <input type="text" class="fill-input w-sm" data-ans="todas|cada una">.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 21.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">21.3</span>
+            <span class="exercise-instruction">Complete con <strong>cualquier, cualquiera o cualquiera de</strong>.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Esto lo puedes encontrar en <input type="text" class="fill-input w-xs" data-ans="cualquier"> tienda.
+            </li>
+            <li class="exercise-item">
+                Eso es complicado. No lo puede hacer <input type="text" class="fill-input w-sm" data-ans="cualquiera de"> vosotros.
+            </li>
+            <li class="exercise-item">
+                Para preparar el examen te sirve <input type="text" class="fill-input w-sm" data-ans="cualquiera de"> estos libros.
+            </li>
+            <li class="exercise-item">
+                Si quieres que te ayude, ven <input type="text" class="fill-input w-xs" data-ans="cualquier"> mañana. Estoy siempre libre.
+            </li>
+            <li class="exercise-item">
+                Usa <input type="text" class="fill-input w-sm" data-ans="cualquiera de"> esos ordenadores. Todos funcionan.
+            </li>
+            <li class="exercise-item">
+                Dale una excusa <input type="text" class="fill-input w-xs" data-ans="cualquiera">. Por ejemplo, que estás enfermo.
+            </li>
+            <li class="exercise-item">
+                –¿Qué quieres comer? –Es igual. Yo como <input type="text" class="fill-input w-xs" data-ans="cualquier"> cosa.
+            </li>
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-sm" data-ans="cualquiera de"> tus hermanos te puede ayudar. Todos hablan inglés.
+            </li>
+            <li class="exercise-item">
+                No es muy difícil. <input type="text" class="fill-input w-xs" data-ans="cualquiera"> puede hacerlo.
+            </li>
+            <li class="exercise-item">
+                –¿Qué trabajo quieres hacer? –<input type="text" class="fill-input w-xs" data-ans="cualquiera">. Necesito trabajar.
+            </li>
+            <li class="exercise-item">
+                Necesito que me ayude <input type="text" class="fill-input w-sm" data-ans="cualquiera de"> vosotros.
+            </li>
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-sm" data-ans="cualquiera de"> mis amigos tiene más fuerza que yo.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 21.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">21.4</span>
+            <span class="exercise-instruction">Complete con <strong>un, uno, una</strong> y <strong>cualquiera</strong>, y la palabra entre paréntesis donde la haya.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –El domingo es el cumpleaños de Antonio. ¿Qué le regalo? –Cómprale (CD) <input type="text" class="fill-input w-md" data-ans="un cedé cualquiera|un cd cualquiera">.
+            </li>
+            <li class="exercise-item">
+                –¿Qué película vemos? –Es igual. <input type="text" class="fill-input w-md" data-ans="una cualquiera|cualquiera">.
+            </li>
+            <li class="exercise-item">
+                –¿A qué restaurante vamos? –A <input type="text" class="fill-input w-xs" data-ans="cualquiera">. Tengo mucha hambre.
+            </li>
+            <li class="exercise-item">
+                –¿A quién le pregunto? –A (persona) <input type="text" class="fill-input w-md" data-ans="cualquier persona">.
+            </li>
+            <li class="exercise-item">
+                –¿Qué camisa me pongo? –<input type="text" class="fill-input w-md" data-ans="una cualquiera|cualquiera">.
+            </li>
+            <li class="exercise-item">
+                –Necesitamos una maleta. –Compra (maleta) <input type="text" class="fill-input w-md" data-ans="una maleta cualquiera">. No gastes mucho dinero.
+            </li>
+            <li class="exercise-item">
+                Déjame (libro) <input type="text" class="fill-input w-md" data-ans="un libro cualquiera">. Estoy aburrido.
+            </li>
+            <li class="exercise-item">
+                –¿Qué falda me pongo? –Ponte (falda) <input type="text" class="fill-input w-md" data-ans="una falda cualquiera">. No vamos a ningún sitio elegante.
+            </li>
+        </ol>
+
+        <!-- BUTTON AND ANSWERS PANEL -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">21.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> cada</li>
+                        <li><span class="answer-num">2.</span> Cada</li>
+                        <li><span class="answer-num">3.</span> cada uno de</li>
+                        <li><span class="answer-num">4.</span> cada uno de</li>
+                        <li><span class="answer-num">5.</span> cada una de</li>
+                        <li><span class="answer-num">6.</span> cada</li>
+                        <li><span class="answer-num">7.</span> cada uno</li>
+                        <li><span class="answer-num">8.</span> cada</li>
+                        <li><span class="answer-num">9.</span> cada uno</li>
+                        <li><span class="answer-num">10.</span> Cada</li>
+                        <li><span class="answer-num">11.</span> cada</li>
+                        <li><span class="answer-num">12.</span> Cada uno</li>
+                        <li><span class="answer-num">13.</span> Cada uno</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">21.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> uno</li>
+                        <li><span class="answer-num">2.</span> todos</li>
+                        <li><span class="answer-num">3.</span> todos; cada uno</li>
+                        <li><span class="answer-num">4.</span> cada uno</li>
+                        <li><span class="answer-num">5.</span> todos</li>
+                        <li><span class="answer-num">6.</span> una</li>
+                        <li><span class="answer-num">7.</span> todos</li>
+                        <li><span class="answer-num">8.</span> uno</li>
+                        <li><span class="answer-num">9.</span> todos</li>
+                        <li><span class="answer-num">10.</span> todas / cada una</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">21.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> cualquier</li>
+                        <li><span class="answer-num">2.</span> cualquiera de</li>
+                        <li><span class="answer-num">3.</span> cualquiera de</li>
+                        <li><span class="answer-num">4.</span> cualquier</li>
+                        <li><span class="answer-num">5.</span> cualquiera de</li>
+                        <li><span class="answer-num">6.</span> cualquiera</li>
+                        <li><span class="answer-num">7.</span> cualquier</li>
+                        <li><span class="answer-num">8.</span> Cualquiera de</li>
+                        <li><span class="answer-num">9.</span> Cualquiera</li>
+                        <li><span class="answer-num">10.</span> Cualquiera</li>
+                        <li><span class="answer-num">11.</span> cualquiera de</li>
+                        <li><span class="answer-num">12.</span> Cualquiera de</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">21.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> un CD cualquiera</li>
+                        <li><span class="answer-num">2.</span> (Una) cualquiera</li>
+                        <li><span class="answer-num">3.</span> cualquiera</li>
+                        <li><span class="answer-num">4.</span> cualquier persona</li>
+                        <li><span class="answer-num">5.</span> (Una) cualquiera</li>
+                        <li><span class="answer-num">6.</span> una maleta cualquiera</li>
+                        <li><span class="answer-num">7.</span> un libro cualquiera</li>
+                        <li><span class="answer-num">8.</span> una falda cualquiera</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalize text for evaluation
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/\.$/, '');
+            }
+
+            // Function to validate text input
+            function validateInput(input) {
+                const userVal = normalizeText(input.value);
+                if (userVal === '') {
+                    input.classList.remove('correct', 'incorrect');
+                    return;
+                }
+
+                const acceptedAnswers = input.getAttribute('data-ans').split('|').map(normalizeText);
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            // Listeners for inputs: validation and sequential focus jump on Enter
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    validateInput(this);
+                });
+
+                input.addEventListener('blur', function() {
+                    validateInput(this);
+                });
+
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this);
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Toggle Answers Panel visibility
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

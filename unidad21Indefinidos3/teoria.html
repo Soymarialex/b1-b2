@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cada, cualquiera - Indefinidos (3)</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Rosa Claro */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Blanco puro */
+      --color-borde: #E0E0E0;        /* Gris claro */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* ENCABEZADO DE LA LECCIÓN */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    .translation-text {
+      color: var(--color-primario);
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    /* VIÑETAS PRINCIPALES */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.15rem;
+      color: var(--color-texto);
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    /* GRID DE IMÁGENES SUPERIORES */
+    .images-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    @media (max-width: 640px) {
+      .images-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .image-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .image-card img {
+      max-width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .image-explanation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+    }
+
+    @media (max-width: 640px) {
+      .image-explanation-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+    }
+
+    .note-text {
+      color: #555555;
+      font-size: 0.98rem;
+    }
+
+    /* TABLAS DE REGLAS Y ESTRUCTURAS */
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--color-primario);
+    }
+
+    .rule-table td {
+      border: 1px solid var(--color-primario);
+      padding: 12px 16px;
+      vertical-align: middle;
+      background-color: #FFFFFF;
+    }
+
+    /* ESTRUCTURA FLEXIBLE PARA TABLAS CON LLAVES */
+    .bracket-structure {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bracket-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    /* SUB-EJEMPLOS Y SECCIONES TEXTUALES */
+    .sub-examples {
+      padding-left: 1.5rem;
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+    }
+
+    .sub-examples p {
+      margin-bottom: 0.4rem;
+    }
+
+    /* IMAGEN DE COMPARACIÓN DE ANCHO COMPLETO */
+    .compare-section {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .compare-title {
+      font-weight: bold;
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-texto);
+    }
+
+    .full-width-img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    /* DOS COLUMNAS EN TEXTO FINAL */
+    .flex-2col {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      .flex-2col {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">21</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">cada, cualquiera</h1>
+        <h2 class="page-subtitle">
+          Indefinidos <em class="translation-text">(indefinite reference)</em> (3)
+        </h2>
+      </div>
+    </header>
+
+    <!-- SECCIÓN 1: cada -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em><strong>cada</strong></em>
+        </div>
+      </div>
+
+      <!-- IMÁGENES SUPERIORES (IZQUIERDA Y DERECHA) -->
+      <div class="images-grid">
+        <div class="image-card">
+          <img src="https://imgur.com/bRx3JBX.jpg" alt="Cada alumno tiene un ordenador">
+        </div>
+        <div class="image-card">
+          <img src="https://imgur.com/TB6Q0fs.jpg" alt="Una de cada tres manzanas está podrida">
+        </div>
+      </div>
+
+      <!-- TEXTO EXPLICATIVO DEBAJO DE LAS IMÁGENES -->
+      <div class="image-explanation-grid">
+        <div>
+          <em><strong>cada</strong></em> = todos los componentes de un grupo individualmente
+        </div>
+        <div>
+          <em><strong>cada</strong></em> = los componentes de un grupo agrupados en una cantidad (<em class="translation-text">quantity</em>) determinada
+        </div>
+      </div>
+
+      <!-- TABLA 1: cada -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 45%;">
+              <div class="bracket-list">
+                <div><em><strong>cada</strong> + sustantivo singular</em></div>
+                <div><em><strong>cada</strong> + número (dos, tres) + sustantivo plural</em></div>
+              </div>
+            </td>
+            <td style="width: 55%;">
+              <p class="mb-1"><em>Hay un sillón diferente en <strong>cada</strong> habitación.</em></p>
+              <p><em>Hay un ordenador para <strong>cada</strong> dos alumnos.</em></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- TABLA 2: cada uno/una de -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 45%;">
+              <div class="bracket-structure">
+                <div><em><strong>cada uno/una de</strong></em></div>
+                <div style="border-left: 2px solid var(--color-primario); padding-left: 10px;" class="bracket-list">
+                  <div>+ <em>nosotros, vosotros...</em></div>
+                  <div>+ <em>los, las</em></div>
+                  <div>+ <em>mis, tus...</em></div>
+                  <div>+ <em>estos, esos...</em></div>
+                </div>
+                <div style="border-left: 2px solid var(--color-primario); padding-left: 8px;">
+                  + nombre<br>plural
+                </div>
+              </div>
+            </td>
+            <td style="width: 55%;">
+              <p class="mb-1"><em><strong>Cada uno de nosotros</strong> tiene su trabajo.</em></p>
+              <p class="mb-1"><em>Leo <strong>cada una de las cartas</strong> que recibo.</em></p>
+              <p class="mb-1"><em>Quiero hablar con <strong>cada uno de mis</strong> alumnos.</em></p>
+              <p><em>Deme tres de <strong>cada uno de esos pasteles</strong>.</em></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- SECCIÓN COMPARE CON IMAGEN PARALELA AL ANCHO -->
+      <div class="compare-section">
+        <div class="compare-title">Compare:</div>
+        <img src="https://imgur.com/xx5FFOp.jpg" alt="Comparación: todos los alumnos, uno de mis alumnos, cada uno de mis alumnos" class="full-width-img">
+      </div>
+
+      <div class="sub-examples">
+        <p class="mb-1">
+          – Se usa <em>cada uno, cada una</em> cuando está claro de quién o de qué estamos hablando.
+        </p>
+        <div class="pl-4">
+          <p><em>He comprado un helado <strong>para cada uno</strong>.</em> <span class="note-text">(Para cada uno de nosotros o de vosotros.)</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: cualquier, cualquiera -->
+    <section>
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          <em><strong>cualquier, cualquiera</strong></em>
+        </div>
+      </div>
+
+      <p class="mb-3" style="padding-left: 1.5rem;">
+        <em><strong>cualquier, cualquiera</strong></em> = uno, no importa cuál, no conocido (<em class="translation-text">unknown</em>) ni identificado
+      </p>
+
+      <!-- TABLA 3: cualquier / cualquiera -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 45%;">
+              <div class="bracket-list">
+                <div><em><strong>cualquier</strong> + sustantivo singular</em></div>
+                <div><em>un, una + sustantivo singular + <strong>cualquiera</strong></em></div>
+              </div>
+            </td>
+            <td style="width: 55%;">
+              <p class="mb-1"><em><strong>Cualquier día</strong> voy a verte.</em></p>
+              <p><em>Déjame <strong>una raqueta cualquiera</strong>.</em></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- TABLA 4: cualquiera de -->
+      <table class="rule-table">
+        <tbody>
+          <tr>
+            <td style="width: 45%;">
+              <div class="bracket-structure">
+                <div><em><strong>cualquiera de</strong></em></div>
+                <div style="border-left: 2px solid var(--color-primario); padding-left: 10px;" class="bracket-list">
+                  <div>+ <em>nosotros, ustedes...</em></div>
+                  <div>+ <em>los, las</em></div>
+                  <div>+ <em>mis, tus...</em></div>
+                  <div>+ <em>estos, esos...</em></div>
+                </div>
+                <div style="border-left: 2px solid var(--color-primario); padding-left: 8px;">
+                  + sustantivo<br>plural
+                </div>
+              </div>
+            </td>
+            <td style="width: 55%;">
+              <p class="mb-1"><em><strong>Cualquiera de ustedes</strong> puede hacerlo.</em></p>
+              <p class="mb-1"><em>Pásame <strong>cualquiera de los bolígrafos</strong>.</em></p>
+              <p class="mb-1"><em>Ponte <strong>cualquiera de mis trajes</strong>.</em></p>
+              <p><em><strong>Cualquiera de esos chicos</strong> es más amable que tú.</em></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- REGLAS ADICIONALES FINALES -->
+      <div class="sub-examples">
+        <p class="mb-1">
+          – Se usa <em>uno, una + cualquiera</em> cuando está claro de qué estamos hablando.
+        </p>
+        <div class="pl-4 mb-3">
+          <p><em>—¿Qué libro prefieres? —Es igual. Déjame <strong>uno cualquiera</strong>.</em></p>
+        </div>
+
+        <p class="mb-1">
+          – <em>cualquiera</em> = cualquier persona
+        </p>
+        <div class="pl-4 flex-2col">
+          <div><em><strong>Cualquiera</strong> puede cometer un error.</em></div>
+          <div><em>Rodrigo habla con <strong>cualquiera</strong>.</em></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
