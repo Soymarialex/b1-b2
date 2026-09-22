@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+        }
+
+        .inline-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            column-gap: 6px;
+            row-gap: 6px;
+        }
+
+        .input-inline-flex {
+            flex: 1 1 200px;
+            min-width: 160px;
+            text-align: left !important;
+            padding-left: 6px;
+        }
+
+        .w-xs { width: 100px; }
+        .w-sm { width: 160px; }
+        .w-md { width: 250px; }
+        .w-lg { width: 380px; }
+
+        /* Option buttons for exercise 31.3 */
+        .option-group {
+            display: inline-flex;
+            gap: 6px;
+            margin: 0 4px;
+            vertical-align: middle;
+        }
+
+        .btn-option {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 2px 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+        }
+
+        .btn-option:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-option:active {
+            transform: translateY(1px);
+        }
+
+        .btn-option.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+            color: #155724;
+        }
+
+        .btn-option.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+            color: #721C24;
+        }
+
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 500px) {
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 31.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">31.1</span>
+            <span class="exercise-instruction">Una las dos frases con que, el que, la que, los que, las que.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Tengo un ventilador. Funciona con pilas.<br>
+                <div class="inline-item">
+                    <span>Tengo</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="un ventilador que funciona con pilas">
+                </div>
+            </li>
+            <li class="exercise-item">
+                La vicuña es un mamífero. Vive en los Andes.<br>
+                <div class="inline-item">
+                    <span>La vicuña</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="es un mamífero que vive en Los Andes|es un mamifero que vive en los andes|es un mamífero que vive en los andes">
+                </div>
+            </li>
+            <li class="exercise-item">
+                Ayer comimos ostras. ¿Te gustaron?<br>
+                <div class="inline-item">
+                    <span>¿Te gustaron</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="las ostras que comimos ayer|las ostras que comimos ayer?">
+                    <span>?</span>
+                </div>
+            </li>
+            <li class="exercise-item">
+                Estoy leyendo un libro. Me gusta mucho.<br>
+                <div class="inline-item">
+                    <span>Me gusta mucho</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="el libro que estoy leyendo">
+                </div>
+            </li>
+            <li class="exercise-item">
+                Paco trabaja con una señora. La señora es venezolana.<br>
+                <div class="inline-item">
+                    <span>La señora</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="que trabaja con Paco es venezolana">
+                </div>
+            </li>
+            <li class="exercise-item">
+                He comprado unos cuadros. Te había hablado de esos cuadros.<br>
+                <div class="inline-item">
+                    <span>He comprado</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="los cuadros de los que te había hablado|los cuadros de los que te habia hablado">
+                </div>
+            </li>
+            <li class="exercise-item">
+                Ayer conocí a unas chicas. Ana vivía con ellas.<br>
+                <div class="inline-item">
+                    <span>Ayer</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="conocí a las chicas con las que vivía Ana|conoci a las chicas con las que vivia Ana|conocí a las chicas con las que vivia Ana">
+                </div>
+            </li>
+            <li class="exercise-item">
+                Ayer vi la cama. Carlos V dormía en ella.<br>
+                <div class="inline-item">
+                    <span>Ayer</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="vi la cama en la que dormía Carlos V|vi la cama en la que dormia Carlos V">
+                </div>
+            </li>
+            <li class="exercise-item">
+                Ese es el colegio. Mi hermana estudió ahí.<br>
+                <div class="inline-item">
+                    <span>Ese es el colegio</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="en el que estudió mi hermana|en el que estudio mi hermana">
+                </div>
+            </li>
+            <li class="exercise-item">
+                Esa empresa era alemana. Mi padre trabajó en ella.<br>
+                <div class="inline-item">
+                    <span>La empresa</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="en la que trabajó mi padre era alemana|en la que trabajo mi padre era alemana">
+                </div>
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 31.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">31.2</span>
+            <span class="exercise-instruction">Complete con que, el que, la que, los que o las que.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item inline-item">
+                <span>–¿Quién es esa chica? –</span>
+                <input type="text" class="fill-input w-sm" data-ans="La que|la que">
+                <span>trabaja con Roberto.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>–¿Qué libro estás leyendo? –</span>
+                <input type="text" class="fill-input w-sm" data-ans="El que|el que">
+                <span>me prestó Antonio.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>Mi casa es</span>
+                <input type="text" class="fill-input w-sm" data-ans="la que">
+                <span>está en aquella esquina.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>–¿Cuál es tu sombrero? –</span>
+                <input type="text" class="fill-input w-sm" data-ans="El que|el que">
+                <span>tiene una pluma verde.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>–¿Quiénes son esas chicas? –</span>
+                <input type="text" class="fill-input w-sm" data-ans="Las que|las que">
+                <span>estuvieron en mi fiesta.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>–¿Quiénes son Guille y Silverio? –</span>
+                <input type="text" class="fill-input w-sm" data-ans="Los que|los que">
+                <span>viven en el sexto piso.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>–Mis amigos son</span>
+                <input type="text" class="fill-input w-sm" data-ans="los que">
+                <span>llevan las bufandas rojas.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>–El reloj</span>
+                <input type="text" class="fill-input w-xs" data-ans="que">
+                <span>te regalaron no tenía pilas.</span>
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 31.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">31.3</span>
+            <span class="exercise-instruction">Seleccione la forma correcta.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Ese es el señor con 
+                <span class="option-group" data-correct="quien">
+                    <button type="button" class="btn-option" data-val="que">que</button>
+                    <button type="button" class="btn-option" data-val="quien">quien</button>
+                </span> 
+                tienes que hablar.
+            </li>
+            <li class="exercise-item">
+                Necesito el dinero 
+                <span class="option-group" data-correct="que">
+                    <button type="button" class="btn-option" data-val="que">que</button>
+                    <button type="button" class="btn-option" data-val="quien">quien</button>
+                </span> 
+                te presté.
+            </li>
+            <li class="exercise-item">
+                Tengo un amigo 
+                <span class="option-group" data-correct="que">
+                    <button type="button" class="btn-option" data-val="que">que</button>
+                    <button type="button" class="btn-option" data-val="quien">quien</button>
+                </span> 
+                vive en Panamá.
+            </li>
+            <li class="exercise-item">
+                Ese es el chico con 
+                <span class="option-group" data-correct="quien">
+                    <button type="button" class="btn-option" data-val="que">que</button>
+                    <button type="button" class="btn-option" data-val="quien">quien</button>
+                </span> 
+                sale Eva.
+            </li>
+            <li class="exercise-item">
+                Usa los pañuelos 
+                <span class="option-group" data-correct="que">
+                    <button type="button" class="btn-option" data-val="que">que</button>
+                    <button type="button" class="btn-option" data-val="quienes">quienes</button>
+                </span> 
+                están en el baño.
+            </li>
+            <li class="exercise-item">
+                Ayer conocimos a las chicas con 
+                <span class="option-group" data-correct="quienes">
+                    <button type="button" class="btn-option" data-val="que">que</button>
+                    <button type="button" class="btn-option" data-val="quienes">quienes</button>
+                </span> 
+                trabaja Jorge.
+            </li>
+            <li class="exercise-item">
+                Sebastián es el chico 
+                <span class="option-group" data-correct="que">
+                    <button type="button" class="btn-option" data-val="que">que</button>
+                    <button type="button" class="btn-option" data-val="quien">quien</button>
+                </span> 
+                está hablando con Lola.
+            </li>
+            <li class="exercise-item">
+                ¿Conoces a la señora 
+                <span class="option-group" data-correct="que">
+                    <button type="button" class="btn-option" data-val="que">que</button>
+                    <button type="button" class="btn-option" data-val="quien">quien</button>
+                </span> 
+                nos ha saludado?
+            </li>
+            <li class="exercise-item">
+                Estas son las chicas de 
+                <span class="option-group" data-correct="quienes">
+                    <button type="button" class="btn-option" data-val="que">que</button>
+                    <button type="button" class="btn-option" data-val="quienes">quienes</button>
+                </span> 
+                tanto te he hablado.
+            </li>
+            <li class="exercise-item">
+                Los amigos 
+                <span class="option-group" data-correct="que">
+                    <button type="button" class="btn-option" data-val="que">que</button>
+                    <button type="button" class="btn-option" data-val="quienes">quienes</button>
+                </span> 
+                me presentaste son simpáticos.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 31.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">31.4</span>
+            <span class="exercise-instruction">Complete con el que, la que, los que, las que o quien, quienes.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item inline-item">
+                <input type="text" class="fill-input input-inline-flex" data-ans="El que / Quien|El que/Quien|El que / quien|El que|Quien|el que|quien">
+                <span>quiera más sopa, que lo diga.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <input type="text" class="fill-input input-inline-flex" data-ans="El que / Quien|El que/Quien|El que / quien|El que|Quien|el que|quien">
+                <span>mal anda, mal acaba.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>Pueden salir</span>
+                <input type="text" class="fill-input input-inline-flex" data-ans="los que / quienes|los que/quienes|los que|quienes">
+                <span>hayan terminado el examen.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <input type="text" class="fill-input input-inline-flex" data-ans="La que / Quien|La que/Quien|La que / quien|La que|Quien|la que|quien">
+                <span>salga de última, que apague la luz.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <input type="text" class="fill-input input-inline-flex" data-ans="Los que / Quienes|Los que/Quienes|Los que / quienes|Los que|Quienes|los que|quienes">
+                <span>tengan entradas, que pasen.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <input type="text" class="fill-input input-inline-flex" data-ans="Los que / Quienes|Los que/Quienes|Los que / quienes|Los que|Quienes|los que|quienes">
+                <span>no estudian, reprueban.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <input type="text" class="fill-input input-inline-flex" data-ans="Las que / Quienes|Las que/Quienes|Las que / quienes|Las que|Quienes|las que|quienes">
+                <span>no estén cansadas, pueden seguir corriendo.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <input type="text" class="fill-input input-inline-flex" data-ans="El que / Quien|El que/Quien|El que / quien|El que|Quien|el que|quien">
+                <span>quiera más carne, que lo diga.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>Esto es para</span>
+                <input type="text" class="fill-input input-inline-flex" data-ans="el que / quien|el que/quien|el que|quien">
+                <span>lo quiera.</span>
+            </li>
+        </ol>
+
+        <!-- BUTTON AND ANSWERS PANEL -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">31.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> un ventilador que funciona con pilas.</li>
+                        <li><span class="answer-num">2.</span> es un mamífero que vive en Los Andes.</li>
+                        <li><span class="answer-num">3.</span> las ostras que comimos ayer?</li>
+                        <li><span class="answer-num">4.</span> el libro que estoy leyendo.</li>
+                        <li><span class="answer-num">5.</span> que trabaja con Paco es venezolana.</li>
+                        <li><span class="answer-num">6.</span> los cuadros de los que te había hablado.</li>
+                        <li><span class="answer-num">7.</span> conocí a las chicas con las que vivía Ana.</li>
+                        <li><span class="answer-num">8.</span> vi la cama en la que dormía Carlos V.</li>
+                        <li><span class="answer-num">9.</span> Ese es el colegio en el que estudió mi hermana.</li>
+                        <li><span class="answer-num">10.</span> en la que trabajó mi padre era alemana.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">31.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> La que.</li>
+                        <li><span class="answer-num">2.</span> El que.</li>
+                        <li><span class="answer-num">3.</span> la que.</li>
+                        <li><span class="answer-num">4.</span> El que.</li>
+                        <li><span class="answer-num">5.</span> Las que.</li>
+                        <li><span class="answer-num">6.</span> Los que.</li>
+                        <li><span class="answer-num">7.</span> los que.</li>
+                        <li><span class="answer-num">8.</span> que.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">31.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> quien.</li>
+                        <li><span class="answer-num">2.</span> que.</li>
+                        <li><span class="answer-num">3.</span> que.</li>
+                        <li><span class="answer-num">4.</span> quien.</li>
+                        <li><span class="answer-num">5.</span> que.</li>
+                        <li><span class="answer-num">6.</span> quienes.</li>
+                        <li><span class="answer-num">7.</span> que.</li>
+                        <li><span class="answer-num">8.</span> que.</li>
+                        <li><span class="answer-num">9.</span> quienes.</li>
+                        <li><span class="answer-num">10.</span> que.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">31.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> El que / Quien.</li>
+                        <li><span class="answer-num">2.</span> El que / Quien.</li>
+                        <li><span class="answer-num">3.</span> los que / quienes.</li>
+                        <li><span class="answer-num">4.</span> La que / Quien.</li>
+                        <li><span class="answer-num">5.</span> Los que / Quienes.</li>
+                        <li><span class="answer-num">6.</span> Los que / Quienes.</li>
+                        <li><span class="answer-num">7.</span> Las que / Quienes.</li>
+                        <li><span class="answer-num">8.</span> El que / Quien.</li>
+                        <li><span class="answer-num">9.</span> el que / quien.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Helper to normalize strings for accurate comparison
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/[.\?]/g, '').replace(/\s+/g, ' ');
+            }
+
+            function validateInput(input, forceValidateEmpty = false) {
+                const rawVal = input.value;
+                const userVal = normalizeText(rawVal);
+                const dataAns = input.getAttribute('data-ans');
+                if (!dataAns) return;
+
+                const rawAccepted = dataAns.split('|');
+                const acceptedAnswers = rawAccepted.map(normalizeText);
+
+                // Check if empty / Ø is acceptable for this field
+                const acceptsEmpty = acceptedAnswers.some(a => a === 'ø' || a === 'empty' || a === '');
+
+                if (userVal === '') {
+                    if (forceValidateEmpty && acceptsEmpty) {
+                        input.classList.add('correct');
+                        input.classList.remove('incorrect');
+                    } else if (forceValidateEmpty && !acceptsEmpty) {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    } else {
+                        input.classList.remove('correct', 'incorrect');
+                    }
+                    return;
+                }
+
+                // If user enters 'x', 'ø', '-', 'nada' on a field where empty is valid
+                if (acceptsEmpty && ['x', 'ø', '-', 'nada', 'ninguno', 'no'].includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                    return;
+                }
+
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            // Text input event handlers
+            inputs.forEach((indexInput, index) => {
+                indexInput.addEventListener('input', function() {
+                    this.classList.remove('correct', 'incorrect');
+                });
+
+                indexInput.addEventListener('blur', function() {
+                    if (this.value !== '') {
+                        validateInput(this, false);
+                    }
+                });
+
+                indexInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this, true);
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Handle option buttons for exercise 31.3
+            const optionGroups = document.querySelectorAll('.option-group');
+            optionGroups.forEach(group => {
+                const correctVal = group.getAttribute('data-correct');
+                const buttons = group.querySelectorAll('.btn-option');
+
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const selectedVal = this.getAttribute('data-val');
+                        
+                        // Clear state of buttons in this group
+                        buttons.forEach(b => b.classList.remove('correct', 'incorrect'));
+
+                        if (selectedVal === correctVal) {
+                            this.classList.add('correct');
+                        } else {
+                            this.classList.add('incorrect');
+                        }
+                    });
+                });
+            });
+
+            // Toggle Answers Panel Visibility
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

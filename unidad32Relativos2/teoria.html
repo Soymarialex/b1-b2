@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>donde, cuando, como - Relativos (2)</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Light Pink */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Pure White */
+      --color-borde: #E0E0E0;        /* Light Grey */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* LESSON HEADER */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    /* BULLETS & TEXT STRUCTURE */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.15rem;
+      color: var(--color-texto);
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    .sub-dash-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+      margin-bottom: 0.5rem;
+      padding-left: 1.2rem;
+      text-align: justify;
+    }
+
+    input[type="text"] {
+      border: 1px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--color-primario);
+      box-shadow: 0 0 0 2px var(--color-secundario);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">32</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">donde, cuando, como</h1>
+        <h2 class="page-subtitle">Relativos (2)</h2>
+      </div>
+    </header>
+
+    <!-- IMAGEN PRINCIPAL ENCABEZADO (Las 3 ilustraciones juntas en una sola imagen) -->
+    <div class="w-full my-6 text-center">
+      <img src="https://imgur.com/mlCWX4j.jpg" alt="Ilustraciones de donde, cuando, como" class="w-full h-auto rounded border border-pink-200 shadow-sm object-contain">
+    </div>
+
+    <!-- INTRODUCCIÓN GENERAL -->
+    <section class="mb-6">
+      <div class="text-justify">
+        <em><strong>Donde</strong>, <strong>cuando</strong></em> y <em><strong>como</strong></em> en las frases anteriores son relativos. Se refieren a lugares, momentos y modos o maneras.
+      </div>
+    </section>
+
+    <!-- SECCIÓN 1: DONDE Y ADONDE -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="font-normal">
+          Se puede usar <em><strong>donde</strong></em> y <em><strong>adonde</strong></em> para referirse a lugares.
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
+        <div class="flex-1">
+          <!-- Sub-bullet donde -->
+          <div class="sub-dash-bullet">
+            <span class="font-bold">–</span>
+            <div>
+              <em>donde</em> = en el que, en la que, en los que, en las que, el lugar en el que
+              <div class="space-y-1 italic my-2 pl-2">
+                <div>Esta es <strong>la casa donde</strong> nació Cervantes. <span class="not-italic text-gray-700">(= en la que)</span></div>
+                <div>Me gustó mucho <strong>el restaurante donde</strong> comimos ayer. <span class="not-italic text-gray-700">(= en el que)</span></div>
+                <div>Este es <strong>el lugar donde</strong> quiero construir el chalé. <span class="not-italic text-gray-700">(= en el que)</span></div>
+                <div>Es <strong>aquí donde</strong> conocí a Marisa. <span class="not-italic text-gray-700">(= el lugar en el que)</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub-bullet adonde -->
+          <div class="sub-dash-bullet mt-3">
+            <span class="font-bold">–</span>
+            <div>
+              <em>adonde</em> = al que, a la que, a los que, a las que, al lugar en el que
+              <div class="italic my-2 pl-2">
+                Esta es <strong>la piscina adonde</strong> van los niños en verano. <span class="not-italic text-gray-700">(= a la que)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub-bullet solos -->
+          <div class="sub-dash-bullet mt-3">
+            <span class="font-bold">–</span>
+            <div>
+              En algunos casos se pueden usar solos, sin mencionar el lugar al que se refieren.
+              <div class="space-y-1 italic my-2 pl-2">
+                <div>Podemos quedar <strong>donde</strong> el otro día. <span class="not-italic text-gray-700">(= en el lugar donde quedamos el otro día)</span></div>
+                <div>Vamos <strong>adonde</strong> tú quieras. <span class="not-italic text-gray-700">(= al lugar al que tú quieras)</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagen de más abajo a la derecha -->
+        <div class="flex flex-col items-center justify-center shrink-0 md:w-64 mx-auto my-auto">
+          <img src="https://imgur.com/4YQGj7x.jpg" alt="Esta es la curva donde tuve el accidente" class="max-w-full h-auto rounded border border-pink-200 shadow-sm">
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: CUANDO -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="font-normal">
+          Se puede usar <em><strong>cuando</strong></em> para referirse a una expresión de tiempo.
+          <div class="space-y-1 italic my-2 pl-2">
+            <div>Es <strong>en verano cuando</strong> más viajo.</div>
+            <div>2007 fue <strong>el año cuando</strong> nos conocimos.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-dash-bullet">
+        <span class="font-bold">–</span>
+        <div>
+          También se puede usar <em>cuando</em> (= en el momento que) sin referirse a una expresión de tiempo específica.
+          <div class="space-y-1 italic my-2 pl-2">
+            <div>Lo haré <strong>cuando</strong> tú digas. <span class="not-italic text-gray-700">(= en el momento en que tú digas)</span></div>
+            <div>Ven <strong>cuando</strong> quieras. <span class="not-italic text-gray-700">(= en el momento en que quieras)</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: COMO -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="font-normal">
+          Se puede usar <em><strong>como</strong></em> para indicar la manera en que se hace o sucede algo.
+        </div>
+      </div>
+
+      <div class="sub-dash-bullet">
+        <span class="font-bold">–</span>
+        <div>
+          <em>como</em> = del modo que, de la manera que, de la forma que
+          <div class="space-y-1 italic my-2 pl-2">
+            <div>El partido terminó <strong>como</strong> yo pensaba. <span class="not-italic text-gray-700">(= de la manera que yo pensaba)</span></div>
+            <div>Lo hizo <strong>como</strong> él quiso. <span class="not-italic text-gray-700">(= de la forma que él quiso)</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Navegación entre campos con tecla Enter
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = inputs.indexOf(event.target);
+        if (index > -1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

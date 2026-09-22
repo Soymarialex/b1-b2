@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+        }
+
+        .w-xs { width: 70px; }
+        .w-sm { width: 140px; }
+        .w-md { width: 240px; }
+        .w-lg { width: 340px; }
+        .w-full-line { width: 100%; max-width: 580px; text-align: left !important; padding-left: 10px; }
+
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 500px) {
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 29.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">29.1</span>
+            <span class="exercise-instruction">Complete con el pronombre reflexivo adecuado.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Javier <input type="text" class="fill-input w-xs" data-ans="se"> ha partido una uña.
+            </li>
+            <li class="exercise-item">
+                Los alumnos <input type="text" class="fill-input w-xs" data-ans="se"> han bañado en el río.
+            </li>
+            <li class="exercise-item">
+                Hoy no <input type="text" class="fill-input w-xs" data-ans="te"> has afeitado, Ángel.
+            </li>
+            <li class="exercise-item">
+                Vosotros no <input type="text" class="fill-input w-xs" data-ans="os"> laváis nunca las manos antes de comer.
+            </li>
+            <li class="exercise-item">
+                El sábado yo <input type="text" class="fill-input w-xs" data-ans="me"> rompí el tobillo esquiando.
+            </li>
+            <li class="exercise-item">
+                ¿Dónde <input type="text" class="fill-input w-xs" data-ans="se"> corta usted el pelo?
+            </li>
+            <li class="exercise-item">
+                Belén y yo <input type="text" class="fill-input w-xs" data-ans="nos"> levantamos muy tarde los sábados.
+            </li>
+            <li class="exercise-item">
+                ¿<input type="text" class="fill-input w-xs" data-ans="se|Se"> acuestan ustedes tarde?
+            </li>
+            <li class="exercise-item">
+                ¿Por qué no <input type="text" class="fill-input w-xs" data-ans="te"> cortas el pelo, Elvira?
+            </li>
+            <li class="exercise-item">
+                Gerardo y tú <input type="text" class="fill-input w-xs" data-ans="os"> mancháis mucho.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 29.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">29.2</span>
+            <span class="exercise-instruction">Complete con el pronombre reflexivo adecuado, si es necesario.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Por las mañanas <input type="text" class="fill-input w-xs" data-ans="me"> levanto alrededor de las siete. <input type="text" class="fill-input w-xs" data-ans="Me|me"> ducho y <input type="text" class="fill-input w-xs" data-ans="me"> lavo el pelo todos los días.
+            </li>
+            <li class="exercise-item">
+                Juan <input type="text" class="fill-input w-xs" data-ans="se"> despierta temprano y luego <input type="text" class="fill-input w-xs" data-ans="ø|empty"> despierta a sus hijos.
+            </li>
+            <li class="exercise-item">
+                Mi padre <input type="text" class="fill-input w-xs" data-ans="se"> afeita una vez a la semana.
+            </li>
+            <li class="exercise-item">
+                ¿Quién <input type="text" class="fill-input w-xs" data-ans="ø|empty"> ha roto el jarrón?
+            </li>
+            <li class="exercise-item">
+                Alberto <input type="text" class="fill-input w-xs" data-ans="se"> ha roto una pierna.
+            </li>
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-xs" data-ans="ø|empty"> lavamos las cortinas dos veces al año.
+            </li>
+            <li class="exercise-item">
+                ¿Cuándo <input type="text" class="fill-input w-xs" data-ans="os"> ducháis vosotros, por la mañana o por la noche?
+            </li>
+            <li class="exercise-item">
+                ¿Quién <input type="text" class="fill-input w-xs" data-ans="ø|empty"> ha cortado el pan?
+            </li>
+            <li class="exercise-item">
+                ¿Qué <input type="text" class="fill-input w-xs" data-ans="te"> pones para trabajar?
+            </li>
+            <li class="exercise-item">
+                ¿Quién <input type="text" class="fill-input w-xs" data-ans="ø|empty"> viste a los niños por la mañana?
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 29.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">29.3</span>
+            <span class="exercise-instruction">Vuelva a escribir las frases con <strong>nos</strong>, <strong>os</strong> o <strong>se</strong>, cambiando la forma del verbo.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Felipe saludó a David y David saludó a Felipe. <input type="text" class="fill-input w-full-line" data-ans="Felipe y David se saludaron.|Felipe y David se saludaron">
+            </li>
+            <li class="exercise-item">
+                Roque no habla a Julio y Julio no habla a Roque. <input type="text" class="fill-input w-full-line" data-ans="Roque y Julio no se hablan.|Roque y Julio no se hablan">
+            </li>
+            <li class="exercise-item">
+                Tú quieres a Roque y Roque te quiere a ti. <input type="text" class="fill-input w-full-line" data-ans="Roque y tú os queréis|Roque y tú se quieren|Tú y Roque os queréis|Tú y Roque se quieren">
+            </li>
+            <li class="exercise-item">
+                Sofía escribe a Lina y Lina escribe a Sofía. <input type="text" class="fill-input w-full-line" data-ans="Sofía y Lina se escriben.|Sofía y Lina se escriben|Sofia y Lina se escriben">
+            </li>
+            <li class="exercise-item">
+                Andrés me conoce muy bien a mí y yo conozco muy bien a Andrés. <input type="text" class="fill-input w-full-line" data-ans="Andrés y yo nos conocemos muy bien.|Andrés y yo nos conocemos muy bien|Andres y yo nos conocemos muy bien">
+            </li>
+            <li class="exercise-item">
+                Rodrigo ayuda a su hermana y su hermana ayuda a Rodrigo. <input type="text" class="fill-input w-full-line" data-ans="Rodrigo y su hermana se ayudan.|Rodrigo y su hermana se ayudan">
+            </li>
+            <li class="exercise-item">
+                En Navidad, mi mujer me hace un regalo y yo le hago un regalo a ella. <input type="text" class="fill-input w-full-line" data-ans="En Navidad, mi mujer y yo nos hacemos un regalo.|En Navidad, mi mujer y yo nos hacemos un regalo|En Navidad mi mujer y yo nos hacemos un regalo.|En Navidad mi mujer y yo nos hacemos un regalo">
+            </li>
+            <li class="exercise-item">
+                Tus amigos te ven a ti y tú los ves a ellos los domingos. <input type="text" class="fill-input w-full-line" data-ans="Tus amigos y tú os veis los domingos|Tus amigos y tú se ven los domingos">
+            </li>
+            <li class="exercise-item">
+                Gregorio me entiende y yo le entiendo a él. <input type="text" class="fill-input w-full-line" data-ans="Gregorio y yo nos entendemos.|Gregorio y yo nos entendemos">
+            </li>
+            <li class="exercise-item">
+                Lola te insultó y tú insultaste a Lola. <input type="text" class="fill-input w-full-line" data-ans="Lola y tú os insultasteis|Lola y tú se insultaron">
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 29.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">29.4</span>
+            <span class="exercise-instruction">Complete con <strong>me</strong>, <strong>te</strong>, <strong>se</strong>... en el lugar adecuado cuando sea necesario.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Teresa y Antonio conocen muy bien. <input type="text" class="fill-input w-full-line" data-ans="Teresa y Antonio se conocen muy bien.|Teresa y Antonio se conocen muy bien">
+            </li>
+            <li class="exercise-item">
+                ¿Por qué no quieren Isabel y Leo? <input type="text" class="fill-input w-full-line" data-ans="¿Por qué no se quieren Isabel y Leo?|Por qué no se quieren Isabel y Leo?|¿Por que no se quieren Isabel y Leo?|Por que no se quieren Isabel y Leo?|¿Por qué no se quieren Isabel y Leo">
+            </li>
+            <li class="exercise-item">
+                ¿Por qué no quieres a tu hermano? <input type="text" class="fill-input w-full-line" data-ans="¿Por qué no quieres a tu hermano?|Por qué no quieres a tu hermano?|¿Por que no quieres a tu hermano?|Por que no quieres a tu hermano?|¿Por qué no quieres a tu hermano|ø|empty">
+            </li>
+            <li class="exercise-item">
+                Conozco muy bien a Fernando. <input type="text" class="fill-input w-full-line" data-ans="Conozco muy bien a Fernando.|Conozco muy bien a Fernando|ø|empty">
+            </li>
+            <li class="exercise-item">
+                No veo muy bien en este espejo. <input type="text" class="fill-input w-full-line" data-ans="No me veo muy bien en este espejo.|No me veo muy bien en este espejo|No (me) veo muy bien en este espejo.|No (me) veo muy bien en este espejo">
+            </li>
+            <li class="exercise-item">
+                Siempre acuesto temprano a los niños. <input type="text" class="fill-input w-full-line" data-ans="Siempre acuesto temprano a los niños.|Siempre acuesto temprano a los niños|ø|empty">
+            </li>
+            <li class="exercise-item">
+                ¿Por qué peleáis tú y Juan? <input type="text" class="fill-input w-full-line" data-ans="¿Por qué os peleáis tú y Juan?|Por qué os peleáis tú y Juan?|¿Por que os peleais tu y Juan?|Por que os peleais tu y Juan?|¿Por qué se pelean tú y Juan?|Por qué se pelean tú y Juan?|¿Por qué se pelean Juan y tú?|Por qué se pelean Juan y tú?|¿Por qué Juan y tú se pelean?|Por qué Juan y tú se pelean?">
+            </li>
+            <li class="exercise-item">
+                ¿Veis mucho Alfonso y tú? <input type="text" class="fill-input w-full-line" data-ans="¿Os veis mucho Alfonso y tú?|Os veis mucho Alfonso y tú?|¿se ven mucho Alfonso y tu?|se ven mucho Alfonso y tu?|¿Alfonso y tú os veis mucho?|Alfonso y tú os veis mucho?|¿Alfonso y tú se ven mucho?|Alfonso y tú se ven mucho?">
+            </li>
+            <li class="exercise-item">
+                María y Alfredo ven todos los días. <input type="text" class="fill-input w-full-line" data-ans="María y Alfredo se ven todos los días.|María y Alfredo se ven todos los días|Maria y Alfredo se ven todos los dias.|Maria y Alfredo se ven todos los dias">
+            </li>
+            <li class="exercise-item">
+                Hoy no voy a poner el abrigo. No hace frío. <input type="text" class="fill-input w-full-line" data-ans="Hoy no me voy a poner el abrigo.|Hoy no me voy a poner el abrigo|Hoy no me voy a poner el abrigo. No hace frío.|Hoy no me voy a poner el abrigo. No hace frío">
+            </li>
+        </ol>
+
+        <!-- BUTTON AND ANSWERS PANEL -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">29.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> se</li>
+                        <li><span class="answer-num">2.</span> se</li>
+                        <li><span class="answer-num">3.</span> te</li>
+                        <li><span class="answer-num">4.</span> os</li>
+                        <li><span class="answer-num">5.</span> me</li>
+                        <li><span class="answer-num">6.</span> se</li>
+                        <li><span class="answer-num">7.</span> nos</li>
+                        <li><span class="answer-num">8.</span> Se</li>
+                        <li><span class="answer-num">9.</span> te</li>
+                        <li><span class="answer-num">10.</span> os</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">29.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> me; Me; me</li>
+                        <li><span class="answer-num">2.</span> se; Ø</li>
+                        <li><span class="answer-num">3.</span> se</li>
+                        <li><span class="answer-num">4.</span> Ø</li>
+                        <li><span class="answer-num">5.</span> se</li>
+                        <li><span class="answer-num">6.</span> Ø</li>
+                        <li><span class="answer-num">7.</span> os</li>
+                        <li><span class="answer-num">8.</span> Ø</li>
+                        <li><span class="answer-num">9.</span> te</li>
+                        <li><span class="answer-num">10.</span> Ø</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">29.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Felipe y David se saludaron.</li>
+                        <li><span class="answer-num">2.</span> Roque y Julio no se hablan.</li>
+                        <li><span class="answer-num">3.</span> Tú y Roque os queréis / Tú y Roque se quieren.</li>
+                        <li><span class="answer-num">4.</span> Sofía y Lina se escriben.</li>
+                        <li><span class="answer-num">5.</span> Andrés y yo nos conocemos muy bien.</li>
+                        <li><span class="answer-num">6.</span> Rodrigo y su hermana se ayudan.</li>
+                        <li><span class="answer-num">7.</span> En Navidad, mi mujer y yo nos hacemos un regalo.</li>
+                        <li><span class="answer-num">8.</span> Tus amigos y tú os veis los domingos / Tus amigos y tú se ven los domingos.</li>
+                        <li><span class="answer-num">9.</span> Gregorio y yo nos entendemos.</li>
+                        <li><span class="answer-num">10.</span> Lola y tú se insultaron.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">29.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Teresa y Antonio se conocen muy bien.</li>
+                        <li><span class="answer-num">2.</span> ¿Por qué no se quieren Isabel y Leo?</li>
+                        <li><span class="answer-num">3.</span> ¿Por qué no quieres a tu hermano?</li>
+                        <li><span class="answer-num">4.</span> Conozco muy bien a Fernando.</li>
+                        <li><span class="answer-num">5.</span> No (me) veo muy bien en este espejo.</li>
+                        <li><span class="answer-num">6.</span> Siempre acuesto temprano a los niños.</li>
+                        <li><span class="answer-num">7.</span> ¿Por qué os peleáis tú y Juan? / ¿Por qué se pelean tú y Juan?</li>
+                        <li><span class="answer-num">8.</span> ¿Os veis mucho Alfonso y tú?/¿Alfonso y tú se ven mucho?|</li>
+                        <li><span class="answer-num">9.</span> María y Alfredo se ven todos los días.</li>
+                        <li><span class="answer-num">10.</span> Hoy no me voy a poner el abrigo.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalize string for accurate comparison
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/\s+/g, ' ');
+            }
+
+            function validateInput(input, forceValidateEmpty = false) {
+                const rawVal = input.value;
+                const userVal = normalizeText(rawVal);
+                const dataAns = input.getAttribute('data-ans');
+                if (!dataAns) return;
+
+                const rawAccepted = dataAns.split('|');
+                const acceptedAnswers = rawAccepted.map(normalizeText);
+
+                // Check if empty / Ø is acceptable for this field
+                const acceptsEmpty = acceptedAnswers.some(a => a === 'ø' || a === 'empty' || a === '');
+
+                if (userVal === '') {
+                    if (forceValidateEmpty && acceptsEmpty) {
+                        input.classList.add('correct');
+                        input.classList.remove('incorrect');
+                    } else if (forceValidateEmpty && !acceptsEmpty) {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    } else {
+                        input.classList.remove('correct', 'incorrect');
+                    }
+                    return;
+                }
+
+                // If input typed 'x', 'ø', '-', 'nada' on a field where empty is valid
+                if (acceptsEmpty && ['x', 'ø', '-', 'nada', 'ninguno', 'no'].includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                    return;
+                }
+
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            inputs.forEach((indexInput, index) => {
+                // Clear state while typing
+                indexInput.addEventListener('input', function() {
+                    this.classList.remove('correct', 'incorrect');
+                });
+
+                // On blur: validate if typed or interactively left
+                indexInput.addEventListener('blur', function() {
+                    if (this.value !== '') {
+                        validateInput(this, false);
+                    }
+                });
+
+                // Sequential Jump order on Enter Key (1, 2, 3, 4, 5...)
+                indexInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this, true); // force validate empty field when Enter is pressed
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Toggle Answers Panel
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .highlight-pink {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .inline-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            column-gap: 6px;
+            row-gap: 6px;
+        }
+
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+        }
+
+        .input-full-line {
+            width: 100%;
+            max-width: 100%;
+            text-align: left !important;
+            padding-left: 6px;
+        }
+
+        .input-inline-flex {
+            flex: 1 1 220px;
+            min-width: 180px;
+            text-align: left !important;
+            padding-left: 6px;
+        }
+
+        .w-xs { width: 90px; }
+        .w-sm { width: 140px; }
+        .w-md { width: 220px; }
+
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 500px) {
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 32.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">32.1</span>
+            <span class="exercise-instruction">Una las frases con <span class="highlight-pink">donde</span> o <span class="highlight-pink">adonde</span>.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Esta es la casa. Aquí nació Neruda.<br>
+                <div class="inline-item">
+                    <span>Esta es</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="la casa donde nació Neruda|la casa donde nacio Neruda">
+                </div>
+            </li>
+            <li class="exercise-item">
+                Me gustó mucho el restaurante. Comimos en él ayer.<br>
+                <div class="inline-item">
+                    <span>Me gustó mucho</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="el restaurante donde comimos ayer">
+                </div>
+            </li>
+            <li class="exercise-item">
+                Esa es la playa. Ahí vamos los fines de semana.<br>
+                <div class="inline-item">
+                    <span>Esa es</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="la playa adonde vamos los fines de semana">
+                </div>
+            </li>
+            <li class="exercise-item">
+                Pronto veremos el castillo. Es el lugar al que nos llevó tu amigo.<br>
+                <div class="inline-item">
+                    <span>Pronto veremos</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="el castillo adonde nos llevó tu amigo|el castillo adonde nos llevo tu amigo">
+                </div>
+            </li>
+            <li class="exercise-item">
+                Este es el hospital. Aquí me operaron hace dos años.<br>
+                <div class="inline-item">
+                    <span>Este es</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="el hospital donde me operaron hace dos años|el hospital donde me operaron hace dos anos">
+                </div>
+            </li>
+            <li class="exercise-item">
+                Ese es el hotel. Nos alojamos en él la primera vez.<br>
+                <div class="inline-item">
+                    <span>Ese es</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="el hotel donde nos alojamos la primera vez">
+                </div>
+            </li>
+            <li class="exercise-item">
+                Este es el castillo. Aquí murió Isabel la Católica.<br>
+                <div class="inline-item">
+                    <span>Este es</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="el castillo donde murió Isabel la Católica|el castillo donde murio Isabel la Catolica|el castillo donde murió Isabel la Catolica">
+                </div>
+            </li>
+            <li class="exercise-item">
+                Esa es la clínica. Allí nació Mario.<br>
+                <div class="inline-item">
+                    <span>Esa es</span>
+                    <input type="text" class="fill-input input-inline-flex" data-ans="la clínica donde nació Mario|la clinica donde nacio Mario|la clínica donde nacio Mario">
+                </div>
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 32.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">32.2</span>
+            <span class="exercise-instruction">Vuelva a escribir las frases con <span class="highlight-pink">cuando</span>.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                2006 fue el año en el que acabé la carrera.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="2006 fue el año cuando acabé la carrera|2006 fue el año cuando acabe la carrera|2006 fue el ano cuando acabe la carrera">
+            </li>
+            <li class="exercise-item">
+                Te llamaré en el momento en que llegue Marta.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="Te llamaré cuando llegue Marta|Te llamare cuando llegue Marta">
+            </li>
+            <li class="exercise-item">
+                Saldremos de viaje en el momento en que haga menos calor.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="Saldremos de viaje cuando haga menos calor">
+            </li>
+            <li class="exercise-item">
+                El accidente ocurrió en el momento en que estábamos nosotros en clase.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="El accidente ocurrió cuando estábamos nosotros en clase|El accidente ocurrio cuando estabamos nosotros en clase">
+            </li>
+            <li class="exercise-item">
+                El martes es el día en que llegan mis abuelos.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="El martes es el día cuando llegan mis abuelos|El martes es el dia cuando llegan mis abuelos">
+            </li>
+            <li class="exercise-item">
+                Fue agosto el mes en que cogí las vacaciones.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="Fue agosto el mes cuando me fui de vacaciones">
+            </li>
+            <li class="exercise-item">
+                Agustín se casó en cuanto consiguió el empleo.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="Agustín se casó cuando consiguió el empleo|Agustin se caso cuando consiguio el empleo">
+            </li>
+            <li class="exercise-item">
+                La reconocí en el momento en que oí su voz.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="La reconocí cuando oí su voz|La reconoci cuando oi su voz">
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 32.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">32.3</span>
+            <span class="exercise-instruction">Vuelva a escribir las frases con <span class="highlight-pink">como</span>.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Puedes pintar la habitación de la forma que quieras.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="Puedes pintar la habitación como quieras|Puedes pintar la habitacion como quieras">
+            </li>
+            <li class="exercise-item">
+                Elena vive del modo que le gusta.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="Elena vive como le gusta">
+            </li>
+            <li class="exercise-item">
+                Canta de la manera que quiere.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="Canta como quiere">
+            </li>
+            <li class="exercise-item">
+                Mi tía habla de la misma forma que tú.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="Mi tía habla como tú|Mi tia habla como tu|Mi tía habla como tu|Mi tia habla como tú">
+            </li>
+            <li class="exercise-item">
+                Lo haremos del modo que nos digan.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="Lo haremos como nos digan">
+            </li>
+            <li class="exercise-item">
+                Tienes que hacerlo de la manera que lo hace Jorge.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="Tienes que hacerlo como lo hace Jorge">
+            </li>
+            <li class="exercise-item">
+                No me gusta la manera en que dice las cosas.<br>
+                <input type="text" class="fill-input input-full-line" data-ans="No me gusta como dice las cosas">
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 32.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">32.4</span>
+            <span class="exercise-instruction">Complete con <span class="highlight-pink">donde</span>, <span class="highlight-pink">adonde</span>, <span class="highlight-pink">cuando</span> o <span class="highlight-pink">como</span>.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item inline-item">
+                <span>1. Rocío es la dueña de la casa</span>
+                <input type="text" class="fill-input w-sm" data-ans="donde">
+                <span>vive Matías.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>2. Esta es la escuela</span>
+                <input type="text" class="fill-input w-sm" data-ans="donde">
+                <span>estudié.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>3. Son los domingos</span>
+                <input type="text" class="fill-input w-sm" data-ans="cuando">
+                <span>más gente viene.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>4. Siempre hacemos todo</span>
+                <input type="text" class="fill-input w-sm" data-ans="como">
+                <span>quiere Luis.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>5. Este es el edificio</span>
+                <input type="text" class="fill-input w-sm" data-ans="donde">
+                <span>trabaja Marisa.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>6. Lima es la ciudad</span>
+                <input type="text" class="fill-input w-sm" data-ans="donde">
+                <span>está enterrado Pizarro.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>7. Esta es la dirección</span>
+                <input type="text" class="fill-input w-sm" data-ans="adonde">
+                <span>tienes que mandar el paquete.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>8. Haz el ejercicio</span>
+                <input type="text" class="fill-input w-sm" data-ans="como">
+                <span>lo hace la profesora.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>9. Normalmente es a las dos</span>
+                <input type="text" class="fill-input w-sm" data-ans="cuando">
+                <span>comemos.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>10. Fue en Colombia</span>
+                <input type="text" class="fill-input w-sm" data-ans="donde">
+                <span>conocí a mi marido.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>11. El pueblo</span>
+                <input type="text" class="fill-input w-sm" data-ans="donde">
+                <span>nació Adolfo ya no existe.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>12. ¿Cuál es el pueblo</span>
+                <input type="text" class="fill-input w-sm" data-ans="adonde">
+                <span>vais en verano?</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>13. La película acabó</span>
+                <input type="text" class="fill-input w-sm" data-ans="como">
+                <span>yo pensaba. Se casan.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>14. Este es el hotel</span>
+                <input type="text" class="fill-input w-sm" data-ans="donde">
+                <span>nos alojamos el año pasado.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>15. Recuerdo una época</span>
+                <input type="text" class="fill-input w-sm" data-ans="cuando">
+                <span>no había muchos coches en Madrid.</span>
+            </li>
+        </ol>
+
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">32.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> la casa donde nació Neruda.</li>
+                        <li><span class="answer-num">2.</span> el restaurante donde comimos ayer.</li>
+                        <li><span class="answer-num">3.</span> la playa adonde vamos los fines de semana.</li>
+                        <li><span class="answer-num">4.</span> el castillo adonde nos llevó tu amigo.</li>
+                        <li><span class="answer-num">5.</span> el hospital donde me operaron hace dos años.</li>
+                        <li><span class="answer-num">6.</span> el hotel donde nos alojamos la primera vez.</li>
+                        <li><span class="answer-num">7.</span> el castillo donde murió Isabel la Católica.</li>
+                        <li><span class="answer-num">8.</span> la clínica donde nació Mario.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">32.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> 2006 fue el año cuando acabé la carrera.</li>
+                        <li><span class="answer-num">2.</span> Te llamaré cuando llegue Marta.</li>
+                        <li><span class="answer-num">3.</span> Saldremos de viaje cuando haga menos calor.</li>
+                        <li><span class="answer-num">4.</span> El accidente ocurrió cuando estábamos nosotros en clase.</li>
+                        <li><span class="answer-num">5.</span> El martes es el día cuando llegan mis abuelos.</li>
+                        <li><span class="answer-num">6.</span> Fue agosto el mes cuando me fui de vacaciones.</li>
+                        <li><span class="answer-num">7.</span> Agustín se casó cuando consiguió el empleo.</li>
+                        <li><span class="answer-num">8.</span> La reconocí cuando oí su voz.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">32.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Puedes pintar la habitación como quieras.</li>
+                        <li><span class="answer-num">2.</span> Elena vive como le gusta.</li>
+                        <li><span class="answer-num">3.</span> Canta como quiere.</li>
+                        <li><span class="answer-num">4.</span> Mi tía habla como tú.</li>
+                        <li><span class="answer-num">5.</span> Lo haremos como nos digan.</li>
+                        <li><span class="answer-num">6.</span> Tienes que hacerlo como lo hace Jorge.</li>
+                        <li><span class="answer-num">7.</span> No me gusta como dice las cosas.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">32.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> donde</li>
+                        <li><span class="answer-num">2.</span> donde</li>
+                        <li><span class="answer-num">3.</span> cuando</li>
+                        <li><span class="answer-num">4.</span> como</li>
+                        <li><span class="answer-num">5.</span> donde</li>
+                        <li><span class="answer-num">6.</span> donde</li>
+                        <li><span class="answer-num">7.</span> adonde</li>
+                        <li><span class="answer-num">8.</span> como</li>
+                        <li><span class="answer-num">9.</span> cuando</li>
+                        <li><span class="answer-num">10.</span> donde</li>
+                        <li><span class="answer-num">11.</span> donde</li>
+                        <li><span class="answer-num">12.</span> adonde</li>
+                        <li><span class="answer-num">13.</span> como</li>
+                        <li><span class="answer-num">14.</span> donde</li>
+                        <li><span class="answer-num">15.</span> cuando</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Helper to normalize strings for accurate comparison (strips punctuation and extra whitespace)
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/[.\?]/g, '').replace(/\s+/g, ' ');
+            }
+
+            function validateInput(input, forceValidateEmpty = false) {
+                const rawVal = input.value;
+                const userVal = normalizeText(rawVal);
+                const dataAns = input.getAttribute('data-ans');
+                if (!dataAns) return;
+
+                const rawAccepted = dataAns.split('|');
+                const acceptedAnswers = rawAccepted.map(normalizeText);
+
+                if (userVal === '') {
+                    if (forceValidateEmpty) {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    } else {
+                        input.classList.remove('correct', 'incorrect');
+                    }
+                    return;
+                }
+
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            // Input handlers
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    this.classList.remove('correct', 'incorrect');
+                });
+
+                input.addEventListener('blur', function() {
+                    if (this.value !== '') {
+                        validateInput(this, false);
+                    }
+                });
+
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this, true);
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Toggle Answers Panel Visibility
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

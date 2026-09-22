@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba final</title>
+  <link rel="stylesheet" href="style.css?v=1.0">
+  <style>
+    /* Guía de Estilo Visual */
+    :root {
+      --primary-color: #FF79AC;
+      --secondary-color: #FFEBF2;
+      --button-bg: #FFB3D1;
+      --text-color: #121118;
+      --bg-color: #FFFFFF;
+      --feedback-success: #D4EDDA;
+      --feedback-error: #F8D7DA;
+      --box-bg: #F9F9F9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 820px;
+      margin: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      text-align: left;
+    }
+
+    .indication {
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 4px;
+      margin-top: 5px;
+      text-transform: lowercase;
+    }
+
+    /* Navegación por Niveles */
+    .level-nav {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .btn-level {
+      background-color: var(--button-bg);
+      border: none;
+      border-bottom: 3px solid var(--primary-color);
+      border-radius: 5px;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      padding: 6px 16px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-level.active {
+      background-color: var(--primary-color);
+      color: #FFFFFF;
+      font-weight: bold;
+    }
+
+    /* Recuadro de Banco de Palabras */
+    .word-bank-container {
+      background-color: var(--box-bg);
+      border-radius: 8px;
+      padding: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-option {
+      background-color: var(--button-bg);
+      border: none;
+      border-bottom: 3px solid var(--primary-color);
+      border-radius: 5px;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-option:active {
+      transform: translateY(1px);
+    }
+
+    .btn-option.correct {
+      background-color: var(--feedback-success) !important;
+    }
+
+    .btn-option.wrong {
+      background-color: var(--feedback-error) !important;
+    }
+
+    /* Contenedor de Oraciones */
+    .sentences-container {
+      background-color: var(--box-bg);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .sentence-item {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Hueco de respuesta */
+    .gap-slot {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 55px;
+      height: 32px;
+      border: none;
+      border-bottom: 2px solid #888888;
+      background: transparent;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--text-color);
+      text-align: center;
+      padding: 0 6px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .gap-slot.selected {
+      border-bottom: 2px solid var(--primary-color);
+      background-color: var(--secondary-color);
+    }
+
+    .gap-slot.correct {
+      background-color: var(--feedback-success);
+      border-bottom: 2px solid #28a745;
+    }
+
+    .gap-slot.wrong {
+      background-color: var(--feedback-error);
+      border-bottom: 2px solid #dc3545;
+    }
+
+    /* Botón y Contenedor de Respuestas Correctas */
+    .btn-answers {
+      align-self: flex-start;
+      background-color: var(--button-bg);
+      border: none;
+      border-bottom: 3px solid var(--primary-color);
+      border-radius: 5px;
+      color: var(--text-color);
+      font-size: 0.95rem;
+      font-weight: bold;
+      padding: 8px 18px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-answers:active {
+      transform: translateY(1px);
+    }
+
+    .answers-container {
+      background-color: var(--box-bg);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .answers-container p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .answers-container strong {
+      color: var(--text-color);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+    <h1>Prueba final</h1>
+    
+    <p class="indication">Completa con el pronombre reflexivo.</p>
+    
+    <h2>test your memory</h2>
+
+    <div class="level-nav">
+      <button class="btn-level active" onclick="loadLevel(1)">Nivel 1</button>
+      <button class="btn-level" onclick="loadLevel(2)">Nivel 2</button>
+      <button class="btn-level" onclick="loadLevel(3)">Nivel 3</button>
+    </div>
+
+    <div class="word-bank-container" id="wordBank">
+      <!-- Los botones de opciones se cargarán dinámicamente -->
+    </div>
+
+    <div class="sentences-container" id="sentencesContainer">
+      <!-- Las oraciones se cargarán dinámicamente -->
+    </div>
+
+    <button class="btn-answers" onclick="toggleAnswers()">Respuestas correctas</button>
+
+    <div class="answers-container" id="answersContainer" style="display: none;">
+      <!-- Las respuestas correctas se mostrarán aquí al hacer clic -->
+    </div>
+  </div>
+
+  <script>
+    const levelsData = {
+      1: {
+        options: ["me", "te", "se", "nos"],
+        sentences: [
+          {
+            parts: [
+              { gap: true, answer: "te", capitalized: "Te" },
+              { text: " has manchado la camisa." }
+            ]
+          },
+          {
+            parts: [
+              { text: "En verano " },
+              { gap: true, answer: "me" },
+              { text: " baño todos los días." }
+            ]
+          },
+          {
+            parts: [
+              { text: "Mis hermanas " },
+              { gap: true, answer: "se" },
+              { text: " lavan el pelo una vez a la semana." }
+            ]
+          },
+          {
+            parts: [
+              { gap: true, answer: "me", capitalized: "Me" },
+              { text: " he roto la falda." }
+            ]
+          },
+          {
+            parts: [
+              { text: "Tomás y yo " },
+              { gap: true, answer: "nos" },
+              { text: " queremos." }
+            ]
+          },
+          {
+            parts: [
+              { text: "Lucía y José " },
+              { gap: true, answer: "se" },
+              { text: " quieren mucho." }
+            ]
+          }
+        ],
+        answers: [
+          "<strong>Te</strong> has manchado la camisa.",
+          "En verano <strong>me</strong> baño todos los días.",
+          "Mis hermanas <strong>se</strong> lavan el pelo una vez a la semana.",
+          "<strong>Me</strong> he roto la falda.",
+          "Tomás y yo <strong>nos</strong> queremos.",
+          "Lucía y José <strong>se</strong> quieren mucho."
+        ]
+      },
+      2: {
+        options: ["me", "te", "se", "nos"],
+        sentences: [
+          {
+            parts: [
+              { text: "No " },
+              { gap: true, answer: "nos" },
+              { text: " conocemos." }
+            ]
+          },
+          {
+            parts: [
+              { text: "Juan y su padre " },
+              { gap: true, answer: "se" },
+              { text: " entienden muy bien." }
+            ]
+          },
+          {
+            parts: [
+              { text: "Todos los días " },
+              { gap: true, answer: "te" },
+              { text: " ves en el espejo antes de salir." }
+            ]
+          },
+          {
+            parts: [
+              { text: "Mis amigas y yo " },
+              { gap: true, answer: "nos" },
+              { text: " vemos todos los sábados." }
+            ]
+          },
+          {
+            parts: [
+              { text: "Felipe y David " },
+              { gap: true, answer: "se" },
+              { text: " saludaron." }
+            ]
+          },
+          {
+            parts: [
+              { text: "Siempre " },
+              { gap: true, answer: "me" },
+              { text: " acuesto temprano los domingos." }
+            ]
+          }
+        ],
+        answers: [
+          "No <strong>nos</strong> conocemos.",
+          "Juan y su padre <strong>se</strong> entienden muy bien.",
+          "Todos los días <strong>te</strong> ves en el espejo antes de salir.",
+          "Mis amigas y yo <strong>nos</strong> vemos todos los sábados.",
+          "Felipe y David <strong>se</strong> saludaron.",
+          "Siempre <strong>me</strong> acuesto temprano los domingos."
+        ]
+      },
+      3: {
+        options: ["me", "te", "se", "nos"],
+        sentences: [
+          {
+            parts: [
+              { text: "Hoy no " },
+              { gap: true, answer: "me" },
+              { text: " voy a poner el abrigo." }
+            ]
+          },
+          {
+            parts: [
+              { gap: true, answer: "me", capitalized: "Me" },
+              { text: " he cortado un dedo." }
+            ]
+          },
+          {
+            parts: [
+              { text: "Cada lunes " },
+              { gap: true, answer: "te" },
+              { text: " pones la misma camisa." }
+            ]
+          },
+          {
+            parts: [
+              { text: "Roque y Julio no " },
+              { gap: true, answer: "se" },
+              { text: " hablan." }
+            ]
+          },
+          {
+            parts: [
+              { text: "Andrés y yo " },
+              { gap: true, answer: "nos" },
+              { text: " conocemos muy bien." }
+            ]
+          },
+          {
+            parts: [
+              { text: "Ustedes siempre " },
+              { gap: true, answer: "se" },
+              { text: " levantan tarde." }
+            ]
+          }
+        ],
+        answers: [
+          "Hoy no <strong>me</strong> voy a poner el abrigo.",
+          "<strong>Me</strong> he cortado un dedo.",
+          "Cada lunes <strong>te</strong> pones la misma camisa.",
+          "Roque y Julio no <strong>se</strong> hablan.",
+          "Andrés y yo <strong>nos</strong> conocemos muy bien.",
+          "Ustedes siempre <strong>se</strong> levantan tarde."
+        ]
+      }
+    };
+
+    let currentLevel = 1;
+    let activeGap = null;
+
+    function loadLevel(levelNum) {
+      currentLevel = levelNum;
+      
+      // Ocultar contenedor de respuestas al cambiar de nivel
+      const answersContainer = document.getElementById('answersContainer');
+      answersContainer.style.display = 'none';
+
+      // Actualizar botones de navegación
+      const levelBtns = document.querySelectorAll('.btn-level');
+      levelBtns.forEach((btn, index) => {
+        if (index + 1 === levelNum) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Cargar Banco de Palabras
+      const wordBank = document.getElementById('wordBank');
+      wordBank.innerHTML = '';
+      const currentOptions = levelsData[levelNum].options;
+
+      currentOptions.forEach(optionText => {
+        const btn = document.createElement('button');
+        btn.className = 'btn-option';
+        btn.textContent = optionText;
+        btn.onclick = () => selectOption(optionText, btn);
+        wordBank.appendChild(btn);
+      });
+
+      // Cargar Oraciones
+      const sentencesContainer = document.getElementById('sentencesContainer');
+      sentencesContainer.innerHTML = '';
+      const currentSentences = levelsData[levelNum].sentences;
+
+      currentSentences.forEach((sentenceObj) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'sentence-item';
+
+        sentenceObj.parts.forEach(part => {
+          if (part.gap) {
+            const gapSpan = document.createElement('span');
+            gapSpan.className = 'gap-slot';
+            gapSpan.dataset.answer = part.answer;
+            gapSpan.dataset.capitalized = part.capitalized || part.answer;
+            gapSpan.textContent = '';
+            gapSpan.onclick = () => setTargetGap(gapSpan);
+            itemDiv.appendChild(gapSpan);
+          } else {
+            const textSpan = document.createElement('span');
+            textSpan.textContent = part.text;
+            itemDiv.appendChild(textSpan);
+          }
+        });
+
+        sentencesContainer.appendChild(itemDiv);
+      });
+
+      // Seleccionar el primer hueco disponible
+      focusNextGap();
+    }
+
+    function setTargetGap(gapElement) {
+      if (gapElement.classList.contains('correct')) return;
+
+      const allGaps = document.querySelectorAll('.gap-slot');
+      allGaps.forEach(g => g.classList.remove('selected'));
+
+      activeGap = gapElement;
+      activeGap.classList.add('selected');
+    }
+
+    function focusNextGap() {
+      const gaps = document.querySelectorAll('.gap-slot:not(.correct)');
+      if (gaps.length > 0) {
+        setTargetGap(gaps[0]);
+      } else {
+        activeGap = null;
+      }
+    }
+
+    function selectOption(selectedWord, optionBtn) {
+      if (!activeGap) {
+        focusNextGap();
+        if (!activeGap) return;
+      }
+
+      const expectedAnswer = activeGap.dataset.answer.toLowerCase();
+      const isCapitalizedNeeded = activeGap.dataset.capitalized !== activeGap.dataset.answer;
+
+      if (selectedWord.toLowerCase() === expectedAnswer) {
+        // Acierto
+        const displayText = isCapitalizedNeeded ? activeGap.dataset.capitalized : selectedWord;
+        activeGap.textContent = displayText;
+        activeGap.classList.remove('selected', 'wrong');
+        activeGap.classList.add('correct');
+
+        optionBtn.classList.add('correct');
+        setTimeout(() => {
+          optionBtn.classList.remove('correct');
+        }, 500);
+
+        focusNextGap();
+      } else {
+        // Error
+        activeGap.classList.add('wrong');
+        optionBtn.classList.add('wrong');
+
+        setTimeout(() => {
+          activeGap.classList.remove('wrong');
+          optionBtn.classList.remove('wrong');
+        }, 500);
+      }
+    }
+
+    function toggleAnswers() {
+      const answersContainer = document.getElementById('answersContainer');
+      if (answersContainer.style.display === 'none') {
+        const answersList = levelsData[currentLevel].answers;
+        answersContainer.innerHTML = answersList.map(ans => `<p>${ans}</p>`).join('');
+        answersContainer.style.display = 'flex';
+      } else {
+        answersContainer.style.display = 'none';
+      }
+    }
+
+    // Inicializar Nivel 1 al cargar
+    window.onload = function() {
+      loadLevel(1);
+    };
+  </script>
+</body>
+</html>

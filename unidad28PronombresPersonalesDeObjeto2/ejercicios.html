@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .exercise-item-block {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .exercise-img-container {
+            text-align: center;
+            margin: 15px 0 25px 0;
+            background-color: #F9F9F9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .exercise-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+        }
+
+        input.fill-input.example-filled {
+            background-color: #E9ECEF !important;
+            border-bottom-color: #6C757D !important;
+            font-weight: 600;
+        }
+
+        .w-xs { width: 70px; }
+        .w-sm { width: 140px; }
+        .w-md { width: 240px; }
+        .w-lg { width: 340px; }
+        .w-full-line { width: 100%; max-width: 520px; text-align: left !important; padding-left: 10px; }
+
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 500px) {
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 28.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">28.1</span>
+            <span class="exercise-instruction">Vuelva a escribir las frases comenzando con las palabras dadas.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Conozco a esta chica. A esta chica <input type="text" class="fill-input w-sm example-filled" value="la conozco" readonly>.
+            </li>
+            <li class="exercise-item">
+                Veo todos los días a Rafa. A Rafa <input type="text" class="fill-input w-md" data-ans="lo veo todos los días|lo veo todos los dias|lo veo todos los días.">.
+            </li>
+            <li class="exercise-item">
+                Yo pago los helados. Los helados <input type="text" class="fill-input w-sm" data-ans="los pago yo|los pago|los pago yo.">.
+            </li>
+            <li class="exercise-item">
+                Jesús compra las entradas. Las entradas <input type="text" class="fill-input w-md" data-ans="las compra Jesús|las compra Jesus|las compra Jesús.">.
+            </li>
+            <li class="exercise-item">
+                Elena llama a David y yo llamo a Delfín. A David <input type="text" class="fill-input w-sm" data-ans="lo llama Elena"> y a Delfín <input type="text" class="fill-input w-sm" data-ans="lo llamo yo">.
+            </li>
+            <li class="exercise-item">
+                Nadie llama a Mercedes. A Mercedes <input type="text" class="fill-input w-md" data-ans="no la llama nadie|no la llama nadie.">.
+            </li>
+            <li class="exercise-item">
+                Nosotras haremos la cena. La cena <input type="text" class="fill-input w-md" data-ans="la haremos nosotras|la haremos|la haremos nosotras.">.
+            </li>
+            <li class="exercise-item">
+                Yo escribo los libros. Los libros <input type="text" class="fill-input w-sm" data-ans="los escribo yo|los escribo|los escribo yo.">.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 28.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">28.2</span>
+            <span class="exercise-instruction">Vuelva a escribir las frases añadiendo pronombres de objeto en el lugar correspondiente.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –¿Has regalado algo a Celia? – <input type="text" class="fill-input w-md example-filled" value="¿Le has regalado algo a Celia?" readonly> –He regalado un collar. – <input type="text" class="fill-input w-md example-filled" value="Le he regalado un collar." readonly>
+            </li>
+            <li class="exercise-item">
+                –¿Qué te pasa? –Estoy arruinado. He perdido todo. <input type="text" class="fill-input w-full-line" data-ans="Lo he perdido todo|Lo he perdido todo.|lo he perdido todo">
+            </li>
+            <li class="exercise-item">
+                –¿Dónde tienes la bicicleta? –He dejado a Lidia. <input type="text" class="fill-input w-full-line" data-ans="Se la he dejado a Lidia|Se la he dejado a Lidia.|se la he dejado a lidia">
+            </li>
+            <li class="exercise-item">
+                –¿Qué has dicho a Jesús? <input type="text" class="fill-input w-md" data-ans="¿Qué le has dicho a Jesús?|Qué le has dicho a Jesús?|Que le has dicho a Jesus?|¿Qué le has dicho a Jesús?"> –No he dicho nada. <input type="text" class="fill-input w-md" data-ans="No le he dicho nada.|No le he dicho nada">
+            </li>
+            <li class="exercise-item">
+                –¿Tienes entradas? –No, he vendido todas. <input type="text" class="fill-input w-full-line" data-ans="No, las he vendido todas.|No, las he vendido todas|Las he vendido todas.|Las he vendido todas">
+            </li>
+            <li class="exercise-item">
+                –¿Has contado a Antonio la historia? <input type="text" class="fill-input w-md" data-ans="¿Le has contado a Antonio la historia?|Le has contado a Antonio la historia?|¿Le has contado a Antonio la historia"> –No, no he contado. <input type="text" class="fill-input w-md" data-ans="No, no se la he contado.|No, no se la he contado|No se la he contado|No le he contado">
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 28.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">28.3</span>
+            <span class="exercise-instruction">Complete con el pronombre de objeto y a + pronombre personal.</span>
+        </div>
+
+        <div class="exercise-img-container">
+            <img src="https://imgur.com/RFRVDta.jpg" alt="Ejercicio 28.3" class="exercise-img">
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-xs example-filled" value="Los" readonly> conozco <input type="text" class="fill-input w-sm example-filled" value="a ellos" readonly>.
+            </li>
+            <li class="exercise-item">
+                <input type="text" class="fill-input w-xs" data-ans="La|la"> conozco <input type="text" class="fill-input w-sm" data-ans="a ella|a ella.">.
+            </li>
+            <li class="exercise-item">
+                Anoche <input type="text" class="fill-input w-xs" data-ans="las"> vi <input type="text" class="fill-input w-sm" data-ans="a ellas"> en la feria.
+            </li>
+            <li class="exercise-item">
+                Anoche <input type="text" class="fill-input w-xs" data-ans="lo"> vi <input type="text" class="fill-input w-sm" data-ans="a el|a él"> en la feria.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 28.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">28.4</span>
+            <span class="exercise-instruction">Complete con me, te, lo... y a mí, a ti, a él...</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Yo conozco a esa chica, pero ella no <input type="text" class="fill-input w-xs example-filled" value="me" readonly> conoce <input type="text" class="fill-input w-sm example-filled" value="a mí" readonly>.
+            </li>
+            <li class="exercise-item">
+                Desde aquí vemos a Roberto, pero él no <input type="text" class="fill-input w-xs" data-ans="nos"> ve <input type="text" class="fill-input w-sm" data-ans="a nosotros|a nosotras">.
+            </li>
+            <li class="exercise-item">
+                Teresa quiere a Alfredo, pero él no <input type="text" class="fill-input w-xs" data-ans="la"> quiere <input type="text" class="fill-input w-sm" data-ans="a ella">.
+            </li>
+            <li class="exercise-item">
+                Esas señoras me conocen, pero yo no <input type="text" class="fill-input w-xs" data-ans="las"> conozco <input type="text" class="fill-input w-sm" data-ans="a ellas">.
+            </li>
+            <li class="exercise-item">
+                Ustedes me conocen, pero yo no <input type="text" class="fill-input w-xs" data-ans="los|las"> conozco <input type="text" class="fill-input w-sm" data-ans="a ustedes">.
+            </li>
+            <li class="exercise-item">
+                Usted vio a Julia, don José, pero Julia no <input type="text" class="fill-input w-xs" data-ans="lo|le"> vio <input type="text" class="fill-input w-sm" data-ans="a usted">.
+            </li>
+            <li class="exercise-item">
+                Esos chicos conocen a Miguel, pero Miguel no <input type="text" class="fill-input w-xs" data-ans="los"> conoce <input type="text" class="fill-input w-sm" data-ans="a ellos">.
+            </li>
+            <li class="exercise-item">
+                Iván ama a Patricia, pero Patricia no <input type="text" class="fill-input w-xs" data-ans="lo"> ama <input type="text" class="fill-input w-sm" data-ans="a él">.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 28.5 -->
+        <div class="exercise-header">
+            <span class="exercise-number">28.5</span>
+            <span class="exercise-instruction">Escriba preguntas y respuestas, como en el ejemplo.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                –¿Te dijo algo Luis? – <input type="text" class="fill-input w-full-line example-filled" value="A mí no me dijo nada" readonly>.
+            </li>
+            <li class="exercise-item">
+                –(a ustedes) <input type="text" class="fill-input w-md" data-ans="¿Les dijo algo a ustedes?|Les dijo algo a ustedes?|¿Les dijo algo a ustedes|Les dijo algo a ustedes"> ? – A nosotros no nos dijo nada.
+            </li>
+            <li class="exercise-item">
+                –(a Marcela) <input type="text" class="fill-input w-md" data-ans="¿Le dijo algo a Marcela?|Le dijo algo a Marcela?|¿Le dijo algo a Marcela|Le dijo algo a Marcela"> ? – <input type="text" class="fill-input w-md" data-ans="A ella no le dijo nada.|A ella no le dijo nada">
+            </li>
+            <li class="exercise-item">
+                –¿Os ha preguntado algo Lola? – <input type="text" class="fill-input w-md" data-ans="A nosotros no nos ha preguntado|A nosotros no nos ha preguntado nada.|A nosotros no nos ha preguntado nada"> nada.
+            </li>
+            <li class="exercise-item">
+                –(a Tomás) <input type="text" class="fill-input w-md" data-ans="Le ha preguntado algo a Tomás"> ? – <input type="text" class="fill-input w-md" data-ans="A él no le ha preguntado"> nada.
+            </li>
+            <li class="exercise-item">
+                –(a usted) <input type="text" class="fill-input w-md" data-ans="Le ha preguntado algo a usted"> ? – <input type="text" class="fill-input w-md" data-ans="A mí no me ha preguntado"> nada.
+            </li>
+            <li class="exercise-item">
+                –¿Te ha comprado algo Joaquina? – <input type="text" class="fill-input w-md" data-ans="A mí no me ha comprado"> nada.
+            </li>
+            <li class="exercise-item">
+                –(a nosotros) <input type="text" class="fill-input w-md" data-ans="Nos ha comprado algo a nosotros"> ? – <input type="text" class="fill-input w-md" data-ans="A nosotros no nos ha comprado"> nada.
+            </li>
+            <li class="exercise-item">
+                –(a su hermano) <input type="text" class="fill-input w-md" data-ans="Le ha comprado algo a su hermano"> ? – <input type="text" class="fill-input w-md" data-ans="A él no le ha comprado"> nada.
+            </li>
+        </ol>
+
+        <!-- BUTTON AND ANSWERS PANEL -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">28.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> la conozco</li>
+                        <li><span class="answer-num">2.</span> lo veo todos los días</li>
+                        <li><span class="answer-num">3.</span> los pago yo</li>
+                        <li><span class="answer-num">4.</span> las compra Jesús</li>
+                        <li><span class="answer-num">5.</span> lo llama Elena / lo llamo yo</li>
+                        <li><span class="answer-num">6.</span> no la llama nadie</li>
+                        <li><span class="answer-num">7.</span> la haremos nosotras</li>
+                        <li><span class="answer-num">8.</span> los escribo yo</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">28.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> ¿Le has regalado algo a Celia? / Le he regalado un collar.</li>
+                        <li><span class="answer-num">2.</span> Lo he perdido todo.</li>
+                        <li><span class="answer-num">3.</span> Se la he dejado a Lidia.</li>
+                        <li><span class="answer-num">4.</span> ¿Qué le has dicho a Jesús? / No le he dicho nada.</li>
+                        <li><span class="answer-num">5.</span> No, las he vendido todas.</li>
+                        <li><span class="answer-num">6.</span> ¿Le has contado a Antonio la historia? / No, no se la he contado.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">28.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Los ... a ellos</li>
+                        <li><span class="answer-num">2.</span> La ... a ella</li>
+                        <li><span class="answer-num">3.</span> las ... a ellas</li>
+                        <li><span class="answer-num">4.</span> lo ... a él</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">28.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> me ... a mí</li>
+                        <li><span class="answer-num">2.</span> nos ... a nosotros / as</li>
+                        <li><span class="answer-num">3.</span> la ... a ella</li>
+                        <li><span class="answer-num">4.</span> las ... a ellas</li>
+                        <li><span class="answer-num">5.</span> los / las ... a ustedes</li>
+                        <li><span class="answer-num">6.</span> lo / le ... a usted</li>
+                        <li><span class="answer-num">7.</span> los ... a ellos</li>
+                        <li><span class="answer-num">8.</span> lo ... a él</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">28.5</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> A mí no me dijo nada</li>
+                        <li><span class="answer-num">2.</span> ¿Les dijo algo a ustedes?</li>
+                        <li><span class="answer-num">3.</span> ¿Le dijo algo a Marcela? / A ella no le dijo nada.</li>
+                        <li><span class="answer-num">4.</span> A nosotros no nos ha preguntado</li>
+                        <li><span class="answer-num">5.</span> ¿Le ha preguntado algo a Tomás? / A él no le ha preguntado</li>
+                        <li><span class="answer-num">6.</span> ¿Le ha preguntado algo a usted? / A mí no me ha preguntado</li>
+                        <li><span class="answer-num">7.</span> A mí no me ha comprado</li>
+                        <li><span class="answer-num">8.</span> ¿Nos ha comprado algo a nosotros? / A nosotros no nos ha comprado</li>
+                        <li><span class="answer-num">9.</span> ¿Le ha comprado algo a su hermano? / A él no le ha comprado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input:not([readonly])'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalize string for evaluation
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/\s+/g, ' ');
+            }
+
+            function validateInput(input) {
+                const rawVal = input.value;
+                const userVal = normalizeText(rawVal);
+                const dataAns = input.getAttribute('data-ans');
+                if (!dataAns) return;
+
+                const rawAccepted = dataAns.split('|');
+                const acceptedAnswers = rawAccepted.map(normalizeText);
+
+                if (userVal === '') {
+                    input.classList.remove('correct', 'incorrect');
+                    return;
+                }
+
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            inputs.forEach((indexInput, index) => {
+                // Clear colors when editing
+                indexInput.addEventListener('input', function() {
+                    this.classList.remove('correct', 'incorrect');
+                });
+
+                indexInput.addEventListener('blur', function() {
+                    validateInput(this);
+                });
+
+                // Sequential Jump order on Enter Key (1, 2, 3, 4, 5...)
+                indexInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this);
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Toggle Answers Panel
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

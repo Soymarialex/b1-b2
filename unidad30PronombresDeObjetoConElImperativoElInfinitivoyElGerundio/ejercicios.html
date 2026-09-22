@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .exercise-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list::marker {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+        }
+
+        .w-xs { width: 100px; }
+        .w-sm { width: 160px; }
+        .w-md { width: 250px; }
+        .w-lg { width: 380px; }
+        
+        .inline-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            column-gap: 4px;
+            row-gap: 6px;
+        }
+
+        .input-inline-flex {
+            flex: 1 1 200px;
+            min-width: 160px;
+            text-align: left !important;
+            padding-left: 6px;
+        }
+
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 500px) {
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 30.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">30.1</span>
+            <span class="exercise-instruction">Sustituya las palabras subrayadas por pronombres. Ponga las tildes cuando sea necesario.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Manda <u>el dinero a Manolo</u>. <input type="text" class="fill-input w-md" data-ans="Mándaselo|Mandaselo|mándaselo|mandaselo">
+            </li>
+            <li class="exercise-item">
+                No grabes <u>la película</u>. <input type="text" class="fill-input w-md" data-ans="No la grabes|no la grabes">
+            </li>
+            <li class="exercise-item">
+                Calienta <u>la sopa</u>. <input type="text" class="fill-input w-md" data-ans="Caliéntala|calientala">
+            </li>
+            <li class="exercise-item">
+                Trae <u>el periódico a Luis y a mí</u>. <input type="text" class="fill-input w-md" data-ans="Tráenoslo|Traenoslo|tráenoslo|traenoslo">
+            </li>
+            <li class="exercise-item">
+                No suba <u>las maletas</u>. <input type="text" class="fill-input w-md" data-ans="No las suba|no las suba">
+            </li>
+            <li class="exercise-item">
+                Di la verdad <u>a tus padres</u>. <input type="text" class="fill-input w-md" data-ans="Diles la verdad|diles la verdad">
+            </li>
+            <li class="exercise-item">
+                Da <u>las llaves a Antonio</u>. <input type="text" class="fill-input w-md" data-ans="Dáselas|Daselas|dáselas|daselas">
+            </li>
+            <li class="exercise-item">
+                Compra el regalo <u>a tus primos</u>. <input type="text" class="fill-input w-md" data-ans="Cómprales el regalo|comprales el regalo">
+            </li>
+            <li class="exercise-item">
+                No pongas <u>la tele</u>. <input type="text" class="fill-input w-md" data-ans="No la pongas|no la pongas">
+            </li>
+            <li class="exercise-item">
+                Llama <u>a tus tías</u> esta noche. <input type="text" class="fill-input w-md" data-ans="Llámalas esta noche|Llamalas esta noche|llámalas esta noche|llámalas|llamalas">
+            </li>
+            <li class="exercise-item">
+                Llévame <u>los libros</u>. <input type="text" class="fill-input w-md" data-ans="Llévamelos|Llevamelos|llévamelos|llevamelos">
+            </li>
+            <li class="exercise-item">
+                No te pongas <u>la chaqueta</u>. <input type="text" class="fill-input w-md" data-ans="No te la pongas|no te la pongas">
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 30.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">30.2</span>
+            <span class="exercise-instruction">Conteste las preguntas usando los pronombres adecuados para las palabras subrayadas. Dé las dos respuestas posibles donde las haya.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item inline-item">
+                <span>¿Fue difícil encontrar <u>el libro</u>? No,</span> <input type="text" class="fill-input input-inline-flex" data-ans="no fue difícil encontrarlo|no fue dificil encontrarlo">
+            </li>
+            <li class="exercise-item inline-item">
+                <span>¿Quieres ver <u>a Antonio</u>? No,</span> <input type="text" class="fill-input input-inline-flex" data-ans="no quiero verlo / no lo quiero ver|no quiero verlo/no lo quiero ver|no lo quiero ver / no quiero verlo|no quiero verlo|no lo quiero ver">
+            </li>
+            <li class="exercise-item inline-item">
+                <span>¿Fue complicado traer <u>la impresora</u>? Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="fue complicado traerla">
+            </li>
+            <li class="exercise-item inline-item">
+                <span>¿Le vas a contar <u>el libro a Pepe</u>? No, no</span> <input type="text" class="fill-input input-inline-flex" data-ans="voy a contárselo / no se lo voy a contar|voy a contárselo/no se lo voy a contar|se lo voy a contar / no voy a contárselo|voy a contárselo|se lo voy a contar|voy a contarselo">
+            </li>
+            <li class="exercise-item inline-item">
+                <span>¿Fue imposible llevar <u>la moto</u>? Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="fue imposible llevarla">
+            </li>
+            <li class="exercise-item inline-item">
+                <span>Parece entender <u>la pregunta</u>. Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="parece entenderla">
+            </li>
+            <li class="exercise-item inline-item">
+                <span>¿Lamentas perder <u>tu trabajo</u>? No,</span> <input type="text" class="fill-input input-inline-flex" data-ans="no lamento perderlo|lamento perderlo">
+            </li>
+            <li class="exercise-item inline-item">
+                <span>¿Puedes ayudar <u>a Sonia y a Juana</u> a subir las maletas? Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="puedo ayudarlas a subir las maletas / las puedo ayudar a subir las maletas|puedo ayudarlas a subir las maletas|las puedo ayudar a subir las maletas">
+            </li>
+            <li class="exercise-item inline-item">
+                <span>¿Fue imposible comprar <u>las entradas</u>? Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="fue imposible comprarlas">
+            </li>
+            <li class="exercise-item inline-item">
+                <span>Parecen odiar <u>a Olga</u>. Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="parecen odiarla">
+            </li>
+            <li class="exercise-item inline-item">
+                <span>¿Quieres comprar <u>ese CD a Pablo</u>? No,</span> <input type="text" class="fill-input input-inline-flex" data-ans="no quiero comprárselo / no se lo quiero comprar|no quiero comprárselo/no se lo quiero comprar|no se lo quiero comprar / no quiero comprárselo|no quiero comprárselo|no se lo quiero comprar|no quiero comprarselo">
+            </li>
+            <li class="exercise-item inline-item">
+                <span>¿Van a vender <u>la casa a Tomás</u>? No,</span> <input type="text" class="fill-input input-inline-flex" data-ans="no van a vendérsela / no se la van a vender|no van a vendérsela/no se la van a vender|no se la van a vender / no van a vendérsela|no van a vendérsela|no se la van a vender|no van a vendersela">
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 30.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">30.3</span>
+            <span class="exercise-instruction">Complete con el gerundio y los pronombres adecuados. Ponga las tildes cuando sea necesario.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item">
+                Escucha <u>esa música</u>. (Escuchando) <input type="text" class="fill-input w-sm" data-ans="Escuchándola|Escuchandola|escuchándola|escuchandola"> te relajarás.
+            </li>
+            <li class="exercise-item">
+                Di <u>la verdad a tus padres</u>. (Diciendo) <input type="text" class="fill-input w-sm" data-ans="Diciéndosela|Diciendosela|diciéndosela|diciendosela"> te sentirás mejor.
+            </li>
+            <li class="exercise-item">
+                Yo <u>me</u> levanto pronto. (Levantando) <input type="text" class="fill-input w-sm" data-ans="Levantándome|Levantandome|levantándome|levantandome"> pronto aprovecho la mañana.
+            </li>
+            <li class="exercise-item">
+                No me gusta pelar <u>patatas</u>. Siempre me corto (pelando) <input type="text" class="fill-input w-sm" data-ans="pelándolas|pelandolas|Pelándolas|Pelandolas">.
+            </li>
+            <li class="exercise-item">
+                Échate <u>una siesta</u>. (Echando) <input type="text" class="fill-input w-sm" data-ans="Echándotela|Echandotela|echándotela|echandotela"> descansarás.
+            </li>
+            <li class="exercise-item">
+                Lee <u>estas novelas</u>. (Leyendo) <input type="text" class="fill-input w-sm" data-ans="Leyéndolas|Leyendolas|leyéndolas|leyendolas"> te reirás mucho.
+            </li>
+            <li class="exercise-item">
+                Lleva tú <u>el coche</u>. (Llevando) <input type="text" class="fill-input w-sm" data-ans="Llevándolo|Llevandolo|llevándolo|llevandolo"> no te aburrirás.
+            </li>
+            <li class="exercise-item">
+                Tómate <u>una aspirina</u>. (Tomando) <input type="text" class="fill-input w-sm" data-ans="Tomándotela|Tomandotela|tomándotela|tomandotela"> se te pasará el dolor de cabeza.
+            </li>
+        </ol>
+
+        <!-- EJERCICIO 30.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">30.4</span>
+            <span class="exercise-instruction">Conteste a las preguntas utilizando los pronombres adecuados para las palabras subrayadas. Dé las dos respuestas posibles.</span>
+        </div>
+
+        <ol class="exercise-list">
+            <li class="exercise-item inline-item">
+                <span>–¿Estás acabando <u>el trabajo</u>? –Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="lo estoy acabando / estoy acabándolo|lo estoy acabando/estoy acabándolo|estoy acabándolo / lo estoy acabando|lo estoy acabando|estoy acabándolo|estoy acabandolo"><span>.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>–¿Llevan ustedes una semana preparando <u>la fiesta</u>? –Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="llevamos una semana preparándola / la llevamos preparando una semana|llevamos una semana preparándola/la llevamos preparando una semana|la llevamos preparando una semana / llevamos una semana preparándola|llevamos una semana preparándola|la llevamos preparando una semana|llevamos una semana preparandola"><span>.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>–¿Sigues queriendo <u>mi chaqueta negra</u>? –Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="sigo queriéndola / la sigo queriendo|sigo queriéndola/la sigo queriendo|la sigo queriendo / sigo queriéndola|sigo queriéndola|la sigo queriendo|sigo queriendola"><span>.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>–¿Están pintando <u>la casa</u>? –Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="están pintándola / la están pintando|están pintándola/la están pintando|la están pintando / están pintándola|están pintándola|la están pintando|estan pintandola"><span>.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>–¿Estás buscando <u>a Julián</u>? –Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="estoy buscándolo / lo estoy buscando|estoy buscándolo/lo estoy buscando|lo estoy buscando / estoy buscándolo|estoy buscándolo|lo estoy buscando|estoy buscandolo"><span>.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>–¿Sigues llevando <u>flores a Asunción</u>? –Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="sigo llevándoselas / se las sigo llevando|sigo llevándoselas/se las sigo llevando|se las sigo llevando / sigo llevándoselas|sigo llevándoselas|se las sigo llevando|sigo llevandoselas"><span>.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>–¿Estás preparando <u>la comida a los invitados</u>? –Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="estoy preparándosela / se la estoy preparando|estoy preparándosela/se la estoy preparando|se la estoy preparando / estoy preparándosela|estoy preparándosela|se la estoy preparando|estoy preparandosela"><span>.</span>
+            </li>
+            <li class="exercise-item inline-item">
+                <span>–¿Llevas una hora haciendo <u>este ejercicio</u>? –Sí,</span> <input type="text" class="fill-input input-inline-flex" data-ans="llevo una hora haciéndolo / lo llevo haciendo una hora|llevo una hora haciéndolo/lo llevo haciendo una hora|lo llevo haciendo una hora / llevo una hora haciéndolo|llevo una hora haciéndolo|lo llevo haciendo una hora|llevo una hora haciendolo"><span>.</span>
+            </li>
+        </ol>
+
+        <!-- BUTTON AND ANSWERS PANEL -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">30.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Mándaselo.</li>
+                        <li><span class="answer-num">2.</span> No la grabes.</li>
+                        <li><span class="answer-num">3.</span> Caliéntala.</li>
+                        <li><span class="answer-num">4.</span> Tráenoslo.</li>
+                        <li><span class="answer-num">5.</span> No las suba.</li>
+                        <li><span class="answer-num">6.</span> Diles la verdad.</li>
+                        <li><span class="answer-num">7.</span> Dáselas.</li>
+                        <li><span class="answer-num">8.</span> Cómprales el regalo.</li>
+                        <li><span class="answer-num">9.</span> No la pongas.</li>
+                        <li><span class="answer-num">10.</span> Llámalas esta noche.</li>
+                        <li><span class="answer-num">11.</span> Llévamelos.</li>
+                        <li><span class="answer-num">12.</span> No te la pongas.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">30.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> no fue difícil encontrarlo.</li>
+                        <li><span class="answer-num">2.</span> no quiero verlo / no lo quiero ver.</li>
+                        <li><span class="answer-num">3.</span> fue complicado traerla.</li>
+                        <li><span class="answer-num">4.</span> no voy a contárselo / no se lo voy a contar.</li>
+                        <li><span class="answer-num">5.</span> fue imposible llevarla.</li>
+                        <li><span class="answer-num">6.</span> parece entenderla.</li>
+                        <li><span class="answer-num">7.</span> no lamento perderlo.</li>
+                        <li><span class="answer-num">8.</span> puedo ayudarlas a subir las maletas / las puedo ayudar a subir las maletas.</li>
+                        <li><span class="answer-num">9.</span> fue imposible comprarlas.</li>
+                        <li><span class="answer-num">10.</span> parecen odiarla.</li>
+                        <li><span class="answer-num">11.</span> no quiero comprárselo / no se lo quiero comprar.</li>
+                        <li><span class="answer-num">12.</span> no van a vendérsela / no se la van a vender.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">30.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Escuchándola.</li>
+                        <li><span class="answer-num">2.</span> Diciéndosela.</li>
+                        <li><span class="answer-num">3.</span> Levantándome.</li>
+                        <li><span class="answer-num">4.</span> pelándolas.</li>
+                        <li><span class="answer-num">5.</span> Echándotela.</li>
+                        <li><span class="answer-num">6.</span> Leyéndolas.</li>
+                        <li><span class="answer-num">7.</span> Llevándolo.</li>
+                        <li><span class="answer-num">8.</span> Tomándotela.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">30.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> lo estoy acabando / estoy acabándolo.</li>
+                        <li><span class="answer-num">2.</span> llevamos una semana preparándola / la llevamos preparando una semana.</li>
+                        <li><span class="answer-num">3.</span> sigo queriéndola / la sigo queriendo.</li>
+                        <li><span class="answer-num">4.</span> están pintándola / la están pintando.</li>
+                        <li><span class="answer-num">5.</span> estoy buscándolo / lo estoy buscando.</li>
+                        <li><span class="answer-num">6.</span> sigo llevándoselas / se las sigo llevando.</li>
+                        <li><span class="answer-num">7.</span> estoy preparándosela / se la estoy preparando.</li>
+                        <li><span class="answer-num">8.</span> llevo una hora haciéndolo / lo llevo haciendo una hora.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalize string for accurate comparison
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/[.\?]/g, '').replace(/\s+/g, ' ');
+            }
+
+            function validateInput(input, forceValidateEmpty = false) {
+                const rawVal = input.value;
+                const userVal = normalizeText(rawVal);
+                const dataAns = input.getAttribute('data-ans');
+                if (!dataAns) return;
+
+                const rawAccepted = dataAns.split('|');
+                const acceptedAnswers = rawAccepted.map(normalizeText);
+
+                // Check if empty / Ø is acceptable for this field
+                const acceptsEmpty = acceptedAnswers.some(a => a === 'ø' || a === 'empty' || a === '');
+
+                if (userVal === '') {
+                    if (forceValidateEmpty && acceptsEmpty) {
+                        input.classList.add('correct');
+                        input.classList.remove('incorrect');
+                    } else if (forceValidateEmpty && !acceptsEmpty) {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    } else {
+                        input.classList.remove('correct', 'incorrect');
+                    }
+                    return;
+                }
+
+                // If input typed 'x', 'ø', '-', 'nada' on a field where empty is valid
+                if (acceptsEmpty && ['x', 'ø', '-', 'nada', 'ninguno', 'no'].includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                    return;
+                }
+
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            inputs.forEach((indexInput, index) => {
+                // Clear state while typing
+                indexInput.addEventListener('input', function() {
+                    this.classList.remove('correct', 'incorrect');
+                });
+
+                // On blur: validate if typed or interactively left
+                indexInput.addEventListener('blur', function() {
+                    if (this.value !== '') {
+                        validateInput(this, false);
+                    }
+                });
+
+                // Sequential Jump order on Enter Key (1, 2, 3, 4, 5...)
+                indexInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this, true); // force validate field when Enter is pressed
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Toggle Answers Panel
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
