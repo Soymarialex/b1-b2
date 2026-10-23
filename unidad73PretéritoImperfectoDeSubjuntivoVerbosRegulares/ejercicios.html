@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* Encabezado de cada ejercicio */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .highlight-pink {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        /* Banco de palabras para 73.2 */
+        .word-bank-box {
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 20px;
+        }
+
+        .word-bank-item {
+            font-weight: bold;
+            color: #121118;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .word-bank-item.used {
+            text-decoration: line-through;
+            color: #A0A0A0;
+            opacity: 0.6;
+        }
+
+        /* Listas y grillas */
+        .exercise-grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 30px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .inline-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            column-gap: 6px;
+            row-gap: 6px;
+        }
+
+        /* Inputs de completación */
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+        }
+
+        /* Anchos de input */
+        .w-xs { width: 100px; }
+        .w-sm { width: 150px; }
+        .w-md { width: 220px; }
+        .w-lg { width: 340px; }
+        .w-full { width: 100%; max-width: 550px; }
+
+        /* Botón de Respuestas y Panel */
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 650px) {
+            .exercise-grid-2col {
+                grid-template-columns: 1fr;
+            }
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+            .w-full {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 73.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">73.1</span>
+            <span class="exercise-instruction">Complete con los verbos entre paréntesis en <span class="highlight-pink">imperfecto de subjuntivo</span>.</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item inline-item">
+                <span>1. ¡Qué pena que vivan tan lejos los abuelos! ¡Ojalá (<i>vivir</i>)</span>
+                <input type="text" class="fill-input w-md" data-ans="vivieran|viviesen">
+                <span>cerca de aquí!</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>2. ¡Ojalá (<i>cambiar</i>)</span>
+                <input type="text" class="fill-input w-sm" data-ans="cambiara|cambiase">
+                <span>el tiempo mañana! Iríamos a la playa.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>3. ¡Ojalá (<i>ellos, llegar</i>)</span>
+                <input type="text" class="fill-input w-sm" data-ans="llegaran|llegasen">
+                <span>a tiempo al examen! Era muy importante.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>4. ¡Ojalá (<i>jugar</i>)</span>
+                <input type="text" class="fill-input w-sm" data-ans="jugara|jugase">
+                <span>Daniel en nuestro equipo! Es buenísimo.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>5. ¡Ojalá me (<i>comprar</i>)</span>
+                <input type="text" class="fill-input w-sm" data-ans="compraran|comprasen">
+                <span>la moto mis padres este verano! Podría hacer muchos viajes.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>6. ¡Ojalá (<i>aprobar</i>)</span>
+                <input type="text" class="fill-input w-sm" data-ans="aprobara|aprobase">
+                <span>Antonio! Había estudiado tanto.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>7. ¡Ojalá nos (<i>tocar</i>)</span>
+                <input type="text" class="fill-input w-sm" data-ans="tocara|tocase">
+                <span>la lotería! Daríamos la vuelta al mundo.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>8. ¡Qué pena que Alicia no me quiera! ¡Ojalá (<i>enamorarse</i>)</span>
+                <input type="text" class="fill-input w-md" data-ans="se enamorara|se enamorase">
+                <span>de mí!</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>9. ¡Qué bonitas flores! Ojalá me (<i>regalar</i>)</span>
+                <input type="text" class="fill-input w-sm" data-ans="regalaran|regalasen">
+                <span>algunas tus hermanas.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>10. ¡Ojalá todo (<i>salir</i>)</span>
+                <input type="text" class="fill-input w-sm" data-ans="saliera|saliese">
+                <span>bien ayer! Había tantos problemas.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>11. ¡Ojalá (<i>nosotros, tocar</i>)</span>
+                <input type="text" class="fill-input w-md" data-ans="tocáramos|tocásemos|tocaramos|tocasemos">
+                <span>la guitarra como Félix!</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>12. ¡Ojalá (<i>ellos, firmar</i>)</span>
+                <input type="text" class="fill-input w-sm" data-ans="firmaran|firmasen">
+                <span>el contrato ayer! Era muy importante para la empresa.</span>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 73.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">73.2</span>
+            <span class="exercise-instruction">Complete con los verbos del recuadro en <span class="highlight-pink">imperfecto de subjuntivo</span>.</span>
+        </div>
+
+        <!-- Banco de palabras interactivo -->
+        <div class="word-bank-box" id="wordBank">
+            <span class="word-bank-item" data-verb="acordarse">acordarse</span>
+            <span class="word-bank-item" data-verb="ayudar">ayudar</span>
+            <span class="word-bank-item" data-verb="cantar">cantar</span>
+            <span class="word-bank-item" data-verb="comer">comer</span>
+            <span class="word-bank-item" data-verb="comprar">comprar</span>
+            <span class="word-bank-item" data-verb="enterarse">enterarse</span>
+            <span class="word-bank-item" data-verb="estudiar">estudiar</span>
+            <span class="word-bank-item" data-verb="jugar">jugar</span>
+            <span class="word-bank-item" data-verb="lavar">lavar</span>
+            <span class="word-bank-item" data-verb="llamar">llamar</span>
+            <span class="word-bank-item" data-verb="llegar">llegar</span>
+            <span class="word-bank-item" data-verb="perder">perder</span>
+            <span class="word-bank-item" data-verb="recibir">recibir</span>
+            <span class="word-bank-item" data-verb="vivir">vivir</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item inline-item">
+                <span>1. Cuando era pequeño mis padres querían que</span>
+                <input type="text" class="fill-input w-md" data-ans="jugara|jugase" data-verb="jugar">
+                <span>al tenis.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>2. ¿Vas a lavar ahora el coche? Preferiría que lo</span>
+                <input type="text" class="fill-input w-md" data-ans="lavaras|lavases" data-verb="lavar">
+                <span>en otro momento.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>3. ¿Ya estáis aquí? Esperaba que</span>
+                <input type="text" class="fill-input w-md" data-ans="llegarais|llegaseis" data-verb="llegar">
+                <span>más tarde.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>4. Gracias por el regalo, Andrés. No era necesario que</span>
+                <input type="text" class="fill-input w-md" data-ans="compraras|comprases" data-verb="comprar">
+                <span>nada.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>5. Era imposible que no</span>
+                <input type="text" class="fill-input w-md" data-ans="se enterara|se enterase" data-verb="enterarse">
+                <span>nadie. Lo dijo en voz alta.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>6. Rodrigo quería que lo</span>
+                <input type="text" class="fill-input w-md" data-ans="ayudara|ayudase" data-verb="ayudar">
+                <span>, pero yo no tenía tiempo.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>7. Me encantaría que ustedes</span>
+                <input type="text" class="fill-input w-md" data-ans="vivieran|viviesen" data-verb="vivir">
+                <span>en esta casa.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>8. Antonia nos despertó a las siete. Tenía miedo de que</span>
+                <input type="text" class="fill-input w-md" data-ans="perdiéramos|perdiésemos|perdieramos|perdiesemos" data-verb="perder">
+                <span>el avión.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>9. Todo el mundo esperaba que</span>
+                <input type="text" class="fill-input w-md" data-ans="cantara|cantase" data-verb="cantar">
+                <span>en la fiesta, pero tenía mal la voz.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>10. —¿Por qué no vinieron los Suárez a la cena? —Puede que no</span>
+                <input type="text" class="fill-input w-md" data-ans="recibieran|recibiesen" data-verb="recibir">
+                <span>la invitación.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>11. Me encantó que me</span>
+                <input type="text" class="fill-input w-md" data-ans="llamarais|llamaseis" data-verb="llamar">
+                <span>, tenía muchas ganas de veros.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>12. El año pasado el director nos prohibió que</span>
+                <input type="text" class="fill-input w-md" data-ans="comiéramos|comiésemos|comieramos|comiesemos" data-verb="comer">
+                <span>en clase.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>13. Cuando acabé el instituto mis padres querían que</span>
+                <input type="text" class="fill-input w-md" data-ans="estudiara|estudiase" data-verb="estudiar">
+                <span>Ingeniería.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>14. Juan se acordó de nosotros. Nos gustó que</span>
+                <input type="text" class="fill-input w-md" data-ans="se acordara|se acordase" data-verb="acordarse">
+                <span>.</span>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 73.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">73.3</span>
+            <span class="exercise-instruction">Una las dos oraciones con <span class="highlight-pink">que</span>. Haga los cambios necesarios.</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item">
+                1. Mauro no aprobó el exámen de conducir. Lo sentimos.<br>
+                <input type="text" class="fill-input w-full" data-ans="Sentimos que Mauro no aprobara el exámen de conducir.|Sentimos que Mauro no aprobase el examen de conducir.|Sentimos que Mauro no aprobara el exámen de conducir.|Sentimos que Mauro no aprobase el examen de conducir.">
+            </div>
+            <div class="exercise-item">
+                2. Balbina encontró trabajo. Me alegró.<br>
+                <input type="text" class="fill-input w-full" data-ans="Me alegró que Balbina encontrara trabajo.|Me alegró que Balbina encontrase trabajo.|Me alegro que Balbina encontrara trabajo.|Me alegro que Balbina encontrase trabajo.">
+            </div>
+            <div class="exercise-item">
+                3. No me llamasteis el domingo. Me extrañó.<br>
+                <input type="text" class="fill-input w-full" data-ans="Me extrañó que no me llamarais el domingo.|Me extrañó que no me llamaseis el domingo.|Me extrano que no me llamarais el domingo.|Me extrano que no me llamaseis el domingo.">
+            </div>
+            <div class="exercise-item">
+                4. Juan y Alicia se acordaron de nosotros. Nos gustó.<br>
+                <input type="text" class="fill-input w-full" data-ans="Nos gustó que Juan y Alicia se acordaran de nosotros.|Nos gustó que Juan y Alicia se acordasen de nosotros.|Nos gusto que Juan y Alicia se acordaran de nosotros.|Nos gusto que Juan y Alicia se acordasen de nosotros.">
+            </div>
+            <div class="exercise-item">
+                5. Mi hermana se llevó el coche. No me importó.<br>
+                <input type="text" class="fill-input w-full" data-ans="No me importó que mi hermana se llevara el coche.|No me importó que mi hermana se llevase el coche.|No me importo que mi hermana se llevara el coche.|No me importo que mi hermana se llevase el coche.">
+            </div>
+            <div class="exercise-item">
+                6. No aprobaste. Lo sentí.<br>
+                <input type="text" class="fill-input w-full" data-ans="Sentí que no aprobaras.|Sentí que no aprobases.|Senti que no aprobaras.|Senti que no aprobases.">
+            </div>
+            <div class="exercise-item">
+                7. No hablaste con Blas. Me pareció mal.<br>
+                <input type="text" class="fill-input w-full" data-ans="Me pareció mal que no hablaras con Blas.|Me pareció mal que no hablases con Blas.|Me parecio mal que no hablaras con Blas.|Me parecio mal que no hablases con Blas.">
+            </div>
+            <div class="exercise-item">
+                8. No invitasteis a Sonia. No me gustó.<br>
+                <input type="text" class="fill-input w-full" data-ans="No me gustó que no invitarais a Sonia.|No me gustó que no invitaseis a Sonia.|No me gusto que no invitarais a Sonia.|No me gusto que no invitaseis a Sonia.">
+            </div>
+            <div class="exercise-item">
+                9. Mis hermanos no salieron anoche. Me extrañó.<br>
+                <input type="text" class="fill-input w-full" data-ans="Me extrañó que mis hermanos no salieran anoche.|Me extrañó que mis hermanos no saliesen anoche.|Me extrano que mis hermanos no salieran anoche.|Me extrano que mis hermanos no saliesen anoche.">
+            </div>
+            <div class="exercise-item">
+                10. Armando quiere trabajar con nosotros. Nos gustaría.<br>
+                <input type="text" class="fill-input w-full" data-ans="Nos gustaría que Armando trabajara con nosotros.|Nos gustaría que Armando trabajase con nosotros.|Nos gustaria que Armando trabajara con nosotros.|Nos gustaria que Armando trabajase con nosotros.">
+            </div>
+            <div class="exercise-item">
+                11. Mis padres nos regalaron una alfombra. Nos encantó.<br>
+                <input type="text" class="fill-input w-full" data-ans="Nos encantó que mis padres nos regalaran una alfombra.|Nos encantó que mis padres nos regalasen una alfombra.|Nos encanto que mis padres nos regalaran una alfombra.|Nos encanto que mis padres nos regalasen una alfombra.">
+            </div>
+            <div class="exercise-item">
+                12. La empresa pagó la comida. Nos extrañó.<br>
+                <input type="text" class="fill-input w-full" data-ans="Nos extrañó que la empresa pagara la comida.|Nos extrañó que la empresa pagase la comida.|Nos extrano que la empresa pagara la comida.|Nos extrano que la empresa pagase la comida.">
+            </div>
+        </div>
+
+        <!-- Botón de Respuestas Correctas -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">73.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> vivieran / viviesen</li>
+                        <li><span class="answer-num">2.</span> cambiara / cambiase</li>
+                        <li><span class="answer-num">3.</span> llegaran / llegasen</li>
+                        <li><span class="answer-num">4.</span> jugara / jugase</li>
+                        <li><span class="answer-num">5.</span> compraran / comprasen</li>
+                        <li><span class="answer-num">6.</span> aprobara / aprobase</li>
+                        <li><span class="answer-num">7.</span> tocara / tocase</li>
+                        <li><span class="answer-num">8.</span> se enamorara / se enamorase</li>
+                        <li><span class="answer-num">9.</span> regalaran / regalasen</li>
+                        <li><span class="answer-num">10.</span> saliera / saliese</li>
+                        <li><span class="answer-num">11.</span> tocáramos / tocásemos</li>
+                        <li><span class="answer-num">12.</span> firmaran / firmasen</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">73.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> jugara / jugase</li>
+                        <li><span class="answer-num">2.</span> lavaras / lavases</li>
+                        <li><span class="answer-num">3.</span> llegarais / llegaseis</li>
+                        <li><span class="answer-num">4.</span> compraras / comprases</li>
+                        <li><span class="answer-num">5.</span> se enterara / se enterase</li>
+                        <li><span class="answer-num">6.</span> ayudara / ayudase</li>
+                        <li><span class="answer-num">7.</span> vivieran / viviesen</li>
+                        <li><span class="answer-num">8.</span> perdiéramos / perdiésemos</li>
+                        <li><span class="answer-num">9.</span> cantara / cantase</li>
+                        <li><span class="answer-num">10.</span> recibieran / recibiesen</li>
+                        <li><span class="answer-num">11.</span> llamarais / llamaseis</li>
+                        <li><span class="answer-num">12.</span> comiéramos / comiésemos</li>
+                        <li><span class="answer-num">13.</span> estudiara / estudiase</li>
+                        <li><span class="answer-num">14.</span> se acordara / se acordase</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">73.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Sentimos que Mauro no aprobara / aprobase el exámen de conducir.</li>
+                        <li><span class="answer-num">2.</span> Me alegró que Balbina encontrara / encontrase trabajo.</li>
+                        <li><span class="answer-num">3.</span> Me extrañó que no me llamarais / llamaseis el domingo.</li>
+                        <li><span class="answer-num">4.</span> Nos gustó que Juan y Alicia se acordaran / acordasen de nosotros.</li>
+                        <li><span class="answer-num">5.</span> No me importó que mi hermana se llevara / llevase el coche.</li>
+                        <li><span class="answer-num">6.</span> Sentí que no aprobaras / aprobases.</li>
+                        <li><span class="answer-num">7.</span> Me pareció mal que no hablaras / hablases con Blas.</li>
+                        <li><span class="answer-num">8.</span> No me gustó que no invitarais / invitaseis a Sonia.</li>
+                        <li><span class="answer-num">9.</span> Me extrañó que mis hermanos no salieran / saliesen anoche.</li>
+                        <li><span class="answer-num">10.</span> Nos gustaría que Armando trabajara / trabajase con nosotros.</li>
+                        <li><span class="answer-num">11.</span> Nos encantó que mis padres nos regalaran / regalasen una alfombra.</li>
+                        <li><span class="answer-num">12.</span> Nos extrañó que la empresa pagara / pagase la comida.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalización de texto para validación flexible
+            function normalizeText(text) {
+                return text.trim()
+                    .toLowerCase()
+                    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
+                    .replace(/\s+/g, ' ');
+            }
+
+            // Actualizar estado de tachado en el banco de palabras (73.2)
+            function updateWordBank() {
+                const ex2Inputs = document.querySelectorAll('input[data-verb]');
+                const usedVerbs = new Set();
+
+                ex2Inputs.forEach(input => {
+                    const verb = input.getAttribute('data-verb');
+                    if (input.classList.contains('correct')) {
+                        usedVerbs.add(verb);
+                    }
+                });
+
+                document.querySelectorAll('.word-bank-item').forEach(item => {
+                    const verb = item.getAttribute('data-verb');
+                    if (usedVerbs.has(verb)) {
+                        item.classList.add('used');
+                    } else {
+                        item.classList.remove('used');
+                    }
+                });
+            }
+
+            // Validar un campo input
+            function validateInput(input, forceValidateEmpty = false) {
+                const rawVal = input.value;
+                const userVal = normalizeText(rawVal);
+                const dataAns = input.getAttribute('data-ans');
+                if (!dataAns) return;
+
+                const acceptedAnswers = dataAns.split('|').map(normalizeText);
+
+                if (userVal === '') {
+                    if (forceValidateEmpty) {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    } else {
+                        input.classList.remove('correct', 'incorrect');
+                    }
+                    updateWordBank();
+                    return;
+                }
+
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+
+                updateWordBank();
+            }
+
+            // Listeners para los inputs
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    this.classList.remove('correct', 'incorrect');
+                    updateWordBank();
+                });
+
+                input.addEventListener('blur', function() {
+                    if (this.value !== '') {
+                        validateInput(this, false);
+                    }
+                });
+
+                // Salto automático con tecla Enter
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this, true);
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Mostrar/ocultar respuestas correctas
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

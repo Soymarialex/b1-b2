@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos Adicionales</title>
+    <style>
+        :root {
+            --color-primario: #FF79AC;     /* Flamingo Pink */
+            --color-secundario: #FFB3D1;   /* Light Pink */
+            --color-texto: #121118;        /* Eerie Black */
+            --color-fondo: #FFFFFF;        /* Pure White */
+            --color-borde: #E0E0E0;        /* Light Grey */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+            font-size: 1.1rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .main-container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 2.5rem;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-icon {
+            background-color: var(--color-primario);
+            color: #FFFFFF;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .title-container {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        h1.page-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: bold;
+            color: var(--color-texto);
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        h2.page-subtitle {
+            font-size: 1.8rem;
+            font-weight: normal;
+            color: var(--color-primario);
+            margin-top: 0.25rem;
+        }
+
+        .header-divider {
+            height: 2px;
+            background-color: var(--color-primario);
+            border: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-texto);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .pink-bullet {
+            color: var(--color-primario);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        p {
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .pink-bold {
+            color: var(--color-primario);
+            font-weight: bold;
+        }
+
+        .unit-ref-badge {
+            background-color: rgba(255, 179, 209, 0.35);
+            border-left: 4px solid var(--color-primario);
+            color: var(--color-texto);
+            font-weight: bold;
+            font-size: 0.9rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0 4px 4px 0;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border: 2px solid var(--color-primario);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .song-excerpt {
+            background-color: #FAFAFA;
+            border: 1px solid var(--color-borde);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .song-excerpt p {
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+
+        .song-excerpt p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <main class="main-container">
+        
+        <header>
+            <div class="header-container">
+                <div class="badge-icon">📚</div>
+                <div class="title-container">
+                    <h1 class="page-title">Recursos adicionales</h1>
+                    <h2 class="page-subtitle">Práctica y profundización</h2>
+                </div>
+            </div>
+            <hr class="header-divider">
+        </header>
+
+        <section>
+            <div class="unit-ref-badge">
+                UNIDAD DE REPASO: Gramática y Uso del Subjuntivo imperfecto
+            </div>
+
+            <h3 class="section-title">
+                <span class="pink-bullet">●</span> Explicación adicional
+            </h3>
+            
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/16MVe29HUTg?rel=0" 
+                    title="YouTube video player" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="section-title">
+                <span class="pink-bullet">●</span> Canción
+            </h3>
+
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/a3QoGSH4zdw?rel=0" 
+                    title="YouTube video player" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <h3 class="section-title">
+                <span class="pink-bullet">●</span> Fragmento de la canción
+            </h3>
+
+            <div class="song-excerpt">
+                <p>Ojalá <span class="pink-bold">(pudiera)</span> devolver el tiempo para verte de nuevo...</p>
+                <p>Pero yo nunca pensé que <span class="pink-bold">(doliera)</span> tanto...</p>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
