@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            letter-spacing: normal;
+            word-spacing: normal;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* Encabezado de cada ejercicio según guía de estilo */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .highlight-pink {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        /* Recuadro / Banco de palabras */
+        .word-bank {
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .word-bank-item {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .word-bank-item.used {
+            text-decoration: line-through;
+            color: #A0A0A0;
+            opacity: 0.6;
+        }
+
+        /* Listas de ejercicios */
+        .exercise-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            text-align: left;
+            letter-spacing: normal;
+            word-spacing: normal;
+        }
+
+        .inline-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        /* Grilla para ejercicios de 2 columnas */
+        .exercise-grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 30px;
+            margin-bottom: 20px;
+        }
+
+        /* Inputs de completación */
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+            display: inline-block;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+        }
+
+        /* Anchos personalizados para inputs */
+        .w-xs { width: 90px; }
+        .w-sm { width: 140px; }
+        .w-md { width: 220px; }
+        .w-lg { width: 340px; }
+        .w-inline { width: clamp(260px, 45vw, 420px); }
+        .w-full { width: 100%; max-width: 650px; }
+
+        /* Botón de Respuestas y Panel inferior */
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 700px) {
+            .exercise-grid-2col {
+                grid-template-columns: 1fr;
+            }
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 36.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">36.1</span>
+            <span class="exercise-instruction">Vuelva a escribir las frases con oraciones exclamativas con <span class="highlight-pink">qué</span>.</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item inline-item">
+                <span>1. Jorge tiene muy mala suerte.</span>
+                <input type="text" class="fill-input w-inline" data-ans="¡Qué mala suerte tiene Jorge!|Qué mala suerte tiene Jorge!|Qué mala suerte tiene Jorge">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>2. Lotta habla español muy bien.</span>
+                <input type="text" class="fill-input w-inline" data-ans="¡Qué bien habla español Lotta!|Qué bien habla español Lotta!|Qué bien habla español Lotta">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>3. Estamos muy cansadas.</span>
+                <input type="text" class="fill-input w-inline" data-ans="¡Qué cansadas estamos!|Qué cansadas estamos!|Qué cansadas estamos">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>4. Alfonso conduce muy mal.</span>
+                <input type="text" class="fill-input w-inline" data-ans="¡Qué mal conduce Alfonso!|Qué mal conduce Alfonso!|Qué mal conduce Alfonso">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>5. Sara y Eva son muy listas.</span>
+                <input type="text" class="fill-input w-inline" data-ans="¡Qué listas son Sara y Eva!|Qué listas son Sara y Eva!|Qué listas son Sara y Eva">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>6. Rodri come muy deprisa.</span>
+                <input type="text" class="fill-input w-inline" data-ans="¡Qué deprisa come Rodri!|Qué deprisa come Rodri!|Qué deprisa come Rodri">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>7. Lucio es muy guapo.</span>
+                <input type="text" class="fill-input w-inline" data-ans="¡Qué guapo es Lucio!|Qué guapo es Lucio!|Qué guapo es Lucio">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>8. Tengo suerte.</span>
+                <input type="text" class="fill-input w-inline" data-ans="¡Qué suerte tengo!|Qué suerte tengo!|Qué suerte tengo">
+            </div>
+        </div>
+
+        <!-- EJERCICIO 36.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">36.2</span>
+            <span class="exercise-instruction">Complete usando los adjetivos del recuadro en la forma correcta.</span>
+        </div>
+
+        <!-- Recuadro / Banco de palabras para 36.2 -->
+        <div class="word-bank" id="wordBank362">
+            <span class="word-bank-item" data-word="alto">alto</span>
+            <span class="word-bank-item" data-word="amable">amable</span>
+            <span class="word-bank-item" data-word="caluroso">caluroso</span>
+            <span class="word-bank-item" data-word="caro">caro</span>
+            <span class="word-bank-item" data-word="divertido">divertido</span>
+            <span class="word-bank-item" data-word="fácil">fácil</span>
+            <span class="word-bank-item" data-word="inteligente">inteligente</span>
+            <span class="word-bank-item" data-word="rápido">rápido</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item inline-item">
+                <span>1. —Esa casa vale 800 000 euros. —</span>
+                <input type="text" class="fill-input w-inline" data-word-ref="caro" data-ans="¡Qué casa tan cara!|¡Qué casa más cara!|Qué casa tan cara!|Qué casa más cara!|Qué casa tan cara|Qué casa más cara">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>2. —Esa chica mide 190 cm. —</span>
+                <input type="text" class="fill-input w-inline" data-word-ref="alto" data-ans="¡Qué chica tan alta!|¡Qué chica más alta!|Qué chica tan alta!|Qué chica más alta!|Qué chica tan alta|Qué chica más alta">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>3. —Ese coche puede ir a 250 km/h. —</span>
+                <input type="text" class="fill-input w-inline" data-word-ref="rápido" data-ans="¡Qué coche tan rápido!|¡Qué coche más rápido!|Qué coche tan rápido!|Qué coche más rápido!|Qué coche tan rápido|Qué coche más rápido">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>4. —Los niños siempre nos ayudan. —</span>
+                <input type="text" class="fill-input w-inline" data-word-ref="amable" data-ans="¡Qué niños tan amables!|¡Qué niños más amables!|Qué niños tan amables!|Qué niños más amables!|Qué niños tan amables|Qué niños más amables">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>5. —Todo el mundo aprobó el examen. —</span>
+                <input type="text" class="fill-input w-inline" data-word-ref="fácil" data-ans="¡Qué examen tan fácil!|¡Qué examen más fácil!|Qué examen tan fácil!|Qué examen más fácil!|Qué examen tan fácil|Qué examen más fácil">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>6. —Mara nunca reprueba un examen. —</span>
+                <input type="text" class="fill-input w-inline" data-word-ref="inteligente" data-ans="¡Qué chica tan inteligente!|¡Qué chica más inteligente!|Qué chica tan inteligente!|Qué chica más inteligente!|Qué chica tan inteligente|Qué chica más inteligente">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>7. —Nos la pasamos muy bien en la fiesta. —</span>
+                <input type="text" class="fill-input w-inline" data-word-ref="divertido" data-ans="¡Qué fiesta tan divertida!|¡Qué fiesta más divertida!|Qué fiesta tan divertida!|Qué fiesta más divertida!|Qué fiesta tan divertida|Qué fiesta más divertida">
+            </div>
+            <div class="exercise-item inline-item">
+                <span>8. —Ayer hubo 38°C en Madrid. —</span>
+                <input type="text" class="fill-input w-inline" data-word-ref="caluroso" data-ans="¡Qué día tan caluroso!|¡Qué día más caluroso!|Qué día tan caluroso!|Qué día más caluroso!|Qué día tan caluroso|Qué día más caluroso">
+            </div>
+        </div>
+
+        <!-- EJERCICIO 36.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">36.3</span>
+            <span class="exercise-instruction">Complete las exclamaciones con <span class="highlight-pink">cuánto/a/os/as</span>.</span>
+        </div>
+
+        <div class="exercise-grid-2col">
+            <div>
+                <div class="exercise-item inline-item">
+                    <span>1. ¡</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuánto">
+                    <span>duerme José!</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>2. ¡</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuántas">
+                    <span>estrellas!</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>3. ¡</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuánto">
+                    <span>corren tus hijos!</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>4. ¡</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuánto">
+                    <span>llueve!</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>5. ¡</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuántos">
+                    <span>libros tiene Marisa!</span>
+                </div>
+            </div>
+
+            <div>
+                <div class="exercise-item inline-item">
+                    <span>6. ¡</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuánta">
+                    <span>gente hay en la calle!</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>7. ¡</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuántos">
+                    <span>accidentes de coche!</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>8. ¡</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuánto">
+                    <span>come ese perro!</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>9. ¡</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuánta">
+                    <span>agua ha caído!</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>10. ¡</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuánto">
+                    <span>le gustan las motos!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 36.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">36.4</span>
+            <span class="exercise-instruction">Escriba las exclamaciones con <span class="highlight-pink">cómo</span>.</span>
+        </div>
+
+        <div class="exercise-grid-2col">
+            <div>
+                <div class="exercise-item">
+                    1. Esos niños lloran mucho.<br>
+                    <input type="text" class="fill-input w-full" data-ans="¡Cómo lloran esos niños!|Cómo lloran esos niños!|Cómo lloran esos niños">
+                </div>
+                <div class="exercise-item">
+                    2. Tus hijos corren mucho.<br>
+                    <input type="text" class="fill-input w-full" data-ans="¡Cómo corren tus hijos!|Cómo corren tus hijos!|Cómo corren tus hijos">
+                </div>
+                <div class="exercise-item">
+                    3. Manuel habló muy bien.<br>
+                    <input type="text" class="fill-input w-full" data-ans="¡Cómo habló Manuel!|Cómo habló Manuel!|Cómo habló Manuel">
+                </div>
+            </div>
+
+            <div>
+                <div class="exercise-item">
+                    4. El pastel estaba estupendo.<br>
+                    <input type="text" class="fill-input w-full" data-ans="¡Cómo estaba el pastel!|Cómo estaba el pastel!|Cómo estaba el pastel">
+                </div>
+                <div class="exercise-item">
+                    5. Mariano se comió todo el cordero.<br>
+                    <input type="text" class="fill-input w-full" data-ans="¡Cómo comió Mariano!|Cómo comió Mariano!|Cómo comió Mariano">
+                </div>
+                <div class="exercise-item">
+                    6. El domingo llovió a cántaros.<br>
+                    <input type="text" class="fill-input w-full" data-ans="¡Cómo llovió el domingo!|Cómo llovió el domingo!|Cómo llovió el domingo">
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 36.5 -->
+        <div class="exercise-header">
+            <span class="exercise-number">36.5</span>
+            <span class="exercise-instruction">Complete las exclamaciones con <span class="highlight-pink">qué</span>, <span class="highlight-pink">cuánto/a/os/as</span>, <span class="highlight-pink">cómo</span> o <span class="highlight-pink">quién</span>.</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item inline-item">
+                <span>1. ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="Quién">
+                <span>podía pensar en esa boda!</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>2. ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="Qué">
+                <span>noche tan fría!</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>3. ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="Qué">
+                <span>barbaridad! ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="cuánto">
+                <span>cuesta ese cuadro!</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>4. ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="Qué">
+                <span>vago es Darío! No le gusta nada trabajar.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>5. ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="Qué">
+                <span>tarde es! Tengo que irme.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>6. ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="Cómo">
+                <span>canta ese canario! Me encanta oírlo por la mañana.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>7. ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="Quién">
+                <span>podía pensar en la separación! Se casaron hace un mes.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>8. ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="Cómo">
+                <span>come Irma! Se ha terminado la hamburguesa en un minuto.</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>9. ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="Cómo|Cuánto">
+                <span>me gusta que me inviten a cenar!</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>10. ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="Quién">
+                <span>iba a pensar que Blanca y José se casarían!</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>11. ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="Quién|Cómo">
+                <span>podía saber la verdad!</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>12. ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="Quién">
+                <span>podría imaginar que nos veríamos en Cuzco!</span>
+            </div>
+            <div class="exercise-item inline-item">
+                <span>13. ¡</span>
+                <input type="text" class="fill-input w-sm" data-ans="Qué">
+                <span>niebla! Hoy no vamos a poder salir de viaje.</span>
+            </div>
+        </div>
+
+        <!-- Botón de Respuestas Correctas -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <!-- Panel de Respuestas Correctas -->
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">36.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> ¡Qué mala suerte tiene Jorge!</li>
+                        <li><span class="answer-num">2.</span> ¡Qué bien habla español Lotta!</li>
+                        <li><span class="answer-num">3.</span> ¡Qué cansadas estamos!</li>
+                        <li><span class="answer-num">4.</span> ¡Qué mal conduce Alfonso!</li>
+                        <li><span class="answer-num">5.</span> ¡Qué listas son Sara y Eva!</li>
+                        <li><span class="answer-num">6.</span> ¡Qué deprisa come Rodri!</li>
+                        <li><span class="answer-num">7.</span> ¡Qué guapo es Lucio!</li>
+                        <li><span class="answer-num">8.</span> ¡Qué suerte tengo!</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">36.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> ¡Qué casa tan / más cara!</li>
+                        <li><span class="answer-num">2.</span> ¡Qué chica tan / más alta!</li>
+                        <li><span class="answer-num">3.</span> ¡Qué coche tan / más rápido!</li>
+                        <li><span class="answer-num">4.</span> ¡Qué niños tan / más amables!</li>
+                        <li><span class="answer-num">5.</span> ¡Qué examen tan / más fácil!</li>
+                        <li><span class="answer-num">6.</span> ¡Qué chica tan / más inteligente!</li>
+                        <li><span class="answer-num">7.</span> ¡Qué fiesta tan / más divertida!</li>
+                        <li><span class="answer-num">8.</span> ¡Qué día tan / más caluroso!</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">36.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Cuánto</li>
+                        <li><span class="answer-num">2.</span> Cuántas</li>
+                        <li><span class="answer-num">3.</span> Cuánto</li>
+                        <li><span class="answer-num">4.</span> Cuánto</li>
+                        <li><span class="answer-num">5.</span> Cuántos</li>
+                        <li><span class="answer-num">6.</span> Cuánta</li>
+                        <li><span class="answer-num">7.</span> Cuántos</li>
+                        <li><span class="answer-num">8.</span> Cuánto</li>
+                        <li><span class="answer-num">9.</span> Cuánta</li>
+                        <li><span class="answer-num">10.</span> Cuánto</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">36.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> ¡Cómo lloran esos niños!</li>
+                        <li><span class="answer-num">2.</span> ¡Cómo corren tus hijos!</li>
+                        <li><span class="answer-num">3.</span> ¡Cómo habló Manuel!</li>
+                        <li><span class="answer-num">4.</span> ¡Cómo estaba el pastel!</li>
+                        <li><span class="answer-num">5.</span> ¡Cómo comió Mariano!</li>
+                        <li><span class="answer-num">6.</span> ¡Cómo llovió el domingo!</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">36.5</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Quién</li>
+                        <li><span class="answer-num">2.</span> Qué</li>
+                        <li><span class="answer-num">3.</span> Que; Cuánto</li>
+                        <li><span class="answer-num">4.</span> Qué</li>
+                        <li><span class="answer-num">5.</span> Qué</li>
+                        <li><span class="answer-num">6.</span> Cómo</li>
+                        <li><span class="answer-num">7.</span> Quién</li>
+                        <li><span class="answer-num">8.</span> Cómo</li>
+                        <li><span class="answer-num">9.</span> Cómo / Cuánto</li>
+                        <li><span class="answer-num">10.</span> Quién</li>
+                        <li><span class="answer-num">11.</span> Quién / Cómo</li>
+                        <li><span class="answer-num">12.</span> Quién</li>
+                        <li><span class="answer-num">13.</span> Qué</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalizador de texto para validación flexible
+            function normalizeText(text) {
+                return text.trim()
+                    .replace(/\s+/g, ' ');
+            }
+
+            // Normalizador secundario insensibles a tildes/signos para maximizar tolerancia
+            function simplifyText(text) {
+                return text.trim()
+                    .toLowerCase()
+                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()¡!¿?]/g, "")
+                    .replace(/\s+/g, ' ');
+            }
+
+            // Actualiza el estado de la palabra tachada en el banco de palabras del 36.2
+            function updateWordBank362() {
+                const inputs362 = document.querySelectorAll('#wordBank362 + .exercise-list input.fill-input');
+                const wordBankItems = document.querySelectorAll('#wordBank362 .word-bank-item');
+
+                // Recopilar palabras asociadas a inputs marcados como correctos
+                const usedWords = new Set();
+                inputs362.forEach(inp => {
+                    if (inp.classList.contains('correct')) {
+                        const wordRef = inp.getAttribute('data-word-ref');
+                        if (wordRef) {
+                            usedWords.add(wordRef);
+                        }
+                    }
+                });
+
+                // Marcar o desmarcar la clase .used en el banco de palabras
+                wordBankItems.forEach(item => {
+                    const word = item.getAttribute('data-word');
+                    if (usedWords.has(word)) {
+                        item.classList.add('used');
+                    } else {
+                        item.classList.remove('used');
+                    }
+                });
+            }
+
+            // Validar un campo input individual
+            function validateInput(input, forceValidateEmpty = false) {
+                const rawVal = input.value;
+                const userVal = normalizeText(rawVal);
+                const dataAns = input.getAttribute('data-ans');
+                if (!dataAns) return;
+
+                const acceptedAnswers = dataAns.split('|').map(normalizeText);
+                const simplifiedAccepted = dataAns.split('|').map(simplifyText);
+                const simplifiedUser = simplifyText(rawVal);
+
+                if (userVal === '') {
+                    if (forceValidateEmpty) {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    } else {
+                        input.classList.remove('correct', 'incorrect');
+                    }
+                    updateWordBank362();
+                    return;
+                }
+
+                // Comparación exacta o simplificada
+                if (acceptedAnswers.includes(userVal) || simplifiedAccepted.includes(simplifiedUser)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+
+                updateWordBank362();
+            }
+
+            // Event Listeners para cada input
+            inputs.forEach((input, index) => {
+                // Al escribir, quitar validación temporalmente
+                input.addEventListener('input', function() {
+                    this.classList.remove('correct', 'incorrect');
+                    updateWordBank362();
+                });
+
+                // Al perder el foco (blur), validar
+                input.addEventListener('blur', function() {
+                    if (this.value !== '') {
+                        validateInput(this, false);
+                    }
+                });
+
+                // Tecla Enter para validar y saltar al siguiente campo
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this, true);
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Toggle para el panel de respuestas
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

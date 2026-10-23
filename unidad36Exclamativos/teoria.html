@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lección 36 - ¡qué!, ¡cuánto!, ¡cómo!, ¡quién!</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Light Pink */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Pure White */
+      --color-borde: #E0E0E0;        /* Light Grey */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* LESSON HEADER */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    /* BULLETS & TEXT STRUCTURE */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+      color: var(--color-texto);
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    /* GRAMMAR BOXES */
+    .grammar-box {
+      border: 1.5px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 1rem;
+      margin: 1rem 0;
+      background-color: #FFFFFF;
+    }
+
+    .translation-text {
+      color: var(--color-primario);
+      font-style: italic;
+    }
+
+    /* IMAGE CONTAINERS */
+    .illustrations-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .illustrations-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .illustration-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .illustration-card img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">36</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">¡qué!, ¡cuánto!, ¡cómo!, ¡quién!</h1>
+        <h2 class="page-subtitle">Exclamativos <span class="translation-text">(exclamatories)</span></h2>
+      </div>
+    </header>
+
+    <!-- IMÁGENES ILUSTRATIVAS DE CABECERA -->
+    <section class="illustrations-grid">
+      <div class="illustration-card">
+        <img src="https://imgur.com/GQnv5t4.jpg" alt="Ilustración izquierda lección 36">
+      </div>
+      <div class="illustration-card">
+        <img src="https://imgur.com/mYlu3Lk.jpg" alt="Ilustración derecha lección 36">
+      </div>
+    </section>
+
+    <!-- SECCIÓN INTRODUCTORIA -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="text-justify">
+          <em><strong>¡Qué!</strong></em>, <em><strong>¡cuánto!</strong></em> y <em><strong>¡cómo!</strong></em> son exclamativos <span class="translation-text">(exclamatories)</span>. Se usan para expresar diferentes sentimientos <span class="translation-text">(feelings)</span>: alegría, sorpresa, admiración, desagrado...
+        </div>
+      </div>
+
+      <div class="pl-6 space-y-1 text-justify">
+        <div class="pl-4 space-y-1">
+          <div>sorpresa: <em>¡<strong>Qué casa</strong></em> más grande! Pensé que sería más pequeña.</div>
+          <div>admiración: <em>¡<strong>Qué salón</strong></em> más bonito! Es muy moderno.</div>
+          <div>desagrado: <em>¡<strong>Cuánto</strong></em> fumas! Te va a dar algo.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN ¡QUÉ! -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="text-justify">
+          <em><strong>¡Qué!</strong></em> sirve para expresar sentimientos sobre las características de alguien o algo, sobre la manera de hacer algo o sobre una situación.
+        </div>
+      </div>
+
+      <!-- Cuadro gramatical de ¡Qué! -->
+      <div class="grammar-box my-4 overflow-x-auto">
+        <div class="space-y-4 min-w-[600px]">
+          <!-- Fila 1 -->
+          <div class="grid grid-cols-12 gap-2 items-center border-b border-[#E0E0E0] pb-3">
+            <div class="col-span-2 font-bold">¡Qué</div>
+            <div class="col-span-3 border-r border-[#FF79AC] pr-2">
+              <div>+ adjetivo</div>
+              <div>+ adverbio</div>
+              <div>+ sustantivo</div>
+            </div>
+            <div class="col-span-3 pl-2">
+              (+ verbo) (+ sujeto)!
+            </div>
+            <div class="col-span-4 space-y-1 text-sm md:text-base">
+              <div><em><strong>¡Qué alta</strong></em> (es Linda)!</div>
+              <div><em><strong>¡Qué bien</strong></em> conduces!</div>
+              <div><em><strong>¡Qué frío</strong></em> (hace)!</div>
+              <div><em><strong>¡Qué suerte tiene</strong></em> (Pablo)!</div>
+            </div>
+          </div>
+
+          <!-- Fila 2 -->
+          <div class="grid grid-cols-12 gap-2 items-center">
+            <div class="col-span-2 font-bold">¡Qué</div>
+            <div class="col-span-3 border-r border-[#FF79AC] pr-2">
+              + sustantivo + tan/más
+            </div>
+            <div class="col-span-3 pl-2">
+              + adjetivo (+ verbo) (+ sujeto)!
+            </div>
+            <div class="col-span-4 space-y-1 text-sm md:text-base">
+              <div><em><strong>¡Qué pendientes tan/más caros!</strong></em></div>
+              <div><em><strong>¡Qué casa tan/más bonita</strong></em> (tiene Lola)!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pl-6 text-justify space-y-1 mt-3">
+        <div>– El adjetivo tiene la misma forma (masculino, femenino, singular o plural) que la persona, animal o cosa a la que se refiere.</div>
+        <div class="pl-4 mt-1">
+          <div><em>¡Qué <strong>rubio</strong> es Jesús! ¡Y qué <strong>morena</strong> es <strong>Ángela</strong>!</em></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN ¡CUÁNTO! -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="text-justify">
+          <em><strong>¡Cuánto!</strong>, <strong>¡cuánta!</strong>, <strong>¡cuántos!</strong>, <strong>¡cuántas!</strong></em> sirve para expresar sentimientos de sorpresa, admiración, desagrado, etc., ante una cantidad o ante la intensidad de alguna acción.
+        </div>
+      </div>
+
+      <!-- Cuadro gramatical de ¡Cuánto! -->
+      <div class="grammar-box my-4 overflow-x-auto">
+        <div class="space-y-4 min-w-[600px]">
+          <!-- Fila 1 -->
+          <div class="grid grid-cols-12 gap-2 items-center border-b border-[#E0E0E0] pb-3">
+            <div class="col-span-3 font-bold">¡Cuánto/a/os/as</div>
+            <div class="col-span-2">+ sustantivo</div>
+            <div class="col-span-2">(+ verbo)</div>
+            <div class="col-span-2">(+ sujeto)!</div>
+            <div class="col-span-3 text-sm md:text-base">
+              <div><em>¡<strong>Cuánto dinero</strong></em> se gasta Pili!</div>
+              <div><em>¡<strong>Cuántos sellos</strong></em> (tienes)!</div>
+            </div>
+          </div>
+
+          <!-- Fila 2 -->
+          <div class="grid grid-cols-12 gap-2 items-center">
+            <div class="col-span-3 font-bold">¡Cuánto</div>
+            <div class="col-span-2"></div>
+            <div class="col-span-2">+ verbo</div>
+            <div class="col-span-2">(+ sujeto)!</div>
+            <div class="col-span-3 text-sm md:text-base">
+              <div><em>¡<strong>Cuánto trabaja</strong></em> (Lidia)!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pl-6 text-justify space-y-3 mt-3">
+        <div>
+          <div>– <em><strong>¡Cuánto!</strong>, <strong>¡cuánta!</strong>, <strong>¡cuántos!</strong>, <strong>¡cuántas!</strong></em> con sustantivos tienen la misma forma (masculino, femenino, singular o plural) que el sustantivo al que se refiere.</div>
+          <div class="pl-4 space-y-1 mt-1">
+            <div><em>¡Qué horror! <strong>¡Cuánta gente!</strong></em></div>
+            <div><em>¡Qué maravilla! <strong>¡Cuántos libros</strong></em> tiene Marcela!</div>
+          </div>
+        </div>
+
+        <div>
+          <div>– <em><strong>¡Cuánto!</strong></em> con verbos es invariable.</div>
+          <div class="pl-4 mt-1">
+            <div><em>¡<strong>Cuánto come</strong></em> Rosa! <em>¡Y <strong>cuánto comen</strong></em> sus hijos!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN ¡CÓMO! -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="text-justify">
+          <em><strong>¡Cómo!</strong></em> sirve para indicar sentimientos de sorpresa, admiración, desagrado, etc., ante la manera de hacer algo o ante la intensidad de alguna acción.
+        </div>
+      </div>
+
+      <!-- Cuadro gramatical de ¡Cómo! -->
+      <div class="grammar-box my-4 overflow-x-auto">
+        <div class="grid grid-cols-12 gap-2 items-center min-w-[600px]">
+          <div class="col-span-3 font-bold">¡Cómo + verbo</div>
+          <div class="col-span-3 border-r border-[#FF79AC] pr-2">(+ sujeto)!</div>
+          <div class="col-span-6 space-y-1 text-sm md:text-base pl-2">
+            <div><em><strong>¡Cómo canta</strong></em> Ángela! ¡Tiene una voz preciosa!</div>
+            <div><em><strong>¡Cómo come!</strong></em> Se nota que tiene hambre.</div>
+            <div><em><strong>¡Cómo nieva!</strong></em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN ¡QUIÉN! -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="text-justify">
+          <em><strong>¡Quién!</strong></em> sirve para expresar sorpresa ante algún hecho o situación inesperada <span class="translation-text">(unexpected)</span>.
+        </div>
+      </div>
+
+      <div class="pl-6 text-justify">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-1">
+          <div><em>¡<strong>Quién</strong></em> iba a decirlo!</div>
+          <div><em>¡<strong>Quién</strong></em> podía saberlo!</div>
+          <div><em>¡<strong>Quién</strong></em> podía imaginarlo!</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = inputs.indexOf(event.target);
+        if (index > -1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
