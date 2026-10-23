@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lección 35 - ¿dónde?, ¿cuándo?, ¿cuánto?</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Light Pink */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Pure White */
+      --color-borde: #E0E0E0;        /* Light Grey */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* LESSON HEADER */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    /* BULLETS & TEXT STRUCTURE */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+      color: var(--color-texto);
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    /* GRAMMAR BOXES */
+    .grammar-box {
+      border: 1.5px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 1rem;
+      margin: 1rem 0;
+      background-color: #FFFFFF;
+    }
+
+    /* ATTENTION BOX */
+    .attention-box-container {
+      border: 1.5px solid var(--color-primario);
+      border-left: 4px solid var(--color-primario);
+      background-color: rgba(255, 179, 209, 0.15);
+      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      margin: 1.8rem 0;
+    }
+
+    .attention-badge-wrapper {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .attention-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    .attention-bars {
+      display: inline-flex;
+      gap: 3px;
+    }
+
+    .attention-bar {
+      width: 4px;
+      height: 18px;
+      background-color: var(--color-primario);
+    }
+
+    .translation-text {
+      color: var(--color-primario);
+      font-style: italic;
+    }
+
+    input[type="text"] {
+      border: 1px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--color-primario);
+      box-shadow: 0 0 0 2px var(--color-secundario);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">35</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">¿dónde?, ¿cuándo?, ¿cuánto?</h1>
+        <h2 class="page-subtitle">Interrogativos (2)</h2>
+      </div>
+    </header>
+
+    <!-- SECCIÓN 1: DÓNDE Y ADÓNDE -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usa <em>(de/por...)</em> + <strong>dónde</strong> para pedir información sobre un lugar.
+        </div>
+      </div>
+
+      <div class="pl-6 space-y-1 text-justify">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+          <div>– <em>¿<strong>Dónde</strong></em> estudias? –<em>En Salamanca.</em></div>
+          <div>– <em>¿<strong>Por dónde</strong></em> pasa el Guadalquivir? –<em>Por Sevilla.</em></div>
+        </div>
+      </div>
+
+      <div class="pl-6 space-y-1 text-justify mt-3">
+        <div>– Se usa <strong>adónde</strong> cuando se pregunta por el lugar al que va alguien o algo.</div>
+        <div class="pl-4 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1 mt-1">
+          <div>– <em>¿<strong>Adónde</strong></em> vais? –<em>A casa de Arturo.</em></div>
+          <div>– <em>¿<strong>Adónde</strong></em> hay que enviar este paquete? –<em>A Guadalajara.</em></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: CUÁNDO -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usa <em>(desde/hasta)</em> + <strong>cuándo</strong> para pedir información sobre el momento de realización de una acción.
+        </div>
+      </div>
+
+      <div class="pl-6 text-justify">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+          <div>– <em>¿<strong>Cuándo</strong></em> acaba la exposición? –<em>El próximo domingo.</em></div>
+          <div>– <em>¿<strong>Desde cuándo</strong></em> estudias español? –<em>Desde hace un año.</em></div>
+          <div>– <em>¿<strong>Hasta cuándo</strong></em> tenéis vacaciones? –<em>Hasta el 2 de agosto.</em></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: CUÁNTO, CUÁNTA, CUÁNTOS, CUÁNTAS -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usa <strong>cuánto, cuánta, cuántos, cuántas</strong> para pedir información sobre cantidad. Tiene la misma forma que el sustantivo con el que van o al que se refieren.
+        </div>
+      </div>
+
+      <!-- Cuadro gramatical -->
+      <div class="grammar-box my-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+          <div class="border-b md:border-b-0 md:border-r border-[#FF79AC] pb-3 md:pb-0 pr-0 md:pr-4">
+            <em>¿(a, con, en...) + cuánto/a/os/as</em>
+          </div>
+          <div class="space-y-1">
+            <div><strong>(+ sustantivo)?</strong></div>
+            <div class="flex items-start gap-2">
+              <span>+ de</span>
+              <div>
+                <div>+ estos, esos... (+ sustantivo)?</div>
+                <div>+ mis, tus... + sustantivo?</div>
+                <div>+ los, las... + sustantivo?</div>
+                <div>+ nosotros, vosotros...?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pl-6 text-justify space-y-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+          <div>– <em>¿<strong>Cuántos alumnos</strong></em> hay en esta clase? –<em>Ocho.</em></div>
+          <div>– <em>¿<strong>Cuántas de vosotras</strong></em> habéis estado en México? –<em>Solo Mónica y yo.</em></div>
+          <div>– <em>¿<strong>Para cuántas personas</strong></em> es la cena? –<em>Para once.</em></div>
+          <div>– <em>¿<strong>Cuántos de tus amigos</strong></em> hablan español? –<em>Bastantes.</em></div>
+          <div>– <em>¿<strong>Con cuántos amigos</strong></em> vas? –<em>Con dos.</em></div>
+          <div>– <em>¿Quedan entradas para el concierto? –Sí. ¿<strong>Cuántas</strong> quieres?</em></div>
+        </div>
+
+        <div class="mt-3">
+          <div>– Se puede usar <em><strong>cuánto</strong></em> solo cuando está claro de qué estamos hablando.</div>
+          <div class="pl-4 space-y-1 mt-1">
+            <div>– <em>¿<strong>Cuánto</strong></em> mide Mario? (¿cuántos metros/centímetros?) –<em>Un metro ochenta y dos.</em></div>
+            <div>– <em>¿<strong>Cuánto</strong></em> se tarda en llegar a Monterrey? (¿cuánto tiempo?) –<em>Unas siete horas.</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: CÓMO -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usa <strong>cómo</strong>:
+        </div>
+      </div>
+
+      <div class="pl-6 text-justify space-y-3">
+        <div>
+          <div>– para pedir información sobre el modo o la manera en que se realiza una acción.</div>
+          <div class="pl-4 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1 mt-1">
+            <div>– <em>¿<strong>Cómo</strong></em> cocina Ricardo? –<em>Muy bien. Es un gran cocinero.</em></div>
+            <div>– <em>¿<strong>Cómo</strong></em> te has roto la pierna? –<em>Jugando al fútbol.</em></div>
+          </div>
+        </div>
+
+        <div>
+          <div>– para pedir información sobre el estado de alguien o algo.</div>
+          <div class="pl-4 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1 mt-1">
+            <div>– <em>¿<strong>Cómo</strong></em> te sientes? –<em>Un poco mareada.</em></div>
+            <div>– <em>¿<strong>Cómo</strong></em> está la casa? –<em>Bastante sucia.</em></div>
+          </div>
+        </div>
+
+        <div>
+          <div>– para pedir información sobre las características de alguien o algo.</div>
+          <div class="pl-4 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1 mt-1">
+            <div>– <em>¿<strong>Cómo</strong></em> es tu profesora? –<em>Es muy agradable y explica muy bien.</em></div>
+            <div>– <em>¿<strong>Y cómo</strong></em> son las clases? –<em>Muy divertidas.</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: POR QUÉ -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usa <strong>por qué</strong> para pedir información sobre las causas o los motivos de una acción.
+        </div>
+      </div>
+
+      <div class="pl-6 text-justify space-y-2">
+        <div>– <em>¿<strong>Por qué</strong></em> estudias español? –<em>porque quiero viajar a Sudamérica.</em></div>
+        <div>– <em><strong>Por qué no</strong>,</em> se puede usar también para hacer sugerencias.</div>
+        <div class="pl-4">– <em>¿<strong>Por qué no</strong></em> llamas a Juan? –<em>Bueno. Lo llamo está noche.</em></div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 6: PARA QUÉ -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usa <strong>para qué</strong> para pedir información sobre el objetivo o la finalidad de una acción o sobre el uso de un objeto.
+        </div>
+      </div>
+
+      <div class="pl-6 text-justify space-y-1">
+        <div>– <em>¿<strong>Para qué</strong></em> necesitas el coche? –<em>Quiero ir a la sierra.</em></div>
+        <div>– <em>¿<strong>Para qué</strong></em> sirve ese aparato? –<em>Para encender y apagar la televisión.</em></div>
+      </div>
+    </section>
+
+    <!-- CUADRO DE ATENCIÓN -->
+    <div class="attention-box-container">
+      <div class="attention-badge-wrapper">
+        <span class="attention-badge">ATENCIÓN:</span>
+        <div class="attention-bars">
+          <div class="attention-bar"></div>
+          <div class="attention-bar"></div>
+        </div>
+      </div>
+
+      <div class="space-y-3 text-justify">
+        <div>
+          Observe el orden común de las palabras en las preguntas: <strong>¿(preposición +) interrogativo + verbo (+ sujeto) (+ objetos)?</strong>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 my-2 font-medium">
+          <div><em>¿Dónde viven tus padres?</em></div>
+          <div><em>¿Cómo abrió Sofía la puerta?</em></div>
+          <div><em>¿Por qué no dijo Antonio nada?</em></div>
+        </div>
+
+        <div>
+          En algunos casos, puede haber cambios en la colocación del sujeto.
+        </div>
+
+        <div class="pl-2 space-y-1">
+          <div><em>¿Cómo abrió <strong>Sofía</strong> la puerta? / ¿Cómo abrió la puerta <strong>Sofía</strong>?</em></div>
+          <div><em>¿Por qué no dijo <strong>Antonio</strong> nada? / ¿Por qué <strong>Antonio</strong> no dijo nada? / ¿Por qué no dijo nada <strong>Antonio</strong>?</em></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = inputs.indexOf(event.target);
+        if (index > -1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

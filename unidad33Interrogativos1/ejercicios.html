@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .highlight-pink {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        .exercise-grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 30px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .inline-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            column-gap: 6px;
+            row-gap: 6px;
+        }
+
+        .dialogue-item {
+            margin-bottom: 14px;
+            line-height: 1.8;
+        }
+
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+        }
+
+        .input-full-line {
+            width: 100%;
+            max-width: 100%;
+            text-align: left !important;
+            padding-left: 6px;
+            margin-top: 4px;
+        }
+
+        .w-xs { width: 90px; }
+        .w-sm { width: 140px; }
+        .w-md { width: 200px; }
+
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 650px) {
+            .exercise-grid-2col {
+                grid-template-columns: 1fr;
+            }
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 33.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">33.1</span>
+            <span class="exercise-instruction">Complete las preguntas con <span class="highlight-pink">quién</span>, <span class="highlight-pink">quiénes</span> o <span class="highlight-pink">qué</span>.</span>
+        </div>
+
+        <div class="exercise-grid-2col">
+            <div>
+                <div class="exercise-item inline-item">
+                    <span>1. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Qué|que">
+                    <span>hay en el cajón?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>2. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Qué|que">
+                    <span>mamíferos viven en el mar?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>3. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Quiénes|quienes">
+                    <span>van a ir a la excursión?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>4. ¿A</span>
+                    <input type="text" class="fill-input w-sm" data-ans="qué|Qué">
+                    <span>hora sales de la oficina?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>5. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Qué|que">
+                    <span>edad tendrá esa señora?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>6. ¿A</span>
+                    <input type="text" class="fill-input w-sm" data-ans="quién|quien">
+                    <span>ha llamado Jaime?</span>
+                </div>
+            </div>
+            <div>
+                <div class="exercise-item inline-item">
+                    <span>7. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Quiénes|quienes">
+                    <span>son esas señoras?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>8. ¿Para</span>
+                    <input type="text" class="fill-input w-sm" data-ans="quién|quien">
+                    <span>son esas flores?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>9. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Quién|quien">
+                    <span>de vosotros ha apagado la luz?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>10. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Quién|quien">
+                    <span>de los hermanos es el más inteligente?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>11. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Qué|que">
+                    <span>vino prefieres?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>12. ¿Con</span>
+                    <input type="text" class="fill-input w-sm" data-ans="quién|quien">
+                    <span>te vas a casar?</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 33.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">33.2</span>
+            <span class="exercise-instruction">Complete las preguntas con <span class="highlight-pink">cuál</span>, <span class="highlight-pink">cuáles</span> o <span class="highlight-pink">qué</span>.</span>
+        </div>
+
+        <div class="exercise-grid-2col">
+            <div>
+                <div class="exercise-item inline-item">
+                    <span>1. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuál|cual">
+                    <span>de estos es el teléfono de Esteban?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>2. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuáles|cuales">
+                    <span>son tus mejores recuerdos?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>3. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuál|cual">
+                    <span>de los dos restaurantes me recomiendas?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>4. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Qué|que">
+                    <span>periódico lees ahora?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>5. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuál|cual">
+                    <span>de estas plantas está seca?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>6. ¿A</span>
+                    <input type="text" class="fill-input w-sm" data-ans="qué|Que">
+                    <span>plantas te refieres?</span>
+                </div>
+            </div>
+            <div>
+                <div class="exercise-item inline-item">
+                    <span>7. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuál|cual">
+                    <span>de los dos chicos es el novio de Belén?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>8. ¿Con</span>
+                    <input type="text" class="fill-input w-sm" data-ans="qué|que">
+                    <span>cuchillo has partido el queso?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>9. ¿Con</span>
+                    <input type="text" class="fill-input w-sm" data-ans="cuál|cual">
+                    <span>de esas dos camisas te quedas?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>10. ¿De</span>
+                    <input type="text" class="fill-input w-sm" data-ans="qué|que">
+                    <span>equipo eres?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>11. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuál|cual">
+                    <span>es el país de los tulipanes?</span>
+                </div>
+                <div class="exercise-item inline-item">
+                    <span>12. ¿</span>
+                    <input type="text" class="fill-input w-sm" data-ans="Cuál|cual">
+                    <span>era la dirección del museo?</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- EJERCICIO 33.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">33.3</span>
+            <span class="exercise-instruction">Complete las preguntas con <span class="highlight-pink">quién</span>, <span class="highlight-pink">quiénes</span>, <span class="highlight-pink">cuál</span>, <span class="highlight-pink">cuáles</span> o <span class="highlight-pink">qué</span>. Añada una preposición cuando sea necesario.</span>
+        </div>
+
+        <ul class="exercise-list">
+            <li class="dialogue-item inline-item">
+                <span>1. −¿</span>
+                <input type="text" class="fill-input w-md" data-ans="Con quién|con quien|Con quien">
+                <span>sale Lorena? −Con Jorge.</span>
+            </li>
+            <li class="dialogue-item inline-item">
+                <span>2. −¿</span>
+                <input type="text" class="fill-input w-md" data-ans="Con quién|con quien|Con quien">
+                <span>has quedado esta tarde? −Con Raquel.</span>
+            </li>
+            <li class="dialogue-item inline-item">
+                <span>3. −¿</span>
+                <input type="text" class="fill-input w-md" data-ans="Cuál|cual">
+                <span>de las dos raquetas es mejor? −La de Miguel.</span>
+            </li>
+            <li class="dialogue-item inline-item">
+                <span>4. −¿</span>
+                <input type="text" class="fill-input w-md" data-ans="Quiénes|quienes">
+                <span>van a la excursión del colegio? −Toda la clase.</span>
+            </li>
+            <li class="dialogue-item inline-item">
+                <span>5. −¿</span>
+                <input type="text" class="fill-input w-md" data-ans="Cuál|cual">
+                <span>es la capital de Uruguay? −Montevideo.</span>
+            </li>
+            <li class="dialogue-item inline-item">
+                <span>6. −¿</span>
+                <input type="text" class="fill-input w-md" data-ans="Quiénes|quienes">
+                <span>fueron Daoíz y Velarde? −Dos militares españoles.</span>
+            </li>
+            <li class="dialogue-item inline-item">
+                <span>7. −¿</span>
+                <input type="text" class="fill-input w-md" data-ans="Qué|que">
+                <span>ocurrió en la fiesta? −Hubo una bronca.</span>
+            </li>
+            <li class="dialogue-item inline-item">
+                <span>8. −¿</span>
+                <input type="text" class="fill-input w-md" data-ans="En qué|en que|En que">
+                <span>hospital trabaja Alfredo? −En el Central.</span>
+            </li>
+            <li class="dialogue-item inline-item">
+                <span>9. −¿</span>
+                <input type="text" class="fill-input w-md" data-ans="Quiénes|quienes">
+                <span>tienen la llave del garaje? −Todos los vecinos.</span>
+            </li>
+            <li class="dialogue-item inline-item">
+                <span>10. −¿</span>
+                <input type="text" class="fill-input w-md" data-ans="Quiénes|quienes">
+                <span>sabían lo del accidente? −Solo su hermana.</span>
+            </li>
+            <li class="dialogue-item inline-item">
+                <span>11. −¿</span>
+                <input type="text" class="fill-input w-md" data-ans="Qué|que">
+                <span>escritor argentino ganó el Premio Cervantes en 2007? −Juan Gelman.</span>
+            </li>
+            <li class="dialogue-item inline-item">
+                <span>12. −¿A</span>
+                <input type="text" class="fill-input w-md" data-ans="quién|quien">
+                <span>saludabas en el concierto? −A mi prima Elisa.</span>
+            </li>
+        </ul>
+
+        <!-- EJERCICIO 33.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">33.4</span>
+            <span class="exercise-instruction">Ponga las palabras en el orden correcto.</span>
+        </div>
+
+        <ol class="exercise-list" style="list-style-type: decimal; padding-left: 20px;">
+            <li class="exercise-item">
+                ¿habéis tomado / hoy / qué / de postre?<br>
+                <input type="text" class="fill-input input-full-line" data-ans="¿Qué habéis tomado hoy de postre?|¿Que habeis tomado hoy de postre?|Qué habéis tomado hoy de postre?|Que habeis tomado hoy de postre?">
+            </li>
+            <li class="exercise-item">
+                ¿tus intenciones / son / cuáles?<br>
+                <input type="text" class="fill-input input-full-line" data-ans="¿Cuáles son tus intenciones?|¿Cuales son tus intenciones?|Cuáles son tus intenciones?|Cuales son tus intenciones?">
+            </li>
+            <li class="exercise-item">
+                ¿qué / hablaban / tus padres / en la cena / de?<br>
+                <input type="text" class="fill-input input-full-line" data-ans="¿De qué hablaban tus padres en la cena?|¿De que hablaban tus padres en la cena?|De qué hablaban tus padres en la cena?|De que hablaban tus padres en la cena?">
+            </li>
+            <li class="exercise-item">
+                ¿quiénes / a la boda / vinieron?<br>
+                <input type="text" class="fill-input input-full-line" data-ans="¿Quiénes vinieron a la boda?|¿Quienes vinieron a la boda?|Quiénes vinieron a la boda?|Quienes vinieron a la boda?">
+            </li>
+            <li class="exercise-item">
+                ¿qué / esas tijeras / para / son?<br>
+                <input type="text" class="fill-input input-full-line" data-ans="¿Para qué son esas tijeras?|¿Para que son esas tijeras?|Para qué son esas tijeras?|Para que son esas tijeras?">
+            </li>
+            <li class="exercise-item">
+                ¿los insectos / cuáles / que viven / más tiempo / son?<br>
+                <input type="text" class="fill-input input-full-line" data-ans="¿Cuáles son los insectos que viven más tiempo?|¿Cuales son los insectos que viven mas tiempo?|Cuáles son los insectos que viven más tiempo?|Cuales son los insectos que viven mas tiempo?">
+            </li>
+            <li class="exercise-item">
+                ¿animales / en la tundra / viven / qué?<br>
+                <input type="text" class="fill-input input-full-line" data-ans="¿Qué animales viven en la tundra?|¿Que animales viven en la tundra?|Qué animales viven en la tundra?|Que animales viven en la tundra?">
+            </li>
+            <li class="exercise-item">
+                ¿estos relojes / cuáles / son / suizos / de?<br>
+                <input type="text" class="fill-input input-full-line" data-ans="¿Cuáles de estos relojes son suizos?|¿Cuales de estos relojes son suizos?|Cuáles de estos relojes son suizos?|Cuales de estos relojes son suizos?">
+            </li>
+            <li class="exercise-item">
+                ¿de / está hecho / qué / este mantel?<br>
+                <input type="text" class="fill-input input-full-line" data-ans="¿De qué está hecho este mantel?|¿De que esta hecho este mantel?|De qué está hecho este mantel?|De que esta hecho este mantel?">
+            </li>
+            <li class="exercise-item">
+                ¿qué calle / se va / a la catedral / por?<br>
+                <input type="text" class="fill-input input-full-line" data-ans="¿Por qué calle se va a la catedral?|¿Por que calle se va a la catedral?|Por qué calle se va a la catedral?|Por que calle se va a la catedral?">
+            </li>
+        </ol>
+
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">33.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Qué</li>
+                        <li><span class="answer-num">2.</span> Qué</li>
+                        <li><span class="answer-num">3.</span> Quiénes</li>
+                        <li><span class="answer-num">4.</span> qué</li>
+                        <li><span class="answer-num">5.</span> Qué</li>
+                        <li><span class="answer-num">6.</span> quién</li>
+                        <li><span class="answer-num">7.</span> Quiénes</li>
+                        <li><span class="answer-num">8.</span> quién</li>
+                        <li><span class="answer-num">9.</span> Quién</li>
+                        <li><span class="answer-num">10.</span> Quién</li>
+                        <li><span class="answer-num">11.</span> Qué</li>
+                        <li><span class="answer-num">12.</span> quién</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">33.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Cuál</li>
+                        <li><span class="answer-num">2.</span> Cuáles</li>
+                        <li><span class="answer-num">3.</span> Cuál</li>
+                        <li><span class="answer-num">4.</span> Qué</li>
+                        <li><span class="answer-num">5.</span> Cuál</li>
+                        <li><span class="answer-num">6.</span> qué</li>
+                        <li><span class="answer-num">7.</span> Cuál</li>
+                        <li><span class="answer-num">8.</span> qué</li>
+                        <li><span class="answer-num">9.</span> cuál</li>
+                        <li><span class="answer-num">10.</span> qué</li>
+                        <li><span class="answer-num">11.</span> Cuál</li>
+                        <li><span class="answer-num">12.</span> Cuál</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">33.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Con quién</li>
+                        <li><span class="answer-num">2.</span> Con quién</li>
+                        <li><span class="answer-num">3.</span> Cuál</li>
+                        <li><span class="answer-num">4.</span> Quiénes</li>
+                        <li><span class="answer-num">5.</span> Cuál</li>
+                        <li><span class="answer-num">6.</span> Quiénes</li>
+                        <li><span class="answer-num">7.</span> Qué</li>
+                        <li><span class="answer-num">8.</span> En qué</li>
+                        <li><span class="answer-num">9.</span> Quiénes</li>
+                        <li><span class="answer-num">10.</span> Quiénes</li>
+                        <li><span class="answer-num">11.</span> Qué</li>
+                        <li><span class="answer-num">12.</span> quién</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">33.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> ¿Qué habéis tomado hoy de postre?</li>
+                        <li><span class="answer-num">2.</span> ¿Cuáles son tus intenciones?</li>
+                        <li><span class="answer-num">3.</span> ¿De qué hablaban tus padres en la cena?</li>
+                        <li><span class="answer-num">4.</span> ¿Quiénes vinieron a la boda?</li>
+                        <li><span class="answer-num">5.</span> ¿Para qué son esas tijeras?</li>
+                        <li><span class="answer-num">6.</span> ¿Cuáles son los insectos que viven más tiempo?</li>
+                        <li><span class="answer-num">7.</span> ¿Qué animales viven en la tundra?</li>
+                        <li><span class="answer-num">8.</span> ¿Cuáles de estos relojes son suizos?</li>
+                        <li><span class="answer-num">9.</span> ¿De qué está hecho este mantel?</li>
+                        <li><span class="answer-num">10.</span> ¿Por qué calle se va a la catedral?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Helper to normalize strings for comparison
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/\s+/g, ' ');
+            }
+
+            function validateInput(input, forceValidateEmpty = false) {
+                const rawVal = input.value;
+                const userVal = normalizeText(rawVal);
+                const dataAns = input.getAttribute('data-ans');
+                if (!dataAns) return;
+
+                const rawAccepted = dataAns.split('|');
+                const acceptedAnswers = rawAccepted.map(normalizeText);
+
+                if (userVal === '') {
+                    if (forceValidateEmpty) {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    } else {
+                        input.classList.remove('correct', 'incorrect');
+                    }
+                    return;
+                }
+
+                if (acceptedAnswers.includes(userVal)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            // Input handlers
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    this.classList.remove('correct', 'incorrect');
+                });
+
+                input.addEventListener('blur', function() {
+                    if (this.value !== '') {
+                        validateInput(this, false);
+                    }
+                });
+
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this, true);
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Toggle Answers Panel Visibility
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

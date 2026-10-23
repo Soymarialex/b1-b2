@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rincón Cultural y Léxico</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Light Pink */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Pure White */
+      --color-borde: #E0E0E0;        /* Light Grey */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* LESSON HEADER */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    /* CARD STYLING */
+    .cultural-card {
+      border: 1.5px solid var(--color-primario);
+      border-radius: 6px;
+      padding: 1.2rem;
+      background-color: #FFFFFF;
+      transition: box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cultural-card:hover {
+      box-shadow: 0 4px 12px rgba(255, 121, 172, 0.15);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--color-primario);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 0.8rem;
+    }
+
+    /* CLASE ESPECIAL PARA MOSTRAR LA IMAGEN DE MONTERREY COMPLETA */
+    .card-image-full {
+      width: 100%;
+      height: 320px;
+      object-fit: contain;
+      background-color: #f8f9fa;
+      border-radius: 4px;
+      margin-bottom: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA SECCIÓN CULTURAL -->
+    <header class="lesson-header">
+      <div class="lesson-badge">💡</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">Notas Culturales y Léxico</h1>
+      </div>
+    </header>
+
+    <p class="mb-6 text-justify">
+      Durante nuestra lección mencionamos algunos lugares geográficos y palabras específicas en español. ¡Vamos a conocer más sobre ellos!
+    </p>
+
+    <!-- CONTENIDO EN GRILLA -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+      
+      <!-- Salamanca -->
+      <div class="cultural-card">
+        <div class="card-title">📍 Salamanca</div>
+        <img src="https://imgur.com/cnbULv1.jpg" alt="Salamanca" class="card-image">
+        <p class="text-justify text-gray-800">
+          Una famosa ciudad universitaria ubicada en el oeste de España (Castilla y León). Su Universidad, fundada en 1218, es la más antigua del mundo hispanohablante.
+        </p>
+      </div>
+
+      <!-- Guadalquivir y Sevilla -->
+      <div class="cultural-card">
+        <div class="card-title">📍El Guadalquivir y Sevilla</div>
+        <img src="https://imgur.com/vTrGrHo.jpg" alt="El Guadalquivir y Sevilla" class="card-image">
+        <p class="text-justify text-gray-800">
+          El <strong>Guadalquivir</strong> es uno de los ríos más importantes y navegables de España. Atraviesa la ciudad de <strong>Sevilla</strong>, la emblemática capital de la región de Andalucía, famosa por el flamenco y su arquitectura.
+        </p>
+      </div>
+
+      <!-- Guadalajara -->
+      <div class="cultural-card">
+        <div class="card-title">📍Guadalajara</div>
+        <img src="https://imgur.com/yiE0H5B.jpg" alt="Guadalajara" class="card-image">
+        <p class="text-justify text-gray-800">
+          Aunque existe una ciudad llamada Guadalajara en <strong>España</strong>, la más conocida internacionalmente es la gran metrópoli de Guadalajara en <strong>México</strong>, famosa por ser la cuna del mariachi y del tequila.
+        </p>
+      </div>
+
+      <!-- Santander (Cantabria) -->
+      <div class="cultural-card">
+        <div class="card-title">📍Santander (Cantabria)</div>
+        <img src="https://imgur.com/5BSEJ7n.jpg" alt="Santander" class="card-image">
+        <p class="text-justify text-gray-800">
+          <strong>Santander</strong> es la capital de la comunidad autónoma de <strong>Cantabria</strong>, situada en la costa norte de España. Es célebre por su hermosa bahía, sus playas, su elegancia arquitectónica y sus paisajes costeros rodeados de mar y montaña.
+        </p>
+      </div>
+
+      <!-- Monterrey -->
+      <div class="cultural-card md:col-span-2">
+        <div class="card-title">📍Monterrey</div>
+        <img src="https://imgur.com/wNWcoIs.jpg" alt="Monterrey" class="card-image-full">
+        <p class="text-justify text-gray-800">
+          Es la tercera ciudad más poblada e importante a nivel industrial en <strong>México</strong>. Está situada en el norte del país y es conocida como "La Ciudad de las Montañas".
+        </p>
+      </div>
+
+      <!-- Sudamérica vs Suramérica -->
+      <div class="cultural-card md:col-span-2">
+        <div class="card-title">🌎 ¿Sudamérica o Suramérica?</div>
+        <p class="text-justify text-gray-800">
+          ¡Ambas formas son <strong>completamente correctas</strong>!
+        </p>
+        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-800">
+          <li><strong>Sudamérica:</strong> Es la forma más frecuente y común en España y en la mayor parte de América Latina.</li>
+          <li><strong>Suramérica:</strong> Se utiliza principalmente en varios países del propio subcontinente (como Colombia, Venezuela o Chile).</li>
+        </ul>
+      </div>
+
+      <!-- Aparato -->
+      <div class="cultural-card md:col-span-2">
+        <div class="card-title">🔌 ¿Qué es un "aparato"?</div>
+        <p class="text-justify text-gray-800">
+          Un <strong>aparato</strong> es cualquier objeto, instrumento o dispositivo mecánico, eléctrico o electrónico que realiza una función específica (por ejemplo: un electrodoméstico, un mando a distancia/control, etc.). 
+          <br><em class="text-sm text-gray-600">Equivalentes comunes en inglés: "device", "appliance" o "gadget".</em>
+        </p>
+      </div>
+
+      <!-- NUEVO VOCABULARIO -->
+      <div class="cultural-card md:col-span-2">
+        <div class="card-title">📚 Vocabulario Adicional</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+          
+          <div class="p-3 border border-[#FFB3D1] rounded bg-pink-50/30">
+            <div class="font-bold text-[#FF79AC]">🏞️ Acantilado</div>
+            <p class="text-sm text-gray-700">Gran pendiente o terreno rocoso que cae verticalmente sobre el mar o un gran terreno. <em>(Cliff)</em></p>
+          </div>
+
+          <div class="p-3 border border-[#FFB3D1] rounded bg-pink-50/30">
+            <div class="font-bold text-[#FF79AC]">🧭 Brújula</div>
+            <p class="text-sm text-gray-700">Instrumento de orientación que utiliza una aguja imantada para señalar el norte magnético. <em>(Compass)</em></p>
+          </div>
+
+          <div class="p-3 border border-[#FFB3D1] rounded bg-pink-50/30">
+            <div class="font-bold text-[#FF79AC]">🎬 El rodaje (de una película)</div>
+            <p class="text-sm text-gray-700">El proceso de grabación o filmación de una película, serie o anuncio. <em>(Shooting / Filming)</em></p>
+          </div>
+
+          <div class="p-3 border border-[#FFB3D1] rounded bg-pink-50/30">
+            <div class="font-bold text-[#FF79AC]">🛠️ Tenazas</div>
+            <p class="text-sm text-gray-700">Herramienta de metal compuesta de dos brazos que sirve para sujetar, cortar o extraer clavos y objetos. <em>(Pincers / Pliers)</em></p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

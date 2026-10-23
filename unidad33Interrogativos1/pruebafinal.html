@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba final</title>
+  <link rel="stylesheet" href="style.css?v=1.0">
+  <style>
+    :root {
+      --primary-color: #FF79AC;
+      --secondary-color: #FFEBF2;
+      --button-bg: #FFB3D1;
+      --text-color: #121118;
+      --bg-color: #FFFFFF;
+      --feedback-success: #D4EDDA;
+      --feedback-error: #F8D7DA;
+      --box-bg: #F9F9F9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 820px;
+      margin: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      text-align: left;
+    }
+
+    .indication {
+      font-size: 1rem;
+      color: var(--text-color);
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 4px;
+      margin-top: 5px;
+      text-transform: lowercase;
+    }
+
+    .level-nav {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .btn-level {
+      background-color: var(--button-bg);
+      border: none;
+      border-bottom: 3px solid var(--primary-color);
+      border-radius: 5px;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      padding: 6px 16px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-level.active {
+      background-color: var(--primary-color);
+      color: #FFFFFF;
+      font-weight: bold;
+    }
+
+    .sentences-container {
+      background-color: var(--box-bg);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .sentence-item {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .gap-input {
+      display: inline-block;
+      height: 32px;
+      border: none;
+      border-bottom: 2px solid #888888;
+      background: transparent;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--text-color);
+      text-align: center;
+      padding: 0 8px;
+      border-radius: 4px;
+      outline: none;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .gap-input:focus {
+      border-bottom: 2px solid var(--primary-color);
+      background-color: var(--secondary-color);
+    }
+
+    .gap-input.correct {
+      background-color: var(--feedback-success) !important;
+      border-bottom: 2px solid #28a745 !important;
+      color: #155724;
+    }
+
+    .gap-input.wrong {
+      background-color: var(--feedback-error) !important;
+      border-bottom: 2px solid #dc3545 !important;
+      color: #721c24;
+    }
+
+    .btn-answers {
+      align-self: flex-start;
+      background-color: var(--button-bg);
+      border: none;
+      border-bottom: 3px solid var(--primary-color);
+      border-radius: 5px;
+      color: var(--text-color);
+      font-size: 0.95rem;
+      font-weight: bold;
+      padding: 8px 18px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-answers:active {
+      transform: translateY(1px);
+    }
+
+    .answers-container {
+      background-color: var(--box-bg);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .answers-container p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .hint-text {
+      color: #666666;
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+    <h1>Prueba final</h1>
+    
+    <p class="indication">
+      Imagina que el fin de semana hubo una fiesta en casa de un amigo, ¡pero pasó un verdadero desastre! Tú eres el detective encargado de hacer las preguntas.<br>
+      Completa las preguntas de la investigación utilizando <strong>¿quién/quiénes?</strong>, <strong>¿qué?</strong> o <strong>¿cuál/cuáles?</strong> (añade “<strong>de</strong>” si es necesario).
+    </p>
+    
+    <h2>test your memory</h2>
+
+    <div class="level-nav">
+      <button class="btn-level active" onclick="loadLevel(1)">Nivel 1</button>
+      <button class="btn-level" onclick="loadLevel(2)">Nivel 2</button>
+    </div>
+
+    <div class="sentences-container" id="sentencesContainer">
+      <!-- Las oraciones con casillas de texto se cargarán dinámicamente -->
+    </div>
+
+    <button class="btn-answers" onclick="toggleAnswers()">Respuestas correctas</button>
+
+    <div class="answers-container" id="answersContainer" style="display: none;">
+      <!-- Las respuestas correctas se desplegarán aquí -->
+    </div>
+  </div>
+
+  <script>
+    const levelsData = {
+      1: {
+        sentences: [
+          {
+            parts: [
+              { text: "1. ( " },
+              { input: true, answer: "Quién de|Cuál de|Quien de|Cual de", width: 110 },
+              { text: " ) los invitados llegó primero a la fiesta y encendió la música a todo volumen?" }
+            ]
+          },
+          {
+            parts: [
+              { text: "2. En la mesa hay tres pasteles de chocolate diferentes. ( " },
+              { input: true, answer: "Qué|Que", width: 75 },
+              { text: " ) pastel habéis comprado para la fiesta?" }
+            ]
+          },
+          {
+            parts: [
+              { text: "3. ( " },
+              { input: true, answer: "Cuál|Cual", width: 75 },
+              { text: " ) es tu abrigo favorito? hay dos colgados en el perchero: el negro y el azul." }
+            ]
+          },
+          {
+            parts: [
+              { text: "4. ( " },
+              { input: true, answer: "Quién|Quien", width: 85 },
+              { text: " ) le robó el último pedazo de pizza a Carlos cuando estaba distraído?" }
+            ]
+          }
+        ],
+        answers: [
+          "1. <strong>¿Quién de / Cuál de</strong> los invitados llegó primero a la fiesta y encendió la música a todo volumen?",
+          "2. En la mesa hay tres pasteles de chocolate diferentes. <strong>¿Qué</strong> pastel habéis comprado para la fiesta?",
+          "3. <strong>¿Cuál</strong> es tu abrigo favorito? Hay dos colgados en el perchero: el negro y el azul.",
+          "4. <strong>¿Quién</strong> le robó el último pedazo de pizza a Carlos cuando estaba distraído?"
+        ]
+      },
+      2: {
+        sentences: [
+          {
+            parts: [
+              { text: "5. ( " },
+              { input: true, answer: "Qué|Que", width: 75 },
+              { text: " ) hiciste después de que se fue la policía por el ruido?" }
+            ]
+          },
+          {
+            parts: [
+              { text: "6. ( " },
+              { input: true, answer: "Cuál de|Quién de|Cual de|Quien de", width: 110 },
+              { text: " ) estos chicos que ves en la foto crees que fue el responsable del desorden en la cocina?" }
+            ]
+          },
+          {
+            parts: [
+              { text: "7. ( " },
+              { input: true, answer: "Cuál|Cual", width: 75 },
+              { text: " ) es la dirección exacta de la casa donde ocurrió todo?" }
+            ]
+          },
+          {
+            parts: [
+              { text: "8. ( " },
+              { input: true, answer: "Cuál de|Quién de|Cual de|Quien de", width: 110 },
+              { text: " ) tus amigos te acompañó a limpiar la sala al día siguiente?" }
+            ]
+          }
+        ],
+        answers: [
+          "5. <strong>¿Qué</strong> hiciste después de que se fue la policía por el ruido?",
+          "6. <strong>¿Cuál de</strong> estos chicos que ves en la foto crees que fue el responsable del desorden en la cocina?",
+          "7. <strong>¿Cuál</strong> es la dirección exacta de la casa donde ocurrió todo?",
+          "8. <strong>¿Cuál de</strong> tus amigos te acompañó a limpiar la sala al día siguiente?"
+        ]
+      }
+    };
+
+    let currentLevel = 1;
+
+    function loadLevel(levelNum) {
+      currentLevel = levelNum;
+
+      // Ocultar respuestas al cambiar de nivel
+      const answersContainer = document.getElementById('answersContainer');
+      answersContainer.style.display = 'none';
+
+      // Actualizar estado activo de los botones de nivel
+      const levelBtns = document.querySelectorAll('.btn-level');
+      levelBtns.forEach((btn, index) => {
+        if (index + 1 === levelNum) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Cargar oraciones
+      const sentencesContainer = document.getElementById('sentencesContainer');
+      sentencesContainer.innerHTML = '';
+      const currentSentences = levelsData[levelNum].sentences;
+
+      currentSentences.forEach((sentenceObj) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'sentence-item';
+
+        sentenceObj.parts.forEach(part => {
+          if (part.input) {
+            const inputElem = document.createElement('input');
+            inputElem.type = 'text';
+            inputElem.className = 'gap-input';
+            inputElem.style.width = (part.width || 80) + 'px';
+            inputElem.dataset.answer = part.answer;
+            inputElem.autocomplete = 'off';
+            inputElem.autocorrect = 'off';
+            inputElem.autocapitalize = 'off';
+            inputElem.spellcheck = false;
+
+            // Validar ÚNICAMENTE al presionar Enter y saltar a la siguiente casilla
+            inputElem.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                validateInput(inputElem);
+                
+                const allInputs = Array.from(document.querySelectorAll('.gap-input'));
+                const currentIndex = allInputs.indexOf(inputElem);
+                if (currentIndex !== -1 && currentIndex < allInputs.length - 1) {
+                  allInputs[currentIndex + 1].focus();
+                  allInputs[currentIndex + 1].select();
+                }
+              }
+            });
+
+            itemDiv.appendChild(inputElem);
+          } else {
+            const textSpan = document.createElement('span');
+            textSpan.textContent = part.text;
+            itemDiv.appendChild(textSpan);
+          }
+        });
+
+        sentencesContainer.appendChild(itemDiv);
+      });
+
+      // Enfocar automáticamente la primera casilla del nivel
+      const firstInput = document.querySelector('.gap-input');
+      if (firstInput) {
+        firstInput.focus();
+      }
+    }
+
+    function validateInput(inputElem) {
+      const userValue = inputElem.value;
+      const expectedAnswers = inputElem.dataset.answer.split('|');
+
+      if (userValue.trim() === '') {
+        inputElem.classList.remove('correct', 'wrong');
+        return;
+      }
+
+      const normalizedUser = normalizeText(userValue);
+      const isCorrect = expectedAnswers.some(ans => normalizeText(ans) === normalizedUser);
+
+      if (isCorrect) {
+        inputElem.classList.remove('wrong');
+        inputElem.classList.add('correct');
+      } else {
+        inputElem.classList.remove('correct');
+        inputElem.classList.add('wrong');
+      }
+    }
+
+    // Normaliza el texto removiendo tildes, signos y convirtiendo a minúsculas
+    function normalizeText(text) {
+      return text
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[¿?¡!]/g, "");
+    }
+
+    function toggleAnswers() {
+      const answersContainer = document.getElementById('answersContainer');
+      if (answersContainer.style.display === 'none') {
+        const answersList = levelsData[currentLevel].answers;
+        answersContainer.innerHTML = answersList.map(ans => `<p>${ans}</p>`).join('');
+        answersContainer.style.display = 'flex';
+      } else {
+        answersContainer.style.display = 'none';
+      }
+    }
+
+    window.onload = function() {
+      loadLevel(1);
+    };
+  </script>
+</body>
+</html>

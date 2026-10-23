@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿quién?, ¿qué?, ¿cuál? - Interrogativos (1)</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Light Pink */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Pure White */
+      --color-borde: #E0E0E0;        /* Light Grey */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* LESSON HEADER */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    /* BULLETS & TEXT STRUCTURE */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+      color: var(--color-texto);
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    .sub-dash-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+      margin-bottom: 0.5rem;
+      padding-left: 1.2rem;
+      text-align: justify;
+    }
+
+    /* TABLES & GRAMMAR BOXES */
+    .grammar-box {
+      border: 1.5px solid var(--color-primario);
+      border-color: var(--color-secundario);
+      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      margin: 0.8rem 0 1.2rem 0;
+      background-color: #ffffff;
+    }
+
+    .grammar-box-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 640px) {
+      .grammar-box-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    /* ATENCIÓN BOX */
+    .attention-box {
+      background-color: rgba(255, 179, 209, 0.25);
+      border-left: 4px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 0.8rem 1.2rem;
+      margin: 1.5rem 0;
+    }
+
+    .attention-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 0.85rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      display: inline-block;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.6rem;
+    }
+
+    .incorrect-text {
+      text-decoration: line-through;
+      color: #718096;
+    }
+
+    input[type="text"] {
+      border: 1px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--color-primario);
+      box-shadow: 0 0 0 2px var(--color-secundario);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">33</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">¿quién?, ¿qué?, ¿cuál?</h1>
+        <h2 class="page-subtitle">Interrogativos <span class="italic text-[#FF79AC]">(interrogatives)</span> (1)</h2>
+      </div>
+    </header>
+
+    <!-- IMAGEN PRINCIPAL ENCABEZADO (Abarca todo el ancho) -->
+    <div class="w-full my-6 text-center">
+      <img src="https://imgur.com/dI468h5.jpg" alt="Ilustraciones de quién, qué, cuál" class="w-full h-auto rounded border border-pink-200 shadow-sm object-contain">
+    </div>
+
+    <!-- INTRODUCCIÓN GENERAL -->
+    <section class="mb-6">
+      <div class="text-justify">
+        <em>¿Quién?, ¿qué?</em> y <em>¿cuál?</em> son interrogativos. Se usan para pedir información sobre personas, animales o cosas.
+      </div>
+    </section>
+
+    <!-- SECCIÓN 1: ¿QUIÉN?, ¿QUIÉNES? -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usa <em>¿quién?, ¿quiénes?</em> para preguntar por personas.
+        </div>
+      </div>
+
+      <div class="grammar-box border-[#FF79AC]">
+        <div class="grammar-box-grid">
+          <!-- Columna Izquierda: Estructura -->
+          <div class="text-sm md:text-base border-r-0 md:border-r border-pink-200 pr-0 md:pr-4 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="text-gray-700">(a/de/con...) +</span>
+              <div class="border-l-2 border-pink-400 pl-2">
+                <div><em>¿quién? / ¿quiénes?</em></div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="border-l-2 border-pink-400 pl-2">
+                <div><em>¿quién? / ¿quiénes? + de</em></div>
+              </div>
+              <div class="border-l-2 border-pink-400 pl-2 text-xs md:text-sm">
+                <div>+ estos, esos... (+ nombre)</div>
+                <div>+ nosotros, vosotros...</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Ejemplos -->
+          <div class="space-y-1 text-sm md:text-base">
+            <div><strong>¿Quién</strong> ha roto la ventana?</div>
+            <div><strong>¿Quiénes</strong> son los hermanos de Mercedes?</div>
+            <div><strong>¿A quién</strong> le has vendido el ordenador?</div>
+            <div><strong>¿Para quién</strong> es este paquete?</div>
+            <div class="pt-2"><strong>¿Quién de estos chicos</strong> es tu mejor amigo?</div>
+            <div><strong>¿Quién de vosotros</strong> tiene un coche negro?</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: ¿QUÉ? -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usa <em>¿qué?</em> para preguntar por cosas, acciones o situaciones.
+        </div>
+      </div>
+
+      <div class="grammar-box border-[#FF79AC]">
+        <div class="grammar-box-grid">
+          <!-- Columna Izquierda: Estructura -->
+          <div class="text-sm md:text-base border-r-0 md:border-r border-pink-200 pr-0 md:pr-4 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="text-gray-700">(a/de/con...) +</span>
+              <div class="border-l-2 border-pink-400 pl-2 space-y-2">
+                <div><em>¿qué?</em></div>
+                <div><em>¿qué? + sustantivo</em></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Ejemplos -->
+          <div class="space-y-1 text-sm md:text-base">
+            <div><strong>¿Qué</strong> quieres para tu cumpleaños?</div>
+            <div><strong>¿Con qué</strong> lo has cortado?</div>
+            <div><strong>¿Qué</strong> hicisteis ayer?</div>
+            <div><strong>¿Qué</strong> te pasa?</div>
+            <div><strong>¿En qué pueblo</strong> de Toledo nació Mariano?</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-bullet ¿qué? + sustantivo -->
+      <div class="sub-dash-bullet">
+        <span class="font-bold">–</span>
+        <div>
+          Se usa <em>¿qué? + sustantivo</em> para preguntar por una clase de cosas o animales (<em>¿Qué clase de...?</em>)
+          <div class="space-y-1 my-2 pl-2">
+            <div>–<strong>¿Qué queso</strong> habéis comprado? <span class="text-gray-700 font-normal">(¿Qué clase de queso?)</span> –Queso de bola.</div>
+            <div>–<strong>¿Qué animales</strong> viven en la tierra y en el agua? –Los anfibios.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: ¿CUÁL?, ¿CUÁLES? -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div>
+          Se usan <em>¿cuál? ¿cuáles?</em> o <em>¿qué? + sustantivo</em> para pedir información sobre uno o varios elementos de un grupo específico de personas o cosas. La pregunta da a elegir <span class="italic text-[#FF79AC]">(allows you to choose)</span> entre los elementos de ese grupo.
+        </div>
+      </div>
+
+      <div class="grammar-box border-[#FF79AC]">
+        <div class="grammar-box-grid">
+          <!-- Columna Izquierda: Estructura -->
+          <div class="text-sm md:text-base border-r-0 md:border-r border-pink-200 pr-0 md:pr-4 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="text-gray-700">(a/de/con...) +</span>
+              <div class="border-l-2 border-pink-400 pl-2 space-y-2">
+                <div><em>¿qué? + sustantivo</em></div>
+                <div><em>¿cuál? / ¿cuáles?</em></div>
+                <div class="flex items-center gap-2">
+                  <div><em>¿cuál? / ¿cuáles? + de</em></div>
+                  <div class="border-l-2 border-pink-400 pl-2 text-xs md:text-sm">
+                    <div>+ estos, esos... (+ sustantivo)</div>
+                    <div>+ los, la... + sustantivo</div>
+                    <div>+ mis, tus... + sustantivo</div>
+                    <div>+ nosotros, vosotros...</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Ejemplos -->
+          <div class="space-y-1 text-sm md:text-base">
+            <div><strong>¿Qué escritor argentino</strong> murió en Suiza?</div>
+            <div><strong>¿Por qué ciudades españolas</strong> pasa el Duero?</div>
+            <div class="pt-2"><strong>¿Cuál</strong> es tu aula?</div>
+            <div class="pt-2"><strong>¿Cuál de estas (maletas)</strong> es vuestra?</div>
+            <div><strong>¿Cuál de los coches</strong> es el tuyo?</div>
+            <div><strong>¿Cuál de mis libros</strong> te gustaría leer?</div>
+            <div><strong>¿Cuál de ellos</strong> te gusta más?</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUADRO DE ATENCIÓN -->
+    <div class="attention-box">
+      <div class="attention-badge">ATENCIÓN:</div>
+      <div class="space-y-2 pl-1 border-t border-pink-200 pt-2 text-sm md:text-base">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="incorrect-text">¿Qué es tu coche?</span>
+          <span>→</span>
+          <div><strong>¿Cuál</strong> es tu coche?</div>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="incorrect-text">¿En cuál ciudad española está la Giralda?</span>
+          <span>→</span>
+          <div><strong>¿En qué ciudad española</strong> está la Giralda?</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN DE ORDEN DE PALABRAS -->
+    <section class="mt-6 mb-2">
+      <div class="text-justify mb-4">
+        Observe el orden normal de las palabras en las preguntas: <strong>¿(preposición +) interrogativo + verbo (+ sujeto) (+ objetos)?</strong>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm md:text-base italic pl-2">
+        <div class="space-y-2">
+          <div>¿Quién ha llegado primero?</div>
+          <div>¿A quién le ha vendido Luis su coche?</div>
+        </div>
+        <div class="space-y-2">
+          <div>¿A quién ha llamado Gloria?</div>
+          <div>¿Con cuál de tus primas se casó Roberto?</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- SCRIPT INTERACTIVIDAD NAVEGACIÓN ENTER -->
+  <script>
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = inputs.indexOf(event.target);
+        if (index > -1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
