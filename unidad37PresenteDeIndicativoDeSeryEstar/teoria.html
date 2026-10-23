@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lección 37 - soy, estoy</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Light Pink */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Pure White */
+      --color-borde: #E0E0E0;        /* Light Grey */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CONTENEDOR PRINCIPAL (LAYOUT) */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* ENCABEZADO DE LA LECCIÓN */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--color-texto);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario);
+      line-height: 1.2;
+    }
+
+    /* BULLETS Y TIÍTULOS DE SECCIÓN */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+      color: var(--color-texto);
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    /* CUADROS Y TABLAS GRAMATICALES */
+    .grammar-box {
+      border: 1.5px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 1rem;
+      margin: 1rem 0;
+      background-color: #FFFFFF;
+    }
+
+    /* CONJUGATION TABLE STYLING */
+    .conjugation-table-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .conjugation-table-container {
+        grid-template-columns: 1.2fr 1fr;
+      }
+    }
+
+    .conjugation-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .conjugation-table th {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      text-align: center;
+      padding: 0.5rem 1rem;
+    }
+
+    .conjugation-table td {
+      padding: 0.25rem 0.75rem;
+    }
+
+    .conjugation-table tr td:first-child {
+      background-color: #F8F8F8;
+      color: #555555;
+    }
+
+    .conjugation-table tr td:nth-child(2) {
+      border-right: 2px solid var(--color-primario);
+    }
+
+    /* ILUSTRACIÓN */
+    .illustration-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .illustration-card img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .translation-text {
+      color: var(--color-primario);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">37</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">soy, estoy</h1>
+        <h2 class="page-subtitle">Presente de indicativo de <em>ser</em> y <em>estar</em></h2>
+      </div>
+    </header>
+
+    <!-- TABLA DE CONJUGACIÓN E ILUSTRACIÓN CABECERA -->
+    <section class="conjugation-table-container">
+      <div>
+        <table class="conjugation-table">
+          <thead>
+            <tr>
+              <th style="background-color: transparent;"></th>
+              <th>ser</th>
+              <th>estar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>(yo)</td>
+              <td class="font-bold">soy</td>
+              <td class="font-bold">estoy</td>
+            </tr>
+            <tr>
+              <td>(tú)</td>
+              <td class="font-bold">eres</td>
+              <td class="font-bold">estás</td>
+            </tr>
+            <tr>
+              <td>(él, ella)</td>
+              <td class="font-bold">es</td>
+              <td class="font-bold">está</td>
+            </tr>
+            <tr>
+              <td>(usted)</td>
+              <td class="font-bold">es</td>
+              <td class="font-bold">está</td>
+            </tr>
+            <tr>
+              <td>(nosotros, nosotras)</td>
+              <td class="font-bold">somos</td>
+              <td class="font-bold">estamos</td>
+            </tr>
+            <tr>
+              <td>(vosotros, vosotras)</td>
+              <td class="font-bold">sois</td>
+              <td class="font-bold">estáis</td>
+            </tr>
+            <tr>
+              <td>(ustedes)</td>
+              <td class="font-bold">son</td>
+              <td class="font-bold">están</td>
+            </tr>
+            <tr>
+              <td>(ellos, ellas)</td>
+              <td class="font-bold">son</td>
+              <td class="font-bold">están</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="illustration-card">
+        <img src="https://imgur.com/RVPQiza.jpg" alt="Ilustración lección 37 - soy, estoy">
+      </div>
+    </section>
+
+    <!-- SECCIÓN: SE USA SER PARA -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="text-justify">
+          Se usa <em><strong>ser</strong></em> para:
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-justify pl-6">
+        <!-- Columna Izquierda -->
+        <div class="space-y-4">
+          <div>
+            <div>– identificar o definir.</div>
+            <div class="pl-4 space-y-0.5 mt-0.5">
+              <div>–<em>¿Qué es eso?</em> –<em><strong>Es</strong> un avión.</em></div>
+              <div><em>El Sol <strong>es</strong> una estrella.</em></div>
+            </div>
+          </div>
+
+          <div>
+            <div>– indicar profesión, nacionalidad o ideología.</div>
+            <div class="pl-4 space-y-0.5 mt-0.5">
+              <div><em>Ernestina <strong>es</strong> dentista.</em></div>
+              <div><em>¿<strong>Sois</strong> italianos?</em></div>
+              <div><em>La mayoría de los polacos <strong>son</strong> católicos.</em></div>
+            </div>
+          </div>
+
+          <div>
+            <div>– para indicar relación o parentesco.</div>
+            <div class="pl-4 space-y-0.5 mt-0.5">
+              <div><em>Ana y yo <strong>somos</strong> compañeros.</em></div>
+              <div><em>La Sra. Blanca <strong>es</strong> mi suegra.</em></div>
+            </div>
+          </div>
+
+          <div>
+            <div>– indicar las características permanentes de alguien o algo.</div>
+            <div class="pl-4 space-y-0.5 mt-0.5">
+              <div><em>El caviar <strong>es</strong> caro.</em></div>
+              <div><em>Alberto <strong>es</strong> tímido.</em></div>
+              <div><em>Las fresas <strong>son</strong> rojas.</em></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha -->
+        <div class="space-y-4">
+          <div>
+            <div>– hacer valoraciones.</div>
+            <div class="pl-4 space-y-0.5 mt-0.5">
+              <div><em>Esta película <strong>es</strong> muy divertida.</em></div>
+              <div><em>Este vino <strong>es</strong> bueno.</em></div>
+            </div>
+          </div>
+
+          <div>
+            <div>– indicar tiempo, cantidad o precio.</div>
+            <div class="pl-4 space-y-0.5 mt-0.5">
+              <div><em>Hoy <strong>es</strong> domingo.</em></div>
+              <div><em>En mi familia <strong>somos</strong> cinco.</em></div>
+              <div>–<em>¿Cuánto <strong>es</strong> un café y una tostada?</em></div>
+              <div>–<em><strong>Son</strong> tres euros.</em></div>
+            </div>
+          </div>
+
+          <div>
+            <div>– la hora y el lugar de un acontecimiento.</div>
+            <div class="pl-4 space-y-0.5 mt-0.5">
+              <div>–<em>¿A qué hora <strong>es</strong> la fiesta?</em> –<em>A las siete.</em></div>
+              <div>–<em>¿Dónde <strong>es</strong> la clase?</em> –<em>En el aula tres.</em></div>
+            </div>
+          </div>
+
+          <div>
+            <div>– indicar origen, materia o posesión (<em>de</em> + nombre).</div>
+            <div class="pl-4 space-y-0.5 mt-0.5">
+              <div><em>Mis abuelos <strong>son</strong> de Madrid.</em></div>
+              <div><em>Ese jersey no <strong>es</strong> de lana.</em></div>
+              <div><em>Este bolso <strong>es</strong> de Gema.</em></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: SE USA ESTAR PARA -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="text-justify">
+          Se usa <em><strong>estar</strong></em> para:
+        </div>
+      </div>
+
+      <div class="space-y-4 pl-6 text-justify">
+        <div>
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+            <span>– indicar situación física o temporal.</span>
+            <span class="sm:text-right"><em>Ya <strong>estamos</strong> en primavera.</em></span>
+          </div>
+          <div class="pl-4 mt-0.5">
+            <div>–<em>¿Dónde <strong>está</strong> Carlos?</em> –<em><strong>Está</strong> en clase.</em></div>
+          </div>
+        </div>
+
+        <div>
+          <div>– indicar las características o estados anormales o temporales de alguien o algo.</div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pl-4 mt-0.5">
+            <div><em><strong>Estoy</strong> resfriado y un poco <strong>cansado</strong>.</em></div>
+            <div><em>El coche <strong>está</strong> averiado.</em></div>
+          </div>
+        </div>
+
+        <div>
+          <div>– <em><strong>estar de</strong></em> + sustantivo = situaciones temporales</div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pl-4 mt-0.5">
+            <div>–<em>¿Dónde está Alicia?</em> –<em><strong>Está</strong> de vacaciones.</em></div>
+            <div><em>Este año <strong>están</strong> de moda las faldas largas.</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: ALGUNAS EXPRESIONES CAMBIAN DE SIGNIFICADO -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="text-justify">
+          Algunas expresiones cambian de significado según se use <em><strong>ser</strong></em> o <em><strong>estar</strong></em>.
+        </div>
+      </div>
+
+      <!-- Cuadro gramatical de cambios de significado -->
+      <div class="grammar-box my-4 overflow-x-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1 min-w-[600px] text-sm md:text-base">
+          <div><em>ser aburrido</em> = que no sabe divertirse o que no divierte</div>
+          <div><em>estar aburrido</em> = no tener nada para divertirse</div>
+
+          <div><em>ser bueno</em> = de buen comportamiento o buena calidad</div>
+          <div><em>estar bueno</em> = sabroso o recuperado de una enfermedad</div>
+
+          <div><em>ser despierto</em> = inteligente</div>
+          <div><em>estar despierto</em> = no dormido</div>
+
+          <div><em>ser listo</em> = inteligente</div>
+          <div><em>estar listo</em> = preparado</div>
+
+          <div><em>ser malo</em> = de mal comportamiento o de mala calidad</div>
+          <div><em>estar malo</em> = enfermo</div>
+
+          <div><em>ser moreno</em> = tener el pelo oscuro</div>
+          <div><em>estar moreno</em> = tener la piel bronceada</div>
+
+          <div><em>ser orgulloso</em> = vanidoso, que se cree superior</div>
+          <div><em>estar orgulloso</em> = sentir satisfacción por algo</div>
+
+          <div><em>ser rico</em> = con dinero</div>
+          <div><em>estar rico</em> = sabroso</div>
+
+          <div><em>ser verde</em> = de color verde</div>
+          <div><em>estar verde</em> = no maduro</div>
+        </div>
+      </div>
+
+      <!-- Ejemplos al pie del cuadro -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 pl-6 text-justify mt-3">
+        <div class="space-y-1">
+          <div>No quiero salir con Jorge. <strong>Es muy aburrido</strong>.</div>
+          <div>Ana <strong>es muy lista</strong>. Tiene tres carreras.</div>
+          <div>Felipe <strong>es muy orgulloso</strong>. Se cree más listo que nadie.</div>
+        </div>
+
+        <div class="space-y-1">
+          <div>¿Qué puedo hacer? <strong>Estoy aburrido</strong>.</div>
+          <div>¿<strong>Está lista</strong> la comida?</div>
+          <div>Marta ha terminado la carrera. <strong>Estoy orgulloso</strong> de ella.</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = inputs.indexOf(event.target);
+        if (index > -1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

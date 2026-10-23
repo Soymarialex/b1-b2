@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            letter-spacing: normal;
+            word-spacing: normal;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* Encabezado de cada ejercicio según guía de estilo */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .highlight-pink {
+            color: #FF79AC;
+            font-weight: bold;
+        }
+
+        /* Listas de ejercicios */
+        .exercise-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            text-align: justify;
+            letter-spacing: normal;
+            word-spacing: normal;
+        }
+
+        /* Inputs de completación */
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+            display: inline-block;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+        }
+
+        /* Anchos de inputs */
+        .w-xs { width: 80px; }
+        .w-sm { width: 110px; }
+        .w-md { width: 150px; }
+
+        /* Botones de Selección Múltiple (Ejercicio 37.3) */
+        .option-group {
+            display: inline-flex;
+            gap: 4px;
+            vertical-align: baseline;
+            margin: 0 4px;
+        }
+
+        .btn-opt {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 2px 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-block;
+            line-height: 1.3;
+        }
+
+        .btn-opt:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-opt.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+            color: #155724 !important;
+        }
+
+        .btn-opt.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+            color: #721C24 !important;
+        }
+
+        /* Botón de Respuestas y Panel inferior */
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 700px) {
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+            .exercise-item {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 37.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">37.1</span>
+            <span class="exercise-instruction">Complete con las formas de <span class="highlight-pink">ser</span>.</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item">
+                1. —¿Qué <input type="text" class="fill-input w-xs" data-ans="es"> eso? — <input type="text" class="fill-input w-xs" data-ans="Es"> un sombrero.
+            </div>
+            <div class="exercise-item">
+                2. —¿De dónde <input type="text" class="fill-input w-xs" data-ans="son"> ustedes? — <input type="text" class="fill-input w-sm" data-ans="Somos"> ecuatorianos.
+            </div>
+            <div class="exercise-item">
+                3. —¿Cuánto <input type="text" class="fill-input w-xs" data-ans="es"> un café? — <input type="text" class="fill-input w-xs" data-ans="Son"> dos euros.
+            </div>
+            <div class="exercise-item">
+                4. —¿Quiénes <input type="text" class="fill-input w-xs" data-ans="son"> esas señoras? — <input type="text" class="fill-input w-xs" data-ans="Son"> mis abuelas.
+            </div>
+            <div class="exercise-item">
+                5. Este jamón <input type="text" class="fill-input w-xs" data-ans="es"> excelente.
+            </div>
+            <div class="exercise-item">
+                6. —¿Qué día <input type="text" class="fill-input w-xs" data-ans="es"> hoy? — <input type="text" class="fill-input w-xs" data-ans="Es"> jueves.
+            </div>
+            <div class="exercise-item">
+                7. —¿A qué hora <input type="text" class="fill-input w-xs" data-ans="es"> la clase? —A las cinco. <input type="text" class="fill-input w-xs" data-ans="Es"> en el aula 3.
+            </div>
+            <div class="exercise-item">
+                8. —¿Quién <input type="text" class="fill-input w-xs" data-ans="es"> Sonia? — <input type="text" class="fill-input w-xs" data-ans="Es"> una prima de Arturo. <input type="text" class="fill-input w-xs" data-ans="Es"> abogada.
+            </div>
+            <div class="exercise-item">
+                9. —Hola, <input type="text" class="fill-input w-xs" data-ans="soy"> Gracia. —Encantado, Gracia. Yo <input type="text" class="fill-input w-xs" data-ans="soy"> Lolo.
+            </div>
+            <div class="exercise-item">
+                10. —¿Vosotros quiénes <input type="text" class="fill-input w-xs" data-ans="sois">? — <input type="text" class="fill-input w-sm" data-ans="Somos"> unos compañeros de Julia.
+            </div>
+        </div>
+
+        <!-- EJERCICIO 37.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">37.2</span>
+            <span class="exercise-instruction">Complete con las formas de <span class="highlight-pink">estar</span>.</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item">
+                1. —¿Dónde <input type="text" class="fill-input w-xs" data-ans="está"> Raquel? — <input type="text" class="fill-input w-xs" data-ans="Está"> de vacaciones. Su novio y ella <input type="text" class="fill-input w-sm" data-ans="están"> en México.
+            </div>
+            <div class="exercise-item">
+                2. —¿Cómo <input type="text" class="fill-input w-sm" data-ans="estáis">? —Yo <input type="text" class="fill-input w-xs" data-ans="estoy"> bien, pero Susana <input type="text" class="fill-input w-xs" data-ans="está"> un poco resfriada.
+            </div>
+            <div class="exercise-item">
+                3. Cuidado con el puré. <input type="text" class="fill-input w-xs" data-ans="Está"> muy caliente.
+            </div>
+            <div class="exercise-item">
+                4. —¿Dónde <input type="text" class="fill-input w-sm" data-ans="están"> mis prismáticos? — <input type="text" class="fill-input w-sm" data-ans="Están"> en ese cajón, pero creo que <input type="text" class="fill-input w-sm" data-ans="están"> rotos.
+            </div>
+            <div class="exercise-item">
+                5. Este año <input type="text" class="fill-input w-xs" data-ans="está"> de moda el negro.
+            </div>
+            <div class="exercise-item">
+                6. —¿Dónde <input type="text" class="fill-input w-xs" data-ans="estás">,(tú)? — <input type="text" class="fill-input w-xs" data-ans="Estoy"> en la sierra. <input type="text" class="fill-input w-xs" data-ans="Está"> todo nevado.
+            </div>
+        </div>
+
+        <!-- EJERCICIO 37.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">37.3</span>
+            <span class="exercise-instruction">Seleccione la forma correcta.</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item">
+                1. —¿Dónde 
+                <span class="option-group" data-correct="está">
+                    <button type="button" class="btn-opt" data-val="es">es</button>
+                    <button type="button" class="btn-opt" data-val="está">está</button>
+                </span>
+                Carlos? —No sé. 
+                <span class="option-group" data-correct="Son">
+                    <button type="button" class="btn-opt" data-val="Son">Son</button>
+                    <button type="button" class="btn-opt" data-val="Están">Están</button>
+                </span>
+                cinco para las cinco y la clase 
+                <span class="option-group" data-correct="es">
+                    <button type="button" class="btn-opt" data-val="es">es</button>
+                    <button type="button" class="btn-opt" data-val="está">está</button>
+                </span>
+                a las cinco.
+            </div>
+
+            <div class="exercise-item">
+                2. Juan 
+                <span class="option-group" data-correct="es">
+                    <button type="button" class="btn-opt" data-val="es">es</button>
+                    <button type="button" class="btn-opt" data-val="está">está</button>
+                </span>
+                normalmente muy activo, pero hoy 
+                <span class="option-group" data-correct="está">
+                    <button type="button" class="btn-opt" data-val="es">es</button>
+                    <button type="button" class="btn-opt" data-val="está">está</button>
+                </span>
+                cansado.
+            </div>
+
+            <div class="exercise-item">
+                3. —¿Dónde 
+                <span class="option-group" data-correct="es">
+                    <button type="button" class="btn-opt" data-val="es">es</button>
+                    <button type="button" class="btn-opt" data-val="está">está</button>
+                </span>
+                la boda? —
+                <span class="option-group" data-correct="Es">
+                    <button type="button" class="btn-opt" data-val="Es">Es</button>
+                    <button type="button" class="btn-opt" data-val="Está">Está</button>
+                </span>
+                en una iglesia. Ana y Raúl 
+                <span class="option-group" data-correct="son">
+                    <button type="button" class="btn-opt" data-val="son">son</button>
+                    <button type="button" class="btn-opt" data-val="están">están</button>
+                </span>
+                católicos. —Sí, pero ¿dónde 
+                <span class="option-group" data-correct="está">
+                    <button type="button" class="btn-opt" data-val="es">es</button>
+                    <button type="button" class="btn-opt" data-val="está">está</button>
+                </span>
+                la iglesia?
+            </div>
+
+            <div class="exercise-item">
+                4. Hoy 
+                <span class="option-group" data-correct="es">
+                    <button type="button" class="btn-opt" data-val="es">es</button>
+                    <button type="button" class="btn-opt" data-val="está">está</button>
+                </span>
+                21 de diciembre. Ya 
+                <span class="option-group" data-correct="estamos">
+                    <button type="button" class="btn-opt" data-val="somos">somos</button>
+                    <button type="button" class="btn-opt" data-val="estamos">estamos</button>
+                </span>
+                en invierno.
+            </div>
+
+            <div class="exercise-item">
+                5. 
+                <span class="option-group" data-correct="Soy">
+                    <button type="button" class="btn-opt" data-val="Soy">Soy</button>
+                    <button type="button" class="btn-opt" data-val="Estoy">Estoy</button>
+                </span>
+                abogado, pero ahora 
+                <span class="option-group" data-correct="estoy">
+                    <button type="button" class="btn-opt" data-val="soy">soy</button>
+                    <button type="button" class="btn-opt" data-val="estoy">estoy</button>
+                </span>
+                de vendedor en una empresa.
+            </div>
+
+            <div class="exercise-item">
+                6. —Papá, 
+                <span class="option-group" data-correct="soy">
+                    <button type="button" class="btn-opt" data-val="soy">soy</button>
+                    <button type="button" class="btn-opt" data-val="estoy">estoy</button>
+                </span>
+                María. Ya 
+                <span class="option-group" data-correct="estoy">
+                    <button type="button" class="btn-opt" data-val="soy">soy</button>
+                    <button type="button" class="btn-opt" data-val="estoy">estoy</button>
+                </span>
+                en casa. —De acuerdo. ¿
+                <span class="option-group" data-correct="Estás">
+                    <button type="button" class="btn-opt" data-val="Eres">Eres</button>
+                    <button type="button" class="btn-opt" data-val="Estás">Estás</button>
+                </span>
+                sola?
+            </div>
+
+            <div class="exercise-item">
+                7. —¿De dónde 
+                <span class="option-group" data-correct="es">
+                    <button type="button" class="btn-opt" data-val="es">es</button>
+                    <button type="button" class="btn-opt" data-val="está">está</button>
+                </span>
+                usted? —
+                <span class="option-group" data-correct="Soy">
+                    <button type="button" class="btn-opt" data-val="Soy">Soy</button>
+                    <button type="button" class="btn-opt" data-val="Estoy">Estoy</button>
+                </span>
+                sueco. —¿Y dónde 
+                <span class="option-group" data-correct="está">
+                    <button type="button" class="btn-opt" data-val="es">es</button>
+                    <button type="button" class="btn-opt" data-val="está">está</button>
+                </span>
+                su equipaje?
+            </div>
+
+            <div class="exercise-item">
+                8. —¿
+                <span class="option-group" data-correct="Estáis">
+                    <button type="button" class="btn-opt" data-val="Sois">Sois</button>
+                    <button type="button" class="btn-opt" data-val="Estáis">Estáis</button>
+                </span>
+                contentos? —Por supuesto; 
+                <span class="option-group" data-correct="estamos">
+                    <button type="button" class="btn-opt" data-val="somos">somos</button>
+                    <button type="button" class="btn-opt" data-val="estamos">estamos</button>
+                </span>
+                de vacaciones.
+            </div>
+        </div>
+
+        <!-- EJERCICIO 37.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">37.4</span>
+            <span class="exercise-instruction">Complete con formas de <span class="highlight-pink">ser</span> o <span class="highlight-pink">estar</span>.</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item">
+                1. No me gusta salir con Jorge. <input type="text" class="fill-input w-xs" data-ans="Es"> muy aburrido.
+            </div>
+            <div class="exercise-item">
+                2. El bebé de Sara <input type="text" class="fill-input w-xs" data-ans="es"> muy despierto. Tiene cara de inteligente.
+            </div>
+            <div class="exercise-item">
+                3. <input type="text" class="fill-input w-xs" data-ans="Estoy"> muy orgulloso de mis hijos. <input type="text" class="fill-input w-xs" data-ans="Son"> muy buenos.
+            </div>
+            <div class="exercise-item">
+                4. Este arroz <input type="text" class="fill-input w-xs" data-ans="está"> riquísimo. Enhorabuena.
+            </div>
+            <div class="exercise-item">
+                5. Los padres de María <input type="text" class="fill-input w-xs" data-ans="son"> muy ricos. Tienen una cadena de tiendas.
+            </div>
+            <div class="exercise-item">
+                6. ¡Pobre Juan! <input type="text" class="fill-input w-xs" data-ans="Está"> malo y no puede venir a la fiesta.
+            </div>
+            <div class="exercise-item">
+                7. <input type="text" class="fill-input w-sm" data-ans="Estamos"> aburridas. No tenemos nada que hacer.
+            </div>
+            <div class="exercise-item">
+                8. No le digas nada a Alberto. <input type="text" class="fill-input w-xs" data-ans="Es"> muy orgulloso.
+            </div>
+            <div class="exercise-item">
+                9. ¿<input type="text" class="fill-input w-xs" data-ans="Estás"> listo, Antonio? Vamos a llegar tarde.
+            </div>
+            <div class="exercise-item">
+                10. Estas bananas <input type="text" class="fill-input w-xs" data-ans="están"> verdes. No las comáis.
+            </div>
+            <div class="exercise-item">
+                11. Esa película <input type="text" class="fill-input w-xs" data-ans="es"> muy mala. <input type="text" class="fill-input w-xs" data-ans="Es"> muy aburrida.
+            </div>
+            <div class="exercise-item">
+                12. Luis no está durmiendo. Ya <input type="text" class="fill-input w-xs" data-ans="está"> despierto.
+            </div>
+            <div class="exercise-item">
+                13. Sebastián ha tenido gripe, pero ya <input type="text" class="fill-input w-xs" data-ans="está"> mejor.
+            </div>
+        </div>
+
+        <!-- Botón de Respuestas Correctas -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <!-- Panel de Respuestas Correctas -->
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">37.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> es; Es</li>
+                        <li><span class="answer-num">2.</span> son; Somos</li>
+                        <li><span class="answer-num">3.</span> es; Son</li>
+                        <li><span class="answer-num">4.</span> son; Son</li>
+                        <li><span class="answer-num">5.</span> es</li>
+                        <li><span class="answer-num">6.</span> es; Es</li>
+                        <li><span class="answer-num">7.</span> es; Es</li>
+                        <li><span class="answer-num">8.</span> es; Es; Es</li>
+                        <li><span class="answer-num">9.</span> soy; soy</li>
+                        <li><span class="answer-num">10.</span> sois; Somos</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">37.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> está; Está; están</li>
+                        <li><span class="answer-num">2.</span> estáis; estoy; está</li>
+                        <li><span class="answer-num">3.</span> Está</li>
+                        <li><span class="answer-num">4.</span> están; Están; están</li>
+                        <li><span class="answer-num">5.</span> está</li>
+                        <li><span class="answer-num">6.</span> estás; Estoy; Está</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">37.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> está; Son; es</li>
+                        <li><span class="answer-num">2.</span> es; está</li>
+                        <li><span class="answer-num">3.</span> es; Es; son; está</li>
+                        <li><span class="answer-num">4.</span> es; estamos</li>
+                        <li><span class="answer-num">5.</span> Soy; estoy</li>
+                        <li><span class="answer-num">6.</span> soy; estoy; Estás</li>
+                        <li><span class="answer-num">7.</span> es; Soy; está</li>
+                        <li><span class="answer-num">8.</span> Estáis; estamos</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">37.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> Es</li>
+                        <li><span class="answer-num">2.</span> es</li>
+                        <li><span class="answer-num">3.</span> Estoy; Son</li>
+                        <li><span class="answer-num">4.</span> está</li>
+                        <li><span class="answer-num">5.</span> son</li>
+                        <li><span class="answer-num">6.</span> Está</li>
+                        <li><span class="answer-num">7.</span> Estamos</li>
+                        <li><span class="answer-num">8.</span> Es</li>
+                        <li><span class="answer-num">9.</span> Estás</li>
+                        <li><span class="answer-num">10.</span> están</li>
+                        <li><span class="answer-num">11.</span> es; Es</li>
+                        <li><span class="answer-num">12.</span> está</li>
+                        <li><span class="answer-num">13.</span> está</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalizador de texto para validación flexible
+            function normalizeText(text) {
+                return text.trim().replace(/\s+/g, ' ');
+            }
+
+            // Normalizador secundario insensible a tildes/signos
+            function simplifyText(text) {
+                return text.trim()
+                    .toLowerCase()
+                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()¡!¿?]/g, "")
+                    .replace(/\s+/g, ' ');
+            }
+
+            // Validar un campo input individual
+            function validateInput(input, forceValidateEmpty = false) {
+                const rawVal = input.value;
+                const userVal = normalizeText(rawVal);
+                const dataAns = input.getAttribute('data-ans');
+                if (!dataAns) return;
+
+                const acceptedAnswers = dataAns.split('|').map(normalizeText);
+                const simplifiedAccepted = dataAns.split('|').map(simplifyText);
+                const simplifiedUser = simplifyText(rawVal);
+
+                if (userVal === '') {
+                    if (forceValidateEmpty) {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    } else {
+                        input.classList.remove('correct', 'incorrect');
+                    }
+                    return;
+                }
+
+                // Comparación exacta o simplificada
+                if (acceptedAnswers.includes(userVal) || simplifiedAccepted.includes(simplifiedUser)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            // Event Listeners para cada input
+            inputs.forEach((input, index) => {
+                // Al escribir, quitar validación temporalmente
+                input.addEventListener('input', function() {
+                    this.classList.remove('correct', 'incorrect');
+                });
+
+                // Al perder el foco (blur), validar
+                input.addEventListener('blur', function() {
+                    if (this.value !== '') {
+                        validateInput(this, false);
+                    }
+                });
+
+                // Tecla Enter para validar y saltar al siguiente campo
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this, true);
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Lógica para botones de opción del ejercicio 37.3
+            const optionGroups = document.querySelectorAll('.option-group');
+            optionGroups.forEach(group => {
+                const correctVal = group.getAttribute('data-correct');
+                const buttons = group.querySelectorAll('.btn-opt');
+
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const selectedVal = this.getAttribute('data-val');
+                        
+                        // Limpiar estados de los botones del grupo
+                        buttons.forEach(b => b.classList.remove('correct', 'incorrect'));
+
+                        // Comparar e indicar acierto o error
+                        if (selectedVal.toLowerCase() === correctVal.toLowerCase()) {
+                            this.classList.add('correct');
+                        } else {
+                            this.classList.add('incorrect');
+                        }
+                    });
+                });
+            });
+
+            // Toggle para el panel de respuestas
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
