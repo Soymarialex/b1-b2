@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lección 40 - quiero, mido, sueño</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Rosa Claro */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Blanco Puro */
+      --color-borde: #E0E0E0;        /* Gris Claro */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CONTENEDOR PRINCIPAL (LAYOUT) */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* ENCABEZADO DE LA LECCIÓN */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #121118; /* Título en negro */
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario); /* Subtítulo en rosa sin negrita */
+      line-height: 1.2;
+    }
+
+    /* BULLETS Y TÍTULOS DE SECCIÓN */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+      color: var(--color-texto);
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    /* TABLA DE CONJUGACIÓN DE VERBOS IRREGULARES */
+    .conjugation-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    .conjugation-table th {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      padding: 0.5rem 0.5rem;
+      text-align: center;
+      border: 1px solid var(--color-primario);
+    }
+
+    .conjugation-table td {
+      padding: 0.4rem 0.5rem;
+      border-right: 1px solid var(--color-primario);
+    }
+
+    .conjugation-table tr td:first-child {
+      background-color: #FFD6E7; /* Fondo rosa suave para pronombres */
+      color: var(--color-texto);
+      border-right: 1px solid var(--color-primario);
+    }
+
+    .conjugation-table tr td:not(:first-child) {
+      text-align: center;
+    }
+
+    /* ENCABEZADOS DE CAMBIO VOCÁLICO */
+    .vowel-change-header {
+      color: var(--color-primario);
+      font-weight: bold;
+      text-align: center;
+      padding-bottom: 0.25rem;
+    }
+
+    /* CUADROS DE ATENCIÓN */
+    .attention-box {
+      background-color: #FFFFFF;
+      border: 1px solid var(--color-secundario);
+      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+      position: relative;
+    }
+
+    .attention-badge-container {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-bottom: 0.6rem;
+    }
+
+    .attention-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+    }
+
+    .attention-badge-bar {
+      background-color: var(--color-primario);
+      width: 3px;
+      height: 1.4rem;
+    }
+
+    /* TEXTO EN INGLÉS O RESALTADO */
+    .english-translation {
+      color: var(--color-primario);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">40</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">quiero, mido, sueño</h1>
+        <h2 class="page-subtitle">Presente de indicativo: verbos irregulares (1)</h2>
+      </div>
+    </header>
+
+    <!-- SECCIÓN: FORMACIÓN DEL PRESENTE -->
+    <section class="mb-6">
+      <div class="text-justify font-bold my-4">
+        Formación del presente de indicativo: verbos irregulares
+      </div>
+
+      <!-- FILA DE CAMBIOS VOCÁLICOS -->
+      <div class="grid grid-cols-5 text-center text-sm sm:text-base font-bold mb-1">
+        <div></div>
+        <div class="vowel-change-header"><span class="inline-block w-2 h-2 rounded-full bg-[#FF79AC] mr-1"></span>e &gt; ie</div>
+        <div class="vowel-change-header"><span class="inline-block w-2 h-2 rounded-full bg-[#FF79AC] mr-1"></span>e &gt; i</div>
+        <div class="vowel-change-header"><span class="inline-block w-2 h-2 rounded-full bg-[#FF79AC] mr-1"></span>o &gt; ue</div>
+        <div class="vowel-change-header"><span class="inline-block w-2 h-2 rounded-full bg-[#FF79AC] mr-1"></span>u &gt; ue</div>
+      </div>
+
+      <!-- TABLA DE CONJUGACIÓN DE VERBOS IRREGULARES -->
+      <div class="overflow-x-auto mb-4">
+        <table class="conjugation-table text-sm sm:text-base">
+          <thead>
+            <tr>
+              <th></th>
+              <th>quer-er</th>
+              <th>ped-ir</th>
+              <th>dorm-ir / mov-er</th>
+              <th>jug-ar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>(yo)</td>
+              <td>qu<strong>ie</strong>r-o</td>
+              <td>p<strong>i</strong>d-o</td>
+              <td>d<strong>ue</strong>rm-o / m<strong>ue</strong>v-o</td>
+              <td>j<strong>ue</strong>g-o</td>
+            </tr>
+            <tr>
+              <td>(tú)</td>
+              <td>qu<strong>ie</strong>r-es</td>
+              <td>p<strong>i</strong>d-es</td>
+              <td>d<strong>ue</strong>rm-es / m<strong>ue</strong>v-es</td>
+              <td>j<strong>ue</strong>g-as</td>
+            </tr>
+            <tr>
+              <td>(usted)</td>
+              <td>qu<strong>ie</strong>r-e</td>
+              <td>p<strong>i</strong>d-e</td>
+              <td>d<strong>ue</strong>rm-e / m<strong>ue</strong>v-e</td>
+              <td>j<strong>ue</strong>g-a</td>
+            </tr>
+            <tr>
+              <td>(él, ella)</td>
+              <td>qu<strong>ie</strong>r-e</td>
+              <td>p<strong>i</strong>d-e</td>
+              <td>d<strong>ue</strong>rm-e / m<strong>ue</strong>v-e</td>
+              <td>j<strong>ue</strong>g-a</td>
+            </tr>
+            <tr>
+              <td>(nosotros, nosotras)</td>
+              <td>quer-emos</td>
+              <td>ped-imos</td>
+              <td>dorm-imos / mov-emos</td>
+              <td>jug-amos</td>
+            </tr>
+            <tr>
+              <td>(vosotros, vosotras)</td>
+              <td>quer-éis</td>
+              <td>ped-ís</td>
+              <td>dorm-ís / mov-éis</td>
+              <td>jug-áis</td>
+            </tr>
+            <tr>
+              <td>(ustedes)</td>
+              <td>qu<strong>ie</strong>r-en</td>
+              <td>p<strong>i</strong>d-en</td>
+              <td>d<strong>ue</strong>rm-en / m<strong>ue</strong>v-en</td>
+              <td>j<strong>ue</strong>g-an</td>
+            </tr>
+            <tr>
+              <td>(ellos, ellas)</td>
+              <td>qu<strong>ie</strong>r-en</td>
+              <td>p<strong>i</strong>d-en</td>
+              <td>d<strong>ue</strong>rm-en / m<strong>ue</strong>v-en</td>
+              <td>j<strong>ue</strong>g-an</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- OTROS VERBOS COMO QUERER -->
+      <div class="text-justify my-3 leading-relaxed">
+        Otros como <em>querer</em>: -ar: <em>calentar, cerrar, comenzar, despertar(se), empezar, fregar, gobernar, merendar, pensar, regar, recomendar</em>; -er: <em>defender, encender, entender, perder</em>; -ir: <em>divertir(se), mentir, preferir, sentir(se)</em>
+      </div>
+
+      <!-- PRIMER CUADRO DE ATENCIÓN -->
+      <div class="attention-box text-justify">
+        <div class="attention-badge-container">
+          <span class="attention-badge">ATENCIÓN:</span>
+          <span class="attention-badge-bar"></span>
+          <span class="attention-badge-bar"></span>
+        </div>
+        <div class="space-y-1 mt-1">
+          <div>venir: <strong>vengo</strong>, v<strong>ie</strong>nes, v<strong>ie</strong>ne, v<strong>ie</strong>ne, venimos, venís, v<strong>ie</strong>nen, v<strong>ie</strong>nen</div>
+          <div>tener: <strong>tengo</strong>, t<strong>ie</strong>nes, t<strong>ie</strong>ne, t<strong>ie</strong>ne, tenemos, tenéis, t<strong>ie</strong>nen, t<strong>ie</strong>nen</div>
+        </div>
+      </div>
+
+      <!-- OTROS VERBOS COMO PEDIR -->
+      <div class="text-justify my-3 leading-relaxed">
+        Otros como <em>pedir</em>: <em>elegir, conseguir, corregir, despedir, freír, impedir, medir, perseguir, reír, repetir, seguir, servir, sonreír, vestir(se)</em>
+      </div>
+
+      <!-- SEGUNDO CUADRO DE ATENCIÓN -->
+      <div class="attention-box text-justify">
+        <div class="attention-badge-container">
+          <span class="attention-badge">ATENCIÓN:</span>
+          <span class="attention-badge-bar"></span>
+          <span class="attention-badge-bar"></span>
+        </div>
+        <div class="space-y-1 mt-1">
+          <div>decir: <strong>digo</strong>, d<strong>i</strong>ces, d<strong>i</strong>ce, d<strong>i</strong>ce, decimos, decís, d<strong>i</strong>cen, d<strong>i</strong>cen</div>
+          <div>verbos en <em>-gir</em>: el<strong>ij</strong>o, el<strong>i</strong>ges, el<strong>i</strong>ge, el<strong>i</strong>ge, elegimos, elegís, el<strong>i</strong>gen, el<strong>i</strong>gen</div>
+          <div>verbos en <em>-guir</em>: s<strong>ig</strong>o, s<strong>i</strong>gues, s<strong>i</strong>gue, s<strong>i</strong>gue, seguimos, seguís, s<strong>i</strong>guen, s<strong>i</strong>guen</div>
+        </div>
+      </div>
+
+      <!-- OTROS VERBOS COMO DORMIR -->
+      <div class="text-justify my-3 leading-relaxed">
+        Otros como <em>dormir</em>: -ar: <em>acordarse, acostar(se), comprobar, contar, costar, encontrar, probar, recordar, sonar, soñar, volar</em>; -er: <em>devolver, llover, morder, poder, soler, volver</em>; -ir: <em>morir</em>
+      </div>
+
+      <!-- TERCER CUADRO DE ATENCIÓN CON IMAGEN -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center my-4">
+        <div class="md:col-span-2">
+          <div class="attention-box text-justify h-full mb-0">
+            <div class="attention-badge-container">
+              <span class="attention-badge">ATENCIÓN:</span>
+              <span class="attention-badge-bar"></span>
+              <span class="attention-badge-bar"></span>
+            </div>
+            <div class="space-y-1 mt-1">
+              <div>cocer: c<strong>uez</strong>o, c<strong>ue</strong>ces, c<strong>ue</strong>ce, c<strong>ue</strong>ce, cocemos, cocéis, c<strong>ue</strong>cen</div>
+              <div>Otros: <em>torcer</em></div>
+              <div class="pt-2">oler: <strong>hue</strong>lo, <strong>hue</strong>les, <strong>hue</strong>le, <strong>hue</strong>le, olemos, oléis, <strong>hue</strong>len, <strong>hue</strong>len</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col items-center justify-center">
+          <img src="https://imgur.com/e5dBq7F.jpg" alt= class="max-w-full h-auto object-contain rounded">
+          <div class="text-center text-sm italic mt-1">
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECCIÓN: USOS DEL PRESENTE DE INDICATIVO -->
+    <section class="mb-6">
+      <div class="section-bullet-title font-bold">
+        <span class="bullet-icon">●</span>
+        <div class="text-justify">
+          Usos del presente de indicativo
+        </div>
+      </div>
+
+      <div class="space-y-4 pl-4 text-justify">
+        
+        <!-- USO 1 -->
+        <div>
+          <div>– Pedir o dar información sobre el presente.</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-4 mt-1">
+            <div><em><strong>Prefiero</strong> el cine al teatro.</em></div>
+            <div><em>Ernesto no me <strong>quiere</strong>.</em></div>
+          </div>
+        </div>
+
+        <!-- USO 2 -->
+        <div>
+          <div>– Hablar de lo que hacemos habitualmente (todos los días, una vez a la semana, siempre, nunca, etc.).</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-4 mt-1">
+            <div><em><strong>Riego</strong> las plantas dos veces a la semana.</em></div>
+            <div><em>No <strong>juego</strong> nunca a las cartas.</em></div>
+          </div>
+        </div>
+
+        <!-- USO 3 -->
+        <div>
+          <div>– Hablar de verdades generales o universales.</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-4 mt-1">
+            <div><em>Los osos <strong>duermen</strong> en invierno.</em></div>
+            <div><em>El Sol <strong>calienta</strong> la Tierra.</em></div>
+          </div>
+        </div>
+
+        <!-- USO 4 -->
+        <div>
+          <div>– Acciones que suceden en el momento de hablar.</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-4 mt-1">
+            <div><em>No <strong>encuentro</strong> mis gafas.</em></div>
+            <div><em>–¿De dónde <strong>vienes</strong>? –De la universidad.</em></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = inputs.indexOf(event.target);
+        if (index > -1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
