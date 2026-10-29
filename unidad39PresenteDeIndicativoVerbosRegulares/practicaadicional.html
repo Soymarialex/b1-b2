@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica adicional</title>
+    <style>
+        :root {
+            --color-primario: #FF79AC;
+            --color-secundario: #FFB3D1;
+            --color-texto: #121118;
+            --color-fondo: #FFFFFF;
+            --color-borde: #E0E0E0;
+            --feedback-acierto: #D4EDDA;
+            --feedback-error: #F8D7DA;
+            --feedback-acierto-texto: #155724;
+            --feedback-error-texto: #721C24;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+            font-size: 1.05rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-icon {
+            background-color: var(--color-primario);
+            color: #FFFFFF;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .title-container {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        h1.page-title {
+            font-size: clamp(2.2rem, 5vw, 2.5rem);
+            font-weight: bold;
+            color: var(--color-primario);
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        .header-divider {
+            height: 2px;
+            background-color: var(--color-primario);
+            border: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .flex-instruction {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .pink-bullet {
+            color: var(--color-primario);
+            font-size: 1.5rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        h2.subtitle {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--color-texto);
+        }
+
+        p.activity-text {
+            text-align: justify;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border: 2px solid var(--color-primario);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .fill-input {
+            border: none;
+            border-bottom: 2px solid var(--color-borde);
+            background-color: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--color-texto);
+            padding: 2px 6px;
+            margin: 0 4px;
+            outline: none;
+            transition: all 0.25s ease;
+            min-width: 90px;
+        }
+
+        .fill-input:focus {
+            border-bottom-color: var(--color-primario);
+        }
+
+        .fill-input.correct {
+            background-color: var(--feedback-acierto);
+            color: var(--feedback-acierto-texto);
+            border-bottom-color: #28a745;
+            border-radius: 4px;
+        }
+
+        .fill-input.incorrect {
+            background-color: var(--feedback-error);
+            color: var(--feedback-error-texto);
+            border-bottom-color: #dc3545;
+            border-radius: 4px;
+        }
+
+        .toggle-btn {
+            background-color: var(--color-secundario);
+            border: none;
+            border-bottom: 3px solid var(--color-primario);
+            border-radius: 5px;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--color-texto);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            transition: opacity 0.2s;
+        }
+
+        .toggle-btn:hover {
+            opacity: 0.9;
+        }
+
+        .answers-box {
+            display: none;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 1rem;
+            border: 1px solid var(--color-borde);
+        }
+
+        .answers-box p {
+            text-align: justify;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .answers-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .answers-box strong {
+            color: var(--color-primario);
+        }
+    </style>
+</head>
+<body>
+    <main class="main-container">
+        
+        <header>
+            <div class="header-container">
+                <div class="badge-icon">📝</div>
+                <div class="title-container">
+                    <h1 class="page-title">Práctica adicional</h1>
+                </div>
+            </div>
+            <hr class="header-divider">
+        </header>
+
+        <section>
+            <div class="flex-instruction">
+                <span class="pink-bullet">●</span>
+                <h2 class="subtitle">Practica lectura y escucha con acento argentino:</h2>
+            </div>
+            
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/-2yO4INKXtU?Rel=0" 
+                    title="YouTube video player" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <section>
+            <div class="flex-instruction">
+                <span class="pink-bullet">●</span>
+                <h2 class="subtitle">Completa la historia conjugando correctamente.</h2>
+            </div>
+
+            <div class="activity-form">
+                <p class="activity-text">
+                    Hoy quiero contarles un poco sobre mi vida y lo que (hacer) 
+                    <input type="text" class="fill-input" data-answers='["hago"]' size="8"> 
+                    normalmente de lunes a domingo.
+                </p>
+
+                <p class="activity-text">
+                    (vivir) 
+                    <input type="text" class="fill-input" data-answers='["yo vivo", "vivo"]' size="10"> 
+                    en Argentina.
+                </p>
+
+                <p class="activity-text">
+                    (trabajar) 
+                    <input type="text" class="fill-input" data-answers='["trabajo"]' size="10"> 
+                    en el centro de la ciudad y todos los días (tener) 
+                    <input type="text" class="fill-input" data-answers='["tengo"]' size="8"> 
+                    una rutina muy activa:
+                </p>
+
+                <p class="activity-text">
+                    (levantarse) 
+                    <input type="text" class="fill-input" data-answers='["me levanto"]' size="12"> 
+                    temprano, (comer) 
+                    <input type="text" class="fill-input" data-answers='["como"]' size="8"> 
+                    fruta fresca para desayunar y (beber) 
+                    <input type="text" class="fill-input" data-answers='["bebo"]' size="8"> 
+                    una taza de café caliente.
+                </p>
+
+                <p class="activity-text">
+                    Por las tardes, cuando (llegar) 
+                    <input type="text" class="fill-input" data-answers='["llego"]' size="8"> 
+                    a casa, (recoger) 
+                    <input type="text" class="fill-input" data-answers='["recojo"]' size="8"> 
+                    mi habitación y (organizar) 
+                    <input type="text" class="fill-input" data-answers='["organizo"]' size="10"> 
+                    mis cosas.
+                </p>
+
+                <p class="activity-text">
+                    Los fines de semana (yo/cambiar) 
+                    <input type="text" class="fill-input" data-answers='["cambio"]' size="8"> 
+                    un poco el ritmo: (leer) 
+                    <input type="text" class="fill-input" data-answers='["leo"]' size="6"> 
+                    novelas históricas, (escuchar) 
+                    <input type="text" class="fill-input" data-answers='["escucho"]' size="10"> 
+                    música y (escribir) 
+                    <input type="text" class="fill-input" data-answers='["escribo"]' size="10"> 
+                    notas en mi cuaderno.
+                </p>
+
+                <p class="activity-text">
+                    Mis padres (vivir) 
+                    <input type="text" class="fill-input" data-answers='["viven"]' size="8"> 
+                    en otra ciudad, pero siempre nos (escribir) 
+                    <input type="text" class="fill-input" data-answers='["escribimos"]' size="12"> 
+                    o (hablar) 
+                    <input type="text" class="fill-input" data-answers='["hablamos"]' size="10"> 
+                    por teléfono.
+                </p>
+
+                <p class="activity-text">
+                    Y ustedes, ¿Qué (hacer) 
+                    <input type="text" class="fill-input" data-answers='["hacen"]' size="8"> 
+                    los fines de semana?
+                </p>
+            </div>
+
+            <button type="button" class="toggle-btn" id="toggleAnswersBtn">Respuestas correctas</button>
+
+            <div class="answers-box" id="answersBox">
+                <p>Hoy quiero contarles un poco sobre mi vida y lo que <strong>hago</strong> normalmente de lunes a domingo.</p>
+                <p><strong>Yo vivo</strong> en Argentina.</p>
+                <p><strong>Trabajo</strong> en el centro de la ciudad y todos los días <strong>tengo</strong> una rutina muy activa:</p>
+                <p><strong>me levanto</strong> temprano, <strong>como</strong> fruta fresca para desayunar y <strong>bebo</strong> una taza de café caliente.</p>
+                <p>Por las tardes, cuando <strong>llego</strong> a casa, <strong>recojo</strong> mi habitación y <strong>organizo</strong> mis cosas.</p>
+                <p>Los fines de semana <strong>cambio</strong> un poco el ritmo: <strong>leo</strong> novelas históricas, <strong>escucho</strong> música y <strong>escribo</strong> notas en mi cuaderno.</p>
+                <p>Mis padres <strong>viven</strong> en otra ciudad, pero siempre <strong>nos escribimos</strong> o <strong>hablamos</strong> por teléfono.</p>
+                <p>Y ustedes, ¿Qué <strong>hacen</strong> los fines de semana?</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = Array.from(document.querySelectorAll('.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersBox = document.getElementById('answersBox');
+
+            function normalizeText(text) {
+                return text.trim().toLowerCase().replace(/\s+/g, ' ');
+            }
+
+            function validateInput(input) {
+                const val = normalizeText(input.value);
+                if (val === '') {
+                    input.classList.remove('correct', 'incorrect');
+                    return;
+                }
+
+                const validAnswers = JSON.parse(input.getAttribute('data-answers')).map(normalizeText);
+
+                if (validAnswers.includes(val)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+            }
+
+            inputs.forEach((input, index) => {
+                input.addEventListener('blur', () => {
+                    validateInput(input);
+                });
+
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(input);
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+
+                input.addEventListener('input', () => {
+                    if (input.value === '') {
+                        input.classList.remove('correct', 'incorrect');
+                    }
+                });
+            });
+
+            toggleBtn.addEventListener('click', () => {
+                if (answersBox.style.display === 'block') {
+                    answersBox.style.display = 'none';
+                } else {
+                    answersBox.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

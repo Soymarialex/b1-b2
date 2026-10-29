@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lección 39 - trabajo, como, vivo</title>
+  <script src="https://cdn.tailwindcss.com?v=1.0"></script>
+  <style>
+    :root {
+      --color-primario: #FF79AC;     /* Flamingo Pink */
+      --color-secundario: #FFB3D1;   /* Rosa Claro */
+      --color-texto: #121118;        /* Eerie Black */
+      --color-fondo: #FFFFFF;        /* Blanco Puro */
+      --color-borde: #E0E0E0;        /* Gris Claro */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Platform Medium', 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.6;
+      font-size: 1.1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CONTENEDOR PRINCIPAL (LAYOUT) */
+    .main-container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+
+    /* ENCABEZADO DE LA LECCIÓN */
+    .lesson-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-badge {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-size: 3rem;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lesson-title-container {
+      flex: 1;
+      border-bottom: 2px solid var(--color-primario);
+      padding-bottom: 0.5rem;
+    }
+
+    h1.page-title {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #121118; /* Título en negro */
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+    }
+
+    h2.page-subtitle {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: var(--color-primario); /* Subtítulo en rosa sin negrita */
+      line-height: 1.2;
+    }
+
+    /* BULLETS Y TÍTULOS DE SECCIÓN */
+    .section-bullet-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+      color: var(--color-texto);
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      text-align: justify;
+    }
+
+    .bullet-icon {
+      color: var(--color-primario);
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    /* TABLA DE CONJUGACIÓN */
+    .conjugation-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    .conjugation-table th {
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      border: 1px solid var(--color-primario);
+    }
+
+    .conjugation-table td {
+      padding: 0.4rem 1rem;
+      border-right: 1px solid var(--color-primario);
+    }
+
+    .conjugation-table tr td:first-child {
+      background-color: #FFD6E7; /* Fondo rosa suave para pronombres */
+      color: var(--color-texto);
+      border-right: 1px solid var(--color-primario);
+    }
+
+    .conjugation-table tr td:not(:first-child) {
+      text-align: center;
+    }
+
+    /* CUADROS DE ATENCIÓN */
+    .attention-box {
+      background-color: var(--color-secundario);
+      border-left: 4px solid var(--color-primario);
+      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+      position: relative;
+    }
+
+    .attention-badge {
+      display: inline-block;
+      background-color: var(--color-primario);
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+    }
+
+    /* TEXTO EN INGLÉS O RESALTADO */
+    .english-translation {
+      color: var(--color-primario);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- ENCABEZADO DE LA LECCIÓN -->
+    <header class="lesson-header">
+      <div class="lesson-badge">39</div>
+      <div class="lesson-title-container">
+        <h1 class="page-title">trabajo, como, vivo</h1>
+        <h2 class="page-subtitle">Presente de indicativo: verbos regulares</h2>
+      </div>
+    </header>
+
+    <!-- SECCIÓN: FORMACIÓN DEL PRESENTE -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="text-justify font-bold">
+          Formación del presente de indicativo: verbos regulares
+        </div>
+      </div>
+
+      <!-- TABLA DE CONJUGACIÓN DE VERBOS REGULARES -->
+      <div class="overflow-x-auto my-4">
+        <table class="conjugation-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>trabaj-ar</th>
+              <th>com-er</th>
+              <th>viv-ir</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>(yo)</td>
+              <td>trabaj-<strong>o</strong></td>
+              <td>com-<strong>o</strong></td>
+              <td>viv-<strong>o</strong></td>
+            </tr>
+            <tr>
+              <td>(tú)</td>
+              <td>trabaj-<strong>as</strong></td>
+              <td>com-<strong>es</strong></td>
+              <td>viv-<strong>es</strong></td>
+            </tr>
+            <tr>
+              <td>(usted)</td>
+              <td>trabaj-<strong>a</strong></td>
+              <td>com-<strong>e</strong></td>
+              <td>viv-<strong>e</strong></td>
+            </tr>
+            <tr>
+              <td>(él, ella)</td>
+              <td>trabaj-<strong>a</strong></td>
+              <td>com-<strong>e</strong></td>
+              <td>viv-<strong>e</strong></td>
+            </tr>
+            <tr>
+              <td>(nosotros, nosotras)</td>
+              <td>trabaj-<strong>amos</strong></td>
+              <td>com-<strong>emos</strong></td>
+              <td>viv-<strong>imos</strong></td>
+            </tr>
+            <tr>
+              <td>(vosotros, vosotras)</td>
+              <td>trabaj-<strong>áis</strong></td>
+              <td>com-<strong>éis</strong></td>
+              <td>viv-<strong>ís</strong></td>
+            </tr>
+            <tr>
+              <td>(ustedes)</td>
+              <td>trabaj-<strong>an</strong></td>
+              <td>com-<strong>en</strong></td>
+              <td>viv-<strong>en</strong></td>
+            </tr>
+            <tr>
+              <td>(ellos, ellas)</td>
+              <td>trabaj-<strong>an</strong></td>
+              <td>com-<strong>en</strong></td>
+              <td>viv-<strong>en</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- PRIMER CUADRO DE ATENCIÓN -->
+      <div class="attention-box text-justify">
+        <div class="attention-badge">ATENCIÓN:</div>
+        <div class="space-y-1 mt-1">
+          <div>Verbo <em>ver</em>: ve-<strong>o</strong>, v-<strong>es</strong>, v-<strong>e</strong>, v-<strong>e</strong>, v-<strong>emos</strong>, v-<strong>eis</strong>, v-<strong>en</strong></div>
+          <div>Verbos en <em>-ger</em>: coger: <strong>cojo</strong>, coges, coge, coge, cogemos, cogéis, cogen, cogen</div>
+          <div class="pl-4">Otros: <em>escoger</em>, <em>proteger</em>, <em>recoger</em></div>
+          <div>Verbos en <em>-cer</em>: vencer → <strong>venzo</strong>, vences, vence, vence, vencemos, vencéis, vencen, vencen</div>
+          <div class="pl-4">Otros: <em>convencer</em></div>
+        </div>
+      </div>
+
+      <!-- SEGUNDO CUADRO DE ATENCIÓN -->
+      <div class="attention-box text-justify">
+        <div class="attention-badge">ATENCIÓN:</div>
+        <div class="space-y-1 mt-1">
+          <div>continuar: contin<strong>ú</strong>o, contin<strong>ú</strong>as, contin<strong>ú</strong>a, contin<strong>ú</strong>a, continuamos, continuáis, contin<strong>ú</strong>an, contin<strong>ú</strong>an</div>
+          <div>enviar: env<strong>í</strong>o, env<strong>í</strong>as, env<strong>í</strong>a, env<strong>í</strong>a, enviamos, enviáis, env<strong>í</strong>an, env<strong>í</strong>an</div>
+          <div>prohibir: proh<strong>í</strong>bo, proh<strong>í</strong>bes, proh<strong>í</strong>be, proh<strong>í</strong>be, prohibimos, prohibís, proh<strong>í</strong>ben, proh<strong>í</strong>ben</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: USOS DEL PRESENTE DE INDICATIVO -->
+    <section class="mb-6">
+      <div class="section-bullet-title">
+        <span class="bullet-icon">●</span>
+        <div class="text-justify font-bold">
+          Usos del presente de indicativo
+        </div>
+      </div>
+
+      <div class="space-y-6 pl-4 text-justify">
+        
+        <!-- USO 1 CON IMAGEN 1 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+          <div class="md:col-span-2 space-y-1">
+            <div>– Pedir o dar información sobre el presente.</div>
+            <div class="pl-4 space-y-0.5">
+              <div><em><strong>Trabajo</strong> en una ONG.</em></div>
+              <div><em>Mis padres <strong>viven</strong> en Perú.</em></div>
+            </div>
+          </div>
+          <div class="flex justify-center md:justify-end">
+            <img src="https://imgur.com/6AYy3NR.jpg" alt="Ilustración 1 - ¿En qué trabajas? Trabajo en una orquesta." class="max-w-full h-auto object-contain rounded">
+          </div>
+        </div>
+
+        <!-- USO 2 -->
+        <div>
+          <div>– Hablar de lo que hacemos habitualmente (todos los días, una vez a la semana, siempre, nunca, etc.).</div>
+          <div class="pl-4 space-y-0.5 mt-0.5">
+            <div><em>Los domingos por la mañana <strong>recojo</strong> mi habitación.</em></div>
+            <div><em>–¿A qué hora <strong>cenáis</strong>? –A las diez.</em></div>
+            <div><em>Juan Luis <strong>lee</strong> dos periódicos todos los días.</em></div>
+            <div><em>–¿Un poco de vino? –No, gracias. No <strong>bebo</strong> vino.</em></div>
+          </div>
+        </div>
+
+        <!-- USO 3 Y 4 CON IMAGEN 2 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+          <div class="md:col-span-2 space-y-4">
+            <div>
+              <div>– Hablar de verdades generales o universales</div>
+              <div class="pl-4 space-y-0.5 mt-0.5">
+                <div><em>Los osos <strong>comen</strong> pescado.</em></div>
+                <div><em>Las mariposas no <strong>viven</strong> mucho tiempo.</em></div>
+              </div>
+            </div>
+
+            <div>
+              <div>– Describir acciones que están sucediendo en el momento de hablar.</div>
+              <div class="pl-4 space-y-0.5 mt-0.5">
+                <div><em>–¿Qué <strong>comes</strong>? –Una manzana. Está muy rica.</em></div>
+                <div><em>–¿Por qué <strong>corres</strong>? –<strong>Tengo</strong> prisa. Voy a llegar tarde a clase.</em></div>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center md:justify-end">
+            <img src="https://imgur.com/yoZiAk0.jpg" alt="Ilustración 2 - ¿Qué ves? Una chica. Lleva una gorra de béisbol." class="max-w-full h-auto object-contain rounded">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BARRA INFERIOR DE UNIDAD (REFERENCIA AL FINAL) -->
+    <footer class="mt-8 flex items-center gap-1.5 text-sm sm:text-base">
+      <!-- Triángulo / Flecha indicadora en rosa primario -->
+      <div class="w-0 h-0 border-y-[7px] border-y-transparent border-l-[10px] border-l-[#FF79AC] flex-shrink-0"></div>
+      
+      <!-- Bloque principal con fondo rosa claro -->
+      <div class="bg-[#FFB3D1] text-[#121118] px-4 py-1.5 flex-1 font-medium tracking-wide">
+        UNIDAD 42: Presente de indicativo: otros usos
+      </div>
+
+      <!-- Acento en rosa primario fuerte -->
+      <div class="bg-[#FF79AC] w-3 h-[34px] flex-shrink-0"></div>
+
+      <!-- Extremo derecho rosa muy claro / suave -->
+      <div class="bg-[#FFD6E7] w-12 h-[34px] flex-shrink-0"></div>
+    </footer>
+
+  </div>
+
+  <script>
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+        event.preventDefault();
+        const inputs = Array.from(document.querySelectorAll('input'));
+        const index = inputs.indexOf(event.target);
+        if (index > -1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

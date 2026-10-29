@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios - Unidad 39</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        *:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #121118;
+            font-family: 'Platform Medium', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            letter-spacing: normal;
+            word-spacing: normal;
+        }
+
+        .main-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1.page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF79AC;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        /* Encabezado de cada ejercicio según guía de estilo */
+        .exercise-header {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 2px solid #FF79AC;
+            padding-bottom: 4px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .exercise-number {
+            color: #FF79AC;
+            font-size: 1.9rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .exercise-instruction {
+            color: #121118;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        /* Bank of words box for 39.4 */
+        .word-bank {
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #E5E5E5;
+        }
+
+        .word-bank-item {
+            font-weight: bold;
+            color: #121118;
+            transition: opacity 0.3s ease, text-decoration 0.3s ease, color 0.3s ease;
+            font-size: 1.05rem;
+            padding: 2px 6px;
+            background-color: #FFFFFF;
+            border-radius: 4px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .word-bank-item.used {
+            opacity: 0.35;
+            text-decoration: line-through;
+            color: #888888;
+            background-color: #F0F0F0;
+        }
+
+        /* Listas de ejercicios */
+        .exercise-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .exercise-item {
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            text-align: justify;
+            letter-spacing: normal;
+            word-spacing: normal;
+        }
+
+        /* Inputs de completación */
+        input.fill-input {
+            border: none;
+            border-bottom: 2px solid #B0B0B0;
+            background: transparent;
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.05rem;
+            color: #121118;
+            padding: 2px 6px;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+            display: inline-block;
+        }
+
+        input.fill-input:focus {
+            border-bottom-color: #FF79AC;
+        }
+
+        input.fill-input.correct {
+            background-color: #D4EDDA !important;
+            border-bottom-color: #28A745 !important;
+        }
+
+        input.fill-input.incorrect {
+            background-color: #F8D7DA !important;
+            border-bottom-color: #DC3545 !important;
+        }
+
+        /* Anchos de inputs */
+        .w-xs { width: 90px; }
+        .w-sm { width: 130px; }
+        .w-md { width: 180px; }
+        .w-lg { width: 240px; }
+
+        /* Botón de Respuestas y Panel inferior */
+        .answers-toggle-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .btn-answers {
+            background-color: #FFB3D1;
+            color: #121118;
+            border: none;
+            border-bottom: 3px solid #FF79AC;
+            border-radius: 5px;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .btn-answers:hover {
+            background-color: #FFA2C7;
+        }
+
+        .btn-answers:active {
+            transform: translateY(2px);
+        }
+
+        .answers-panel {
+            display: none;
+            margin-top: 25px;
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #FFB3D1;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+
+        .answer-col-title {
+            color: #FF79AC;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #FF79AC;
+            padding-bottom: 4px;
+        }
+
+        .answer-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .answer-list li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .answer-num {
+            color: #FF79AC;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 700px) {
+            .exercise-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .exercise-number {
+                font-size: 1.6rem;
+            }
+            .exercise-instruction {
+                font-size: 1.2rem;
+            }
+            input.fill-input {
+                max-width: 100%;
+            }
+            .exercise-item {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <h1 class="page-title">Ejercicios</h1>
+
+        <!-- EJERCICIO 39.1 -->
+        <div class="exercise-header">
+            <span class="exercise-number">39.1</span>
+            <span class="exercise-instruction">Complete con los verbos entre paréntesis.</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item">
+                1. Rolf y Fiona (<em>hablar</em>) <input type="text" class="fill-input w-sm" data-ans="hablan"> cuatro idiomas.
+            </div>
+            <div class="exercise-item">
+                2. Los osos (<em>vivir</em>) <input type="text" class="fill-input w-sm" data-ans="viven"> en zonas frías.
+            </div>
+            <div class="exercise-item">
+                3. Siempre (<em>recoger</em>) <input type="text" class="fill-input w-sm" data-ans="recojo"> yo la mesa.
+            </div>
+            <div class="exercise-item">
+                4. Mi perro no (<em>comer</em>) <input type="text" class="fill-input w-sm" data-ans="come"> carne.
+            </div>
+            <div class="exercise-item">
+                5. Soy un padre muy blando. (<em>Proteger</em>) <input type="text" class="fill-input w-sm" data-ans="Protejo"> demasiado a mis hijos.
+            </div>
+            <div class="exercise-item">
+                6. Laura es una buena decoradora. (<em>Escoger</em>) <input type="text" class="fill-input w-sm" data-ans="Escoge"> muy bien los colores.
+            </div>
+            <div class="exercise-item">
+                7. Mis tíos siempre nos (<em>enviar</em>) <input type="text" class="fill-input w-sm" data-ans="envían"> una postal de Navidad.
+            </div>
+            <div class="exercise-item">
+                8. Rosario siempre (<em>convencer</em>) <input type="text" class="fill-input w-sm" data-ans="convence"> a sus padres.
+            </div>
+            <div class="exercise-item">
+                9. Esta película no (<em>acabar</em>) <input type="text" class="fill-input w-sm" data-ans="acaba"> hoy. (<em>Continuar</em>) <input type="text" class="fill-input w-sm" data-ans="Continúa"> el próximo lunes.
+            </div>
+            <div class="exercise-item">
+                10. Juan y Arturo no son muy listos. (<em>Escoger</em>) <input type="text" class="fill-input w-sm" data-ans="Escogen"> muy mal a sus amigos.
+            </div>
+            <div class="exercise-item">
+                11. El jefe (<em>prohibir</em>) <input type="text" class="fill-input w-sm" data-ans="prohíbe"> comer en la oficina.
+            </div>
+            <div class="exercise-item">
+                12. ¿Por qué (<em>discutir</em>) <input type="text" class="fill-input w-sm" data-ans="discuten"> tanto tú y tu hermana?
+            </div>
+        </div>
+
+        <!-- EJERCICIO 39.2 -->
+        <div class="exercise-header">
+            <span class="exercise-number">39.2</span>
+            <span class="exercise-instruction">Complete con los verbos entre paréntesis.</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item">
+                1. —¿Tú (<em>creer</em>) <input type="text" class="fill-input w-sm" data-ans="crees"> en fantasmas? —No, no <input type="text" class="fill-input w-sm" data-ans="creo"> en nada de eso.
+            </div>
+            <div class="exercise-item">
+                2. —¿Qué (<em>coger</em>) <input type="text" class="fill-input w-sm" data-ans="coges"> para ir a trabajar? —<input type="text" class="fill-input w-sm" data-ans="Cojo"> el metro.
+            </div>
+            <div class="exercise-item">
+                3. —¿Quién (<em>escoger</em>) <input type="text" class="fill-input w-sm" data-ans="escoge"> los muebles? —Los <input type="text" class="fill-input w-sm" data-ans="escoge"> mi mujer.
+            </div>
+            <div class="exercise-item">
+                4. —¿A qué hora (<em>cenar</em>) <input type="text" class="fill-input w-sm" data-ans="cenan"> tu mujer y tú? —<input type="text" class="fill-input w-sm" data-ans="Cenamos"> a las diez.
+            </div>
+            <div class="exercise-item">
+                5. —¿(<em>Vosotros, ver</em>) <input type="text" class="fill-input w-sm" data-ans="Veis"> mucho a Carlos? —Sí, lo <input type="text" class="fill-input w-sm" data-ans="vemos"> casi todos los sábados.
+            </div>
+            <div class="exercise-item">
+                6. —¿A qué hora (<em>llegar</em>) <input type="text" class="fill-input w-sm" data-ans="llegas"> a casa por la tarde, Rosa? —Normalmente <input type="text" class="fill-input w-sm" data-ans="llego"> a eso de las cinco.
+            </div>
+            <div class="exercise-item">
+                7. —¿Cuándo (<em>recoger</em>) <input type="text" class="fill-input w-sm" data-ans="recogen"> la basura en este barrio? —La <input type="text" class="fill-input w-sm" data-ans="recogen"> todas las noches.
+            </div>
+            <div class="exercise-item">
+                8. —¿Qué (<em>escribir</em>) <input type="text" class="fill-input w-sm" data-ans="escribe"> Antonio? —<input type="text" class="fill-input w-sm" data-ans="Escribe"> novelas históricas.
+            </div>
+        </div>
+
+        <!-- EJERCICIO 39.3 -->
+        <div class="exercise-header">
+            <span class="exercise-number">39.3</span>
+            <span class="exercise-instruction">Complete con los verbos entre paréntesis en forma afirmativa o negativa, según su caso.</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item">
+                1. (<em>Trabajar</em>) <input type="text" class="fill-input w-md" data-ans="Trabajo|No trabajo|no trabajo"> por las tardes.
+            </div>
+            <div class="exercise-item">
+                2. (<em>Tocar</em>) <input type="text" class="fill-input w-md" data-ans="Toco|No toco|no toco"> el piano.
+            </div>
+            <div class="exercise-item">
+                3. (<em>Montar</em>) <input type="text" class="fill-input w-md" data-ans="Monto|No monto|no monto"> moto.
+            </div>
+            <div class="exercise-item">
+                4. En mi país, los bancos (<em>abrir</em>) <input type="text" class="fill-input w-md" data-ans="abren|No abren|no abren"> por las tardes.
+            </div>
+            <div class="exercise-item">
+                5. (<em>Comer</em>) <input type="text" class="fill-input w-md" data-ans="Como|No como|no como"> mucha fruta.
+            </div>
+            <div class="exercise-item">
+                6. (<em>Beber</em>) <input type="text" class="fill-input w-md" data-ans="Bebo|No bebo|no bebo"> mucho café.
+            </div>
+            <div class="exercise-item">
+                7. (<em>Ver</em>) <input type="text" class="fill-input w-md" data-ans="Veo|No veo|no veo"> muchas películas españolas.
+            </div>
+            <div class="exercise-item">
+                8. Mis amigos (<em>hablar</em>) <input type="text" class="fill-input w-md" data-ans="hablan|No hablan|no hablan"> español.
+            </div>
+            <div class="exercise-item">
+                9. Mis compañeros (<em>estudiar</em>) <input type="text" class="fill-input w-md" data-ans="estudian|No estudian|no estudian"> mucho.
+            </div>
+            <div class="exercise-item">
+                10. (<em>Convencer</em>) <input type="text" class="fill-input w-md" data-ans="Convenzo|No convenzo|no convenzo"> fácilmente a mis amigos.
+            </div>
+        </div>
+
+        <!-- EJERCICIO 39.4 -->
+        <div class="exercise-header">
+            <span class="exercise-number">39.4</span>
+            <span class="exercise-instruction">Complete con los verbos del recuadro.</span>
+        </div>
+
+        <!-- Banco de Palabras -->
+        <div class="word-bank" id="wordBank">
+            <span class="word-bank-item used" data-verb="comer" data-total="1" data-used="1">comer</span>
+            <span class="word-bank-item" data-verb="convencer" data-total="1" data-used="0">convencer</span>
+            <span class="word-bank-item" data-verb="ganar" data-total="2" data-used="0">ganar (2)</span>
+            <span class="word-bank-item" data-verb="hablar" data-total="2" data-used="0">hablar (2)</span>
+            <span class="word-bank-item" data-verb="llevar" data-total="2" data-used="0">llevar (2)</span>
+            <span class="word-bank-item" data-verb="necesitar" data-total="1" data-used="0">necesitar</span>
+            <span class="word-bank-item" data-verb="pasar" data-total="2" data-used="0">pasar (2)</span>
+            <span class="word-bank-item" data-verb="trabajar" data-total="1" data-used="0">trabajar</span>
+            <span class="word-bank-item" data-verb="vender" data-total="2" data-used="0">vender (2)</span>
+            <span class="word-bank-item" data-verb="ver" data-total="2" data-used="0">ver (2)</span>
+            <span class="word-bank-item" data-verb="vivir" data-total="2" data-used="0">vivir (2)</span>
+        </div>
+
+        <div class="exercise-list">
+            <div class="exercise-item">
+                1. —¿Qué <input type="text" class="fill-input w-sm" data-ans="comes" data-verb="comer">? —Pistachos. ¿Quieres?
+            </div>
+
+            <div class="exercise-item">
+                2. —¿Dónde <input type="text" class="fill-input w-sm" data-ans="vives|vivís" data-verb="vivir"> ahora? —<input type="text" class="fill-input w-sm" data-ans="Vivo|Vivimos" data-verb="vivir"> en el centro.
+            </div>
+            <div class="exercise-item">
+                3. —¿Estás triste? ¿Qué te <input type="text" class="fill-input w-sm" data-ans="pasa" data-verb="pasar">? —Tranquilo, no me <input type="text" class="fill-input w-sm" data-ans="pasa" data-verb="pasar"> nada.
+            </div>
+            <div class="exercise-item">
+                4. —¿Qué <input type="text" class="fill-input w-sm" data-ans="llevas" data-verb="llevar"> en la cartera? —<input type="text" class="fill-input w-sm" data-ans="Llevo" data-verb="llevar"> libros y documentos.
+            </div>
+            <div class="exercise-item">
+                5. —¿<input type="text" class="fill-input w-sm" data-ans="Ves" data-verb="ver"> bien el escenario? —No lo <input type="text" class="fill-input w-sm" data-ans="veo" data-verb="ver"> muy bien.
+            </div>
+            <div class="exercise-item">
+                6. —Lo siento, pero no me <input type="text" class="fill-input w-sm" data-ans="convences" data-verb="convencer">. Creo que no tienes razón.
+            </div>
+            <div class="exercise-item">
+                7. —¿Qué <input type="text" class="fill-input w-sm" data-ans="vende" data-verb="vender"> aquella señora? —<input type="text" class="fill-input w-sm" data-ans="Vende" data-verb="vender"> productos de la región.
+            </div>
+            <div class="exercise-item">
+                8. —¿Por qué <input type="text" class="fill-input w-sm" data-ans="hablas" data-verb="hablar"> (tú) tan despacio? —Porque Hans no <input type="text" class="fill-input w-sm" data-ans="habla" data-verb="hablar"> bien español.
+            </div>
+            <div class="exercise-item">
+                9. —¿Quién <input type="text" class="fill-input w-sm" data-ans="gana" data-verb="ganar">? —No <input type="text" class="fill-input w-sm" data-ans="gana" data-verb="ganar"> nadie. Van empatados.
+            </div>
+            <div class="exercise-item">
+                10. —¿Por qué <input type="text" class="fill-input w-sm" data-ans="trabajáis" data-verb="trabajar"> tanto vosotros? —Porque <input type="text" class="fill-input w-sm" data-ans="necesitamos" data-verb="necesitar"> dinero.
+            </div>
+        </div>
+
+        <!-- Botón de Respuestas Correctas -->
+        <div class="answers-toggle-container">
+            <button type="button" class="btn-answers" id="toggleAnswersBtn">Respuestas correctas</button>
+        </div>
+
+        <!-- Panel de Respuestas Correctas -->
+        <div class="answers-panel" id="answersPanel">
+            <div class="answers-grid">
+                <div>
+                    <div class="answer-col-title">39.1</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> hablan</li>
+                        <li><span class="answer-num">2.</span> viven</li>
+                        <li><span class="answer-num">3.</span> recojo</li>
+                        <li><span class="answer-num">4.</span> come</li>
+                        <li><span class="answer-num">5.</span> Protejo</li>
+                        <li><span class="answer-num">6.</span> Escoge</li>
+                        <li><span class="answer-num">7.</span> envían</li>
+                        <li><span class="answer-num">8.</span> convence</li>
+                        <li><span class="answer-num">9.</span> acaba; Continúa</li>
+                        <li><span class="answer-num">10.</span> Escogen</li>
+                        <li><span class="answer-num">11.</span> prohíbe</li>
+                        <li><span class="answer-num">12.</span> discuten</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">39.2</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> crees; creo</li>
+                        <li><span class="answer-num">2.</span> coges; Cojo</li>
+                        <li><span class="answer-num">3.</span> escoge; escoge</li>
+                        <li><span class="answer-num">4.</span> cenan; Cenamos</li>
+                        <li><span class="answer-num">5.</span> Veis; vemos</li>
+                        <li><span class="answer-num">6.</span> llegas; llego</li>
+                        <li><span class="answer-num">7.</span> recogen; recogen</li>
+                        <li><span class="answer-num">8.</span> escribe; Escribe</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">39.3</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> (No) trabajo</li>
+                        <li><span class="answer-num">2.</span> (No) toco</li>
+                        <li><span class="answer-num">3.</span> (No) monto</li>
+                        <li><span class="answer-num">4.</span> (No) abren</li>
+                        <li><span class="answer-num">5.</span> (No) como</li>
+                        <li><span class="answer-num">6.</span> (No) bebo</li>
+                        <li><span class="answer-num">7.</span> (No) veo</li>
+                        <li><span class="answer-num">8.</span> (No) hablan</li>
+                        <li><span class="answer-num">9.</span> (No) estudian</li>
+                        <li><span class="answer-num">10.</span> (No) convenzo</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="answer-col-title">39.4</div>
+                    <ul class="answer-list">
+                        <li><span class="answer-num">1.</span> comes</li>
+                        <li><span class="answer-num">2.</span> vives / vivís; Vivo / Vivimos</li>
+                        <li><span class="answer-num">3.</span> pasa; pasa</li>
+                        <li><span class="answer-num">4.</span> llevas; Llevo</li>
+                        <li><span class="answer-num">5.</span> Ves; veo</li>
+                        <li><span class="answer-num">6.</span> convences</li>
+                        <li><span class="answer-num">7.</span> vende; Vende</li>
+                        <li><span class="answer-num">8.</span> hablas; habla</li>
+                        <li><span class="answer-num">9.</span> gana; gana</li>
+                        <li><span class="answer-num">10.</span> trabajáis; necesitamos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input.fill-input'));
+            const toggleBtn = document.getElementById('toggleAnswersBtn');
+            const answersPanel = document.getElementById('answersPanel');
+
+            // Normalizador de texto para validación flexible
+            function normalizeText(text) {
+                return text.trim().replace(/\s+/g, ' ');
+            }
+
+            // Normalizador secundario insensible a tildes/signos/mayúsculas
+            function simplifyText(text) {
+                return text.trim()
+                    .toLowerCase()
+                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()¡!¿?]/g, "")
+                    .replace(/\s+/g, ' ');
+            }
+
+            // Actualiza los elementos del banco de palabras en el ejercicio 39.4
+            function updateWordBank() {
+                const ex4Inputs = document.querySelectorAll('input.fill-input[data-verb]');
+                const bankItems = document.querySelectorAll('.word-bank-item');
+
+                // Recuento de aciertos por verbo
+                const verbCounts = {};
+                ex4Inputs.forEach(input => {
+                    const verb = input.getAttribute('data-verb');
+                    if (!verbCounts[verb]) verbCounts[verb] = 0;
+
+                    if (input.classList.contains('correct') || input.hasAttribute('disabled')) {
+                        verbCounts[verb]++;
+                    }
+                });
+
+                // Actualizar estilo visual en el banco de palabras
+                bankItems.forEach(item => {
+                    const verb = item.getAttribute('data-verb');
+                    const totalNeeded = parseInt(item.getAttribute('data-total'), 10) || 1;
+                    const used = verbCounts[verb] || 0;
+
+                    if (used >= totalNeeded) {
+                        item.classList.add('used');
+                    } else {
+                        item.classList.remove('used');
+                    }
+                });
+            }
+
+            // Validar un campo input individual
+            function validateInput(input, forceValidateEmpty = false) {
+                const rawVal = input.value;
+                const userVal = normalizeText(rawVal);
+                const dataAns = input.getAttribute('data-ans');
+                if (!dataAns) return;
+
+                const acceptedAnswers = dataAns.split('|').map(normalizeText);
+                const simplifiedAccepted = dataAns.split('|').map(simplifyText);
+                const simplifiedUser = simplifyText(rawVal);
+
+                if (userVal === '') {
+                    if (forceValidateEmpty) {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    } else {
+                        input.classList.remove('correct', 'incorrect');
+                    }
+                    updateWordBank();
+                    return;
+                }
+
+                // Comparación exacta o simplificada
+                if (acceptedAnswers.includes(userVal) || simplifiedAccepted.includes(simplifiedUser)) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                }
+
+                updateWordBank();
+            }
+
+            // Inicializar inputs deshabilitados (ej. ej 39.4 #1 pre-llenado en la hoja)
+            inputs.forEach(input => {
+                if (input.value !== '' && input.hasAttribute('disabled')) {
+                    input.classList.add('correct');
+                }
+            });
+            updateWordBank();
+
+            // Event Listeners para cada input
+            inputs.forEach((input, index) => {
+                if (input.hasAttribute('disabled')) return;
+
+                // Al escribir, quitar validación temporalmente
+                input.addEventListener('input', function() {
+                    this.classList.remove('correct', 'incorrect');
+                    updateWordBank();
+                });
+
+                // Al perder el foco (blur), validar
+                input.addEventListener('blur', function() {
+                    if (this.value !== '') {
+                        validateInput(this, false);
+                    }
+                });
+
+                // Tecla Enter para validar y saltar al siguiente campo
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        validateInput(this, true);
+                        // Encontrar el siguiente campo no deshabilitado
+                        let nextIndex = index + 1;
+                        while (nextIndex < inputs.length && inputs[nextIndex].hasAttribute('disabled')) {
+                            nextIndex++;
+                        }
+                        if (nextIndex < inputs.length) {
+                            inputs[nextIndex].focus();
+                        }
+                    }
+                });
+            });
+
+            // Toggle para el panel de respuestas
+            toggleBtn.addEventListener('click', function() {
+                if (answersPanel.style.display === 'block') {
+                    answersPanel.style.display = 'none';
+                } else {
+                    answersPanel.style.display = 'block';
+                    answersPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
